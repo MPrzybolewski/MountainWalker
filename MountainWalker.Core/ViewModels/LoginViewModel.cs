@@ -16,8 +16,7 @@ namespace MountainWalker.Core.ViewModels
         {
             if (DoLogin(_login, _password))
             {
-                ShowViewModel<MainViewModel>();
-                
+                ShowViewModel<MainViewModel>(); //fajnie by bylo stworzyc nowy widok od razu z jakas wartoscia
             }
         }
 
