@@ -11,7 +11,7 @@ namespace MountainWalker.Core
                 .AsInterfaces()
                 .RegisterAsLazySingleton();
 
-            RegisterNavigationServiceAppStart<ViewModels.LoginViewModel>();
+            RegisterNavigationServiceAppStart<ViewModels.SignInViewModel>();
         }
     }
 }
