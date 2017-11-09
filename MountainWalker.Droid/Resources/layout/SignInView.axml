@@ -1,34 +1,41 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:local="http://schemas.android.com/apk/res-auto"
-    android:orientation="vertical"
-    android:layout_width="fill_parent"
-    android:layout_height="fill_parent">
+        android:orientation="vertical"
+        android:layout_width="fill_parent"
+        android:layout_height="fill_parent"
+        android:gravity="center_vertical">
     <TextView
         android:layout_width="fill_parent"
         android:layout_height="wrap_content"
-        android:textSize="40dp"
-        android:text="Login" />
+        android:text="Login"
+        android:gravity="center_horizontal"
+        android:paddingBottom="20dp"
+        android:textSize="20dp" />
     <EditText
         android:layout_width="fill_parent"
         android:layout_height="wrap_content"
-        android:textSize="40dp"
         local:MvxBind="Text Login" />
     <TextView
-        android:layout_width="fill_parent"
-        android:layout_height="wrap_content"
-        android:textSize="40dp"
-        android:text="Hasło" />
+       android:layout_width="fill_parent"
+       android:layout_height="wrap_content"
+       android:text="Hasło"
+       android:gravity="center_horizontal"
+       android:paddingBottom="20dp"
+       android:textSize="20dp" />
     <EditText
         android:layout_width="fill_parent"
         android:layout_height="wrap_content"
-        android:textSize="40dp"
         android:inputType="textPassword"
         local:MvxBind="Text Password" />
     <Button
         android:layout_width="fill_parent"
         android:layout_height="wrap_content"
         android:text="Zaloguj"
-        android:textSize="40dp"
         local:MvxBind="Click SignInButton" />
+    <Button
+      android:layout_width="fill_parent"
+      android:layout_height="wrap_content"
+      android:text="Zarejestruj"
+      local:MvxBind="Click RegisterButton" />
 </LinearLayout>

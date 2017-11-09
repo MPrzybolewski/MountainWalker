@@ -11,18 +11,16 @@ namespace MountainWalker.Core.ViewModels
         {
         }
 
-
-    public override Task Initialize()
+        public override Task Initialize()
         {
             //TODO: Add starting logic here
 
             return base.Initialize();
         }
 
-        public IMvxCommand SignInButton => new MvxCommand(checkFields);
-        private void checkFields()
+        public IMvxCommand SignInButton => new MvxCommand(CheckFields);
+        private void CheckFields()
         {
-
             if (_login.Equals("admin") && _password.Equals("admin"))
             {
                 ShowViewModel<MainViewModel>();
@@ -33,6 +31,13 @@ namespace MountainWalker.Core.ViewModels
                 foo.Alert("Uwaga!", "Dane są nieprawidłowe", "OK");
             }
         }
+
+        public IMvxCommand RegisterButton => new MvxCommand(JumpRegister);
+        private void JumpRegister()
+        {
+            ShowViewModel<RegisterViewModel>();
+        }
+
         private string _login;
         private string _password;
 
