@@ -1,8 +1,8 @@
 ﻿using System;
 namespace MountainWalker.Core.Interfaces
 {
-    public interface IDialogAlert
+    public interface IDialogService
     {
-        void Alert(string title, string message, string okButtonText);
+        void ShowAlert(string title, string message, string okButtonText);
     }
 }

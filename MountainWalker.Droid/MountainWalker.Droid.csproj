@@ -113,8 +113,6 @@
     <Compile Include="MainApplication.cs" />
     <Compile Include="Resources\Resource.designer.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="Source\DroidDialogAlert.cs" />
-    <Compile Include="Source\DroidLocation.cs" />
     <Compile Include="Views\MainView.cs" />
     <Compile Include="SplashScreen.cs" />
     <Compile Include="Setup.cs" />
@@ -123,6 +121,8 @@
     <Compile Include="Views\RegisterView.cs" />
     <Compile Include="Views\SignInView.cs" />
     <Compile Include="Services\DroidDialogService.cs" />
+    <Compile Include="Services\DroidLocation.cs" />
+    <Compile Include="Services\DroidLocationService.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Resources\AboutResources.txt" />

@@ -1,23 +1,18 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Linq;
 using System.Threading.Tasks;
 using Android.App;
-using Android.Content;
 using Android.Locations;
-using Android.OS;
-using Java.IO;
 using MountainWalker.Core.Models;
-using MountainWalker.Core.ViewModels;
 using Plugin.Geolocator;
 using Console = System.Console;
+using Java.IO;
 
-
-namespace MountainWalker.Droid.Source
+namespace MountainWalker.Droid.Services
 {
-    class DroidLocation : ILocationActivity
+    class DroidLocationService : ILocationActivity
     {
-        public DroidLocation()
+        public DroidLocationService()
         {
         }
 
@@ -51,5 +46,7 @@ namespace MountainWalker.Droid.Source
             }
             return new Marker(position.Latitude, position.Longitude, city, "tera");
         }
+        
+
     }
 }
