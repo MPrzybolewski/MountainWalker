@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Threading.Tasks;
+using MountainWalker.Core.Interfaces;
 using MvvmCross.Core.ViewModels;
 using MvvmCross.Platform;
 
@@ -7,8 +8,11 @@ namespace MountainWalker.Core.ViewModels
 {
     public class SignInViewModel : MvxViewModel
     {
-        public SignInViewModel()
+        private readonly IDialogService _dialogService;
+
+        public SignInViewModel(IDialogService dialogService)
         {
+            _dialogService = dialogService;
         }
 
         public override Task Initialize()
@@ -27,8 +31,8 @@ namespace MountainWalker.Core.ViewModels
             }
             else
             {
-                var foo = Mvx.Resolve<IDialogAlert>();
-                foo.Alert("Uwaga!", "Dane są nieprawidłowe", "OK");
+                _dialogService.ShowAlert("Uwaga!", "Dane są nieprawidłowe", "OK"); 
+
             }
         }
 

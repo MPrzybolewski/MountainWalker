@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using MountainWalker.Core.Interfaces;
 using MvvmCross.Core.ViewModels;
 using MvvmCross.Platform;
 
@@ -13,7 +14,12 @@ namespace MountainWalker.Core.ViewModels
         private string _login = "";
         private string _password = "";
         private string _repPassword = "";
+        private readonly IDialogService _dialogService;
 
+        public RegisterViewModel(IDialogService dialogService)
+        {
+            _dialogService = dialogService;
+        }
         public string Login
         {
             get { return _login; }
@@ -39,8 +45,7 @@ namespace MountainWalker.Core.ViewModels
             }
             else
             {
-                var message = Mvx.Resolve<IDialogAlert>();
-                message.Alert("Uwaga!", "Dane są nieprawidłowe", "OK");
+                _dialogService.ShowAlert("Uwaga!", "Dane są nieprawidłowe", "OK");
             }
         }
     }
