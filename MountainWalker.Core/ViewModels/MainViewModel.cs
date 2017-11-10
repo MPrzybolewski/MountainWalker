@@ -1,4 +1,6 @@
+using System.Diagnostics;
 using System.Threading.Tasks;
+using MountainWalker.Core.Interfaces;
 using MvvmCross.Core.ViewModels;
 using MvvmCross.Platform;
 using MountainWalker.Core.Models;
@@ -7,32 +9,33 @@ namespace MountainWalker.Core.ViewModels
 {
     public class MainViewModel : MvxViewModel
     {
-        public MainViewModel()
+        private string _label = "ZMIEN TO EHHHH";
+        private readonly ILocationService _locationService;
+
+        public MainViewModel(ILocationService locationService)
         {
+            _locationService = locationService;
         }
-
-        public override Task Initialize()
+        public IMvxCommand GetLocation => new MvxCommand(async () =>
         {
-            //TODO: Add starting logic here
+            Debug.WriteLine("cmon");
 
-            return base.Initialize();
-        }
+            var result = Task.Run(() => _locationService.GetLocation()).Result;
+            Marker mark = new Marker(result);
+            Label = mark.City + " " + mark.Latitude + " " + mark.Latitude;
+            //_label = "A se zmienilem XD";
+            Debug.WriteLine("I WANT LABEL = " + _label);
+        });
 
-        public IMvxCommand GetLocation => new MvxCommand(async () => await CheckLocation());
-        private Task CheckLocation()
-        {
-            var foo = Mvx.Resolve<ILocationService>();
-            Marker mark = await foo.GetLocation().Result;
-            _label = mark.City + " " + mark.Latitude + " " + mark.Latitude;
-            return null;
-        }
-
-        private string _label = "";
 
         public string Label
         {
             get { return _label; }
-            set { SetProperty(ref _label, value); }
+            set
+            {
+                _label = value;
+                RaisePropertyChanged();
+            }
         }
     }
 }

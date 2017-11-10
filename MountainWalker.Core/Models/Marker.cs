@@ -10,10 +10,18 @@ namespace MountainWalker.Core.Models
 
         public Marker(double latitude, double longitude, string city, string date)
         {
-            this.Latitude = latitude;
-            this.Longitude = longitude;
-            this.City = city;
-            this.Date = date;
+            Latitude = latitude;
+            Longitude = longitude;
+            City = city;
+            Date = date;
+        }
+
+        public Marker(Marker mark)
+        {
+            Latitude = mark.Latitude;
+            Longitude = mark.Longitude;
+            City = mark.City;
+            Date = mark.Date;
         }
     }
 

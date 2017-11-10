@@ -5,10 +5,11 @@ using System.Text;
 using System.Threading.Tasks;
 using MountainWalker.Core.Models;
 
-namespace MountainWalker.Core.ViewModels
+namespace MountainWalker.Core.Interfaces
 {
     public interface ILocationService
-    {
+    { 
+        void Test();
         Task<Marker> GetLocation();
     }
 }

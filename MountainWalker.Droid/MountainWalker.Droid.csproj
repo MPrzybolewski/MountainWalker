@@ -9,7 +9,7 @@
     <OutputType>Library</OutputType>
     <RootNamespace>MountainWalker.Droid</RootNamespace>
     <AssemblyName>MountainWalker.Droid</AssemblyName>
-    <TargetFrameworkVersion>v8.0</TargetFrameworkVersion>
+    <TargetFrameworkVersion>v7.1</TargetFrameworkVersion>
     <AndroidApplication>True</AndroidApplication>
     <AndroidResgenFile>Resources\Resource.designer.cs</AndroidResgenFile>
     <AndroidResgenClass>Resource</AndroidResgenClass>
@@ -121,7 +121,6 @@
     <Compile Include="Views\RegisterView.cs" />
     <Compile Include="Views\SignInView.cs" />
     <Compile Include="Services\DroidDialogService.cs" />
-    <Compile Include="Services\DroidLocation.cs" />
     <Compile Include="Services\DroidLocationService.cs" />
   </ItemGroup>
   <ItemGroup>
@@ -163,7 +162,15 @@
     <AndroidResource Include="Resources\values\Styles.xml" />
   </ItemGroup>
   <ItemGroup>
-    <Folder Include="Services\" />
+    <COMReference Include="JAVAWEBSTARTLib">
+      <Guid>{5852F5E0-8BF4-11D4-A245-0080C6F74284}</Guid>
+      <VersionMajor>1</VersionMajor>
+      <VersionMinor>0</VersionMinor>
+      <Lcid>0</Lcid>
+      <WrapperTool>tlbimp</WrapperTool>
+      <Isolated>False</Isolated>
+      <EmbedInteropTypes>True</EmbedInteropTypes>
+    </COMReference>
   </ItemGroup>
   <ItemGroup>
     <AndroidResource Include="Resources\drawable\splash.png" />

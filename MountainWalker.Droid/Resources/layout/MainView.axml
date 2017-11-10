@@ -7,13 +7,13 @@
   <TextView
       android:layout_width="fill_parent"
       android:layout_height="wrap_content"
-      android:textSize="40dp"
-      android:text="Udało się zalogować"
+      android:textSize="20dp"
+      android:textAlignment="center"
       local:MvxBind="Text Label" />
     <Button
       android:layout_width="fill_parent"
       android:layout_height="wrap_content"
-      android:text="Zaloguj"
+      android:text="Sprawdz lokalizacje"
       local:MvxBind="Click GetLocation" />
     
 </LinearLayout>

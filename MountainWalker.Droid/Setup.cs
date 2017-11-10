@@ -13,8 +13,6 @@ using MountainWalker.Core.Interfaces;
 using MountainWalker.Droid.Services;
 using MvvmCross.Platform.IoC;
 
-using MountainWalker.Droid.Source;
-
 
 namespace MountainWalker.Droid
 {
@@ -39,8 +37,8 @@ namespace MountainWalker.Droid
             CreatableTypes().EndingWith("Service").AsInterfaces().RegisterAsLazySingleton();
             base.InitializeLastChance();
             //register a signle instrance of IDialogAlert
-            Mvx.RegisterSingleton<IDialogService>(new DroidDialogAlert());
-            Mvx.RegisterSingleton<ILocationActivity>(new DroidLocation());
+            //Mvx.RegisterSingleton<IDialogService>(new DroidDialogAlert());
+            //Mvx.RegisterSingleton<ILocationService>(new DroidLocationService());
 
         }
     }
