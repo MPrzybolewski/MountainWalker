@@ -20,11 +20,9 @@ namespace MountainWalker.Core.ViewModels
         {
             Debug.WriteLine("cmon");
 
-            var result = Task.Run(() => _locationService.GetLocation()).Result;
+            var result = Task.Run(() =>  _locationService.GetLocation()).Result;
             Marker mark = new Marker(result);
-            Label = mark.City + " " + mark.Latitude + " " + mark.Latitude;
-            //_label = "A se zmienilem XD";
-            Debug.WriteLine("I WANT LABEL = " + _label);
+            Label = mark.City + " " + mark.Latitude + " " + mark.Longitude;
         });
 
 
