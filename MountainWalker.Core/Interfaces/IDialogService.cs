@@ -1,5 +1,5 @@
 ﻿using System;
-namespace MountainWalker.Core.ViewModels
+namespace MountainWalker.Core.Interfaces
 {
     public interface IDialogAlert
     {

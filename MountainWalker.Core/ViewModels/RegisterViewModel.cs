@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using MountainWalker.Core.Interfaces;
 using MvvmCross.Core.ViewModels;
 using MvvmCross.Platform;
 
@@ -39,7 +40,7 @@ namespace MountainWalker.Core.ViewModels
             }
             else
             {
-                var message = Mvx.Resolve<IDialogAlert>();
+                var message = Mvx.Resolve<IDialogService>();
                 message.Alert("Uwaga!", "Dane są nieprawidłowe", "OK");
             }
         }

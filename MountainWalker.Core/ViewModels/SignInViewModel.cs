@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Threading.Tasks;
+using MountainWalker.Core.Interfaces;
 using MvvmCross.Core.ViewModels;
 using MvvmCross.Platform;
 
@@ -27,7 +28,7 @@ namespace MountainWalker.Core.ViewModels
             }
             else
             {
-                var foo = Mvx.Resolve<IDialogAlert>();
+                var foo = Mvx.Resolve<IDialogService>();
                 foo.Alert("Uwaga!", "Dane są nieprawidłowe", "OK");
             }
         }

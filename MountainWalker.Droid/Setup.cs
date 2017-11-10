@@ -6,7 +6,9 @@ using MvvmCross.Platform;
 using MvvmCross.Platform.Droid.Platform;
 
 using Android.App;
+using MountainWalker.Core.Interfaces;
 using MountainWalker.Core.ViewModels;
+using MountainWalker.Droid.Source;
 
 namespace MountainWalker.Droid
 {
@@ -30,23 +32,9 @@ namespace MountainWalker.Droid
         {
             base.InitializeLastChance();
             //register a signle instrance of IDialogAlert
-            Mvx.RegisterSingleton<IDialogAlert>(new DroidDialogAlert());
+            Mvx.RegisterSingleton<IDialogService>(new DroidDialogAlert());
+            Mvx.RegisterSingleton<ILocationActivity>(new DroidLocation());
 
-        }
-
-        public class DroidDialogAlert : IDialogAlert
-        {
-            public void Alert(string title, string message, string okButtonText)
-            {
-                var top = Mvx.Resolve<IMvxAndroidCurrentTopActivity>();
-                var act = top.Activity;
-
-                var adb = new AlertDialog.Builder(act);
-                adb.SetTitle(title);
-                adb.SetMessage(message);
-                adb.SetPositiveButton("Ok", (s, ev) => { });
-                adb.Create().Show();
-            }
         }
     }
 }
