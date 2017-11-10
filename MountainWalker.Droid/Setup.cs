@@ -6,10 +6,15 @@ using MvvmCross.Platform;
 using MvvmCross.Platform.Droid.Platform;
 
 using Android.App;
+using MountainWalker.Core.Interfaces;
 using MountainWalker.Core.ViewModels;
+
 using MountainWalker.Core.Interfaces;
 using MountainWalker.Droid.Services;
 using MvvmCross.Platform.IoC;
+
+using MountainWalker.Droid.Source;
+
 
 namespace MountainWalker.Droid
 {
@@ -31,10 +36,12 @@ namespace MountainWalker.Droid
 
         protected override void InitializeLastChance()
         {
-            //CreatableTypes().EndingWith("Service").AsInterfaces().RegisterAsLazySingleton();
+            CreatableTypes().EndingWith("Service").AsInterfaces().RegisterAsLazySingleton();
             base.InitializeLastChance();
+            //register a signle instrance of IDialogAlert
+            Mvx.RegisterSingleton<IDialogService>(new DroidDialogAlert());
+            Mvx.RegisterSingleton<ILocationActivity>(new DroidLocation());
 
         }
-
     }
 }

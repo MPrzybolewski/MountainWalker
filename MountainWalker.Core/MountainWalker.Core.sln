@@ -1,0 +1,17 @@
+
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 2012
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MountainWalker.Core", "MountainWalker.Core.csproj", "{AFBD23E5-3C7F-43DD-B5D2-6B09ABB155F7}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{AFBD23E5-3C7F-43DD-B5D2-6B09ABB155F7}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{AFBD23E5-3C7F-43DD-B5D2-6B09ABB155F7}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{AFBD23E5-3C7F-43DD-B5D2-6B09ABB155F7}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{AFBD23E5-3C7F-43DD-B5D2-6B09ABB155F7}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+EndGlobal

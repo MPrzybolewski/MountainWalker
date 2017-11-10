@@ -32,7 +32,6 @@ namespace MountainWalker.Core.ViewModels
             else
             {
                 _dialogService.ShowAlert("Uwaga!", "Dane są nieprawidłowe", "OK"); 
-
             }
         }
 
