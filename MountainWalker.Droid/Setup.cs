@@ -9,7 +9,6 @@ using Android.App;
 using MountainWalker.Core.Interfaces;
 using MountainWalker.Core.ViewModels;
 
-using MountainWalker.Core.Interfaces;
 using MountainWalker.Droid.Services;
 using MvvmCross.Platform.IoC;
 

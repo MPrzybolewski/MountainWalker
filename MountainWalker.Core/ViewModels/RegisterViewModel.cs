@@ -11,14 +11,27 @@ namespace MountainWalker.Core.ViewModels
 {
     class RegisterViewModel : MvxViewModel
     {
+        private string _name = "";
+        private string _surname = "";
         private string _login = "";
         private string _password = "";
         private string _repPassword = "";
+        private string _email = "";
         private readonly IDialogService _dialogService;
 
         public RegisterViewModel(IDialogService dialogService)
         {
             _dialogService = dialogService;
+        }
+        public string Name
+        {
+            get { return _name; }
+            set { _name = value; }
+        }
+        public string Surname
+        {
+            get { return _surname; }
+            set { _surname = value; }
         }
         public string Login
         {
@@ -34,6 +47,11 @@ namespace MountainWalker.Core.ViewModels
         {
             get { return _repPassword; }
             set { _repPassword = value; }
+        }
+        public string Email
+        {
+            get { return _email; }
+            set { _email = value; }
         }
 
         public IMvxCommand RegisterButton => new MvxCommand(CheckFields);

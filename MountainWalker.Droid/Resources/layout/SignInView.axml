@@ -1,41 +1,72 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:local="http://schemas.android.com/apk/res-auto"
-        android:orientation="vertical"
+    android:orientation="vertical"
+    android:layout_width="fill_parent"
+    android:layout_height="fill_parent"
+    android:gravity="center_vertical"
+    android:background="@drawable/alps">
+    <TextView
         android:layout_width="fill_parent"
-        android:layout_height="fill_parent"
-        android:gravity="center_vertical">
+        android:layout_height="wrap_content"
+        android:text="Witamy w MountainWalker."
+        android:gravity="center_horizontal"
+        android:paddingBottom="0dp"
+        android:textSize="20dp"
+        android:textColor="@color/foreground_material_dark" />
+    <TextView
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:text="Zaloguj się i ruszaj w góry!"
+        android:gravity="center_horizontal"
+        android:paddingBottom="20dp"
+        android:textSize="20dp"
+        android:textColor="@color/foreground_material_dark" />
     <TextView
         android:layout_width="fill_parent"
         android:layout_height="wrap_content"
         android:text="Login"
         android:gravity="center_horizontal"
-        android:paddingBottom="20dp"
-        android:textSize="20dp" />
+        android:paddingBottom="5dp"
+        android:textSize="20dp"
+        android:textColor="@color/foreground_material_dark" />
     <EditText
         android:layout_width="fill_parent"
         android:layout_height="wrap_content"
         local:MvxBind="Text Login" />
     <TextView
-       android:layout_width="fill_parent"
-       android:layout_height="wrap_content"
-       android:text="Hasło"
-       android:gravity="center_horizontal"
-       android:paddingBottom="20dp"
-       android:textSize="20dp" />
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:text="Hasło"
+        android:gravity="center_horizontal"
+        android:paddingBottom="5dp"
+        android:textSize="20dp"
+        android:textColor="@color/foreground_material_dark" />
     <EditText
         android:layout_width="fill_parent"
         android:layout_height="wrap_content"
         android:inputType="textPassword"
+        android:paddingBottom="10dp"
         local:MvxBind="Text Password" />
     <Button
         android:layout_width="fill_parent"
         android:layout_height="wrap_content"
         android:text="Zaloguj"
+        android:paddingBottom="20dp"
+        android:textColor="@color/foreground_material_dark"
         local:MvxBind="Click SignInButton" />
+    <TextView
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:text="Nie masz konta? Zarejestruj się!"
+        android:gravity="center_horizontal"
+        android:paddingBottom="0dp"
+        android:textSize="20dp"
+        android:textColor="@color/foreground_material_dark" />
     <Button
-      android:layout_width="fill_parent"
-      android:layout_height="wrap_content"
-      android:text="Zarejestruj"
-      local:MvxBind="Click RegisterButton" />
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:text="Zarejestruj"
+        android:textColor="@color/foreground_material_dark"
+        local:MvxBind="Click RegisterButton" />
 </LinearLayout>
