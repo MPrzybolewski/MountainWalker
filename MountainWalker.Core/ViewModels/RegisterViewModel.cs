@@ -18,10 +18,12 @@ namespace MountainWalker.Core.ViewModels
         private string _repPassword = "";
         private string _email = "";
         private readonly IDialogService _dialogService;
+        private readonly IRegisterService _registerService;
 
-        public RegisterViewModel(IDialogService dialogService)
+        public RegisterViewModel(IDialogService dialogService, IRegisterService registerService)
         {
             _dialogService = dialogService;
+            _registerService = registerService;
         }
         public string Name
         {
@@ -54,12 +56,12 @@ namespace MountainWalker.Core.ViewModels
             set { _email = value; }
         }
 
-        public IMvxCommand RegisterButton => new MvxCommand(CheckFields);
-        private void CheckFields()
+        public IMvxCommand RegisterButton => new MvxCommand(Walidate);
+        private void Walidate()
         {
-            if (_login.Equals("admin") && _password.Equals(_repPassword))
+            if (_registerService.CheckData(_name,_surname,_login,_password,_repPassword,_email))
             {
-                ShowViewModel<SignInViewModel>();
+                ShowViewModel<MainViewModel>();
             }
             else
             {

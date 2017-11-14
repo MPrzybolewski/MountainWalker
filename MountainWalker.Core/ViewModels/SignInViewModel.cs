@@ -3,6 +3,7 @@ using System.Threading.Tasks;
 using MountainWalker.Core.Interfaces;
 using MvvmCross.Core.ViewModels;
 using MvvmCross.Platform;
+using Android.Media;
 
 namespace MountainWalker.Core.ViewModels
 {
@@ -13,6 +14,7 @@ namespace MountainWalker.Core.ViewModels
         public SignInViewModel(IDialogService dialogService)
         {
             _dialogService = dialogService;
+
         }
 
         public override Task Initialize()

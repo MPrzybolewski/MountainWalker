@@ -15,7 +15,7 @@ namespace MountainWalker.Droid
     {
         public SplashScreen()
             : base(Resource.Layout.SplashScreen)
-        {
+        {           
         }
     }
 }

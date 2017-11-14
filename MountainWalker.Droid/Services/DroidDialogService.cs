@@ -1,5 +1,6 @@
 ﻿using System;
 using Android.App;
+using Android.Media;
 using MountainWalker.Core.Interfaces;
 using MvvmCross.Platform;
 using MvvmCross.Platform.Droid.Platform;
@@ -12,6 +13,7 @@ namespace MountainWalker.Droid.Services
         {
             var top = Mvx.Resolve<IMvxAndroidCurrentTopActivity>();
             var act = top.Activity;
+
 
             var adb = new AlertDialog.Builder(act);
             adb.SetTitle(title);
