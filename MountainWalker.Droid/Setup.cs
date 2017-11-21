@@ -42,6 +42,8 @@ namespace MountainWalker.Droid
             base.InitializeLastChance();
             //Mvx.LazyConstructAndRegisterSingleton<IDialogService>(new DroidDialogService());
             Mvx.RegisterSingleton<IDialogService>(new DroidDialogService());
+            Mvx.RegisterSingleton<IRegisterService>(new DroidRegisterService());
+            Mvx.RegisterSingleton<ISharedPreferencesService>(new DroidSharedPreferencesService());
         }
     }
 }

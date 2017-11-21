@@ -1,3 +1,4 @@
+using System.Diagnostics;
 using MvvmCross.Platform.IoC;
 
 namespace MountainWalker.Core
@@ -10,7 +11,7 @@ namespace MountainWalker.Core
                 .EndingWith("Service")
                 .AsInterfaces()
                 .RegisterAsLazySingleton();
-
+            
             RegisterNavigationServiceAppStart<ViewModels.SignInViewModel>();
         }
     }

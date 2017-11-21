@@ -55,6 +55,16 @@
         android:paddingBottom="20dp"
         android:textColor="@color/foreground_material_dark"
         local:MvxBind="Click SignInButton" />
+    <CheckBox
+        android:text="Zapamiętaj mnie"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        local:MvxBind="Checked IsChecked"
+        android:layout_marginTop="20dp"
+        android:layout_marginLeft="100dp"
+        android:layout_marginRight="100dp"
+        android:gravity="center"
+        android:textColor="@color/foreground_material_dark" />
     <TextView
         android:layout_width="fill_parent"
         android:layout_height="wrap_content"
