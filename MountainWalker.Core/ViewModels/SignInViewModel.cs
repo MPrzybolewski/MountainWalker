@@ -13,7 +13,6 @@ namespace MountainWalker.Core.ViewModels
         private readonly ISharedPreferencesService _sharedPreferencesService;
 
         public SignInViewModel(IDialogService dialogService, ISharedPreferencesService sharedPreferencesService)
-        ///public SignInViewModel(IDialogService dialogService)
         {
             _dialogService = dialogService;
             _sharedPreferencesService = sharedPreferencesService;
