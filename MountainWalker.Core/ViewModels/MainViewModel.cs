@@ -20,7 +20,7 @@ namespace MountainWalker.Core.ViewModels
 
         private async Task GetLocationAction()
         {
-            Label = await _locationService.GetLocation();
+            Label = await _locationService.GetLocation(); 
             Debug.WriteLine("Done" + _label);
         }
 
