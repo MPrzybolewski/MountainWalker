@@ -2,29 +2,29 @@ using System.Diagnostics;
 using System.Threading.Tasks;
 using MountainWalker.Core.Interfaces;
 using MvvmCross.Core.ViewModels;
-using MvvmCross.Platform;
 using MountainWalker.Core.Models;
+using Plugin.Geolocator;
 
 namespace MountainWalker.Core.ViewModels
 {
     public class MainViewModel : MvxViewModel
     {
-        private string _label = "ZMIEN TO EHHHH";
         private readonly ILocationService _locationService;
-
+        private string _label = "";
         public MainViewModel(ILocationService locationService)
         {
             _locationService = locationService;
+            GetLocationCommand = new MvxAsyncCommand(GetLocationAction);
         }
-        public IMvxCommand GetLocation => new MvxCommand(async () =>
+
+
+        private async Task GetLocationAction()
         {
-            Debug.WriteLine("cmon");
+            Label = await _locationService.GetLocation();
+            Debug.WriteLine("Done" + _label);
+        }
 
-            var result = Task.Run(() =>  _locationService.GetLocation()).Result;
-            Marker mark = new Marker(result);
-            Label = mark.City + " " + mark.Latitude + " " + mark.Longitude;
-        });
-
+        public IMvxCommand GetLocationCommand { get; }
 
         public string Label
         {

@@ -9,7 +9,6 @@ namespace MountainWalker.Core.Interfaces
 {
     public interface ILocationService
     { 
-        void Test();
-        Task<Marker> GetLocation();
+        Task<string> GetLocation();
     }
 }

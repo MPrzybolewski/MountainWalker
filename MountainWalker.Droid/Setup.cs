@@ -31,14 +31,17 @@ namespace MountainWalker.Droid
             return new DebugTrace();
         }
 
+        protected override void InitializeFirstChance()
+        {
+            base.InitializeFirstChance();
+        }
+
         protected override void InitializeLastChance()
         {
-            CreatableTypes().EndingWith("Service").AsInterfaces().RegisterAsLazySingleton();
+            //CreatableTypes().EndingWith("Service").AsInterfaces().RegisterAsLazySingleton();
             base.InitializeLastChance();
-            //register a signle instrance of IDialogAlert
-            //Mvx.RegisterSingleton<IDialogService>(new DroidDialogAlert());
-            //Mvx.RegisterSingleton<ILocationService>(new DroidLocationService());
-
+            //Mvx.LazyConstructAndRegisterSingleton<IDialogService>(new DroidDialogService());
+            Mvx.RegisterSingleton<IDialogService>(new DroidDialogService());
         }
     }
 }

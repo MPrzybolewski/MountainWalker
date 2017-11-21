@@ -14,6 +14,6 @@
       android:layout_width="fill_parent"
       android:layout_height="wrap_content"
       android:text="Sprawdz lokalizacje"
-      local:MvxBind="Click GetLocation" />
+      local:MvxBind="Click GetLocationCommand" />
     
 </LinearLayout>
