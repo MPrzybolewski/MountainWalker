@@ -124,6 +124,7 @@
     <Compile Include="Views\SignInView.cs" />
     <Compile Include="Services\DroidDialogService.cs" />
     <Compile Include="Services\DroidSharedPreferencesService.cs" />
+    <Compile Include="Views\StartView.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Resources\AboutResources.txt" />
@@ -134,6 +135,7 @@
       <SubType>Designer</SubType>
     </AndroidResource>
     <None Include="ToDo-MvvmCross\_ Droid UI.txt" />
+    <AndroidResource Include="Resources\layout\StartView.axml" />
   </ItemGroup>
   <ItemGroup>
     <AndroidResource Include="Resources\layout\Main.axml" />

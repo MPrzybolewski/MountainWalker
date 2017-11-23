@@ -2254,7 +2254,10 @@ namespace MountainWalker.Droid
 			public const int SplashScreen = 2130968625;
 			
 			// aapt resource value: 0x7f040032
-			public const int support_simple_spinner_dropdown_item = 2130968626;
+			public const int StartView = 2130968626;
+			
+			// aapt resource value: 0x7f040033
+			public const int support_simple_spinner_dropdown_item = 2130968627;
 			
 			static Layout()
 			{
