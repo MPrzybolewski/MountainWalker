@@ -7,11 +7,12 @@ using MvvmCross.Droid.Views;
 using Plugin.Geolocator;
 using System;
 using System.Threading.Tasks;
+using MvvmCross.Droid.Support.V7.AppCompat;
 
 namespace MountainWalker.Droid.Views
 {
     [Activity(Label = "View for MainViewModel", NoHistory = true)]
-    public class MainView : MvxActivity, IOnMapReadyCallback
+    public class MainView : MvxAppCompatActivity, IOnMapReadyCallback
     {
         private GoogleMap _map;
 
