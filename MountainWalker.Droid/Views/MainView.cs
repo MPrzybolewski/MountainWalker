@@ -8,11 +8,13 @@ using Plugin.Geolocator;
 using System;
 using System.Threading.Tasks;
 using MvvmCross.Droid.Support.V7.AppCompat;
+using Android.Support.V7.Widget;
+using MountainWalker.Core.ViewModels;
 
 namespace MountainWalker.Droid.Views
 {
     [Activity(Label = "View for MainViewModel", NoHistory = true)]
-    public class MainView : MvxAppCompatActivity, IOnMapReadyCallback
+    public class MainView : MvxAppCompatActivity<MainViewModel>, IOnMapReadyCallback
     {
         private GoogleMap _map;
 
@@ -41,6 +43,10 @@ namespace MountainWalker.Droid.Views
                 fragTx.Commit();
             }
             _mapFragment.GetMapAsync(this);
+
+            var toolbar = FindViewById<Toolbar>(Resource.Id.Toolbar);
+            SetSupportActionBar(toolbar);
+            SupportActionBar.Title = "Mountain Walker";
         }
 
         public async Task ShowUserLocation()

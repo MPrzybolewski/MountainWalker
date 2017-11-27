@@ -4410,6 +4410,9 @@ namespace MountainWalker.Droid
 			// aapt resource value: 0x7f0d0043
 			public const int SYM = 2131558467;
 			
+			// aapt resource value: 0x7f0d00b8
+			public const int Toolbar = 2131558584;
+			
 			// aapt resource value: 0x7f0d00a8
 			public const int action0 = 2131558568;
 			
@@ -4674,14 +4677,14 @@ namespace MountainWalker.Droid
 			// aapt resource value: 0x7f0d00a4
 			public const int map = 2131558564;
 			
-			// aapt resource value: 0x7f0d00ba
-			public const int masked = 2131558586;
+			// aapt resource value: 0x7f0d00bb
+			public const int masked = 2131558587;
 			
 			// aapt resource value: 0x7f0d00ab
 			public const int media_actions = 2131558571;
 			
-			// aapt resource value: 0x7f0d00b8
-			public const int message = 2131558584;
+			// aapt resource value: 0x7f0d00b9
+			public const int message = 2131558585;
 			
 			// aapt resource value: 0x7f0d003d
 			public const int middle = 2131558461;
@@ -4935,8 +4938,8 @@ namespace MountainWalker.Droid
 			// aapt resource value: 0x7f0d0016
 			public const int view_offset_helper = 2131558422;
 			
-			// aapt resource value: 0x7f0d00b9
-			public const int visible = 2131558585;
+			// aapt resource value: 0x7f0d00ba
+			public const int visible = 2131558586;
 			
 			// aapt resource value: 0x7f0d0027
 			public const int wide = 2131558439;
@@ -5202,7 +5205,10 @@ namespace MountainWalker.Droid
 			public const int support_simple_spinner_dropdown_item = 2130968640;
 			
 			// aapt resource value: 0x7f040041
-			public const int tooltip = 2130968641;
+			public const int Toolbar = 2130968641;
+			
+			// aapt resource value: 0x7f040042
+			public const int tooltip = 2130968642;
 			
 			static Layout()
 			{
@@ -5978,6 +5984,12 @@ namespace MountainWalker.Droid
 			
 			// aapt resource value: 0x7f0e016b
 			public const int Base_Widget_Design_TabLayout = 2131624299;
+			
+			// aapt resource value: 0x7f0e018c
+			public const int MyTheme = 2131624332;
+			
+			// aapt resource value: 0x7f0e018d
+			public const int MyTheme_Base = 2131624333;
 			
 			// aapt resource value: 0x7f0e001e
 			public const int Platform_AppCompat = 2131623966;
