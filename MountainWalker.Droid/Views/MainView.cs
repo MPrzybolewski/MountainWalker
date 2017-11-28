@@ -16,6 +16,7 @@ using Android.Support.V4.Widget;
 using Android.Views;
 using MountainWalker.Droid.Fragments;
 using Fragment = Android.Support.V4.App.Fragment;
+using System.Linq;
 
 namespace MountainWalker.Droid.Views
 {
@@ -23,8 +24,7 @@ namespace MountainWalker.Droid.Views
     public class MainView : MvxAppCompatActivity<MainViewModel>, IOnMapReadyCallback
     {
         private GoogleMap _map;
-        Fragment[] _fragments = { new MyListFragment(), new MySettingsFragment() };
-        string[] _titles = { "My list", "My settings" };
+
         ActionBarDrawerToggle _drawerToggle;
         ListView _drawerListView;
         DrawerLayout _drawerLayout;
@@ -61,9 +61,10 @@ namespace MountainWalker.Droid.Views
             SupportActionBar.Title = "Mountain Walker";
 
             SupportActionBar.SetDisplayHomeAsUpEnabled(true);
+
             _drawerListView = FindViewById<ListView>(Resource.Id.drawerListView);
             _drawerListView.ItemClick += (sender, e) => ShowFragmentAt(e.Position);
-            _drawerListView.Adapter = new ArrayAdapter<string>(this, global::Android.Resource.Layout.SimpleListItem1,_titles);
+            _drawerListView.Adapter = new ArrayAdapter<string>(this, global::Android.Resource.Layout.SimpleListItem1, ViewModel.MenuItems.ToArray());
 
             _drawerLayout = FindViewById<DrawerLayout>(Resource.Id.drawerLayout);
 
@@ -77,9 +78,9 @@ namespace MountainWalker.Droid.Views
 
         void ShowFragmentAt(int position)
         {
-            SupportFragmentManager.BeginTransaction().Replace(Resource.Id.frameLayout, _fragments[position]).Commit();
- 
-            Title = _titles [position];
+            ViewModel.NavigateTo(position);
+
+            Title = ViewModel.MenuItems.ElementAt(position);
  
             _drawerLayout.CloseDrawer (_drawerListView);
         }

@@ -6,7 +6,7 @@ using MvvmCross.Platform;
 using MountainWalker.Core.Interfaces;
 using MountainWalker.Droid.Services;
 using MvvmCross.Droid.Views;
-
+using MvvmCross.Droid.Support.V7.AppCompat;
 
 namespace MountainWalker.Droid
 {
@@ -39,6 +39,13 @@ namespace MountainWalker.Droid
             Mvx.RegisterSingleton<IDialogService>(new DroidDialogService());
             Mvx.RegisterSingleton<IRegisterService>(new DroidRegisterService());
             Mvx.RegisterSingleton<ISharedPreferencesService>(new DroidSharedPreferencesService());
+        }
+
+        protected override IMvxAndroidViewPresenter CreateViewPresenter()
+        {
+            var mvxFragmentsPresenter = new MvxAppCompatViewPresenter(AndroidViewAssemblies);
+            Mvx.RegisterSingleton<IMvxAndroidViewPresenter>(mvxFragmentsPresenter);
+            return mvxFragmentsPresenter;
         }
     }
 }

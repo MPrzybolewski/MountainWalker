@@ -172,8 +172,7 @@
     <Compile Include="Services\DroidDialogService.cs" />
     <Compile Include="Services\DroidSharedPreferencesService.cs" />
     <Compile Include="Views\StartView.cs" />
-    <Compile Include="Fragments\MyListFragment.cs" />
-    <Compile Include="Fragments\MySettingsFragment.cs" />
+    <Compile Include="Fragments\SettingsFragment.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Resources\AboutResources.txt" />
@@ -186,8 +185,7 @@
     <None Include="ToDo-MvvmCross\_ Droid UI.txt" />
     <AndroidResource Include="Resources\layout\StartView.axml" />
     <AndroidResource Include="Resources\layout\Toolbar.xml" />
-    <AndroidResource Include="Resources\layout\MyListView.axml" />
-    <AndroidResource Include="Resources\layout\MySettingsView.axml" />
+    <AndroidResource Include="Resources\layout\SettingsView.axml" />
   </ItemGroup>
   <ItemGroup>
     <AndroidResource Include="Resources\values\Strings.xml" />

@@ -14,6 +14,9 @@ namespace MountainWalker.Core.ViewModels
         private readonly ILocationService _locationService;
         private string _label = "";
 
+        readonly Type[] _menuItemTypes = { typeof(SettingsViewModel) };
+        public IEnumerable<string> MenuItems { get; private set; } = new[] { "Settings" };
+
         public MainViewModel(ILocationService locationService)
         {
             _locationService = locationService;
@@ -38,5 +41,14 @@ namespace MountainWalker.Core.ViewModels
             Debug.WriteLine("Done" + _label);
         }
 
+        public void ShowDefaultMenuItem()
+        {
+            NavigateTo(0);
+        }
+
+        public void NavigateTo(int position)
+        {
+            ShowViewModel(_menuItemTypes[position]);
+        }
     }
 }
