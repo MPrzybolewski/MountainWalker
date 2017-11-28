@@ -15,6 +15,7 @@ namespace MountainWalker.Core.ViewModels
         {
             _locationService = locationService;
             GetLocationCommand = new MvxAsyncCommand(GetLocationAction);
+            ShowSimpleNoteInDebugLineCommand = new MvxCommand(OnlySimpleTest);
         }
 
 
@@ -24,7 +25,18 @@ namespace MountainWalker.Core.ViewModels
             Debug.WriteLine("Done" + _label);
         }
 
+        private void OnlySimpleTest()
+        {
+            Debug.WriteLine("Hellooooo! I'm here!");
+            Debug.WriteLine("xvoxin did this XD");
+            Debug.WriteLine("Mariando krul");
+            
+        }
+
         public IMvxCommand GetLocationCommand { get; }
+        public IMvxCommand ShowSimpleNoteInDebugLineCommand { get; }
+
+
 
         public string Label
         {

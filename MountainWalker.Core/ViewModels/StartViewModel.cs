@@ -28,14 +28,14 @@ namespace MountainWalker.Core.ViewModels
             if (userName == String.Empty || password == String.Empty)
             {
                 //There is no saved credentials, take user to the login page
-                ShowViewModel<SignInViewModel>();
+                ShowViewModel<MainViewModel>(); //change 
             }
             else
             {
                 //There are saved credentials
 
                 /*This is where you would query the database
-                 * 
+                 *
                  * 
                  * 
                  Done querying*/

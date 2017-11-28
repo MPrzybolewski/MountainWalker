@@ -4410,11 +4410,11 @@ namespace MountainWalker.Droid
 			// aapt resource value: 0x7f0d0043
 			public const int SYM = 2131558467;
 			
-			// aapt resource value: 0x7f0d00b8
-			public const int Toolbar = 2131558584;
+			// aapt resource value: 0x7f0d00b9
+			public const int Toolbar = 2131558585;
 			
-			// aapt resource value: 0x7f0d00a8
-			public const int action0 = 2131558568;
+			// aapt resource value: 0x7f0d00a9
+			public const int action0 = 2131558569;
 			
 			// aapt resource value: 0x7f0d0087
 			public const int action_bar = 2131558535;
@@ -4437,17 +4437,17 @@ namespace MountainWalker.Droid
 			// aapt resource value: 0x7f0d0065
 			public const int action_bar_title = 2131558501;
 			
-			// aapt resource value: 0x7f0d00a5
-			public const int action_container = 2131558565;
+			// aapt resource value: 0x7f0d00a6
+			public const int action_container = 2131558566;
 			
 			// aapt resource value: 0x7f0d0088
 			public const int action_context_bar = 2131558536;
 			
-			// aapt resource value: 0x7f0d00ac
-			public const int action_divider = 2131558572;
+			// aapt resource value: 0x7f0d00ad
+			public const int action_divider = 2131558573;
 			
-			// aapt resource value: 0x7f0d00a6
-			public const int action_image = 2131558566;
+			// aapt resource value: 0x7f0d00a7
+			public const int action_image = 2131558567;
 			
 			// aapt resource value: 0x7f0d0003
 			public const int action_menu_divider = 2131558403;
@@ -4464,11 +4464,11 @@ namespace MountainWalker.Droid
 			// aapt resource value: 0x7f0d0067
 			public const int action_mode_close_button = 2131558503;
 			
-			// aapt resource value: 0x7f0d00a7
-			public const int action_text = 2131558567;
+			// aapt resource value: 0x7f0d00a8
+			public const int action_text = 2131558568;
 			
-			// aapt resource value: 0x7f0d00b5
-			public const int actions = 2131558581;
+			// aapt resource value: 0x7f0d00b6
+			public const int actions = 2131558582;
 			
 			// aapt resource value: 0x7f0d0068
 			public const int activity_chooser_view_content = 2131558504;
@@ -4509,8 +4509,8 @@ namespace MountainWalker.Droid
 			// aapt resource value: 0x7f0d006e
 			public const int buttonPanel = 2131558510;
 			
-			// aapt resource value: 0x7f0d00a9
-			public const int cancel_action = 2131558569;
+			// aapt resource value: 0x7f0d00aa
+			public const int cancel_action = 2131558570;
 			
 			// aapt resource value: 0x7f0d0050
 			public const int center = 2131558480;
@@ -4524,8 +4524,8 @@ namespace MountainWalker.Droid
 			// aapt resource value: 0x7f0d007e
 			public const int checkbox = 2131558526;
 			
-			// aapt resource value: 0x7f0d00b1
-			public const int chronometer = 2131558577;
+			// aapt resource value: 0x7f0d00b2
+			public const int chronometer = 2131558578;
 			
 			// aapt resource value: 0x7f0d0059
 			public const int clip_horizontal = 2131558489;
@@ -4584,8 +4584,8 @@ namespace MountainWalker.Droid
 			// aapt resource value: 0x7f0d003c
 			public const int end = 2131558460;
 			
-			// aapt resource value: 0x7f0d00b7
-			public const int end_padder = 2131558583;
+			// aapt resource value: 0x7f0d00b8
+			public const int end_padder = 2131558584;
 			
 			// aapt resource value: 0x7f0d004b
 			public const int enterAlways = 2131558475;
@@ -4632,8 +4632,8 @@ namespace MountainWalker.Droid
 			// aapt resource value: 0x7f0d006d
 			public const int icon = 2131558509;
 			
-			// aapt resource value: 0x7f0d00b6
-			public const int icon_group = 2131558582;
+			// aapt resource value: 0x7f0d00b7
+			public const int icon_group = 2131558583;
 			
 			// aapt resource value: 0x7f0d0025
 			public const int icon_only = 2131558437;
@@ -4644,8 +4644,8 @@ namespace MountainWalker.Droid
 			// aapt resource value: 0x7f0d006a
 			public const int image = 2131558506;
 			
-			// aapt resource value: 0x7f0d00b2
-			public const int info = 2131558578;
+			// aapt resource value: 0x7f0d00b3
+			public const int info = 2131558579;
 			
 			// aapt resource value: 0x7f0d0064
 			public const int italic = 2131558500;
@@ -4677,14 +4677,14 @@ namespace MountainWalker.Droid
 			// aapt resource value: 0x7f0d00a4
 			public const int map = 2131558564;
 			
-			// aapt resource value: 0x7f0d00bb
-			public const int masked = 2131558587;
+			// aapt resource value: 0x7f0d00bc
+			public const int masked = 2131558588;
 			
-			// aapt resource value: 0x7f0d00ab
-			public const int media_actions = 2131558571;
+			// aapt resource value: 0x7f0d00ac
+			public const int media_actions = 2131558572;
 			
-			// aapt resource value: 0x7f0d00b9
-			public const int message = 2131558585;
+			// aapt resource value: 0x7f0d00ba
+			public const int message = 2131558586;
 			
 			// aapt resource value: 0x7f0d003d
 			public const int middle = 2131558461;
@@ -4707,14 +4707,14 @@ namespace MountainWalker.Droid
 			// aapt resource value: 0x7f0d0020
 			public const int normal = 2131558432;
 			
-			// aapt resource value: 0x7f0d00b4
-			public const int notification_background = 2131558580;
+			// aapt resource value: 0x7f0d00b5
+			public const int notification_background = 2131558581;
+			
+			// aapt resource value: 0x7f0d00af
+			public const int notification_main_column = 2131558575;
 			
 			// aapt resource value: 0x7f0d00ae
-			public const int notification_main_column = 2131558574;
-			
-			// aapt resource value: 0x7f0d00ad
-			public const int notification_main_column_container = 2131558573;
+			public const int notification_main_column_container = 2131558574;
 			
 			// aapt resource value: 0x7f0d0057
 			public const int parallax = 2131558487;
@@ -4740,11 +4740,11 @@ namespace MountainWalker.Droid
 			// aapt resource value: 0x7f0d0055
 			public const int right = 2131558485;
 			
-			// aapt resource value: 0x7f0d00b3
-			public const int right_icon = 2131558579;
+			// aapt resource value: 0x7f0d00b4
+			public const int right_icon = 2131558580;
 			
-			// aapt resource value: 0x7f0d00af
-			public const int right_side = 2131558575;
+			// aapt resource value: 0x7f0d00b0
+			public const int right_side = 2131558576;
 			
 			// aapt resource value: 0x7f0d0021
 			public const int satellite = 2131558433;
@@ -4854,8 +4854,8 @@ namespace MountainWalker.Droid
 			// aapt resource value: 0x7f0d0056
 			public const int start = 2131558486;
 			
-			// aapt resource value: 0x7f0d00aa
-			public const int status_bar_latest_event_content = 2131558570;
+			// aapt resource value: 0x7f0d00ab
+			public const int status_bar_latest_event_content = 2131558571;
 			
 			// aapt resource value: 0x7f0d0081
 			public const int submenuarrow = 2131558529;
@@ -4890,8 +4890,8 @@ namespace MountainWalker.Droid
 			// aapt resource value: 0x7f0d0015
 			public const int textinput_error = 2131558421;
 			
-			// aapt resource value: 0x7f0d00b0
-			public const int time = 2131558576;
+			// aapt resource value: 0x7f0d00b1
+			public const int time = 2131558577;
 			
 			// aapt resource value: 0x7f0d001b
 			public const int title = 2131558427;
@@ -4938,14 +4938,17 @@ namespace MountainWalker.Droid
 			// aapt resource value: 0x7f0d0016
 			public const int view_offset_helper = 2131558422;
 			
-			// aapt resource value: 0x7f0d00ba
-			public const int visible = 2131558586;
+			// aapt resource value: 0x7f0d00bb
+			public const int visible = 2131558587;
 			
 			// aapt resource value: 0x7f0d0027
 			public const int wide = 2131558439;
 			
 			// aapt resource value: 0x7f0d0048
 			public const int withText = 2131558472;
+			
+			// aapt resource value: 0x7f0d00a5
+			public const int workpls = 2131558565;
 			
 			// aapt resource value: 0x7f0d003a
 			public const int wrap_content = 2131558458;
