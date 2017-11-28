@@ -1,14 +1,31 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:local="http://schemas.android.com/apk/res-auto"
-    android:orientation="vertical"
-    android:layout_width="fill_parent"
-    android:layout_height="fill_parent">
-    <fragment
-        android:id="@+id/map"
+<android.support.v4.widget.DrawerLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/drawerLayout"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+<!-- content must go before menu because of z-order -->
+    <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        class="com.google.android.gms.maps.MapFragment" />
-    <include
-        layout="@layout/Toolbar" />
-</RelativeLayout>
+        android:orientation="vertical">
+        <include
+            layout="@layout/Toolbar" />
+        <fragment
+            android:id="@+id/map"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            class="com.google.android.gms.maps.MapFragment" />
+        <FrameLayout
+            android:id="@+id/frameLayout"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent" />
+    </LinearLayout>
+<!-- menu -->
+    <ListView
+        android:id="@+id/drawerListView"
+        android:layout_gravity="start"
+        android:choiceMode="singleChoice"
+        android:layout_width="240dp"
+        android:layout_height="match_parent"
+        android:background="?android:attr/windowBackground" />
+</android.support.v4.widget.DrawerLayout>

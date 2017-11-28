@@ -3,14 +3,9 @@ using MvvmCross.Droid.Platform;
 using MvvmCross.Core.ViewModels;
 using MvvmCross.Platform.Platform;
 using MvvmCross.Platform;
-using MvvmCross.Platform.Droid.Platform;
-
-using Android.App;
 using MountainWalker.Core.Interfaces;
-using MountainWalker.Core.ViewModels;
-
 using MountainWalker.Droid.Services;
-using MvvmCross.Platform.IoC;
+using MvvmCross.Droid.Views;
 
 
 namespace MountainWalker.Droid

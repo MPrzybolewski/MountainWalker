@@ -10,6 +10,12 @@ using System.Threading.Tasks;
 using MvvmCross.Droid.Support.V7.AppCompat;
 using Android.Support.V7.Widget;
 using MountainWalker.Core.ViewModels;
+using Android.Support.V7.App;
+using Android.Widget;
+using Android.Support.V4.Widget;
+using Android.Views;
+using MountainWalker.Droid.Fragments;
+using Fragment = Android.Support.V4.App.Fragment;
 
 namespace MountainWalker.Droid.Views
 {
@@ -17,6 +23,11 @@ namespace MountainWalker.Droid.Views
     public class MainView : MvxAppCompatActivity<MainViewModel>, IOnMapReadyCallback
     {
         private GoogleMap _map;
+        Fragment[] _fragments = { new MyListFragment(), new MySettingsFragment() };
+        string[] _titles = { "My list", "My settings" };
+        ActionBarDrawerToggle _drawerToggle;
+        ListView _drawerListView;
+        DrawerLayout _drawerLayout;
 
         public async void OnMapReady(GoogleMap map)
         {
@@ -44,9 +55,48 @@ namespace MountainWalker.Droid.Views
             }
             _mapFragment.GetMapAsync(this);
 
-            var toolbar = FindViewById<Toolbar>(Resource.Id.Toolbar);
+
+            var toolbar = FindViewById<Android.Support.V7.Widget.Toolbar>(Resource.Id.Toolbar);
             SetSupportActionBar(toolbar);
             SupportActionBar.Title = "Mountain Walker";
+
+            SupportActionBar.SetDisplayHomeAsUpEnabled(true);
+            _drawerListView = FindViewById<ListView>(Resource.Id.drawerListView);
+            _drawerListView.ItemClick += (sender, e) => ShowFragmentAt(e.Position);
+            _drawerListView.Adapter = new ArrayAdapter<string>(this, global::Android.Resource.Layout.SimpleListItem1,_titles);
+
+            _drawerLayout = FindViewById<DrawerLayout>(Resource.Id.drawerLayout);
+
+            _drawerToggle = new ActionBarDrawerToggle(this, _drawerLayout, Resource.String.OpenDrawerString, Resource.String.CloseDrawerString);
+
+            _drawerLayout.SetDrawerListener(_drawerToggle);
+
+            ShowFragmentAt(0);
+
+        }
+
+        void ShowFragmentAt(int position)
+        {
+            SupportFragmentManager.BeginTransaction().Replace(Resource.Id.frameLayout, _fragments[position]).Commit();
+ 
+            Title = _titles [position];
+ 
+            _drawerLayout.CloseDrawer (_drawerListView);
+        }
+
+        protected override void OnPostCreate(Bundle savedInstanceState)
+        {
+            _drawerToggle.SyncState();
+
+            base.OnPostCreate(savedInstanceState);
+        }
+
+        public override bool OnOptionsItemSelected(IMenuItem item)
+        {
+            if (_drawerToggle.OnOptionsItemSelected(item))
+                return true;
+
+            return base.OnOptionsItemSelected(item);
         }
 
         public async Task ShowUserLocation()

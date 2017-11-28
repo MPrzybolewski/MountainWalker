@@ -4,6 +4,8 @@ using MountainWalker.Core.Interfaces;
 using MvvmCross.Core.ViewModels;
 using MountainWalker.Core.Models;
 using Plugin.Geolocator;
+using System;
+using System.Collections.Generic;
 
 namespace MountainWalker.Core.ViewModels
 {
@@ -11,17 +13,11 @@ namespace MountainWalker.Core.ViewModels
     {
         private readonly ILocationService _locationService;
         private string _label = "";
+
         public MainViewModel(ILocationService locationService)
         {
             _locationService = locationService;
             GetLocationCommand = new MvxAsyncCommand(GetLocationAction);
-        }
-
-
-        private async Task GetLocationAction()
-        {
-            Label = await _locationService.GetLocation(); 
-            Debug.WriteLine("Done" + _label);
         }
 
         public IMvxCommand GetLocationCommand { get; }
@@ -35,5 +31,12 @@ namespace MountainWalker.Core.ViewModels
                 RaisePropertyChanged();
             }
         }
+
+        private async Task GetLocationAction()
+        {
+            Label = await _locationService.GetLocation(); 
+            Debug.WriteLine("Done" + _label);
+        }
+
     }
 }
