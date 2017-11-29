@@ -1,5 +1,7 @@
 using System.Diagnostics;
 using MvvmCross.Platform.IoC;
+using MvvmCross.Platform;
+using MvvmCross.Plugins.Messenger;
 
 namespace MountainWalker.Core
 {

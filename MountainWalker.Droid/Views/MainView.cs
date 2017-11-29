@@ -10,13 +10,15 @@ using System.Threading.Tasks;
 using MvvmCross.Droid.Support.V7.AppCompat;
 using Android.Support.V7.Widget;
 using MountainWalker.Core.ViewModels;
+using MountainWalker.Droid.Services;
+using Debug = System.Diagnostics.Debug;
 
 namespace MountainWalker.Droid.Views
 {
     [Activity(Label = "View for MainViewModel", NoHistory = true)]
     public class MainView : MvxAppCompatActivity<MainViewModel>, IOnMapReadyCallback
     {
-        private GoogleMap _map;
+        public static GoogleMap _map;
 
         public async void OnMapReady(GoogleMap map)
         {
@@ -56,7 +58,12 @@ namespace MountainWalker.Droid.Views
             TimeSpan ts = TimeSpan.FromMilliseconds(1000);
             var position = await locator.GetPositionAsync(ts);
 
-            LatLng coordinate = new LatLng(position.Latitude, position.Longitude);
+            UpdateCamera(position.Latitude, position.Longitude);
+        }
+
+        public void UpdateCamera(double lat, double lng)
+        {
+            LatLng coordinate = new LatLng(lat, lng);
             CameraUpdate yourLocation = CameraUpdateFactory.NewLatLngZoom(coordinate, 17);
             _map.AnimateCamera(yourLocation);
         }

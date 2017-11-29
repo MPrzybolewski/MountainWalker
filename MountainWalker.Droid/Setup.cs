@@ -10,8 +10,9 @@ using MountainWalker.Core.Interfaces;
 using MountainWalker.Core.ViewModels;
 
 using MountainWalker.Droid.Services;
+using MountainWalker.Droid.Views;
 using MvvmCross.Platform.IoC;
-
+using MvvmCross.Plugins.Messenger;
 
 namespace MountainWalker.Droid
 {
@@ -44,6 +45,7 @@ namespace MountainWalker.Droid
             Mvx.RegisterSingleton<IDialogService>(new DroidDialogService());
             Mvx.RegisterSingleton<IRegisterService>(new DroidRegisterService());
             Mvx.RegisterSingleton<ISharedPreferencesService>(new DroidSharedPreferencesService());
+            Mvx.RegisterSingleton<ILatLngSetService>(new DroidLatLngMapService());
         }
     }
 }

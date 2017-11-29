@@ -10,14 +10,28 @@ namespace MountainWalker.Core.ViewModels
     public class MainViewModel : MvxViewModel
     {
         private readonly ILocationService _locationService;
+        private readonly ILatLngSetService _latLng;
         private string _label = "";
-        public MainViewModel(ILocationService locationService)
+
+        public IMvxCommand GetLocationCommand { get; }
+        public IMvxCommand ShowSimpleNoteInDebugLineCommand { get; }
+
+        public string Label
+        {
+            get { return _label; }
+            set
+            {
+                _label = value;
+                RaisePropertyChanged();
+            }
+        }
+        public MainViewModel(ILocationService locationService, ILatLngSetService latLng)
         {
             _locationService = locationService;
+            _latLng = latLng;
             GetLocationCommand = new MvxAsyncCommand(GetLocationAction);
             ShowSimpleNoteInDebugLineCommand = new MvxCommand(OnlySimpleTest);
         }
-
 
         private async Task GetLocationAction()
         {
@@ -30,22 +44,8 @@ namespace MountainWalker.Core.ViewModels
             Debug.WriteLine("Hellooooo! I'm here!");
             Debug.WriteLine("xvoxin did this XD");
             Debug.WriteLine("Mariando krul");
-            
-        }
-
-        public IMvxCommand GetLocationCommand { get; }
-        public IMvxCommand ShowSimpleNoteInDebugLineCommand { get; }
-
-
-
-        public string Label
-        {
-            get { return _label; }
-            set
-            {
-                _label = value;
-                RaisePropertyChanged();
-            }
+         
+            _latLng.SetLatLngButton(49.2314702, 19.9769924);
         }
     }
 }
