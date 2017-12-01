@@ -41,10 +41,6 @@ namespace MountainWalker.Core.ViewModels
             Debug.WriteLine("Done" + _label);
         }
 
-        public void ShowDefaultMenuItem()
-        {
-            NavigateTo(0);
-        }
 
         public void NavigateTo(int position)
         {

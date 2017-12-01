@@ -9,7 +9,7 @@ namespace MountainWalker.Droid.Fragments
 {
     [MvxFragmentPresentationAttribute(typeof(MainViewModel), Resource.Id.frameLayout)]
     [Register("MountainWalker.android.SettingsFragment")]
-    public class SettingsFragment : MvxFragment
+    public class SettingsFragment : MvxFragment<SettingsViewModel>
     {
         public override View OnCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState)
         {
