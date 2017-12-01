@@ -1,31 +1,28 @@
 <?xml version="1.0" encoding="utf-8"?>
 <android.support.v4.widget.DrawerLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:local="http://schemas.android.com/apk/res-auto"
     android:id="@+id/drawerLayout"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    class="com.google.android.gms.maps.MapFragment"
-    android:orientation="vertical">
-
+    android:layout_height="match_parent">
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical"
+        android:clickable="true">
         <include
             layout="@layout/Toolbar" />
-
-        <TextView
-            android:id="@+id/workpls"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text=" " />
-        <Button
-            android:layout_marginTop="100dp"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_centerHorizontal="true"
-            android:text="Tescik"
-            local:MvxBind="Click ShowSimpleNoteInDebugLineCommand" />
         <fragment
             android:id="@+id/map"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            class="com.google.android.gms.maps.MapFragment" />
+            class="com.google.android.gms.maps.MapFragment">
+            <Button
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Tescik"
+                android:layout_gravity="center_horizontal"
+                local:MvxBind="Click ShowSimpleNoteInDebugLineCommand" />
+        </fragment>
         <FrameLayout
             android:id="@+id/frameLayout"
             android:layout_width="match_parent"

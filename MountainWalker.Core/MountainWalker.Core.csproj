@@ -36,7 +36,6 @@
     <Compile Include="Messages\LocationMessage.cs" />
     <Compile Include="Models\Marker.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="ViewModels\MainViewModel.cs" />
     <Compile Include="App.cs" />
     <Compile Include="ViewModels\RegisterViewModel.cs" />
     <Compile Include="ViewModels\SignInViewModel.cs" />
@@ -44,6 +43,7 @@
     <Compile Include="Interfaces\ISharedPreferencesService.cs" />
     <Compile Include="ViewModels\StartViewModel.cs" />
     <Compile Include="ViewModels\SettingsViewModel.cs" />
+    <Compile Include="Interfaces\MainViewModel.cs" />
   </ItemGroup>
   <ItemGroup>
     <Reference Include="MvvmCross.Platform">
