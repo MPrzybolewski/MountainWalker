@@ -1872,6 +1872,45 @@ namespace MountainWalker.Droid
 			global::MvvmCross.Droid.Support.V7.AppCompat.Resource.Styleable.ViewStubCompat_android_id = global::MountainWalker.Droid.Resource.Styleable.ViewStubCompat_android_id;
 			global::MvvmCross.Droid.Support.V7.AppCompat.Resource.Styleable.ViewStubCompat_android_inflatedId = global::MountainWalker.Droid.Resource.Styleable.ViewStubCompat_android_inflatedId;
 			global::MvvmCross.Droid.Support.V7.AppCompat.Resource.Styleable.ViewStubCompat_android_layout = global::MountainWalker.Droid.Resource.Styleable.ViewStubCompat_android_layout;
+			global::MvvmCross.Droid.Support.V7.RecyclerView.Resource.Attribute.MvxBind = global::MountainWalker.Droid.Resource.Attribute.MvxBind;
+			global::MvvmCross.Droid.Support.V7.RecyclerView.Resource.Attribute.MvxDropDownItemTemplate = global::MountainWalker.Droid.Resource.Attribute.MvxDropDownItemTemplate;
+			global::MvvmCross.Droid.Support.V7.RecyclerView.Resource.Attribute.MvxGroupItemTemplate = global::MountainWalker.Droid.Resource.Attribute.MvxGroupItemTemplate;
+			global::MvvmCross.Droid.Support.V7.RecyclerView.Resource.Attribute.MvxItemTemplate = global::MountainWalker.Droid.Resource.Attribute.MvxItemTemplate;
+			global::MvvmCross.Droid.Support.V7.RecyclerView.Resource.Attribute.MvxLang = global::MountainWalker.Droid.Resource.Attribute.MvxLang;
+			global::MvvmCross.Droid.Support.V7.RecyclerView.Resource.Attribute.MvxSource = global::MountainWalker.Droid.Resource.Attribute.MvxSource;
+			global::MvvmCross.Droid.Support.V7.RecyclerView.Resource.Attribute.MvxTemplate = global::MountainWalker.Droid.Resource.Attribute.MvxTemplate;
+			global::MvvmCross.Droid.Support.V7.RecyclerView.Resource.Attribute.MvxTemplateSelector = global::MountainWalker.Droid.Resource.Attribute.MvxTemplateSelector;
+			global::MvvmCross.Droid.Support.V7.RecyclerView.Resource.Attribute.layoutManager = global::MountainWalker.Droid.Resource.Attribute.layoutManager;
+			global::MvvmCross.Droid.Support.V7.RecyclerView.Resource.Attribute.reverseLayout = global::MountainWalker.Droid.Resource.Attribute.reverseLayout;
+			global::MvvmCross.Droid.Support.V7.RecyclerView.Resource.Attribute.spanCount = global::MountainWalker.Droid.Resource.Attribute.spanCount;
+			global::MvvmCross.Droid.Support.V7.RecyclerView.Resource.Attribute.stackFromEnd = global::MountainWalker.Droid.Resource.Attribute.stackFromEnd;
+			global::MvvmCross.Droid.Support.V7.RecyclerView.Resource.Dimension.item_touch_helper_max_drag_scroll_per_frame = global::MountainWalker.Droid.Resource.Dimension.item_touch_helper_max_drag_scroll_per_frame;
+			global::MvvmCross.Droid.Support.V7.RecyclerView.Resource.Dimension.item_touch_helper_swipe_escape_max_velocity = global::MountainWalker.Droid.Resource.Dimension.item_touch_helper_swipe_escape_max_velocity;
+			global::MvvmCross.Droid.Support.V7.RecyclerView.Resource.Dimension.item_touch_helper_swipe_escape_velocity = global::MountainWalker.Droid.Resource.Dimension.item_touch_helper_swipe_escape_velocity;
+			global::MvvmCross.Droid.Support.V7.RecyclerView.Resource.Id.MvvmCrossTagId = global::MountainWalker.Droid.Resource.Id.MvvmCrossTagId;
+			global::MvvmCross.Droid.Support.V7.RecyclerView.Resource.Id.MvxBindingTagUnique = global::MountainWalker.Droid.Resource.Id.MvxBindingTagUnique;
+			global::MvvmCross.Droid.Support.V7.RecyclerView.Resource.Id.item_touch_helper_previous_elevation = global::MountainWalker.Droid.Resource.Id.item_touch_helper_previous_elevation;
+			global::MvvmCross.Droid.Support.V7.RecyclerView.Resource.Styleable.MvxBinding = global::MountainWalker.Droid.Resource.Styleable.MvxBinding;
+			global::MvvmCross.Droid.Support.V7.RecyclerView.Resource.Styleable.MvxBinding_MvxBind = global::MountainWalker.Droid.Resource.Styleable.MvxBinding_MvxBind;
+			global::MvvmCross.Droid.Support.V7.RecyclerView.Resource.Styleable.MvxBinding_MvxLang = global::MountainWalker.Droid.Resource.Styleable.MvxBinding_MvxLang;
+			global::MvvmCross.Droid.Support.V7.RecyclerView.Resource.Styleable.MvxControl = global::MountainWalker.Droid.Resource.Styleable.MvxControl;
+			global::MvvmCross.Droid.Support.V7.RecyclerView.Resource.Styleable.MvxControl_MvxTemplate = global::MountainWalker.Droid.Resource.Styleable.MvxControl_MvxTemplate;
+			global::MvvmCross.Droid.Support.V7.RecyclerView.Resource.Styleable.MvxExpandableListView = global::MountainWalker.Droid.Resource.Styleable.MvxExpandableListView;
+			global::MvvmCross.Droid.Support.V7.RecyclerView.Resource.Styleable.MvxExpandableListView_MvxGroupItemTemplate = global::MountainWalker.Droid.Resource.Styleable.MvxExpandableListView_MvxGroupItemTemplate;
+			global::MvvmCross.Droid.Support.V7.RecyclerView.Resource.Styleable.MvxImageView = global::MountainWalker.Droid.Resource.Styleable.MvxImageView;
+			global::MvvmCross.Droid.Support.V7.RecyclerView.Resource.Styleable.MvxImageView_MvxSource = global::MountainWalker.Droid.Resource.Styleable.MvxImageView_MvxSource;
+			global::MvvmCross.Droid.Support.V7.RecyclerView.Resource.Styleable.MvxListView = global::MountainWalker.Droid.Resource.Styleable.MvxListView;
+			global::MvvmCross.Droid.Support.V7.RecyclerView.Resource.Styleable.MvxListView_MvxDropDownItemTemplate = global::MountainWalker.Droid.Resource.Styleable.MvxListView_MvxDropDownItemTemplate;
+			global::MvvmCross.Droid.Support.V7.RecyclerView.Resource.Styleable.MvxListView_MvxItemTemplate = global::MountainWalker.Droid.Resource.Styleable.MvxListView_MvxItemTemplate;
+			global::MvvmCross.Droid.Support.V7.RecyclerView.Resource.Styleable.MvxRecyclerView = global::MountainWalker.Droid.Resource.Styleable.MvxRecyclerView;
+			global::MvvmCross.Droid.Support.V7.RecyclerView.Resource.Styleable.MvxRecyclerView_MvxTemplateSelector = global::MountainWalker.Droid.Resource.Styleable.MvxRecyclerView_MvxTemplateSelector;
+			global::MvvmCross.Droid.Support.V7.RecyclerView.Resource.Styleable.RecyclerView = global::MountainWalker.Droid.Resource.Styleable.RecyclerView;
+			global::MvvmCross.Droid.Support.V7.RecyclerView.Resource.Styleable.RecyclerView_android_descendantFocusability = global::MountainWalker.Droid.Resource.Styleable.RecyclerView_android_descendantFocusability;
+			global::MvvmCross.Droid.Support.V7.RecyclerView.Resource.Styleable.RecyclerView_android_orientation = global::MountainWalker.Droid.Resource.Styleable.RecyclerView_android_orientation;
+			global::MvvmCross.Droid.Support.V7.RecyclerView.Resource.Styleable.RecyclerView_layoutManager = global::MountainWalker.Droid.Resource.Styleable.RecyclerView_layoutManager;
+			global::MvvmCross.Droid.Support.V7.RecyclerView.Resource.Styleable.RecyclerView_reverseLayout = global::MountainWalker.Droid.Resource.Styleable.RecyclerView_reverseLayout;
+			global::MvvmCross.Droid.Support.V7.RecyclerView.Resource.Styleable.RecyclerView_spanCount = global::MountainWalker.Droid.Resource.Styleable.RecyclerView_spanCount;
+			global::MvvmCross.Droid.Support.V7.RecyclerView.Resource.Styleable.RecyclerView_stackFromEnd = global::MountainWalker.Droid.Resource.Styleable.RecyclerView_stackFromEnd;
 		}
 		
 		public partial class Animation
@@ -1954,26 +1993,29 @@ namespace MountainWalker.Droid
 		public partial class Attribute
 		{
 			
-			// aapt resource value: 0x7f010177
-			public const int MvxBind = 2130772343;
-			
-			// aapt resource value: 0x7f01017b
-			public const int MvxDropDownItemTemplate = 2130772347;
+			// aapt resource value: 0x7f010178
+			public const int MvxBind = 2130772344;
 			
 			// aapt resource value: 0x7f01017c
-			public const int MvxGroupItemTemplate = 2130772348;
-			
-			// aapt resource value: 0x7f01017a
-			public const int MvxItemTemplate = 2130772346;
-			
-			// aapt resource value: 0x7f010178
-			public const int MvxLang = 2130772344;
+			public const int MvxDropDownItemTemplate = 2130772348;
 			
 			// aapt resource value: 0x7f01017d
-			public const int MvxSource = 2130772349;
+			public const int MvxGroupItemTemplate = 2130772349;
+			
+			// aapt resource value: 0x7f01017b
+			public const int MvxItemTemplate = 2130772347;
 			
 			// aapt resource value: 0x7f010179
-			public const int MvxTemplate = 2130772345;
+			public const int MvxLang = 2130772345;
+			
+			// aapt resource value: 0x7f01017e
+			public const int MvxSource = 2130772350;
+			
+			// aapt resource value: 0x7f01017a
+			public const int MvxTemplate = 2130772346;
+			
+			// aapt resource value: 0x7f010177
+			public const int MvxTemplateSelector = 2130772343;
 			
 			// aapt resource value: 0x7f01006f
 			public const int actionBarDivider = 2130772079;
@@ -4410,11 +4452,12 @@ namespace MountainWalker.Droid
 			// aapt resource value: 0x7f0d0043
 			public const int SYM = 2131558467;
 			
-			// aapt resource value: 0x7f0d00b9
-			public const int Toolbar = 2131558585;
+
+			// aapt resource value: 0x7f0d00bb
+			public const int Toolbar = 2131558587;
 			
-			// aapt resource value: 0x7f0d00a9
-			public const int action0 = 2131558569;
+			// aapt resource value: 0x7f0d00ab
+			public const int action0 = 2131558571;
 			
 			// aapt resource value: 0x7f0d0087
 			public const int action_bar = 2131558535;
@@ -4437,17 +4480,30 @@ namespace MountainWalker.Droid
 			// aapt resource value: 0x7f0d0065
 			public const int action_bar_title = 2131558501;
 			
+<<<<<<< HEAD
 			// aapt resource value: 0x7f0d00a6
 			public const int action_container = 2131558566;
+=======
+			// aapt resource value: 0x7f0d00a8
+			public const int action_container = 2131558568;
+>>>>>>> DrawerLayout
 			
 			// aapt resource value: 0x7f0d0088
 			public const int action_context_bar = 2131558536;
 			
+<<<<<<< HEAD
 			// aapt resource value: 0x7f0d00ad
 			public const int action_divider = 2131558573;
 			
 			// aapt resource value: 0x7f0d00a7
 			public const int action_image = 2131558567;
+=======
+			// aapt resource value: 0x7f0d00af
+			public const int action_divider = 2131558575;
+			
+			// aapt resource value: 0x7f0d00a9
+			public const int action_image = 2131558569;
+>>>>>>> DrawerLayout
 			
 			// aapt resource value: 0x7f0d0003
 			public const int action_menu_divider = 2131558403;
@@ -4464,11 +4520,19 @@ namespace MountainWalker.Droid
 			// aapt resource value: 0x7f0d0067
 			public const int action_mode_close_button = 2131558503;
 			
+<<<<<<< HEAD
 			// aapt resource value: 0x7f0d00a8
 			public const int action_text = 2131558568;
 			
 			// aapt resource value: 0x7f0d00b6
 			public const int actions = 2131558582;
+=======
+			// aapt resource value: 0x7f0d00aa
+			public const int action_text = 2131558570;
+			
+			// aapt resource value: 0x7f0d00b8
+			public const int actions = 2131558584;
+>>>>>>> DrawerLayout
 			
 			// aapt resource value: 0x7f0d0068
 			public const int activity_chooser_view_content = 2131558504;
@@ -4509,8 +4573,13 @@ namespace MountainWalker.Droid
 			// aapt resource value: 0x7f0d006e
 			public const int buttonPanel = 2131558510;
 			
+<<<<<<< HEAD
 			// aapt resource value: 0x7f0d00aa
 			public const int cancel_action = 2131558570;
+=======
+			// aapt resource value: 0x7f0d00ac
+			public const int cancel_action = 2131558572;
+>>>>>>> DrawerLayout
 			
 			// aapt resource value: 0x7f0d0050
 			public const int center = 2131558480;
@@ -4524,8 +4593,13 @@ namespace MountainWalker.Droid
 			// aapt resource value: 0x7f0d007e
 			public const int checkbox = 2131558526;
 			
+<<<<<<< HEAD
 			// aapt resource value: 0x7f0d00b2
 			public const int chronometer = 2131558578;
+=======
+			// aapt resource value: 0x7f0d00b4
+			public const int chronometer = 2131558580;
+>>>>>>> DrawerLayout
 			
 			// aapt resource value: 0x7f0d0059
 			public const int clip_horizontal = 2131558489;
@@ -4578,14 +4652,25 @@ namespace MountainWalker.Droid
 			// aapt resource value: 0x7f0d002d
 			public const int disableHome = 2131558445;
 			
+			// aapt resource value: 0x7f0d00a4
+			public const int drawerLayout = 2131558564;
+			
+			// aapt resource value: 0x7f0d00a7
+			public const int drawerListView = 2131558567;
+			
 			// aapt resource value: 0x7f0d0089
 			public const int edit_query = 2131558537;
 			
 			// aapt resource value: 0x7f0d003c
 			public const int end = 2131558460;
 			
+<<<<<<< HEAD
 			// aapt resource value: 0x7f0d00b8
 			public const int end_padder = 2131558584;
+=======
+			// aapt resource value: 0x7f0d00ba
+			public const int end_padder = 2131558586;
+>>>>>>> DrawerLayout
 			
 			// aapt resource value: 0x7f0d004b
 			public const int enterAlways = 2131558475;
@@ -4617,6 +4702,9 @@ namespace MountainWalker.Droid
 			// aapt resource value: 0x7f0d0063
 			public const int forever = 2131558499;
 			
+			// aapt resource value: 0x7f0d00a6
+			public const int frameLayout = 2131558566;
+			
 			// aapt resource value: 0x7f0d000a
 			public const int ghost_view = 2131558410;
 			
@@ -4632,8 +4720,13 @@ namespace MountainWalker.Droid
 			// aapt resource value: 0x7f0d006d
 			public const int icon = 2131558509;
 			
+<<<<<<< HEAD
 			// aapt resource value: 0x7f0d00b7
 			public const int icon_group = 2131558583;
+=======
+			// aapt resource value: 0x7f0d00b9
+			public const int icon_group = 2131558585;
+>>>>>>> DrawerLayout
 			
 			// aapt resource value: 0x7f0d0025
 			public const int icon_only = 2131558437;
@@ -4644,8 +4737,13 @@ namespace MountainWalker.Droid
 			// aapt resource value: 0x7f0d006a
 			public const int image = 2131558506;
 			
+<<<<<<< HEAD
 			// aapt resource value: 0x7f0d00b3
 			public const int info = 2131558579;
+=======
+			// aapt resource value: 0x7f0d00b5
+			public const int info = 2131558581;
+>>>>>>> DrawerLayout
 			
 			// aapt resource value: 0x7f0d0064
 			public const int italic = 2131558500;
@@ -4674,9 +4772,10 @@ namespace MountainWalker.Droid
 			// aapt resource value: 0x7f0d006c
 			public const int list_item = 2131558508;
 			
-			// aapt resource value: 0x7f0d00a4
-			public const int map = 2131558564;
+			// aapt resource value: 0x7f0d00a5
+			public const int map = 2131558565;
 			
+<<<<<<< HEAD
 			// aapt resource value: 0x7f0d00bc
 			public const int masked = 2131558588;
 			
@@ -4685,6 +4784,16 @@ namespace MountainWalker.Droid
 			
 			// aapt resource value: 0x7f0d00ba
 			public const int message = 2131558586;
+=======
+			// aapt resource value: 0x7f0d00be
+			public const int masked = 2131558590;
+			
+			// aapt resource value: 0x7f0d00ae
+			public const int media_actions = 2131558574;
+			
+			// aapt resource value: 0x7f0d00bc
+			public const int message = 2131558588;
+>>>>>>> DrawerLayout
 			
 			// aapt resource value: 0x7f0d003d
 			public const int middle = 2131558461;
@@ -4707,6 +4816,7 @@ namespace MountainWalker.Droid
 			// aapt resource value: 0x7f0d0020
 			public const int normal = 2131558432;
 			
+<<<<<<< HEAD
 			// aapt resource value: 0x7f0d00b5
 			public const int notification_background = 2131558581;
 			
@@ -4715,6 +4825,16 @@ namespace MountainWalker.Droid
 			
 			// aapt resource value: 0x7f0d00ae
 			public const int notification_main_column_container = 2131558574;
+=======
+			// aapt resource value: 0x7f0d00b7
+			public const int notification_background = 2131558583;
+			
+			// aapt resource value: 0x7f0d00b1
+			public const int notification_main_column = 2131558577;
+			
+			// aapt resource value: 0x7f0d00b0
+			public const int notification_main_column_container = 2131558576;
+>>>>>>> DrawerLayout
 			
 			// aapt resource value: 0x7f0d0057
 			public const int parallax = 2131558487;
@@ -4740,11 +4860,19 @@ namespace MountainWalker.Droid
 			// aapt resource value: 0x7f0d0055
 			public const int right = 2131558485;
 			
+<<<<<<< HEAD
 			// aapt resource value: 0x7f0d00b4
 			public const int right_icon = 2131558580;
 			
 			// aapt resource value: 0x7f0d00b0
 			public const int right_side = 2131558576;
+=======
+			// aapt resource value: 0x7f0d00b6
+			public const int right_icon = 2131558582;
+			
+			// aapt resource value: 0x7f0d00b2
+			public const int right_side = 2131558578;
+>>>>>>> DrawerLayout
 			
 			// aapt resource value: 0x7f0d0021
 			public const int satellite = 2131558433;
@@ -4854,8 +4982,13 @@ namespace MountainWalker.Droid
 			// aapt resource value: 0x7f0d0056
 			public const int start = 2131558486;
 			
+<<<<<<< HEAD
 			// aapt resource value: 0x7f0d00ab
 			public const int status_bar_latest_event_content = 2131558571;
+=======
+			// aapt resource value: 0x7f0d00ad
+			public const int status_bar_latest_event_content = 2131558573;
+>>>>>>> DrawerLayout
 			
 			// aapt resource value: 0x7f0d0081
 			public const int submenuarrow = 2131558529;
@@ -4890,8 +5023,13 @@ namespace MountainWalker.Droid
 			// aapt resource value: 0x7f0d0015
 			public const int textinput_error = 2131558421;
 			
+<<<<<<< HEAD
 			// aapt resource value: 0x7f0d00b1
 			public const int time = 2131558577;
+=======
+			// aapt resource value: 0x7f0d00b3
+			public const int time = 2131558579;
+>>>>>>> DrawerLayout
 			
 			// aapt resource value: 0x7f0d001b
 			public const int title = 2131558427;
@@ -4938,8 +5076,13 @@ namespace MountainWalker.Droid
 			// aapt resource value: 0x7f0d0016
 			public const int view_offset_helper = 2131558422;
 			
+<<<<<<< HEAD
 			// aapt resource value: 0x7f0d00bb
 			public const int visible = 2131558587;
+=======
+			// aapt resource value: 0x7f0d00bd
+			public const int visible = 2131558589;
+>>>>>>> DrawerLayout
 			
 			// aapt resource value: 0x7f0d0027
 			public const int wide = 2131558439;
@@ -5196,22 +5339,28 @@ namespace MountainWalker.Droid
 			public const int select_dialog_singlechoice_material = 2130968636;
 			
 			// aapt resource value: 0x7f04003d
-			public const int SignInView = 2130968637;
+			public const int SettingsView = 2130968637;
 			
 			// aapt resource value: 0x7f04003e
-			public const int SplashScreen = 2130968638;
+			public const int SignInView = 2130968638;
 			
 			// aapt resource value: 0x7f04003f
-			public const int StartView = 2130968639;
+			public const int SplashScreen = 2130968639;
 			
 			// aapt resource value: 0x7f040040
-			public const int support_simple_spinner_dropdown_item = 2130968640;
+			public const int StartView = 2130968640;
 			
 			// aapt resource value: 0x7f040041
-			public const int Toolbar = 2130968641;
+			public const int support_simple_spinner_dropdown_item = 2130968641;
 			
 			// aapt resource value: 0x7f040042
-			public const int tooltip = 2130968642;
+			public const int test = 2130968642;
+			
+			// aapt resource value: 0x7f040043
+			public const int Toolbar = 2130968643;
+			
+			// aapt resource value: 0x7f040044
+			public const int tooltip = 2130968644;
 			
 			static Layout()
 			{
@@ -5257,6 +5406,12 @@ namespace MountainWalker.Droid
 		
 		public partial class String
 		{
+			
+			// aapt resource value: 0x7f0a0046
+			public const int CloseDrawerString = 2131361862;
+			
+			// aapt resource value: 0x7f0a0045
+			public const int OpenDrawerString = 2131361861;
 			
 			// aapt resource value: 0x7f0a0011
 			public const int abc_action_bar_home_description = 2131361809;
@@ -8180,8 +8335,8 @@ namespace MountainWalker.Droid
 			public const int MenuView_subMenuArrow = 8;
 			
 			public static int[] MvxBinding = new int[] {
-					2130772343,
-					2130772344};
+					2130772344,
+					2130772345};
 			
 			// aapt resource value: 0
 			public const int MvxBinding_MvxBind = 0;
@@ -8190,32 +8345,38 @@ namespace MountainWalker.Droid
 			public const int MvxBinding_MvxLang = 1;
 			
 			public static int[] MvxControl = new int[] {
-					2130772345};
+					2130772346};
 			
 			// aapt resource value: 0
 			public const int MvxControl_MvxTemplate = 0;
 			
 			public static int[] MvxExpandableListView = new int[] {
-					2130772348};
+					2130772349};
 			
 			// aapt resource value: 0
 			public const int MvxExpandableListView_MvxGroupItemTemplate = 0;
 			
 			public static int[] MvxImageView = new int[] {
-					2130772349};
+					2130772350};
 			
 			// aapt resource value: 0
 			public const int MvxImageView_MvxSource = 0;
 			
 			public static int[] MvxListView = new int[] {
-					2130772346,
-					2130772347};
+					2130772347,
+					2130772348};
 			
 			// aapt resource value: 1
 			public const int MvxListView_MvxDropDownItemTemplate = 1;
 			
 			// aapt resource value: 0
 			public const int MvxListView_MvxItemTemplate = 0;
+			
+			public static int[] MvxRecyclerView = new int[] {
+					2130772343};
+			
+			// aapt resource value: 0
+			public const int MvxRecyclerView_MvxTemplateSelector = 0;
 			
 			public static int[] NavigationView = new int[] {
 					16842964,

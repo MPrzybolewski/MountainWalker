@@ -4,6 +4,8 @@ using MountainWalker.Core.Interfaces;
 using MvvmCross.Core.ViewModels;
 using MountainWalker.Core.Models;
 using Plugin.Geolocator;
+using System;
+using System.Collections.Generic;
 
 namespace MountainWalker.Core.ViewModels
 {
@@ -16,6 +18,9 @@ namespace MountainWalker.Core.ViewModels
         public IMvxCommand GetLocationCommand { get; }
         public IMvxCommand ShowSimpleNoteInDebugLineCommand { get; }
 
+        readonly Type[] _menuItemTypes = { typeof(SettingsViewModel) };
+        public IEnumerable<string> MenuItems { get; private set; } = new[] { "Settings" };
+
         public string Label
         {
             get { return _label; }
@@ -25,6 +30,7 @@ namespace MountainWalker.Core.ViewModels
                 RaisePropertyChanged();
             }
         }
+
         public MainViewModel(ILocationService locationService, ILatLngSetService latLng)
         {
             _locationService = locationService;
@@ -46,6 +52,12 @@ namespace MountainWalker.Core.ViewModels
             Debug.WriteLine("Mariando krul");
          
             _latLng.SetLatLngButton(49.2314702, 19.9769924);
+        }
+
+
+        public void NavigateTo(int position)
+        {
+            ShowViewModel(_menuItemTypes[position]);
         }
     }
 }

@@ -13,12 +13,24 @@ using MountainWalker.Core.ViewModels;
 using MountainWalker.Droid.Services;
 using Debug = System.Diagnostics.Debug;
 
+using Android.Support.V7.App;
+using Android.Widget;
+using Android.Support.V4.Widget;
+using Android.Views;
+using MountainWalker.Droid.Fragments;
+using Fragment = Android.Support.V4.App.Fragment;
+using System.Linq;
+
 namespace MountainWalker.Droid.Views
 {
     [Activity(Label = "View for MainViewModel", NoHistory = true)]
     public class MainView : MvxAppCompatActivity<MainViewModel>, IOnMapReadyCallback
     {
         public static GoogleMap _map;
+
+        ActionBarDrawerToggle _drawerToggle;
+        ListView _drawerListView;
+        DrawerLayout _drawerLayout;
 
         public async void OnMapReady(GoogleMap map)
         {
@@ -46,9 +58,49 @@ namespace MountainWalker.Droid.Views
             }
             _mapFragment.GetMapAsync(this);
 
-            var toolbar = FindViewById<Toolbar>(Resource.Id.Toolbar);
+
+            var toolbar = FindViewById<Android.Support.V7.Widget.Toolbar>(Resource.Id.Toolbar);
             SetSupportActionBar(toolbar);
             SupportActionBar.Title = "Mountain Walker";
+
+            SupportActionBar.SetDisplayHomeAsUpEnabled(true);
+
+            _drawerListView = FindViewById<ListView>(Resource.Id.drawerListView);
+            _drawerListView.ItemClick += (sender, e) => ShowFragmentAt(e.Position);
+            _drawerListView.Adapter = new ArrayAdapter<string>(this, global::Android.Resource.Layout.SimpleListItem1, ViewModel.MenuItems.ToArray());
+
+            _drawerLayout = FindViewById<DrawerLayout>(Resource.Id.drawerLayout);
+
+            _drawerToggle = new ActionBarDrawerToggle(this, _drawerLayout, Resource.String.OpenDrawerString, Resource.String.CloseDrawerString);
+
+            _drawerLayout.SetDrawerListener(_drawerToggle);
+
+            ShowFragmentAt(0);
+
+        }
+
+        void ShowFragmentAt(int position)
+        {
+            ViewModel.NavigateTo(position);
+
+            Title = ViewModel.MenuItems.ElementAt(position);
+ 
+            _drawerLayout.CloseDrawer (_drawerListView);
+        }
+
+        protected override void OnPostCreate(Bundle savedInstanceState)
+        {
+            _drawerToggle.SyncState();
+
+            base.OnPostCreate(savedInstanceState);
+        }
+
+        public override bool OnOptionsItemSelected(IMenuItem item)
+        {
+            if (_drawerToggle.OnOptionsItemSelected(item))
+                return true;
+
+            return base.OnOptionsItemSelected(item);
         }
 
         public async Task ShowUserLocation()
