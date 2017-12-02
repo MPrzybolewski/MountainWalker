@@ -28,9 +28,8 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
-    <Compile Include="Interfaces\ILatLngSetService.cs" />
+    <Compile Include="Interfaces\IMapService.cs" />
     <Compile Include="Interfaces\ILocationService.cs" />
-    <Compile Include="Interfaces\IMapsActivity.cs" />
     <Compile Include="Interfaces\Impl\LocationService.cs" />
     <Compile Include="Interfaces\IRegisterService.cs" />
     <Compile Include="Messages\LocationMessage.cs" />
