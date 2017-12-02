@@ -2,23 +2,15 @@ using Android.App;
 using Android.Gms.Maps;
 using Android.Gms.Maps.Model;
 using Android.OS;
-using MountainWalker.Core.Interfaces;
-using MvvmCross.Droid.Views;
 using Plugin.Geolocator;
 using System;
 using System.Threading.Tasks;
 using MvvmCross.Droid.Support.V7.AppCompat;
-using Android.Support.V7.Widget;
 using MountainWalker.Core.ViewModels;
-using MountainWalker.Droid.Services;
-using Debug = System.Diagnostics.Debug;
-
 using Android.Support.V7.App;
 using Android.Widget;
 using Android.Support.V4.Widget;
 using Android.Views;
-using MountainWalker.Droid.Fragments;
-using Fragment = Android.Support.V4.App.Fragment;
 using System.Linq;
 
 namespace MountainWalker.Droid.Views

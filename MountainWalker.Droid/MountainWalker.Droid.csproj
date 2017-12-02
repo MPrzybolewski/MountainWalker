@@ -194,6 +194,7 @@
     <AndroidResource Include="Resources\layout\StartView.axml" />
     <AndroidResource Include="Resources\layout\SettingsView.axml" />
     <AndroidResource Include="Resources\layout\Toolbar.xml" />
+    <AndroidResource Include="Resources\drawable\SignInViewBackground.png" />
   </ItemGroup>
   <ItemGroup>
     <AndroidResource Include="Resources\values\Strings.xml" />
@@ -226,9 +227,6 @@
     <AndroidResource Include="Resources\drawable\splash.png" />
   </ItemGroup>
   <ItemGroup />
-  <ItemGroup>
-    <AndroidResource Include="Resources\drawable\SignInViewBackground.png" />
-  </ItemGroup>
   <ItemGroup>
     <AndroidResource Include="Resources\drawable\alps.jpg" />
   </ItemGroup>

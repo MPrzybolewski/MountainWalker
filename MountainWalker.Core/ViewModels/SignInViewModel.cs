@@ -1,9 +1,6 @@
-﻿using System;
-using System.Diagnostics;
-using System.Threading.Tasks;
+﻿using System.Threading.Tasks;
 using MountainWalker.Core.Interfaces;
 using MvvmCross.Core.ViewModels;
-using MvvmCross.Platform;
 
 namespace MountainWalker.Core.ViewModels
 {
