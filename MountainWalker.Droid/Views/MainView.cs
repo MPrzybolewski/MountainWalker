@@ -18,7 +18,7 @@ namespace MountainWalker.Droid.Views
     [Activity(Label = "View for MainViewModel", NoHistory = true)]
     public class MainView : MvxAppCompatActivity<MainViewModel>, IOnMapReadyCallback
     {
-        public static GoogleMap _map;
+        public static GoogleMap Map;
 
         ActionBarDrawerToggle _drawerToggle;
         ListView _drawerListView;
@@ -26,8 +26,12 @@ namespace MountainWalker.Droid.Views
 
         public async void OnMapReady(GoogleMap map)
         {
-            _map = map;
+            Map = map;
             await ShowUserLocation();
+
+            Map.MyLocationEnabled = true;
+            Map.UiSettings.MyLocationButtonEnabled = true;
+            
         }
 
         protected override void OnCreate(Bundle bundle)
@@ -109,7 +113,7 @@ namespace MountainWalker.Droid.Views
         {
             LatLng coordinate = new LatLng(lat, lng);
             CameraUpdate yourLocation = CameraUpdateFactory.NewLatLngZoom(coordinate, 17);
-            _map.AnimateCamera(yourLocation);
+            Map.MoveCamera(yourLocation);
         }
     }
 }

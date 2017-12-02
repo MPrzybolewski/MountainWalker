@@ -12,11 +12,12 @@ namespace MountainWalker.Core.ViewModels
     public class MainViewModel : MvxViewModel
     {
         private readonly ILocationService _locationService;
-        private readonly ILatLngSetService _latLng;
+        private readonly IMapService _mapService;
         private string _label = "";
 
         public IMvxCommand GetLocationCommand { get; }
         public IMvxCommand ShowSimpleNoteInDebugLineCommand { get; }
+        public IMvxCommand ShowCurrentLocationCommand { get; }
 
         readonly Type[] _menuItemTypes = { typeof(SettingsViewModel) };
         public IEnumerable<string> MenuItems { get; private set; } = new[] { "Settings" };
@@ -31,27 +32,24 @@ namespace MountainWalker.Core.ViewModels
             }
         }
 
-        public MainViewModel(ILocationService locationService, ILatLngSetService latLng)
+        public MainViewModel(ILocationService locationService, IMapService mapService)
         {
             _locationService = locationService;
-            _latLng = latLng;
+            _mapService = mapService;
             GetLocationCommand = new MvxAsyncCommand(GetLocationAction);
             ShowSimpleNoteInDebugLineCommand = new MvxCommand(OnlySimpleTest);
+            ShowCurrentLocationCommand = new MvxAsyncCommand(GetLocationAction);
         }
 
         private async Task GetLocationAction()
         {
-            Label = await _locationService.GetLocation(); 
-            Debug.WriteLine("Done" + _label);
+            double[] location = await _locationService.GetLocation(); // 0 is Lat, 1 is Lng
+            _mapService.SetCurrentLocation(location[0], location[1]);
         }
 
         private void OnlySimpleTest()
         {
-            Debug.WriteLine("Hellooooo! I'm here!");
-            Debug.WriteLine("xvoxin did this XD");
-            Debug.WriteLine("Mariando krul");
-         
-            _latLng.SetLatLngButton(49.2314702, 19.9769924);
+            _mapService.SetLatLngButton(54.3956171, 18.5724856); //mfi hehe
         }
 
 

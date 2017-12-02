@@ -42,7 +42,7 @@ namespace MountainWalker.Droid
             Mvx.RegisterSingleton<IDialogService>(new DroidDialogService());
             Mvx.RegisterSingleton<IRegisterService>(new DroidRegisterService());
             Mvx.RegisterSingleton<ISharedPreferencesService>(new DroidSharedPreferencesService());
-            Mvx.RegisterSingleton<ILatLngSetService>(new DroidLatLngMapService());
+            Mvx.RegisterSingleton<IMapService>(new DroidMapService());
         }
 
         protected override IMvxAndroidViewPresenter CreateViewPresenter()
