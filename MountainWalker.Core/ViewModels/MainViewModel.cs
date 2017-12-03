@@ -13,11 +13,13 @@ namespace MountainWalker.Core.ViewModels
     {
         private readonly ILocationService _locationService;
         private readonly IMapService _mapService;
+        private readonly IMainDialogService _mainDialogService;
         private string _label = "";
 
         public IMvxCommand GetLocationCommand { get; }
         public IMvxCommand ShowSimpleNoteInDebugLineCommand { get; }
         public IMvxCommand ShowCurrentLocationCommand { get; }
+        public IMvxCommand OkDialogCommand { get; }
 
         readonly Type[] _menuItemTypes = { typeof(SettingsViewModel) };
         public IEnumerable<string> MenuItems { get; private set; } = new[] { "Settings" };
@@ -32,13 +34,16 @@ namespace MountainWalker.Core.ViewModels
             }
         }
 
-        public MainViewModel(ILocationService locationService, IMapService mapService)
+        public MainViewModel(ILocationService locationService, IMapService mapService, IMainDialogService mainDialogService)
         {
             _locationService = locationService;
             _mapService = mapService;
+            _mainDialogService = mainDialogService;
+
             GetLocationCommand = new MvxAsyncCommand(GetLocationAction);
             ShowSimpleNoteInDebugLineCommand = new MvxCommand(OnlySimpleTest);
             ShowCurrentLocationCommand = new MvxAsyncCommand(GetLocationAction);
+            OkDialogCommand = new MvxCommand(OkDialog);
         }
 
         private async Task GetLocationAction()
@@ -49,13 +54,20 @@ namespace MountainWalker.Core.ViewModels
 
         private void OnlySimpleTest()
         {
-            _mapService.SetLatLngButton(54.3956171, 18.5724856); //mfi hehe
+            _mainDialogService.Show("Witam Panstwa", true);
+            //_mapService.SetLatLngButton(54.3956171, 18.5724856); //mfi hehe
         }
 
 
         public void NavigateTo(int position)
         {
             ShowViewModel(_menuItemTypes[position]);
+        }
+
+        private void OkDialog()
+        {
+            Debug.WriteLine("In mainviewmodel");
+            _mainDialogService.Close();
         }
     }
 }

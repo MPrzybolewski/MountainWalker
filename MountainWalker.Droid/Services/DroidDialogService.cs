@@ -14,14 +14,11 @@ namespace MountainWalker.Droid.Services
             var top = Mvx.Resolve<IMvxAndroidCurrentTopActivity>();
             var act = top.Activity;
 
-
             var adb = new AlertDialog.Builder(act);
             adb.SetTitle(title);
             adb.SetMessage(message);
             adb.SetPositiveButton(okButtonText, (sender, args) => { /* some logic */ });
             adb.Create().Show();
         }
-
-
     }
 }
