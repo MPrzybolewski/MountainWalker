@@ -166,7 +166,6 @@
     <Compile Include="MainApplication.cs" />
     <Compile Include="Resources\Resource.designer.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="Services\DroidMainDialogService.cs" />
     <Compile Include="Services\DroidMapService.cs" />
     <Compile Include="Services\DroidRegisterService.cs" />
     <Compile Include="Views\MainView.cs" />

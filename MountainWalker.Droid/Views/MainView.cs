@@ -31,7 +31,9 @@ namespace MountainWalker.Droid.Views
 
             Map.MyLocationEnabled = true;
             Map.UiSettings.MyLocationButtonEnabled = true;
-            
+
+            Map.AddMarker(new MarkerOptions().SetPosition(new LatLng(54.394121, 18.569394)).SetTitle("Best place to go!"));
+
         }
 
         protected override void OnCreate(Bundle bundle)

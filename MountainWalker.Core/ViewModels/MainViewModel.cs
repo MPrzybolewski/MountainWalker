@@ -13,7 +13,6 @@ namespace MountainWalker.Core.ViewModels
     {
         private readonly ILocationService _locationService;
         private readonly IMapService _mapService;
-        private readonly IMainDialogService _mainDialogService;
         private string _label = "";
 
         public IMvxCommand GetLocationCommand { get; }
@@ -34,11 +33,10 @@ namespace MountainWalker.Core.ViewModels
             }
         }
 
-        public MainViewModel(ILocationService locationService, IMapService mapService, IMainDialogService mainDialogService)
+        public MainViewModel(ILocationService locationService, IMapService mapService)
         {
             _locationService = locationService;
             _mapService = mapService;
-            _mainDialogService = mainDialogService;
 
             GetLocationCommand = new MvxAsyncCommand(GetLocationAction);
             ShowSimpleNoteInDebugLineCommand = new MvxCommand(OnlySimpleTest);
@@ -54,7 +52,6 @@ namespace MountainWalker.Core.ViewModels
 
         private void OnlySimpleTest()
         {
-            //_mainDialogService.Show("Witam Panstwa", true);
             ShowViewModel(typeof(DialogViewModel));
             //_mapService.SetLatLngButton(54.3956171, 18.5724856); //mfi hehe
         }
@@ -68,7 +65,6 @@ namespace MountainWalker.Core.ViewModels
         private void OkDialog()
         {
             Debug.WriteLine("In mainviewmodel");
-            _mainDialogService.Close();
         }
     }
 }
