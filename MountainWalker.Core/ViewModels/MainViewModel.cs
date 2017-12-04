@@ -54,7 +54,8 @@ namespace MountainWalker.Core.ViewModels
 
         private void OnlySimpleTest()
         {
-            _mainDialogService.Show("Witam Panstwa", true);
+            //_mainDialogService.Show("Witam Panstwa", true);
+            ShowViewModel(typeof(DialogViewModel));
             //_mapService.SetLatLngButton(54.3956171, 18.5724856); //mfi hehe
         }
 

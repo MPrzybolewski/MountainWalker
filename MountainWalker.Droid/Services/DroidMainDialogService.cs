@@ -23,7 +23,6 @@ namespace MountainWalker.Droid.Services
 
             _dialog.SetCancelable(true);
             _dialog.SetContentView(Resource.Layout.MainDialog);
-
             _dialog.Show();
         }
 

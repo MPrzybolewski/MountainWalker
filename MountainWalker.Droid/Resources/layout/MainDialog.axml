@@ -37,5 +37,5 @@
         android:layout_marginBottom="20dp"
         android:layout_centerHorizontal="true"
         android:textColor="#ffffffff"
-        local:MvxBind="Click MainViewModel.OkDialogCommand" />
+        local:MvxBind="Click DialogCommand" />
 </RelativeLayout>
