@@ -8,7 +8,7 @@ using DialogFragment = MountainWalker.Droid.Fragments.DialogFragment;
 
 namespace MountainWalker.Droid.Services
 {
-    public class DroidMapService : IMapService
+    public class DroidMainActivityService : IMainActivityService
     {
         public void SetLatLngButton(double latitude, double longitude)
         {
@@ -27,6 +27,12 @@ namespace MountainWalker.Droid.Services
         public void CloseMainDialog()
         {
             DialogFragment.dialog.Dismiss();
+        }
+
+        public bool CheckPointIsNear()
+        {
+            //TODO later
+            return false;
         }
     }
 }

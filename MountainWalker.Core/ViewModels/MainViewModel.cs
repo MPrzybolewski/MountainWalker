@@ -12,59 +12,49 @@ namespace MountainWalker.Core.ViewModels
     public class MainViewModel : MvxViewModel
     {
         private readonly ILocationService _locationService;
-        private readonly IMapService _mapService;
-        private string _label = "";
+        private readonly IMainActivityService _mainService;
+        private ISharedPreferencesService _sharedPreferencesService;
 
-        public IMvxCommand GetLocationCommand { get; }
-        public IMvxCommand ShowSimpleNoteInDebugLineCommand { get; }
-        public IMvxCommand ShowCurrentLocationCommand { get; }
-        public IMvxCommand OkDialogCommand { get; }
+        public IMvxCommand OpenMainDialogCommand { get; }
+        public IMvxCommand LogoutCommand { get; }
+//        public IMvxCommand ShowCurrentLocationCommand { get; }
 
         readonly Type[] _menuItemTypes = { typeof(SettingsViewModel) };
         public IEnumerable<string> MenuItems { get; private set; } = new[] { "Settings" };
 
-        public string Label
-        {
-            get { return _label; }
-            set
-            {
-                _label = value;
-                RaisePropertyChanged();
-            }
-        }
 
-        public MainViewModel(ILocationService locationService, IMapService mapService)
+        public MainViewModel(ILocationService locationService, IMainActivityService mainService, ISharedPreferencesService sharedPreferencesService)
         {
             _locationService = locationService;
-            _mapService = mapService;
+            _mainService = mainService;
+            _sharedPreferencesService = sharedPreferencesService;
 
-            GetLocationCommand = new MvxAsyncCommand(GetLocationAction);
-            ShowSimpleNoteInDebugLineCommand = new MvxCommand(OnlySimpleTest);
-            ShowCurrentLocationCommand = new MvxAsyncCommand(GetLocationAction);
-            OkDialogCommand = new MvxCommand(OkDialog);
+            OpenMainDialogCommand = new MvxCommand(OpenDialog);
+            LogoutCommand = new MvxCommand(Logout);
+//            ShowCurrentLocationCommand = new MvxAsyncCommand(GetLocationAction);
         }
 
-        private async Task GetLocationAction()
-        {
-            double[] location = await _locationService.GetLocation(); // 0 is Lat, 1 is Lng
-            _mapService.SetCurrentLocation(location[0], location[1]);
-        }
+//        private async Task GetLocationAction()
+//        {
+//            double[] location = await _locationService.GetLocation(); // 0 is Lat, 1 is Lng
+//            _mainService.SetCurrentLocation(location[0], location[1]);
+//        }
 
-        private void OnlySimpleTest()
+        private void OpenDialog()
         {
             ShowViewModel(typeof(DialogViewModel));
-            //_mapService.SetLatLngButton(54.3956171, 18.5724856); //mfi hehe
+        }
+
+        private void Logout()
+        {
+            _sharedPreferencesService.CleanSharedPreferences();
+            ShowViewModel<SignInViewModel>();
         }
 
 
         public void NavigateTo(int position)
         {
             ShowViewModel(_menuItemTypes[position]);
-        }
-
-        private void OkDialog()
-        {
-            Debug.WriteLine("In mainviewmodel");
         }
     }
 }

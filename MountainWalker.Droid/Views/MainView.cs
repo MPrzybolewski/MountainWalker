@@ -12,10 +12,13 @@ using Android.Widget;
 using Android.Support.V4.Widget;
 using Android.Views;
 using System.Linq;
+using Android.Content.PM;
 
 namespace MountainWalker.Droid.Views
 {
-    [Activity(Label = "View for MainViewModel", NoHistory = true)]
+    [Activity(Label = "View for MainViewModel", NoHistory = true,
+        ConfigurationChanges = ConfigChanges.Orientation,
+        ScreenOrientation = ScreenOrientation.Portrait)]
     public class MainView : MvxAppCompatActivity<MainViewModel>, IOnMapReadyCallback
     {
         public static GoogleMap Map;

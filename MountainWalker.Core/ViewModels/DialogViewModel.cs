@@ -7,44 +7,76 @@ namespace MountainWalker.Core.ViewModels
 {
     public class DialogViewModel : MvxViewModel
     {
-        private readonly IMapService _mapService;
+        private readonly IMainActivityService _mainService;
 
-        public IMvxCommand DialogTestCommand { get; }
+        public IMvxCommand TrailStartCommand { get; }
+        public IMvxCommand NearestPointCommand { get; }
 
-        public IMvxCommand DialogTestDwaCommand { get; }
 
-        private string _label = "";
-
-        public string Label
+        private string _trialTitle = "";
+        public string TrailTitle
         {
-            get { return _label; }
+            get { return _trialTitle; }
             set
             {
-                _label = value;
+                _trialTitle = value;
                 RaisePropertyChanged();
             }
         }
 
-        public DialogViewModel(IMapService mapService)
+        private string _trialInfo = "";
+        public string TrailInfo
         {
-            _mapService = mapService;
-            Label = "21";
-            DialogTestCommand = new MvxCommand(DialogClick);
-            DialogTestDwaCommand = new MvxCommand(DialogSecondClick);
+            get { return _trialInfo; }
+            set
+            {
+                _trialInfo = value;
+                RaisePropertyChanged();
+            }
         }
 
-        private void DialogClick()
+        private bool _canStart;
+
+        public bool CanStart
         {
-            _mapService.SetLatLngButton(54.3956171, 18.5724856); //mfi
-            Label = "MFI";
-            _mapService.CloseMainDialog();
+            get { return _canStart; }
+            set
+            {
+                _canStart = value;
+                RaisePropertyChanged();
+            }
         }
 
-        private void DialogSecondClick()
+        public DialogViewModel(IMainActivityService mainService)
         {
-            _mapService.SetLatLngButton(54.394121, 18.569394); //best place to go every monday <3
-            Label = "YGREK";
-            _mapService.CloseMainDialog();
+            _mainService = mainService;
+            TrailTitle = "Hala Gąsienicowa"; //some function should be here, but idk how i want to do this
+
+            if (_mainService.CheckPointIsNear())
+            {
+                CanStart = true;
+                TrailStartCommand = new MvxCommand(StartTrail);
+                TrailInfo = "You can start right now!";
+            }
+            else
+            {
+                CanStart = false;
+                TrailInfo = "You are to far away from any start point";
+            }
+
+            NearestPointCommand = new MvxCommand(ShowNearestPoint);
+        }
+
+        private void StartTrail()
+        {
+            _mainService.SetLatLngButton(54.3956171, 18.5724856); //mfi
+            _mainService.CloseMainDialog();
+        }
+
+        private void ShowNearestPoint()
+        {
+            _mainService.SetLatLngButton(54.394121, 18.569394); //best place to go every monday <3
+            _mainService.CloseMainDialog();
         }
     }
 }
