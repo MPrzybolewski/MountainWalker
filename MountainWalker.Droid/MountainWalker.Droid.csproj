@@ -178,6 +178,7 @@
     <Compile Include="Services\DroidSharedPreferencesService.cs" />
     <Compile Include="Views\StartView.cs" />
     <Compile Include="Fragments\SettingsFragment.cs" />
+    <Compile Include="Fragments\HomeFragment.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Resources\AboutResources.txt" />
@@ -194,6 +195,7 @@
     <AndroidResource Include="Resources\layout\SettingsView.axml" />
     <AndroidResource Include="Resources\layout\Toolbar.xml" />
     <AndroidResource Include="Resources\drawable\SignInViewBackground.png" />
+    <AndroidResource Include="Resources\layout\HomeView.axml" />
   </ItemGroup>
   <ItemGroup>
     <AndroidResource Include="Resources\values\Strings.xml" />

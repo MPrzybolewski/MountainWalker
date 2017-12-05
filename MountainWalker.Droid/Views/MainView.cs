@@ -16,44 +16,16 @@ using System.Linq;
 namespace MountainWalker.Droid.Views
 {
     [Activity(Label = "View for MainViewModel", NoHistory = true)]
-    public class MainView : MvxAppCompatActivity<MainViewModel>, IOnMapReadyCallback
+    public class MainView : MvxAppCompatActivity<MainViewModel>
     {
-        public static GoogleMap Map;
-
         ActionBarDrawerToggle _drawerToggle;
         ListView _drawerListView;
         DrawerLayout _drawerLayout;
-
-        public async void OnMapReady(GoogleMap map)
-        {
-            Map = map;
-            await ShowUserLocation();
-
-            Map.MyLocationEnabled = true;
-            Map.UiSettings.MyLocationButtonEnabled = true;
-            
-        }
 
         protected override void OnCreate(Bundle bundle)
         {
             base.OnCreate(bundle);
             SetContentView(Resource.Layout.MainView);
-
-            MapFragment _mapFragment = FragmentManager.FindFragmentByTag("map") as MapFragment;
-            if (_mapFragment == null)
-            {
-                GoogleMapOptions mapOptions = new GoogleMapOptions()
-                    .InvokeMapType(GoogleMap.MapTypeTerrain)
-                    .InvokeZoomControlsEnabled(false)
-                    .InvokeCompassEnabled(true);
-
-                FragmentTransaction fragTx = FragmentManager.BeginTransaction();
-                _mapFragment = MapFragment.NewInstance(mapOptions);
-                fragTx.Add(Resource.Id.map, _mapFragment, "map");
-                fragTx.Commit();
-            }
-            _mapFragment.GetMapAsync(this);
-
 
             var toolbar = FindViewById<Android.Support.V7.Widget.Toolbar>(Resource.Id.Toolbar);
             SetSupportActionBar(toolbar);
@@ -99,21 +71,6 @@ namespace MountainWalker.Droid.Views
             return base.OnOptionsItemSelected(item);
         }
 
-        public async Task ShowUserLocation()
-        {
-            var locator = CrossGeolocator.Current;
-            locator.DesiredAccuracy = 1;
-            TimeSpan ts = TimeSpan.FromMilliseconds(1000);
-            var position = await locator.GetPositionAsync(ts);
-
-            UpdateCamera(position.Latitude, position.Longitude);
-        }
-
-        public void UpdateCamera(double lat, double lng)
-        {
-            LatLng coordinate = new LatLng(lat, lng);
-            CameraUpdate yourLocation = CameraUpdateFactory.NewLatLngZoom(coordinate, 17);
-            Map.MoveCamera(yourLocation);
-        }
+      
     }
 }
