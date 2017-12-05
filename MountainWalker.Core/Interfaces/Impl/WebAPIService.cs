@@ -1,6 +1,8 @@
 ﻿using Microsoft.VisualBasic;
+using Newtonsoft.Json;
 using System;
 using System.Collections.Generic;
+using System.Collections.Specialized;
 using System.IO;
 using System.Linq;
 using System.Net;
@@ -20,6 +22,25 @@ namespace MountainWalker.Core.Interfaces.Impl
             client.MaxResponseContentBufferSize = 256000;
         }
 
+        public async Task<string> CheckIfUserCanRegister(string RestUrl, string _name, string _surname, string _login, string _password, string _email)
+        {
+            var clientt = new HttpClient();
+            clientt.BaseAddress = new Uri(RestUrl);
+            object userInfos = new { id = "2", name = _name, surname = _surname, login = _login, password = _password, email = _email };
+            var jsonObj = JsonConvert.SerializeObject(userInfos);
+            StringContent content = new StringContent(jsonObj.ToString(), Encoding.UTF8, "application/json");
+            HttpResponseMessage response = await clientt.PostAsync("/api/users", content);
+            try
+            {
+                var result = await response.Content.ReadAsStringAsync();
+                return result;
+            } catch (Exception)
+            {
+                return "kurwa";
+            }
+
+        }
+
         public async Task<string> CheckIfUserCanLogin(string RestUrl)
         {
             var uri = new Uri(string.Format(RestUrl, string.Empty));
@@ -29,7 +50,7 @@ namespace MountainWalker.Core.Interfaces.Impl
                 var content = await response.Content.ReadAsStringAsync();
                 return content;
             }
-            return "brak";
+            return "false";
         }
     }
 }

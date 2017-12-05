@@ -8,6 +8,7 @@ namespace MountainWalker.Core.Interfaces
 {
     public interface IWebAPIService
     {
+        Task<string> CheckIfUserCanRegister(string RestUrl, string name, string surname, string login, string password, string email);
         Task<string> CheckIfUserCanLogin(string RestUrl);
     }
 }
