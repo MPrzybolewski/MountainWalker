@@ -13,52 +13,23 @@ using Android.Support.V4.Widget;
 using Android.Views;
 using System.Linq;
 using Android.Content.PM;
+using Debug = System.Diagnostics.Debug;
 
 namespace MountainWalker.Droid.Views
 {
     [Activity(Label = "View for MainViewModel", NoHistory = true,
         ConfigurationChanges = ConfigChanges.Orientation,
         ScreenOrientation = ScreenOrientation.Portrait)]
-    public class MainView : MvxAppCompatActivity<MainViewModel>, IOnMapReadyCallback
+    public class MainView : MvxAppCompatActivity<MainViewModel>
     {
-        public static GoogleMap Map;
-
         ActionBarDrawerToggle _drawerToggle;
         ListView _drawerListView;
         DrawerLayout _drawerLayout;
-
-        public async void OnMapReady(GoogleMap map)
-        {
-            Map = map;
-            await ShowUserLocation();
-
-            Map.MyLocationEnabled = true;
-            Map.UiSettings.MyLocationButtonEnabled = true;
-
-            Map.AddMarker(new MarkerOptions().SetPosition(new LatLng(54.394121, 18.569394)).SetTitle("Best place to go!"));
-
-        }
 
         protected override void OnCreate(Bundle bundle)
         {
             base.OnCreate(bundle);
             SetContentView(Resource.Layout.MainView);
-
-            MapFragment _mapFragment = FragmentManager.FindFragmentByTag("map") as MapFragment;
-            if (_mapFragment == null)
-            {
-                GoogleMapOptions mapOptions = new GoogleMapOptions()
-                    .InvokeMapType(GoogleMap.MapTypeTerrain)
-                    .InvokeZoomControlsEnabled(false)
-                    .InvokeCompassEnabled(true);
-
-                FragmentTransaction fragTx = FragmentManager.BeginTransaction();
-                _mapFragment = MapFragment.NewInstance(mapOptions);
-                fragTx.Add(Resource.Id.map, _mapFragment, "map");
-                fragTx.Commit();
-            }
-            _mapFragment.GetMapAsync(this);
-
 
             var toolbar = FindViewById<Android.Support.V7.Widget.Toolbar>(Resource.Id.Toolbar);
             SetSupportActionBar(toolbar);
@@ -77,7 +48,6 @@ namespace MountainWalker.Droid.Views
             _drawerLayout.SetDrawerListener(_drawerToggle);
 
             ShowFragmentAt(0);
-
         }
 
         void ShowFragmentAt(int position)
@@ -102,23 +72,6 @@ namespace MountainWalker.Droid.Views
                 return true;
 
             return base.OnOptionsItemSelected(item);
-        }
-
-        public async Task ShowUserLocation()
-        {
-            var locator = CrossGeolocator.Current;
-            locator.DesiredAccuracy = 1;
-            TimeSpan ts = TimeSpan.FromMilliseconds(1000);
-            var position = await locator.GetPositionAsync(ts);
-
-            UpdateCamera(position.Latitude, position.Longitude);
-        }
-
-        public void UpdateCamera(double lat, double lng)
-        {
-            LatLng coordinate = new LatLng(lat, lng);
-            CameraUpdate yourLocation = CameraUpdateFactory.NewLatLngZoom(coordinate, 17);
-            Map.MoveCamera(yourLocation);
         }
     }
 }
