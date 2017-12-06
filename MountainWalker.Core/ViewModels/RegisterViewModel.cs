@@ -68,6 +68,10 @@ namespace MountainWalker.Core.ViewModels
                     _dialogService.ShowAlert("Powiadomienie!", "Rejestracja przebiegła pomyślnie", "OK");
                     ShowViewModel<SignInViewModel>();
                 }
+                else
+                {
+                    _dialogService.ShowAlert("Uwaga!", "Dane są nieprawidłowe!", "OK");
+                }
             }         
             else
             {
