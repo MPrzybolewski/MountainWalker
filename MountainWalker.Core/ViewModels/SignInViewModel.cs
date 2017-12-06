@@ -8,12 +8,14 @@ namespace MountainWalker.Core.ViewModels
     {
         private readonly IDialogService _dialogService;
         private readonly ISharedPreferencesService _sharedPreferencesService;
+        private readonly IWebAPIService _webAPIService;
 
-        public SignInViewModel(IDialogService dialogService, ISharedPreferencesService sharedPreferencesService)
+        public SignInViewModel(IDialogService dialogService, ISharedPreferencesService sharedPreferencesService,
+            IWebAPIService webAPIService)
         {
             _dialogService = dialogService;
             _sharedPreferencesService = sharedPreferencesService;
-
+            _webAPIService = webAPIService;
         }
 
         public override Task Initialize()
@@ -21,27 +23,30 @@ namespace MountainWalker.Core.ViewModels
             return base.Initialize();
         }
 
-        public IMvxCommand SignInButton => new MvxCommand(CheckFields);
-        private void CheckFields()
-        {
-            if(_isChecked == true)
-            {
-                _sharedPreferencesService.SetSharedPreferences(_login,_password);
-            }
+        public IMvxCommand SignInButton => new MvxCommand(CheckLogin);
 
-            if (_login.Equals("admin") && _password.Equals("admin"))
+        private async void CheckLogin()
+        {
+            string RestUrl = "http://mountainwalkerwebapi.azurewebsites.net/api/users/" + _login + "?password=" +
+                             _password;
+            string result = await _webAPIService.CheckIfUserCanLogin(RestUrl);
+
+            if (result.Trim(new char[] {'"'}).Equals("true"))
             {
+                if (_isChecked == true)
+                {
+                    _sharedPreferencesService.SetSharedPreferences(_login, _password);
+                }
                 ShowViewModel<MainViewModel>();
             }
             else
             {
-                _dialogService.ShowAlert("Uwaga!", "Dane są nieprawidłowe", "OK");
+                _dialogService.ShowAlert("Uwaga!", "Login i/lub hasło są nieprawidłowe!", "OK");
             }
-
-
         }
 
         public IMvxCommand RegisterButton => new MvxCommand(JumpRegister);
+
         private void JumpRegister()
         {
             ShowViewModel<RegisterViewModel>();
@@ -69,11 +74,8 @@ namespace MountainWalker.Core.ViewModels
             set
             {
                 _isChecked = value;
-               // RaisePropertyChanged(() => IsChecked);
+                // RaisePropertyChanged(() => IsChecked);
             }
         }
-
     }
-
-
 }

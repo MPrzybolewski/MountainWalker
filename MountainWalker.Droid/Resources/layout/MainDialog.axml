@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:local="http://schemas.android.com/apk/res-auto"
+    android:orientation="vertical"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#ffffffff">
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/trailText"
+        android:text="Dolina Gasienicowa"
+        android:gravity="center"
+        android:background="#3F48CC"
+        android:textColor="#fff"
+        android:scaleType="fitCenter"
+        android:textSize="32dp"
+        android:textStyle="bold"
+        android:paddingTop="20dp"
+        android:paddingBottom="20dp"
+        local:MvxBind="Text TrailTitle" />
+    <TextView
+        android:id="@+id/text_dialog"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text=""
+        android:layout_below="@+id/trailText"
+        android:layout_marginTop="20dp"
+        android:layout_marginLeft="4dp"
+        android:layout_marginRight="4dp"
+        android:layout_marginBottom="20dp"
+        android:textSize="18sp"
+        android:textColor="#ff000000"
+        android:layout_centerHorizontal="true"
+        android:gravity="center_horizontal"
+        local:MvxBind="Text TrailInfo" />
+    <Button
+        android:layout_height="60dp"
+        android:layout_width="120dp"
+        android:text="OK"
+        android:id="@+id/btn_dialog"
+        android:gravity="center_vertical|center_horizontal"
+        android:textColor="#ffffffff"
+        android:layout_below="@+id/text_dialog"
+        android:layout_alignParentStart="true"
+        local:MvxBind="Enabled CanStart; Click TrailStartCommand" />
+    <Button
+        android:layout_height="60dp"
+        android:layout_width="120dp"
+        android:text="Nearest Point"
+        android:gravity="center_vertical|center_horizontal"
+        android:id="@+id/button"
+        android:textColor="#ffffffff"
+        android:layout_alignTop="@+id/btn_dialog"
+        android:layout_alignParentEnd="true"
+        local:MvxBind="Click NearestPointCommand" />
+</RelativeLayout>
