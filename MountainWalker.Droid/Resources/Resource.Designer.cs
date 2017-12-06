@@ -1872,45 +1872,6 @@ namespace MountainWalker.Droid
 			global::MvvmCross.Droid.Support.V7.AppCompat.Resource.Styleable.ViewStubCompat_android_id = global::MountainWalker.Droid.Resource.Styleable.ViewStubCompat_android_id;
 			global::MvvmCross.Droid.Support.V7.AppCompat.Resource.Styleable.ViewStubCompat_android_inflatedId = global::MountainWalker.Droid.Resource.Styleable.ViewStubCompat_android_inflatedId;
 			global::MvvmCross.Droid.Support.V7.AppCompat.Resource.Styleable.ViewStubCompat_android_layout = global::MountainWalker.Droid.Resource.Styleable.ViewStubCompat_android_layout;
-			global::MvvmCross.Droid.Support.V7.RecyclerView.Resource.Attribute.MvxBind = global::MountainWalker.Droid.Resource.Attribute.MvxBind;
-			global::MvvmCross.Droid.Support.V7.RecyclerView.Resource.Attribute.MvxDropDownItemTemplate = global::MountainWalker.Droid.Resource.Attribute.MvxDropDownItemTemplate;
-			global::MvvmCross.Droid.Support.V7.RecyclerView.Resource.Attribute.MvxGroupItemTemplate = global::MountainWalker.Droid.Resource.Attribute.MvxGroupItemTemplate;
-			global::MvvmCross.Droid.Support.V7.RecyclerView.Resource.Attribute.MvxItemTemplate = global::MountainWalker.Droid.Resource.Attribute.MvxItemTemplate;
-			global::MvvmCross.Droid.Support.V7.RecyclerView.Resource.Attribute.MvxLang = global::MountainWalker.Droid.Resource.Attribute.MvxLang;
-			global::MvvmCross.Droid.Support.V7.RecyclerView.Resource.Attribute.MvxSource = global::MountainWalker.Droid.Resource.Attribute.MvxSource;
-			global::MvvmCross.Droid.Support.V7.RecyclerView.Resource.Attribute.MvxTemplate = global::MountainWalker.Droid.Resource.Attribute.MvxTemplate;
-			global::MvvmCross.Droid.Support.V7.RecyclerView.Resource.Attribute.MvxTemplateSelector = global::MountainWalker.Droid.Resource.Attribute.MvxTemplateSelector;
-			global::MvvmCross.Droid.Support.V7.RecyclerView.Resource.Attribute.layoutManager = global::MountainWalker.Droid.Resource.Attribute.layoutManager;
-			global::MvvmCross.Droid.Support.V7.RecyclerView.Resource.Attribute.reverseLayout = global::MountainWalker.Droid.Resource.Attribute.reverseLayout;
-			global::MvvmCross.Droid.Support.V7.RecyclerView.Resource.Attribute.spanCount = global::MountainWalker.Droid.Resource.Attribute.spanCount;
-			global::MvvmCross.Droid.Support.V7.RecyclerView.Resource.Attribute.stackFromEnd = global::MountainWalker.Droid.Resource.Attribute.stackFromEnd;
-			global::MvvmCross.Droid.Support.V7.RecyclerView.Resource.Dimension.item_touch_helper_max_drag_scroll_per_frame = global::MountainWalker.Droid.Resource.Dimension.item_touch_helper_max_drag_scroll_per_frame;
-			global::MvvmCross.Droid.Support.V7.RecyclerView.Resource.Dimension.item_touch_helper_swipe_escape_max_velocity = global::MountainWalker.Droid.Resource.Dimension.item_touch_helper_swipe_escape_max_velocity;
-			global::MvvmCross.Droid.Support.V7.RecyclerView.Resource.Dimension.item_touch_helper_swipe_escape_velocity = global::MountainWalker.Droid.Resource.Dimension.item_touch_helper_swipe_escape_velocity;
-			global::MvvmCross.Droid.Support.V7.RecyclerView.Resource.Id.MvvmCrossTagId = global::MountainWalker.Droid.Resource.Id.MvvmCrossTagId;
-			global::MvvmCross.Droid.Support.V7.RecyclerView.Resource.Id.MvxBindingTagUnique = global::MountainWalker.Droid.Resource.Id.MvxBindingTagUnique;
-			global::MvvmCross.Droid.Support.V7.RecyclerView.Resource.Id.item_touch_helper_previous_elevation = global::MountainWalker.Droid.Resource.Id.item_touch_helper_previous_elevation;
-			global::MvvmCross.Droid.Support.V7.RecyclerView.Resource.Styleable.MvxBinding = global::MountainWalker.Droid.Resource.Styleable.MvxBinding;
-			global::MvvmCross.Droid.Support.V7.RecyclerView.Resource.Styleable.MvxBinding_MvxBind = global::MountainWalker.Droid.Resource.Styleable.MvxBinding_MvxBind;
-			global::MvvmCross.Droid.Support.V7.RecyclerView.Resource.Styleable.MvxBinding_MvxLang = global::MountainWalker.Droid.Resource.Styleable.MvxBinding_MvxLang;
-			global::MvvmCross.Droid.Support.V7.RecyclerView.Resource.Styleable.MvxControl = global::MountainWalker.Droid.Resource.Styleable.MvxControl;
-			global::MvvmCross.Droid.Support.V7.RecyclerView.Resource.Styleable.MvxControl_MvxTemplate = global::MountainWalker.Droid.Resource.Styleable.MvxControl_MvxTemplate;
-			global::MvvmCross.Droid.Support.V7.RecyclerView.Resource.Styleable.MvxExpandableListView = global::MountainWalker.Droid.Resource.Styleable.MvxExpandableListView;
-			global::MvvmCross.Droid.Support.V7.RecyclerView.Resource.Styleable.MvxExpandableListView_MvxGroupItemTemplate = global::MountainWalker.Droid.Resource.Styleable.MvxExpandableListView_MvxGroupItemTemplate;
-			global::MvvmCross.Droid.Support.V7.RecyclerView.Resource.Styleable.MvxImageView = global::MountainWalker.Droid.Resource.Styleable.MvxImageView;
-			global::MvvmCross.Droid.Support.V7.RecyclerView.Resource.Styleable.MvxImageView_MvxSource = global::MountainWalker.Droid.Resource.Styleable.MvxImageView_MvxSource;
-			global::MvvmCross.Droid.Support.V7.RecyclerView.Resource.Styleable.MvxListView = global::MountainWalker.Droid.Resource.Styleable.MvxListView;
-			global::MvvmCross.Droid.Support.V7.RecyclerView.Resource.Styleable.MvxListView_MvxDropDownItemTemplate = global::MountainWalker.Droid.Resource.Styleable.MvxListView_MvxDropDownItemTemplate;
-			global::MvvmCross.Droid.Support.V7.RecyclerView.Resource.Styleable.MvxListView_MvxItemTemplate = global::MountainWalker.Droid.Resource.Styleable.MvxListView_MvxItemTemplate;
-			global::MvvmCross.Droid.Support.V7.RecyclerView.Resource.Styleable.MvxRecyclerView = global::MountainWalker.Droid.Resource.Styleable.MvxRecyclerView;
-			global::MvvmCross.Droid.Support.V7.RecyclerView.Resource.Styleable.MvxRecyclerView_MvxTemplateSelector = global::MountainWalker.Droid.Resource.Styleable.MvxRecyclerView_MvxTemplateSelector;
-			global::MvvmCross.Droid.Support.V7.RecyclerView.Resource.Styleable.RecyclerView = global::MountainWalker.Droid.Resource.Styleable.RecyclerView;
-			global::MvvmCross.Droid.Support.V7.RecyclerView.Resource.Styleable.RecyclerView_android_descendantFocusability = global::MountainWalker.Droid.Resource.Styleable.RecyclerView_android_descendantFocusability;
-			global::MvvmCross.Droid.Support.V7.RecyclerView.Resource.Styleable.RecyclerView_android_orientation = global::MountainWalker.Droid.Resource.Styleable.RecyclerView_android_orientation;
-			global::MvvmCross.Droid.Support.V7.RecyclerView.Resource.Styleable.RecyclerView_layoutManager = global::MountainWalker.Droid.Resource.Styleable.RecyclerView_layoutManager;
-			global::MvvmCross.Droid.Support.V7.RecyclerView.Resource.Styleable.RecyclerView_reverseLayout = global::MountainWalker.Droid.Resource.Styleable.RecyclerView_reverseLayout;
-			global::MvvmCross.Droid.Support.V7.RecyclerView.Resource.Styleable.RecyclerView_spanCount = global::MountainWalker.Droid.Resource.Styleable.RecyclerView_spanCount;
-			global::MvvmCross.Droid.Support.V7.RecyclerView.Resource.Styleable.RecyclerView_stackFromEnd = global::MountainWalker.Droid.Resource.Styleable.RecyclerView_stackFromEnd;
 		}
 		
 		public partial class Animation
@@ -1993,29 +1954,26 @@ namespace MountainWalker.Droid
 		public partial class Attribute
 		{
 			
-			// aapt resource value: 0x7f010178
-			public const int MvxBind = 2130772344;
-			
-			// aapt resource value: 0x7f01017c
-			public const int MvxDropDownItemTemplate = 2130772348;
-			
-			// aapt resource value: 0x7f01017d
-			public const int MvxGroupItemTemplate = 2130772349;
+			// aapt resource value: 0x7f010177
+			public const int MvxBind = 2130772343;
 			
 			// aapt resource value: 0x7f01017b
-			public const int MvxItemTemplate = 2130772347;
+			public const int MvxDropDownItemTemplate = 2130772347;
 			
-			// aapt resource value: 0x7f010179
-			public const int MvxLang = 2130772345;
-			
-			// aapt resource value: 0x7f01017e
-			public const int MvxSource = 2130772350;
+			// aapt resource value: 0x7f01017c
+			public const int MvxGroupItemTemplate = 2130772348;
 			
 			// aapt resource value: 0x7f01017a
-			public const int MvxTemplate = 2130772346;
+			public const int MvxItemTemplate = 2130772346;
 			
-			// aapt resource value: 0x7f010177
-			public const int MvxTemplateSelector = 2130772343;
+			// aapt resource value: 0x7f010178
+			public const int MvxLang = 2130772344;
+			
+			// aapt resource value: 0x7f01017d
+			public const int MvxSource = 2130772349;
+			
+			// aapt resource value: 0x7f010179
+			public const int MvxTemplate = 2130772345;
 			
 			// aapt resource value: 0x7f01006f
 			public const int actionBarDivider = 2130772079;
@@ -8240,8 +8198,8 @@ namespace MountainWalker.Droid
 			public const int MenuView_subMenuArrow = 8;
 			
 			public static int[] MvxBinding = new int[] {
-					2130772344,
-					2130772345};
+					2130772343,
+					2130772344};
 			
 			// aapt resource value: 0
 			public const int MvxBinding_MvxBind = 0;
@@ -8250,38 +8208,32 @@ namespace MountainWalker.Droid
 			public const int MvxBinding_MvxLang = 1;
 			
 			public static int[] MvxControl = new int[] {
-					2130772346};
+					2130772345};
 			
 			// aapt resource value: 0
 			public const int MvxControl_MvxTemplate = 0;
 			
 			public static int[] MvxExpandableListView = new int[] {
-					2130772349};
+					2130772348};
 			
 			// aapt resource value: 0
 			public const int MvxExpandableListView_MvxGroupItemTemplate = 0;
 			
 			public static int[] MvxImageView = new int[] {
-					2130772350};
+					2130772349};
 			
 			// aapt resource value: 0
 			public const int MvxImageView_MvxSource = 0;
 			
 			public static int[] MvxListView = new int[] {
-					2130772347,
-					2130772348};
+					2130772346,
+					2130772347};
 			
 			// aapt resource value: 1
 			public const int MvxListView_MvxDropDownItemTemplate = 1;
 			
 			// aapt resource value: 0
 			public const int MvxListView_MvxItemTemplate = 0;
-			
-			public static int[] MvxRecyclerView = new int[] {
-					2130772343};
-			
-			// aapt resource value: 0
-			public const int MvxRecyclerView_MvxTemplateSelector = 0;
 			
 			public static int[] NavigationView = new int[] {
 					16842964,
