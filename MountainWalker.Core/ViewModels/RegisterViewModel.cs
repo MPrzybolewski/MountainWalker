@@ -18,12 +18,12 @@ namespace MountainWalker.Core.ViewModels
         private string _repPassword = "";
         private string _email = "";
         private readonly IDialogService _dialogService;
-        private readonly IRegisterService _registerService;
+        private readonly IWebAPIService _webAPIService;
 
-        public RegisterViewModel(IDialogService dialogService, IRegisterService registerService)
+        public RegisterViewModel(IDialogService dialogService, IWebAPIService webAPIService)
         {
             _dialogService = dialogService;
-            _registerService = registerService;
+            _webAPIService = webAPIService;
         }
         public string Name
         {
@@ -56,16 +56,22 @@ namespace MountainWalker.Core.ViewModels
             set { _email = value; }
         }
 
-        public IMvxCommand RegisterButton => new MvxCommand(Walidate);
-        private void Walidate()
+        public IMvxCommand RegisterButton => new MvxCommand(Validate);
+        private async void Validate()
         {
-            if (_registerService.CheckData(_name,_surname,_login,_password,_repPassword,_email))
+            if (_password.Equals(_repPassword))
             {
-                ShowViewModel<MainViewModel>();
+                string RestUrl = "http://mountainwalkerwebapi.azurewebsites.net";
+                string result = await _webAPIService.CheckIfUserCanRegister(RestUrl, _name, _surname, _login, _password, _email);
+                if (result.Trim(new char[] { '"' }).Equals("true"))
+                {
+                    _dialogService.ShowAlert("Powiadomienie!", "Rejestracja przebiegła pomyślnie", "OK");
+                    ShowViewModel<SignInViewModel>();
+                }
             }
             else
             {
-                _dialogService.ShowAlert("Uwaga!", "Dane są nieprawidłowe", "OK");
+                _dialogService.ShowAlert("Uwaga!", "Dane są nieprawidłowe!", "OK");
             }
         }
     }

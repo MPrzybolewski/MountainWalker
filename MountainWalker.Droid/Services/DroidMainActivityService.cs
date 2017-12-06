@@ -1,13 +1,15 @@
-﻿using Android.Gms.Maps;
+﻿using Android.App;
+using Android.Gms.Maps;
 using Android.Gms.Maps.Model;
 using MountainWalker.Core.Interfaces;
 using MountainWalker.Droid.Fragments;
 using MountainWalker.Droid.Views;
 using Debug = System.Diagnostics.Debug;
+using DialogFragment = MountainWalker.Droid.Fragments.DialogFragment;
 
 namespace MountainWalker.Droid.Services
 {
-    public class DroidMapService : IMapService
+    public class DroidMainActivityService : IMainActivityService
     {
         public void SetLatLngButton(double latitude, double longitude)
         {
@@ -21,6 +23,17 @@ namespace MountainWalker.Droid.Services
             LatLng coordinate = new LatLng(latitude, longitude);
             CameraUpdate yourLocation = CameraUpdateFactory.NewLatLngZoom(coordinate, 17);
             HomeFragment.Map.AnimateCamera(yourLocation);
+        }
+
+        public void CloseMainDialog()
+        {
+            DialogFragment.dialog.Dismiss();
+        }
+
+        public bool CheckPointIsNear()
+        {
+            //TODO later
+            return false;
         }
     }
 }

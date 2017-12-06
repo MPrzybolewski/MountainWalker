@@ -5,6 +5,7 @@ using System.Text;
 
 using Android.App;
 using Android.Content;
+using Android.Content.PM;
 using Android.OS;
 using Android.Runtime;
 using Android.Views;
@@ -13,7 +14,9 @@ using MvvmCross.Droid.Views;
 
 namespace MountainWalker.Droid.Views
 {
-    [Activity(Label = "View for RegisterViewModel")]
+    [Activity(Label = "View for RegisterViewModel",
+        ConfigurationChanges = ConfigChanges.Orientation,
+        ScreenOrientation = ScreenOrientation.Portrait)]
     public class RegisterView : MvxActivity
     {
         protected override void OnCreate(Bundle bundle)

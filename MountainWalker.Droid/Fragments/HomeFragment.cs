@@ -14,6 +14,7 @@ using Android.App;
 using MvvmCross.Binding.Droid.BindingContext;
 using MvvmCross.Droid.Views;
 using System.Diagnostics;
+using Debug = System.Diagnostics.Debug;
 
 namespace MountainWalker.Droid.Fragments
 {
@@ -22,6 +23,7 @@ namespace MountainWalker.Droid.Fragments
     public class HomeFragment : MvxFragment<HomeViewModel>, IOnMapReadyCallback
     {
         public static GoogleMap Map;
+        private static View _view;
 
         public async void OnMapReady(GoogleMap map)
         {
@@ -30,20 +32,25 @@ namespace MountainWalker.Droid.Fragments
 
             Map.MyLocationEnabled = true;
             Map.UiSettings.MyLocationButtonEnabled = true;
-
+            Map.AddMarker(new MarkerOptions().SetPosition(new LatLng(54.394121, 18.569394))
+                .SetTitle("Best place to go!"));
         }
-
-
-        private static View view;
 
         public override View OnCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState)
         {
-            if (view == null)
+            if (_view == null)
             {
-                view = inflater.Inflate(Resource.Layout.HomeView, container, false);
+                if (BindingContext == null)
+                    {
+                        BindingContext = new MvxAndroidBindingContext(Activity,
+                            new MvxSimpleLayoutInflaterHolder(Activity.LayoutInflater), DataContext);
+                    }
+                _view = this.BindingInflate(Resource.Layout.HomeView, null);
+
+                /*
+                _view = this.BindingInflate(Resource.Layout.HomeView, container, false); // jak nie zadziala to wez wrzuc to w tego ifa co wyzej
+                */
             }
-
-
 
             FragmentManager fragmentManager = this.Activity.FragmentManager;
 
@@ -57,14 +64,15 @@ namespace MountainWalker.Droid.Fragments
                     .InvokeCompassEnabled(true);
 
                 FragmentTransaction fragTx = fragmentManager.BeginTransaction();
-                _mapFragment =MapFragment.NewInstance(mapOptions);
+
+                _mapFragment = MapFragment.NewInstance(mapOptions);
+
                 fragTx.Add(Resource.Id.map, _mapFragment, "map");
                 fragTx.Commit();
             }
             _mapFragment.GetMapAsync(this);
 
-
-            return view;
+            return _view;
         }
 
         public async Task ShowUserLocation()
@@ -83,7 +91,5 @@ namespace MountainWalker.Droid.Fragments
             CameraUpdate yourLocation = CameraUpdateFactory.NewLatLngZoom(coordinate, 17);
             Map.MoveCamera(yourLocation);
         }
-
-
     }
 }

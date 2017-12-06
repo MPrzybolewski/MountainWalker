@@ -1,9 +1,4 @@
-using System.Diagnostics;
-using System.Threading.Tasks;
-using MountainWalker.Core.Interfaces;
 using MvvmCross.Core.ViewModels;
-using MountainWalker.Core.Models;
-using Plugin.Geolocator;
 using System;
 using System.Collections.Generic;
 

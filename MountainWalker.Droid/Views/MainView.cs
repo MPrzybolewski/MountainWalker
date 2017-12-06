@@ -12,10 +12,14 @@ using Android.Widget;
 using Android.Support.V4.Widget;
 using Android.Views;
 using System.Linq;
+using Android.Content.PM;
+using Debug = System.Diagnostics.Debug;
 
 namespace MountainWalker.Droid.Views
 {
-    [Activity(Label = "View for MainViewModel", NoHistory = true)]
+    [Activity(Label = "View for MainViewModel", NoHistory = true,
+        ConfigurationChanges = ConfigChanges.Orientation,
+        ScreenOrientation = ScreenOrientation.Portrait)]
     public class MainView : MvxAppCompatActivity<MainViewModel>
     {
         ActionBarDrawerToggle _drawerToggle;
@@ -24,6 +28,7 @@ namespace MountainWalker.Droid.Views
 
         protected override void OnCreate(Bundle bundle)
         {
+            
             base.OnCreate(bundle);
             SetContentView(Resource.Layout.MainView);
 
@@ -44,7 +49,6 @@ namespace MountainWalker.Droid.Views
             _drawerLayout.SetDrawerListener(_drawerToggle);
 
             ShowFragmentAt(0);
-
         }
 
         void ShowFragmentAt(int position)
@@ -70,7 +74,5 @@ namespace MountainWalker.Droid.Views
 
             return base.OnOptionsItemSelected(item);
         }
-
-      
     }
 }
