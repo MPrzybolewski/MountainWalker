@@ -16,12 +16,12 @@ using Debug = System.Diagnostics.Debug;
 
 namespace MountainWalker.Droid.Fragments
 {
-    [MvxFragmentPresentationAttribute(typeof(MainViewModel), Resource.Id.frameLayout)]
+    [MvxFragmentPresentationAttribute(activityHostViewModelType:typeof(MainViewModel), addToBackStack:true,fragmentContentId: Resource.Id.frameLayout)]
     [Register("MountainWalker.android.HomeFragment")]
     public class HomeFragment : MvxFragment<HomeViewModel>, IOnMapReadyCallback
     {
         public static GoogleMap Map;
-        private static View _view;
+        //private static View _view;
 
         public async void OnMapReady(GoogleMap map)
         {
@@ -37,6 +37,7 @@ namespace MountainWalker.Droid.Fragments
 
         public override View OnCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState)
         {
+            /*
             //            if (_view == null)
             //            {
             //                _view = inflater.Inflate(Resource.Layout.HomeView, container, false);
@@ -52,6 +53,12 @@ namespace MountainWalker.Droid.Fragments
             _view = this.BindingInflate(Resource.Layout.HomeView, container, false); // jak nie zadziala to wez wrzuc to w tego ifa co wyzej
 //            _view = this.BindingInflate(Resource.Layout.HomeView, null);
 
+            */
+
+            //View view = inflater.Inflate(Resource.Layout.HomeView, container, false);
+
+            base.OnCreateView(inflater, container, savedInstanceState);
+            View view = this.BindingInflate(Resource.Layout.HomeView, null);
             FragmentManager fragmentManager = this.Activity.FragmentManager;
 
             MapFragment _mapFragment = fragmentManager.FindFragmentByTag("map") as MapFragment;
@@ -70,7 +77,7 @@ namespace MountainWalker.Droid.Fragments
             }
             _mapFragment.GetMapAsync(this);
 
-            return _view;
+            return view;
         }
 
         public async Task ShowUserLocation()
