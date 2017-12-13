@@ -11,19 +11,14 @@ using Plugin.Geolocator;
 using MountainWalker.Droid.Views;
 using Android.Gms.Maps.Model;
 using Android.App;
-using MvvmCross.Binding.Droid.BindingContext;
-using MvvmCross.Droid.Views;
-using System.Diagnostics;
-using Debug = System.Diagnostics.Debug;
 
 namespace MountainWalker.Droid.Fragments
 {
-    [MvxFragmentPresentationAttribute(typeof(MainViewModel), Resource.Id.frameLayout)]
+    [MvxFragmentPresentationAttribute(typeof(MainViewModel), Resource.Id.content_frame)]
     [Register("MountainWalker.android.HomeFragment")]
-    public class HomeFragment : MvxFragment<HomeViewModel>, IOnMapReadyCallback
+    public class HomeFragment : BaseFragment<HomeViewModel>, IOnMapReadyCallback
     {
         public static GoogleMap Map;
-        private static View _view;
 
         public async void OnMapReady(GoogleMap map)
         {
@@ -38,19 +33,8 @@ namespace MountainWalker.Droid.Fragments
 
         public override View OnCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState)
         {
-            if (_view == null)
-            {
-                if (BindingContext == null)
-                    {
-                        BindingContext = new MvxAndroidBindingContext(Activity,
-                            new MvxSimpleLayoutInflaterHolder(Activity.LayoutInflater), DataContext);
-                    }
-                _view = this.BindingInflate(Resource.Layout.HomeView, null);
 
-                /*
-                _view = this.BindingInflate(Resource.Layout.HomeView, container, false); // jak nie zadziala to wez wrzuc to w tego ifa co wyzej
-                */
-            }
+            ShowHamburgerMenu = true;
 
             FragmentManager fragmentManager = this.Activity.FragmentManager;
 
@@ -72,7 +56,7 @@ namespace MountainWalker.Droid.Fragments
             }
             _mapFragment.GetMapAsync(this);
 
-            return _view;
+            return base.OnCreateView(inflater, container, savedInstanceState);
         }
 
         public async Task ShowUserLocation()
@@ -91,5 +75,7 @@ namespace MountainWalker.Droid.Fragments
             CameraUpdate yourLocation = CameraUpdateFactory.NewLatLngZoom(coordinate, 17);
             Map.MoveCamera(yourLocation);
         }
+
+        protected override int FragmentId => Resource.Layout.HomeView;
     }
 }

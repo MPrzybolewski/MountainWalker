@@ -17,9 +17,6 @@ namespace MountainWalker.Core.ViewModels
         public IMvxCommand LogoutCommand { get; }
         //        public IMvxCommand ShowCurrentLocationCommand { get; }
 
-        readonly Type[] _menuItemTypes = { typeof(SettingsViewModel) };
-
-
         public HomeViewModel(ILocationService locationService, IMainActivityService mainService,
             ISharedPreferencesService sharedPreferencesService)
         {
@@ -51,10 +48,5 @@ namespace MountainWalker.Core.ViewModels
             Debug.WriteLine("OPEN LOGOUT");
         }
 
-
-        public void NavigateTo(int position)
-        {
-            ShowViewModel(_menuItemTypes[position]);
-        }
     }
 }

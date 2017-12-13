@@ -6,12 +6,25 @@ namespace MountainWalker.Core.ViewModels
 {
     public class MainViewModel : MvxViewModel
     {
-        readonly Type[] _menuItemTypes = { typeof(HomeViewModel), typeof(SettingsViewModel) };
-        public IEnumerable<string> MenuItems { get; private set; } = new[] { "Home", "Settings" };
 
-        public void NavigateTo(int position)
+        public void ShowMenu()
         {
-            ShowViewModel(_menuItemTypes[position]);
+            ShowViewModel<HomeViewModel>();
+            ShowViewModel<MenuViewModel>();
+        }
+
+        public void ShowHome()
+        {
+            ShowViewModel<HomeViewModel>();
+        }
+
+        public void Init(object hint)
+        {
+        }
+
+        public override void Start()
+        {
+            
         }
     }
 }
