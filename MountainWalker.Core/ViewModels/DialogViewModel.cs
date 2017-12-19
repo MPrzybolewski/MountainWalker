@@ -1,6 +1,9 @@
-﻿using System.Diagnostics;
+﻿using System;
+using System.Diagnostics;
 using System.Linq.Expressions;
+using System.Threading.Tasks;
 using MountainWalker.Core.Interfaces;
+using MountainWalker.Core.Interfaces.Impl;
 using MvvmCross.Core.ViewModels;
 
 namespace MountainWalker.Core.ViewModels
@@ -8,6 +11,7 @@ namespace MountainWalker.Core.ViewModels
     public class DialogViewModel : MvxViewModel
     {
         private readonly IMainActivityService _mainService;
+        private readonly ILocationService _locationService;
 
         public IMvxCommand TrailStartCommand { get; }
         public IMvxCommand NearestPointCommand { get; }
@@ -47,12 +51,18 @@ namespace MountainWalker.Core.ViewModels
             }
         }
 
-        public DialogViewModel(IMainActivityService mainService)
+        public DialogViewModel(IMainActivityService mainService, ILocationService locationService )
         {
             _mainService = mainService;
-            TrailTitle = "Hala Gąsienicowa"; //some function should be here, but idk how i want to do this
+            _locationService = locationService;
 
-            if (_mainService.CheckPointIsNear())
+
+
+            TrailTitle = "Hala Gąsienicowa"; //some function should be here, but idk how i want to do this
+            double[] userPosition = HomeViewModel.UserPosition;
+
+
+            if (_mainService.CheckPointIsNear(userPosition[0],userPosition[1],54.034448, 19.033126)) // user and point location
             {
                 CanStart = true;
                 TrailStartCommand = new MvxCommand(StartTrail);

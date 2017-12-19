@@ -1,4 +1,5 @@
-﻿using Android.App;
+﻿using System;
+using Android.App;
 using Android.Gms.Maps;
 using Android.Gms.Maps.Model;
 using MountainWalker.Core.Interfaces;
@@ -30,10 +31,35 @@ namespace MountainWalker.Droid.Services
             DialogFragment.dialog.Dismiss();
         }
 
-        public bool CheckPointIsNear()
+        public bool CheckPointIsNear(double userLatitude, double userLongitude, double pointLatitude, double pointLongitude )
         {
-            //TODO later
+            double distanceBetweenNearestPointAndUserCurrentLocation = GetDistanceBetweenTwoPointsOnMapInMeters(userLatitude, userLongitude, pointLatitude, pointLongitude);
+            Debug.WriteLine("Odelglosc: {0}",distanceBetweenNearestPointAndUserCurrentLocation);
+            if(distanceBetweenNearestPointAndUserCurrentLocation < 50)
+            {
+                return true;
+            }
             return false;
+        }
+
+        public double GetDistanceBetweenTwoPointsOnMapInMeters(double firstPointLatitude, double firstPointLongitude, double secondPointLatitude, double secondPointLongitude)
+        {
+            Debug.WriteLine("Uzytkownik: {0} , {1}");
+            Debug.WriteLine("Punkt: {0} , {1}");
+            int R = 6378137; //Earth's mean radius in meter
+            double dLat = ConvertDegreeToRadian(secondPointLatitude - firstPointLatitude);
+            double dLong = ConvertDegreeToRadian(secondPointLongitude - firstPointLongitude);
+            double a = Math.Sin(dLat / 2) * Math.Sin(dLat / 2) 
+                           + Math.Cos(ConvertDegreeToRadian(firstPointLatitude)) * Math.Cos(ConvertDegreeToRadian(secondPointLatitude))
+                           * Math.Sin(dLong / 2) * Math.Sin(dLong / 2);
+            double c = 2 * Math.Atan2(Math.Sqrt(a), Math.Sqrt(1 - a));
+            double d = R * c;
+            return d;
+        }
+
+        public double ConvertDegreeToRadian(double angle)
+        {
+            return (Math.PI * angle) / 180.0;
         }
     }
 }
