@@ -4,6 +4,7 @@ using System.Linq.Expressions;
 using System.Threading.Tasks;
 using MountainWalker.Core.Interfaces;
 using MountainWalker.Core.Interfaces.Impl;
+using MountainWalker.Core.Models;
 using MvvmCross.Core.ViewModels;
 
 namespace MountainWalker.Core.ViewModels
@@ -51,18 +52,17 @@ namespace MountainWalker.Core.ViewModels
             }
         }
 
-        public DialogViewModel(IMainActivityService mainService, ILocationService locationService )
+        public DialogViewModel(IMainActivityService mainService) // tutaj ILocationService
         {
             _mainService = mainService;
-            _locationService = locationService;
+
+            TrailTitle = "Hala Gąsienicowa"; //some function should be here, but idk how i want to do there
+            Point Location = HomeViewModel.Location; //ugly ygh
+
+            Point Test = new Point(54.034448, 19.033126);
 
 
-
-            TrailTitle = "Hala Gąsienicowa"; //some function should be here, but idk how i want to do this
-            double[] userPosition = HomeViewModel.UserPosition;
-
-
-            if (_mainService.CheckPointIsNear(userPosition[0],userPosition[1],54.034448, 19.033126)) // user and point location
+            if (_mainService.CheckPointIsNear(Location, Test)) // user and point location
             {
                 CanStart = true;
                 TrailStartCommand = new MvxCommand(StartTrail);
@@ -79,13 +79,13 @@ namespace MountainWalker.Core.ViewModels
 
         private void StartTrail()
         {
-            _mainService.SetLatLngButton(54.3956171, 18.5724856); //mfi
+            _mainService.SetLatLngButton(new Point(54.3956171, 18.5724856)); //mfi
             _mainService.CloseMainDialog();
         }
 
         private void ShowNearestPoint()
         {
-            _mainService.SetLatLngButton(54.394121, 18.569394); //best place to go every monday <3
+            _mainService.SetLatLngButton(new Point(54.394121, 18.569394)); //best place to go every monday <3
             _mainService.CloseMainDialog();
         }
     }

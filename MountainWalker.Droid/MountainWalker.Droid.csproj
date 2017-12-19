@@ -42,6 +42,12 @@
     <AndroidUseSharedRuntime>false</AndroidUseSharedRuntime>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="MvvmCross.Plugins.Location, Version=5.4.2.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\MvvmCross.Plugin.Location.5.4.2\lib\MonoAndroid\MvvmCross.Plugins.Location.dll</HintPath>
+    </Reference>
+    <Reference Include="MvvmCross.Plugins.Location.Droid, Version=5.4.2.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\MvvmCross.Plugin.Location.5.4.2\lib\MonoAndroid\MvvmCross.Plugins.Location.Droid.dll</HintPath>
+    </Reference>
     <Reference Include="MvvmCross.Plugins.Messenger, Version=5.4.2.0, Culture=neutral, processorArchitecture=MSIL">
       <HintPath>..\packages\MvvmCross.Plugin.Messenger.5.4.2\lib\MonoAndroid\MvvmCross.Plugins.Messenger.dll</HintPath>
     </Reference>
@@ -161,6 +167,7 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Bootstrap\LocationPluginBootstrap.cs" />
     <Compile Include="Bootstrap\MessengerPluginBootstrap.cs" />
     <Compile Include="Fragments\DialogFragment.cs" />
     <Compile Include="Fragments\HomeFragment.cs" />

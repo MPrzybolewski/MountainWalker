@@ -10,6 +10,7 @@ using MvvmCross.Droid.Views.Attributes;
 using Plugin.Geolocator;
 using Android.Gms.Maps.Model;
 using Android.App;
+using MountainWalker.Droid.Services;
 using MvvmCross.Binding.Droid.BindingContext;
 using MvvmCross.Droid.Views;
 using Debug = System.Diagnostics.Debug;
@@ -33,6 +34,8 @@ namespace MountainWalker.Droid.Fragments
 
             Map.AddMarker(new MarkerOptions().SetPosition(new LatLng(54.394121, 18.569394))
                 .SetTitle("Best place to go!"));
+
+            DroidMainActivityService.DawajTePunkty();
         }
 
         public override View OnCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState)
@@ -45,12 +48,18 @@ namespace MountainWalker.Droid.Fragments
             //            }
 
             if (BindingContext == null)
+            if (_view == null)
             {
-                BindingContext = new MvxAndroidBindingContext(Activity,
-                    new MvxSimpleLayoutInflaterHolder(Activity.LayoutInflater), DataContext);
+                Debug.WriteLine("JESTEEEEM HIHI");
+                if (BindingContext == null)
+                {
+                    BindingContext = new MvxAndroidBindingContext(Activity,
+                        new MvxSimpleLayoutInflaterHolder(Activity.LayoutInflater), DataContext);
+                }
+                _view = this.BindingInflate(Resource.Layout.HomeView, container, false); // jak nie zadziala to wez wrzuc to w tego ifa co wyzej
+
             }
 
-            _view = this.BindingInflate(Resource.Layout.HomeView, container, false); // jak nie zadziala to wez wrzuc to w tego ifa co wyzej
 //            _view = this.BindingInflate(Resource.Layout.HomeView, null);
 
             */

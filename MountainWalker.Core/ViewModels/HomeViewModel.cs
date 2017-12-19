@@ -1,8 +1,12 @@
 ﻿using System;
 using System.Diagnostics;
+using System.Linq.Expressions;
 using System.Threading.Tasks;
 using MountainWalker.Core.Interfaces;
+using MountainWalker.Core.Messages;
+using MountainWalker.Core.Models;
 using MvvmCross.Core.ViewModels;
+using MvvmCross.Plugins.Messenger;
 
 namespace MountainWalker.Core.ViewModels
 {
@@ -11,42 +15,43 @@ namespace MountainWalker.Core.ViewModels
         private readonly ILocationService _locationService;
         private readonly IMainActivityService _mainService;
         private readonly ISharedPreferencesService _sharedPreferencesService;
+        private readonly IMvxMessenger _messenger;
+        private MvxSubscriptionToken _token;
+
+        public static Point Location { get; set; }
+        private PointList _points;
 
         public IMvxCommand OpenMainDialogCommand { get; }
 
         public IMvxCommand LogoutCommand { get; }
-        //        public IMvxCommand ShowCurrentLocationCommand { get; }
 
         readonly Type[] _menuItemTypes = {typeof(SettingsViewModel)};
 
-        public static double[] UserPosition;
-
-        double UserLatitude { get; set; }
-        double UserLongitude { get; set; }
 
         public HomeViewModel(ILocationService locationService, IMainActivityService mainService,
-            ISharedPreferencesService sharedPreferencesService)
+            ISharedPreferencesService sharedPreferencesService, IMvxMessenger messenger)
         {
             _locationService = locationService;
             _mainService = mainService;
             _sharedPreferencesService = sharedPreferencesService;
+            _token = messenger.Subscribe<LocationMessage>(OnLocationMessage);
 
             OpenMainDialogCommand = new MvxAsyncCommand(OpenDialog);
             LogoutCommand = new MvxCommand(Logout);
 
-            UserPosition = new double[2];
-            //            ShowCurrentLocationCommand = new MvxAsyncCommand(GetLocationAction);
+            _points = new PointList();
+            _mainService.SetPoints(_points);
         }
 
-        //        private async Task GetLocationAction()
-        //        {
-        //            double[] location = await _locationService.GetLocation(); // 0 is Lat, 1 is Lng
-        //            _mainService.SetCurrentLocation(location[0], location[1]);
-        //        }
+        private void OnLocationMessage(LocationMessage message)
+        {
+            Location = message.Location;
+            _mainService.SetCurrentLocation(Location);
+        }
 
         private async Task OpenDialog()
         {
-            UserPosition = await _locationService.GetLocation();
+            Location = await _locationService.GetLocation();
             ShowViewModel(typeof(DialogViewModel));
             Debug.WriteLine("OPEN DIALOG");
         }
@@ -57,7 +62,6 @@ namespace MountainWalker.Core.ViewModels
             ShowViewModel<SignInViewModel>();
             Debug.WriteLine("OPEN LOGOUT");
         }
-
 
         public void NavigateTo(int position)
         {
