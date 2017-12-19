@@ -19,6 +19,10 @@ namespace MountainWalker.Core.ViewModels
 
         readonly Type[] _menuItemTypes = {typeof(SettingsViewModel)};
 
+        public static double[] UserPosition;
+
+        double UserLatitude { get; set; }
+        double UserLongitude { get; set; }
 
         public HomeViewModel(ILocationService locationService, IMainActivityService mainService,
             ISharedPreferencesService sharedPreferencesService)
@@ -27,8 +31,10 @@ namespace MountainWalker.Core.ViewModels
             _mainService = mainService;
             _sharedPreferencesService = sharedPreferencesService;
 
-            OpenMainDialogCommand = new MvxCommand(OpenDialog);
+            OpenMainDialogCommand = new MvxAsyncCommand(OpenDialog);
             LogoutCommand = new MvxCommand(Logout);
+
+            UserPosition = new double[2];
             //            ShowCurrentLocationCommand = new MvxAsyncCommand(GetLocationAction);
         }
 
@@ -38,8 +44,9 @@ namespace MountainWalker.Core.ViewModels
         //            _mainService.SetCurrentLocation(location[0], location[1]);
         //        }
 
-        private void OpenDialog()
+        private async Task OpenDialog()
         {
+            UserPosition = await _locationService.GetLocation();
             ShowViewModel(typeof(DialogViewModel));
             Debug.WriteLine("OPEN DIALOG");
         }

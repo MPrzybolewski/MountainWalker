@@ -31,14 +31,21 @@ namespace MountainWalker.Droid.Services
             DialogFragment.dialog.Dismiss();
         }
 
-        public bool CheckPointIsNear()
+        public bool CheckPointIsNear(double userLatitude, double userLongitude, double pointLatitude, double pointLongitude )
         {
-            
+            double distanceBetweenNearestPointAndUserCurrentLocation = GetDistanceBetweenTwoPointsOnMapInMeters(userLatitude, userLongitude, pointLatitude, pointLongitude);
+            Debug.WriteLine("Odelglosc: {0}",distanceBetweenNearestPointAndUserCurrentLocation);
+            if(distanceBetweenNearestPointAndUserCurrentLocation < 50)
+            {
+                return true;
+            }
             return false;
         }
 
         public double GetDistanceBetweenTwoPointsOnMapInMeters(double firstPointLatitude, double firstPointLongitude, double secondPointLatitude, double secondPointLongitude)
         {
+            Debug.WriteLine("Uzytkownik: {0} , {1}");
+            Debug.WriteLine("Punkt: {0} , {1}");
             int R = 6378137; //Earth's mean radius in meter
             double dLat = ConvertDegreeToRadian(secondPointLatitude - firstPointLatitude);
             double dLong = ConvertDegreeToRadian(secondPointLongitude - firstPointLongitude);
