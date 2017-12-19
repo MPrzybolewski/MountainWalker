@@ -1,4 +1,5 @@
-﻿using Android.App;
+﻿using System;
+using Android.App;
 using Android.Gms.Maps;
 using Android.Gms.Maps.Model;
 using MountainWalker.Core.Interfaces;
@@ -32,8 +33,26 @@ namespace MountainWalker.Droid.Services
 
         public bool CheckPointIsNear()
         {
-            //TODO later
+            
             return false;
+        }
+
+        public double GetDistanceBetweenTwoPointsOnMapInMeters(double firstPointLatitude, double firstPointLongitude, double secondPointLatitude, double secondPointLongitude)
+        {
+            int R = 6378137; //Earth's mean radius in meter
+            double dLat = ConvertDegreeToRadian(secondPointLatitude - firstPointLatitude);
+            double dLong = ConvertDegreeToRadian(secondPointLongitude - firstPointLongitude);
+            double a = Math.Sin(dLat / 2) * Math.Sin(dLat / 2) 
+                           + Math.Cos(ConvertDegreeToRadian(firstPointLatitude)) * Math.Cos(ConvertDegreeToRadian(secondPointLatitude))
+                           * Math.Sin(dLong / 2) * Math.Sin(dLong / 2);
+            double c = 2 * Math.Atan2(Math.Sqrt(a), Math.Sqrt(1 - a));
+            double d = R * c;
+            return d;
+        }
+
+        public double ConvertDegreeToRadian(double angle)
+        {
+            return (Math.PI * angle) / 180.0;
         }
     }
 }
