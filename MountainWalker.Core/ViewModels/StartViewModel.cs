@@ -29,7 +29,6 @@ namespace MountainWalker.Core.ViewModels
             string userName = string.Empty;
             string password = string.Empty;
             _sharedPreferencesService.CheckSharedPreferences(ref userName, ref password);
-            Debug.WriteLine("TEST TEST TEST");
             if (userName == String.Empty || password == String.Empty)
             {
                 //There is no saved credentials, take user to the login page

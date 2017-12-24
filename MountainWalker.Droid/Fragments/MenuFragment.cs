@@ -21,7 +21,7 @@ using MvvmCross.Droid.Views.Attributes;
 
 namespace MountainWalker.Droid.Fragments
 {
-    [DrawerLayoutPresentation(typeof(MenuFragment), typeof(MainViewModel), Resource.Id.navigation_frame, addToBackStack: false)]
+    [MvxFragmentPresentationAttribute(typeof(MainViewModel), Resource.Id.navigation_frame)]
     [Register("MountainWalker.android.MenuFragment")]
     public class MenuFragment : MvxFragment<MenuViewModel>, NavigationView.IOnNavigationItemSelectedListener
     {
