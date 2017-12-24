@@ -64,6 +64,7 @@ namespace MountainWalker.Droid.Fragments
             TimeSpan ts = TimeSpan.FromMilliseconds(1000);
             var position = await locator.GetPositionAsync(ts);
 
+
             UpdateCamera(position.Latitude, position.Longitude);
         }
 

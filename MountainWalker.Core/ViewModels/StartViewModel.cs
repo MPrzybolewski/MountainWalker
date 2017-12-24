@@ -33,7 +33,7 @@ namespace MountainWalker.Core.ViewModels
             {
                 //There is no saved credentials, take user to the login page
               //  ShowViewModel<MainViewModel>(); //change 
-                _navigationService.Navigate<MainViewModel>();
+                _navigationService.Navigate<SignInViewModel>();
             }
             else
             {
