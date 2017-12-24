@@ -2,6 +2,7 @@
 using System.Diagnostics;
 using System.Threading.Tasks;
 using MountainWalker.Core.Interfaces;
+using MvvmCross.Core.Navigation;
 using MvvmCross.Core.ViewModels;
 
 namespace MountainWalker.Core.ViewModels
@@ -11,6 +12,7 @@ namespace MountainWalker.Core.ViewModels
         private readonly ILocationService _locationService;
         private readonly IMainActivityService _mainService;
         private readonly ISharedPreferencesService _sharedPreferencesService;
+        private readonly IMvxNavigationService _navigationService;
 
         public IMvxCommand OpenMainDialogCommand { get; }
 
@@ -18,14 +20,15 @@ namespace MountainWalker.Core.ViewModels
         //        public IMvxCommand ShowCurrentLocationCommand { get; }
 
         public HomeViewModel(ILocationService locationService, IMainActivityService mainService,
-            ISharedPreferencesService sharedPreferencesService)
+            ISharedPreferencesService sharedPreferencesService, IMvxNavigationService navigationService)
         {
             _locationService = locationService;
             _mainService = mainService;
             _sharedPreferencesService = sharedPreferencesService;
+            _navigationService = navigationService;
 
-            OpenMainDialogCommand = new MvxCommand(OpenDialog);
-            LogoutCommand = new MvxCommand(Logout);
+       //     OpenMainDialogCommand = new MvxCommand(OpenDialog);
+         //   LogoutCommand = new MvxCommand(Logout);
             //            ShowCurrentLocationCommand = new MvxAsyncCommand(GetLocationAction);
         }
 
@@ -37,14 +40,14 @@ namespace MountainWalker.Core.ViewModels
 
         private void OpenDialog()
         {
-            ShowViewModel(typeof(DialogViewModel));
+            _navigationService.Navigate(typeof(DialogViewModel));
             Debug.WriteLine("OPEN DIALOG");
         }
 
         private void Logout()
         {
             _sharedPreferencesService.CleanSharedPreferences();
-            ShowViewModel<SignInViewModel>();
+            _navigationService.Navigate<SignInViewModel>();
             Debug.WriteLine("OPEN LOGOUT");
         }
 

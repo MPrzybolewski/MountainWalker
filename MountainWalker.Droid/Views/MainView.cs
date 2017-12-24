@@ -16,6 +16,10 @@ using Android.Content.PM;
 using Debug = System.Diagnostics.Debug;
 using Android.Support.V4.View;
 using Android.Views.InputMethods;
+using MountainWalker.Droid.NavigationDrawer;
+using MvvmCross.Droid.Views;
+using MvvmCross.Platform;
+using MountainWalker.Droid.Fragments;
 
 namespace MountainWalker.Droid.Views
 {
@@ -41,6 +45,8 @@ namespace MountainWalker.Droid.Views
             {
                 ViewModel.ShowMenu();
             }
+
+
         }
 
 

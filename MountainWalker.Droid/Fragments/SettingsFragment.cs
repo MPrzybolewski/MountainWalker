@@ -2,11 +2,12 @@
 using Android.Runtime;
 using Android.Views;
 using MountainWalker.Core.ViewModels;
+using MountainWalker.Droid.NavigationDrawer;
 using MvvmCross.Droid.Views.Attributes;
 
 namespace MountainWalker.Droid.Fragments
 {
-    [MvxFragmentPresentationAttribute(typeof(MainViewModel), Resource.Id.content_frame)]
+    [DrawerLayoutPresentation(typeof(SettingsFragment), typeof(MainViewModel), Resource.Id.content_frame, addToBackStack: false)]
     [Register("MountainWalker.android.SettingsFragment")]
     public class SettingsFragment : BaseFragment<SettingsViewModel>
     {

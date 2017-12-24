@@ -1,10 +1,17 @@
 ﻿using System;
+using MvvmCross.Core.Navigation;
 using MvvmCross.Core.ViewModels;
 
 namespace MountainWalker.Core.ViewModels
 {
     public class MenuViewModel : MvxViewModel
     {
+        private readonly IMvxNavigationService _navigationService;
+
+        public MenuViewModel(IMvxNavigationService navigationService)
+        {
+            _navigationService = navigationService;
+        }
         public IMvxCommand ShowHomeCommand
         {
             get { return new MvxCommand(ShowHomeExecuted); }
@@ -12,7 +19,7 @@ namespace MountainWalker.Core.ViewModels
 
         private void ShowHomeExecuted()
         {
-            ShowViewModel<HomeViewModel>();
+            _navigationService.Navigate<HomeViewModel>();
         }
 
         public IMvxCommand ShowSettingCommand
@@ -22,7 +29,7 @@ namespace MountainWalker.Core.ViewModels
 
         private void ShowSettingsExecuted()
         {
-            ShowViewModel<SettingsViewModel>();
+            _navigationService.Navigate<SettingsViewModel>();
         }
 
     }

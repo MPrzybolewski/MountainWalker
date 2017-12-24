@@ -5,16 +5,14 @@ using Android.OS;
 using Android.Runtime;
 using Android.Views;
 using MountainWalker.Core.ViewModels;
-using MvvmCross.Droid.Support.V4;
-using MvvmCross.Droid.Views.Attributes;
 using Plugin.Geolocator;
-using MountainWalker.Droid.Views;
 using Android.Gms.Maps.Model;
 using Android.App;
+using MountainWalker.Droid.NavigationDrawer;
 
 namespace MountainWalker.Droid.Fragments
 {
-    [MvxFragmentPresentationAttribute(typeof(MainViewModel), Resource.Id.content_frame)]
+    [DrawerLayoutPresentation(typeof(HomeFragment), typeof(MainViewModel), Resource.Id.content_frame, addToBackStack: false)]
     [Register("MountainWalker.android.HomeFragment")]
     public class HomeFragment : BaseFragment<HomeViewModel>, IOnMapReadyCallback
     {

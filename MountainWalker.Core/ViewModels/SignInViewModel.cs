@@ -1,5 +1,6 @@
 ﻿using System.Threading.Tasks;
 using MountainWalker.Core.Interfaces;
+using MvvmCross.Core.Navigation;
 using MvvmCross.Core.ViewModels;
 
 namespace MountainWalker.Core.ViewModels
@@ -9,13 +10,15 @@ namespace MountainWalker.Core.ViewModels
         private readonly IDialogService _dialogService;
         private readonly ISharedPreferencesService _sharedPreferencesService;
         private readonly IWebAPIService _webAPIService;
+        private readonly IMvxNavigationService _navigationService;
 
         public SignInViewModel(IDialogService dialogService, ISharedPreferencesService sharedPreferencesService,
-            IWebAPIService webAPIService)
+            IWebAPIService webAPIService, IMvxNavigationService navigationService)
         {
             _dialogService = dialogService;
             _sharedPreferencesService = sharedPreferencesService;
             _webAPIService = webAPIService;
+            _navigationService = navigationService;
         }
 
         public override Task Initialize()
@@ -37,7 +40,7 @@ namespace MountainWalker.Core.ViewModels
                 {
                     _sharedPreferencesService.SetSharedPreferences(_login, _password);
                 }
-                ShowViewModel<MainViewModel>();
+                _navigationService.Navigate<MainViewModel>();
             }
             else
             {
@@ -49,7 +52,7 @@ namespace MountainWalker.Core.ViewModels
 
         private void JumpRegister()
         {
-            ShowViewModel<RegisterViewModel>();
+            _navigationService.Navigate<RegisterViewModel>();
         }
 
         private string _login;
