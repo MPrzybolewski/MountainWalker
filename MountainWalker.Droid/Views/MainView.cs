@@ -14,64 +14,81 @@ using Android.Views;
 using System.Linq;
 using Android.Content.PM;
 using Debug = System.Diagnostics.Debug;
+using Android.Support.V4.View;
+using Android.Views.InputMethods;
+using MountainWalker.Droid.NavigationDrawer;
+using MvvmCross.Droid.Views;
+using MvvmCross.Platform;
+using MountainWalker.Droid.Fragments;
 
 namespace MountainWalker.Droid.Views
 {
-    [Activity(Label = "View for MainViewModel", NoHistory = true,
-        ConfigurationChanges = ConfigChanges.Orientation,
-        ScreenOrientation = ScreenOrientation.Portrait)]
+    [Activity(Label = "View for MainViewModel",
+              NoHistory = true,
+              Theme = "@style/MyTheme",
+              LaunchMode = LaunchMode.SingleTop,
+              ConfigurationChanges = ConfigChanges.Orientation,
+              ScreenOrientation = ScreenOrientation.Portrait)]
     public class MainView : MvxAppCompatActivity<MainViewModel>
     {
-        ActionBarDrawerToggle _drawerToggle;
-        ListView _drawerListView;
-        DrawerLayout _drawerLayout;
+         public DrawerLayout DrawerLayout;
 
         protected override void OnCreate(Bundle bundle)
         {
+            
             base.OnCreate(bundle);
             SetContentView(Resource.Layout.MainView);
 
-            var toolbar = FindViewById<Android.Support.V7.Widget.Toolbar>(Resource.Id.Toolbar);
-            SetSupportActionBar(toolbar);
-            SupportActionBar.Title = "Mountain Walker";
+            DrawerLayout = FindViewById<DrawerLayout>(Resource.Id.drawerLayout);
 
-            SupportActionBar.SetDisplayHomeAsUpEnabled(true);
+            if(bundle == null)
+            {
+                ViewModel.ShowMenu();
+            }
 
-            _drawerListView = FindViewById<ListView>(Resource.Id.drawerListView);
-            _drawerListView.ItemClick += (sender, e) => ShowFragmentAt(e.Position);
-            _drawerListView.Adapter = new ArrayAdapter<string>(this, global::Android.Resource.Layout.SimpleListItem1, ViewModel.MenuItems.ToArray());
 
-            _drawerLayout = FindViewById<DrawerLayout>(Resource.Id.drawerLayout);
-
-            _drawerToggle = new ActionBarDrawerToggle(this, _drawerLayout, Resource.String.OpenDrawerString, Resource.String.CloseDrawerString);
-
-            _drawerLayout.SetDrawerListener(_drawerToggle);
-
-            ShowFragmentAt(0);
         }
 
-        void ShowFragmentAt(int position)
-        {
-            ViewModel.NavigateTo(position);
-
-            Title = ViewModel.MenuItems.ElementAt(position);
- 
-            _drawerLayout.CloseDrawer (_drawerListView);
-        }
-
-        protected override void OnPostCreate(Bundle savedInstanceState)
-        {
-            _drawerToggle.SyncState();
-
-            base.OnPostCreate(savedInstanceState);
-        }
 
         public override bool OnOptionsItemSelected(IMenuItem item)
         {
-            if (_drawerToggle.OnOptionsItemSelected(item))
-                return true;
+            switch (item.ItemId)
+            {
+                case Android.Resource.Id.Home:
+                    DrawerLayout.OpenDrawer(GravityCompat.Start);
+                    return true;
+            }
 
             return base.OnOptionsItemSelected(item);
+        }
+
+
+        private void ShowBackButton()
+        {
+            DrawerLayout.SetDrawerLockMode(DrawerLayout.LockModeLockedClosed);
+        }
+
+        private void ShowHamburguerMenu()
+        {
+            DrawerLayout.SetDrawerLockMode(DrawerLayout.LockModeUnlocked);
+        }
+
+        public override void OnBackPressed()
+        {
+            if (DrawerLayout != null && DrawerLayout.IsDrawerOpen(GravityCompat.Start))
+                DrawerLayout.CloseDrawers();
+            else
+                base.OnBackPressed();
+        }
+
+        public void HideSoftKeyboard()
+        {
+            if (CurrentFocus == null) return;
+
+            InputMethodManager inputMethodManager = (InputMethodManager)GetSystemService(InputMethodService);
+            inputMethodManager.HideSoftInputFromWindow(CurrentFocus.WindowToken, 0);
+
+            CurrentFocus.ClearFocus();
         }
     }
 }

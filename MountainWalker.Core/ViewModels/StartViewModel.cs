@@ -1,6 +1,8 @@
 ﻿using System;
+using System.Diagnostics;
 using System.Threading.Tasks;
 using MountainWalker.Core.Interfaces;
+using MvvmCross.Core.Navigation;
 using MvvmCross.Core.ViewModels;
 
 namespace MountainWalker.Core.ViewModels
@@ -8,9 +10,12 @@ namespace MountainWalker.Core.ViewModels
     public class StartViewModel : MvxViewModel
     {
         private ISharedPreferencesService _sharedPreferencesService;
-        public StartViewModel(ISharedPreferencesService sharedPreferencesService)
+        private readonly IMvxNavigationService _navigationService;
+
+        public StartViewModel(ISharedPreferencesService sharedPreferencesService, IMvxNavigationService navigationService)
         {
             _sharedPreferencesService = sharedPreferencesService;
+            _navigationService = navigationService;
         }
 
         public override Task Initialize()
@@ -24,11 +29,11 @@ namespace MountainWalker.Core.ViewModels
             string userName = string.Empty;
             string password = string.Empty;
             _sharedPreferencesService.CheckSharedPreferences(ref userName, ref password);
-
             if (userName == String.Empty || password == String.Empty)
             {
                 //There is no saved credentials, take user to the login page
-                ShowViewModel<MainViewModel>(); //change 
+              //  ShowViewModel<MainViewModel>(); //change 
+                _navigationService.Navigate<SignInViewModel>();
             }
             else
             {
@@ -43,7 +48,7 @@ namespace MountainWalker.Core.ViewModels
                 if (userName == "admin" && password == "admin")
                 {
                     //Successful so take the user to application
-                    ShowViewModel<MainViewModel>();
+                    _navigationService.Navigate<MainViewModel>();
                 }
                 else
                 {
@@ -52,7 +57,7 @@ namespace MountainWalker.Core.ViewModels
                     //Clean SharedPreferences
                     _sharedPreferencesService.CleanSharedPreferences();
 
-                    ShowViewModel<SignInViewModel>();
+                    _navigationService.Navigate<SignInViewModel>();
                 }
             }
         }

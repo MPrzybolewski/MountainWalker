@@ -1,17 +1,37 @@
 using MvvmCross.Core.ViewModels;
 using System;
 using System.Collections.Generic;
+using MvvmCross.Core.Navigation;
 
 namespace MountainWalker.Core.ViewModels
 {
     public class MainViewModel : MvxViewModel
     {
-        readonly Type[] _menuItemTypes = { typeof(HomeViewModel), typeof(SettingsViewModel) };
-        public IEnumerable<string> MenuItems { get; private set; } = new[] { "Home", "Settings" };
+        private readonly IMvxNavigationService _navigationService;
 
-        public void NavigateTo(int position)
+        public MainViewModel(IMvxNavigationService navigationService)
         {
-            ShowViewModel(_menuItemTypes[position]);
+            _navigationService = navigationService;
+        }
+
+        public void ShowMenu()
+        {
+            _navigationService.Navigate<HomeViewModel>();
+            _navigationService.Navigate<MenuViewModel>();
+        }
+
+        public void ShowHome()
+        {
+            _navigationService.Navigate<HomeViewModel>();
+        }
+
+        public void Init(object hint)
+        {
+        }
+
+        public override void Start()
+        {
+            
         }
     }
 }

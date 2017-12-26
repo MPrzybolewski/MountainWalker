@@ -180,6 +180,10 @@
     <Compile Include="Services\DroidSharedPreferencesService.cs" />
     <Compile Include="Views\StartView.cs" />
     <Compile Include="Fragments\SettingsFragment.cs" />
+    <Compile Include="Fragments\MenuFragment.cs" />
+    <Compile Include="Fragments\BaseFragment.cs" />
+    <Compile Include="NavigationDrawer\NavigationDrawerPresenter.cs" />
+    <Compile Include="NavigationDrawer\DrawerLayoutPresentationAttribute.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Resources\AboutResources.txt" />
@@ -198,8 +202,17 @@
     <None Include="ToDo-MvvmCross\_ Droid UI.txt" />
     <AndroidResource Include="Resources\layout\StartView.axml" />
     <AndroidResource Include="Resources\layout\SettingsView.axml" />
-    <AndroidResource Include="Resources\layout\Toolbar.xml" />
-    <AndroidResource Include="Resources\drawable\SignInViewBackground.png" />
+    <AndroidResource Include="Resources\menu\navigation_drawer.axml" />
+    <AndroidResource Include="Resources\layout\fragment_navigation_header.axml" />
+    <AndroidResource Include="Resources\layout\fragment_navigation.axml" />
+    <AndroidResource Include="Resources\layout\toolbar_actionbar.axml" />
+    <AndroidResource Include="Resources\drawable\splash.jpg" />
+    <AndroidResource Include="Resources\drawable-nodpi\nice_mountains.jpg" />
+    <AndroidResource Include="Resources\drawable-nodpi\location.png" />
+    <AndroidResource Include="Resources\drawable-nodpi\dialog.png" />
+    <AndroidResource Include="Resources\drawable-nodpi\alps.jpg" />
+    <AndroidResource Include="Resources\drawable-nodpi\SignInViewBackground.png" />
+    <AndroidResource Include="Resources\drawable\avatar.jpg" />
   </ItemGroup>
   <ItemGroup>
     <AndroidResource Include="Resources\values\Strings.xml" />
@@ -230,24 +243,12 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Resources\menu\" />
-  </ItemGroup>
-  <ItemGroup>
-    <AndroidResource Include="Resources\drawable\alps.jpg" />
+    <Folder Include="Resources\drawable-nodpi\" />
+    <Folder Include="Resources\drawable\" />
+    <Folder Include="NavigationDrawer\" />
   </ItemGroup>
   <ItemGroup>
     <AndroidResource Include="Resources\raw\background.mp3" />
-  </ItemGroup>
-  <ItemGroup>
-    <AndroidResource Include="Resources\drawable\location.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <AndroidResource Include="Resources\drawable\splash.jpg" />
-  </ItemGroup>
-  <ItemGroup>
-    <AndroidResource Include="Resources\drawable\dialog.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <AndroidResource Include="Resources\drawable\nice_mountains.jpg" />
   </ItemGroup>
   <Import Project="$(MSBuildExtensionsPath)\Xamarin\Android\Xamarin.Android.CSharp.targets" />
   <Target Name="EnsureNuGetPackageBuildImports" BeforeTargets="PrepareForBuild">
