@@ -1,27 +1,87 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Runtime.InteropServices.ComTypes;
-using System.Text;
 using System.Threading.Tasks;
+using MountainWalker.Core.Messages;
 using MountainWalker.Core.Models;
+using MvvmCross.Platform;
+using MvvmCross.Plugins.Location;
+using MvvmCross.Plugins.Messenger;
 using Plugin.Geolocator;
-using Plugin.Geolocator.Abstractions;
 
 namespace MountainWalker.Core.Interfaces.Impl
 {
     public class LocationService : ILocationService
     {
-        public async Task<double[]> GetLocation()
+        private readonly IMvxLocationWatcher _watcher;
+        private readonly IMvxMessenger _messenger;
+        private Point _currentLocation;
+        private bool _isTrailStarted = false;
+        private List<Point> _reachedPoints;
+
+
+        public LocationService(IMvxLocationWatcher watcher, IMvxMessenger messenger)
+        {
+            _watcher = watcher;
+            _messenger = messenger;
+        }
+
+        private void OnLocation(MvxGeoLocation location)
+        {
+            _currentLocation = new Point(location.Coordinates.Latitude, location.Coordinates.Longitude);
+
+            var message = new LocationMessage(this, _currentLocation);
+            _messenger.Publish(message);
+        }
+        
+        public void StartFollow()
+        {
+            _watcher.Start(new MvxLocationOptions(), OnLocation, OnError);
+        }
+
+        private void OnError(MvxLocationError error)
+        {
+            Mvx.Error("Seen location error {0}", error.Code);
+        }
+
+        public async Task<Point> GetLocation()
         {
             var locator = CrossGeolocator.Current;
             locator.DesiredAccuracy = 1;
             TimeSpan ts = TimeSpan.FromMilliseconds(1000);
             var position = await locator.GetPositionAsync(ts);
-            double[] latLong = {position.Latitude, position.Longitude};
+            Point location = new Point(position.Latitude, position.Longitude);
 
-            return latLong;
+            return location;
         }
 
+        public Point GetCurrentLocation()
+        {
+            return _currentLocation;
+        }
+
+        public bool GetStateOfJourney()
+        {
+            return _isTrailStarted;
+        }
+
+        public void SetStateOfJourney(bool state)
+        {
+            _isTrailStarted = state;
+        }
+
+        public List<Point> GetReachedPoints()
+        {
+            return _reachedPoints;
+        }
+
+        public void AddReachedPoint(Point point)
+        {
+            _reachedPoints.Add(point);
+        }
+
+        public void SetNewList()
+        {
+            _reachedPoints = new List<Point>();
+        }
     }
 }

@@ -1,5 +1,6 @@
 ﻿using Android.App;
 using Android.OS;
+using Android.Runtime;
 using MountainWalker.Core.ViewModels;
 using MountainWalker.Droid.Views;
 using MvvmCross.Binding.Droid.BindingContext;
