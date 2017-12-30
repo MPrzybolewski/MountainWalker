@@ -10,15 +10,15 @@ xmlns:local="http://schemas.android.com/apk/res-auto">
 
     <item android:id="@+id/nav_menu">
         <menu>
-            <!--<item
+            <item
                 android:id="@+id/nav_trails"
                 android:title="Szlaki"/>
             <item
                 android:id="@+id/nav_achievements"
-                android:title="Osiągnięscia"/>
+                android:title="Osiągnięcia"/>
             <item
                 android:id="@+id/nav_appDescription"
-                android:title="Jak to działa"/>-->
+                android:title="Jak to działa"/>
             <item
                 android:id="@+id/nav_settings"
                 android:title="Język" />

@@ -4851,6 +4851,12 @@ namespace MountainWalker.Droid
 			// aapt resource value: 0x7f0d0033
 			public const int multiply = 2131558451;
 			
+			// aapt resource value: 0x7f0d00ce
+			public const int nav_achievements = 2131558606;
+			
+			// aapt resource value: 0x7f0d00cf
+			public const int nav_appDescription = 2131558607;
+			
 			// aapt resource value: 0x7f0d00cb
 			public const int nav_home = 2131558603;
 			
@@ -4860,8 +4866,11 @@ namespace MountainWalker.Droid
 			// aapt resource value: 0x7f0d00cc
 			public const int nav_menu = 2131558604;
 			
+			// aapt resource value: 0x7f0d00d0
+			public const int nav_settings = 2131558608;
+			
 			// aapt resource value: 0x7f0d00cd
-			public const int nav_settings = 2131558605;
+			public const int nav_trails = 2131558605;
 			
 			// aapt resource value: 0x7f0d00b3
 			public const int navigation_frame = 2131558579;
