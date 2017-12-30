@@ -5,14 +5,16 @@ xmlns:local="http://schemas.android.com/apk/res-auto">
     <group android:id="@+id/nav_items">
         <item
             android:id="@+id/nav_home"
-            android:title="Home" />        
+            android:title="Mapa" />        
     </group>
 
-    <item android:title="Examples">
+    <item android:id="@+id/nav_menu">
         <menu>
             <item
-                android:id="@+id/nav_test"
-                android:title="test" />
+                android:id="@+id/nav_settings"
+                android:title="Język" />
+            <item
+                android:id="@+id/nav_trails"
         </menu>
     </item>
 
