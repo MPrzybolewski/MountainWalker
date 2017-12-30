@@ -8,6 +8,10 @@ using MountainWalker.Core.ViewModels;
 using Plugin.Geolocator;
 using Android.Gms.Maps.Model;
 using Android.App;
+using MountainWalker.Droid.Services;
+using MvvmCross.Binding.Droid.BindingContext;
+using MvvmCross.Droid.Views;
+using Debug = System.Diagnostics.Debug;
 using MountainWalker.Droid.NavigationDrawer;
 
 namespace MountainWalker.Droid.Fragments
@@ -27,11 +31,12 @@ namespace MountainWalker.Droid.Fragments
             Map.UiSettings.MyLocationButtonEnabled = true;
             Map.AddMarker(new MarkerOptions().SetPosition(new LatLng(54.394121, 18.569394))
                 .SetTitle("Best place to go!"));
+            Debug.WriteLine("biforek");
+            DroidMainActivityService.CreatePointsAndTrails();
         }
 
         public override View OnCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState)
         {
-
             ShowHamburgerMenu = true;
 
             FragmentManager fragmentManager = this.Activity.FragmentManager;
@@ -63,7 +68,6 @@ namespace MountainWalker.Droid.Fragments
             locator.DesiredAccuracy = 1;
             TimeSpan ts = TimeSpan.FromMilliseconds(1000);
             var position = await locator.GetPositionAsync(ts);
-
 
             UpdateCamera(position.Latitude, position.Longitude);
         }

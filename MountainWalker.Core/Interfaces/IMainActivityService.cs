@@ -1,13 +1,16 @@
 ﻿
+using MountainWalker.Core.Models;
+
 namespace MountainWalker.Core.Interfaces
 {
     public interface IMainActivityService
     {
-        void SetLatLngButton(double latitude, double longitude);
-        void SetCurrentLocation(double latitude, double longitude);
+        void SetLatLngButton(Point location);
+        void SetCurrentLocation(Point location);
         void CloseMainDialog();
-        bool CheckPointIsNear(double userLatitude, double userLongitude, double pointLatitude, double pointLongitude);
-        double GetDistanceBetweenTwoPointsOnMapInMeters(double firstPointLatitude, double firstPointLongitude, double secondPointLatitude, double secondPointLongitude);
+        bool CheckPointIsNear(Point userLocation, Point pointLocation);
+        double GetDistanceBetweenTwoPointsOnMapInMeters(Point firstLocation, Point secondLocation);
         double ConvertDegreeToRadian(double angle);
+        void SetPointsAndTrials(PointList points, ConnectionList connections);
     }
 }
