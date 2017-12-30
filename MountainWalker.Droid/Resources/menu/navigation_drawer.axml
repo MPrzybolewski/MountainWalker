@@ -11,17 +11,18 @@ xmlns:local="http://schemas.android.com/apk/res-auto">
     <item android:id="@+id/nav_menu">
         <menu>
             <item
+                android:id="@+id/nav_trails"
+                android:title="Szlaki"/>
+            <item
+                android:id="@id/nav_achievements"
+                android:title="Osiągnięscia"/>
+            <item
+                android:id="@id/nav_appDescription"
+                android:title="Jak to działa"/>
+            <item
                 android:id="@+id/nav_settings"
                 android:title="Język" />
-            <item
-                android:id="@+id/nav_trails"
         </menu>
     </item>
-
-    <group android:id="@+id/nav_footer">
-        <item
-            android:id="@+id/nav_settings"
-            android:title="Settings" />
-    </group>
 
 </menu>
