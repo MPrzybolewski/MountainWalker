@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.Threading.Tasks;
 using MountainWalker.Core.Messages;
 using MountainWalker.Core.Models;
@@ -14,6 +15,9 @@ namespace MountainWalker.Core.Interfaces.Impl
         private readonly IMvxLocationWatcher _watcher;
         private readonly IMvxMessenger _messenger;
         private Point _currentLocation;
+        private bool _isTrailStarted = false;
+        private List<Point> _reachedPoints;
+
 
         public LocationService(IMvxLocationWatcher watcher, IMvxMessenger messenger)
         {
@@ -28,7 +32,7 @@ namespace MountainWalker.Core.Interfaces.Impl
             var message = new LocationMessage(this, _currentLocation);
             _messenger.Publish(message);
         }
-
+        
         public void StartFollow()
         {
             _watcher.Start(new MvxLocationOptions(), OnLocation, OnError);
@@ -53,6 +57,31 @@ namespace MountainWalker.Core.Interfaces.Impl
         public Point GetCurrentLocation()
         {
             return _currentLocation;
+        }
+
+        public bool GetStateOfJourney()
+        {
+            return _isTrailStarted;
+        }
+
+        public void SetStateOfJourney(bool state)
+        {
+            _isTrailStarted = state;
+        }
+
+        public List<Point> GetReachedPoints()
+        {
+            return _reachedPoints;
+        }
+
+        public void AddReachedPoint(Point point)
+        {
+            _reachedPoints.Add(point);
+        }
+
+        public void SetNewList()
+        {
+            _reachedPoints = new List<Point>();
         }
     }
 }

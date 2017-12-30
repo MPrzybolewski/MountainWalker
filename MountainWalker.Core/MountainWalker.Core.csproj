@@ -37,7 +37,6 @@
     <Compile Include="Lists\ConnectionList.cs" />
     <Compile Include="Messages\LocationMessage.cs" />
     <Compile Include="Models\Connection.cs" />
-    <Compile Include="Models\Marker.cs" />
     <Compile Include="Models\Point.cs" />
     <Compile Include="Lists\PointList.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

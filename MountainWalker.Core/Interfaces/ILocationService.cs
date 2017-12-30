@@ -13,6 +13,12 @@ namespace MountainWalker.Core.Interfaces
     { 
         Task<Point> GetLocation();
         Point GetCurrentLocation();
+        bool GetStateOfJourney();
+        void SetStateOfJourney(bool state);
+        List<Point> GetReachedPoints();
+        void AddReachedPoint(Point point);
+        void SetNewList();
+
         void StartFollow();
     }
 }

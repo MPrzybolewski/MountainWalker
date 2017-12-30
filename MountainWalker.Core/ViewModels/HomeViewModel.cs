@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.Diagnostics;
 using System.Linq.Expressions;
 using System.Threading.Tasks;
@@ -17,6 +18,7 @@ namespace MountainWalker.Core.ViewModels
         private readonly IMainActivityService _mainService;
         private readonly ISharedPreferencesService _sharedPreferencesService;
         private readonly IMvxNavigationService _navigationService;
+        private readonly IDialogService _dialogService;
         private MvxSubscriptionToken _token;
 
         public Point Location { get; set; }
@@ -30,13 +32,15 @@ namespace MountainWalker.Core.ViewModels
         public static Point UserPosition;
 
         public HomeViewModel(ILocationService locationService, IMainActivityService mainService,
-            ISharedPreferencesService sharedPreferencesService, IMvxNavigationService navigationService, IMvxMessenger messenger)
+            ISharedPreferencesService sharedPreferencesService, IMvxNavigationService navigationService, 
+            IMvxMessenger messenger, IDialogService dialogService)
         {
             _locationService = locationService;
             _mainService = mainService;
             _sharedPreferencesService = sharedPreferencesService;
             _token = messenger.Subscribe<LocationMessage>(OnLocationMessage);
             _navigationService = navigationService;
+            _dialogService = dialogService;
 
             OpenMainDialogCommand = new MvxAsyncCommand(OpenDialog);
             LogoutCommand = new MvxCommand(Logout);
@@ -52,8 +56,28 @@ namespace MountainWalker.Core.ViewModels
         private void OnLocationMessage(LocationMessage message)
         {
             Location = message.Location;
-            //_mainService.SetCurrentLocation(Location); this should be enable after started walking
+            if (_locationService.GetStateOfJourney())
+            {
+                _mainService.SetCurrentLocation(Location); //this should be enable after started walking
+                foreach (var point in _points.Points)
+                {
+                    if (_mainService.GetDistanceBetweenTwoPointsOnMapInMeters(Location, point) < 30
+                        && _mainService.GetDistanceBetweenTwoPointsOnMapInMeters(
+                            _locationService.GetReachedPoints()[_locationService.GetReachedPoints().Count], point) < 30) 
+                    {
+                        _locationService.AddReachedPoint(point);
+                    }
+                }
+            }
         }
+
+        //private void StopTrail()
+        //{
+        //    //timer stop
+        //    _isTrailStarted = false;
+        //    //new view with reached points
+        //    _dialogService.ShowAlert("You've reached" + _reachedPoints.Count + " points", "It's nice, it is?", "Fuck yea");
+        //}
 
         private async Task OpenDialog()
         {
