@@ -4,6 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using MountainWalker.Core.Interfaces;
+using MvvmCross.Core.Navigation;
 using MvvmCross.Core.ViewModels;
 using MvvmCross.Platform;
 
@@ -19,11 +20,13 @@ namespace MountainWalker.Core.ViewModels
         private string _email = "";
         private readonly IDialogService _dialogService;
         private readonly IWebAPIService _webAPIService;
+        private readonly IMvxNavigationService _navigationService;
 
-        public RegisterViewModel(IDialogService dialogService, IWebAPIService webAPIService)
+        public RegisterViewModel(IDialogService dialogService, IWebAPIService webAPIService, IMvxNavigationService navigationService)
         {
             _dialogService = dialogService;
             _webAPIService = webAPIService;
+            _navigationService = navigationService;
         }
         public string Name
         {
@@ -66,7 +69,7 @@ namespace MountainWalker.Core.ViewModels
                 if (result.Trim(new char[] { '"' }).Equals("true"))
                 {
                     _dialogService.ShowAlert("Powiadomienie!", "Rejestracja przebiegła pomyślnie", "OK");
-                    ShowViewModel<SignInViewModel>();
+                    _navigationService.Navigate<SignInViewModel>();
                 }
             }
             else

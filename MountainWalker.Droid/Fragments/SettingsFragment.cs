@@ -2,19 +2,22 @@
 using Android.Runtime;
 using Android.Views;
 using MountainWalker.Core.ViewModels;
-using MvvmCross.Droid.Support.V4;
+using MountainWalker.Droid.NavigationDrawer;
 using MvvmCross.Droid.Views.Attributes;
 
 namespace MountainWalker.Droid.Fragments
 {
-    [MvxFragmentPresentationAttribute(typeof(MainViewModel), Resource.Id.frameLayout)]
+    [DrawerLayoutPresentation(typeof(SettingsFragment), typeof(MainViewModel), Resource.Id.content_frame, addToBackStack: false)]
     [Register("MountainWalker.android.SettingsFragment")]
-    public class SettingsFragment : MvxFragment<SettingsViewModel>
+    public class SettingsFragment : BaseFragment<SettingsViewModel>
     {
         public override View OnCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState)
         {
-            return inflater.Inflate(Resource.Layout.SettingsView, container, false);
+            ShowHamburgerMenu = true;
+            return base.OnCreateView(inflater, container, savedInstanceState);
         }
+
+        protected override int FragmentId => Resource.Layout.SettingsView;
     }
 
 }

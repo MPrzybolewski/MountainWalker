@@ -1,20 +1,22 @@
 ﻿using System;
+using System.Collections.Generic;
 using Android.App;
 using Android.Gms.Maps;
 using Android.Gms.Maps.Model;
+using Android.Graphics;
 using MountainWalker.Core;
 using MountainWalker.Core.Interfaces;
-using MountainWalker.Core.Models;
 using MountainWalker.Droid.Fragments;
-using MountainWalker.Droid.Views;
 using Debug = System.Diagnostics.Debug;
 using DialogFragment = MountainWalker.Droid.Fragments.DialogFragment;
+using Point = MountainWalker.Core.Models.Point;
 
 namespace MountainWalker.Droid.Services
 {
     public class DroidMainActivityService : IMainActivityService
     {
-        public static PointList pointList;
+        private static PointList _pointList;
+        private static ConnectionList _trails;
 
         public void SetLatLngButton(Point location)
         {
@@ -25,9 +27,12 @@ namespace MountainWalker.Droid.Services
 
         public void SetCurrentLocation(Point location)
         {
-            LatLng coordinate = new LatLng(location.Latitude, location.Longitude);
-            CameraUpdate yourLocation = CameraUpdateFactory.NewLatLngZoom(coordinate, 17);
-            HomeFragment.Map.AnimateCamera(yourLocation);
+            if (HomeFragment.Map != null)
+            {
+                LatLng coordinate = new LatLng(location.Latitude, location.Longitude);
+                CameraUpdate yourLocation = CameraUpdateFactory.NewLatLngZoom(coordinate, 17);
+                HomeFragment.Map.AnimateCamera(yourLocation);
+            }
         }
 
         public void CloseMainDialog()
@@ -66,19 +71,46 @@ namespace MountainWalker.Droid.Services
             return (Math.PI * angle) / 180.0;
         }
 
-        public static void DawajTePunkty()
+        public static void CreatePointsAndTrails()
         {
-            foreach (var point in pointList.Points)
+            foreach (var point in _pointList.Points)
             {
                 HomeFragment.Map.AddMarker(new MarkerOptions()
                     .SetPosition(new LatLng(point.Latitude, point.Longitude))
                     .SetTitle(point.Description));
             }
+
+            foreach (var polyline in _trails.Connections)
+            {
+                var latlng = new List<LatLng>();
+                foreach (var point in polyline.Path)
+                {
+                    latlng.Add(new LatLng(point.Latitude, point.Longitude));
+                }
+
+                var poly = HomeFragment.Map.AddPolyline(new PolylineOptions().Clickable(true));
+
+                if (polyline.Color.Equals("blue"))
+                {
+                    poly.Color = Color.Blue;
+                }
+                else if (polyline.Color.Equals("red"))
+                {
+                    poly.Color = Color.Red;
+                }
+                else if (polyline.Color.Equals("green"))
+                {
+                    poly.Color = Color.Green;
+                }
+                poly.Width = 10;
+                poly.Points = latlng;
+            }
         }
 
-        public void SetPoints(PointList points)
+        public void SetPointsAndTrials(PointList points, ConnectionList connections)
         {
-            pointList = points;
+            _pointList = points;
+            _trails = connections;
         }
     }
 }

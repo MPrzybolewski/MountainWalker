@@ -4,8 +4,10 @@ using System.Linq.Expressions;
 using System.Threading.Tasks;
 using MountainWalker.Core.Interfaces;
 using MountainWalker.Core.Interfaces.Impl;
+using MountainWalker.Core.Messages;
 using MountainWalker.Core.Models;
 using MvvmCross.Core.ViewModels;
+using MvvmCross.Plugins.Messenger;
 
 namespace MountainWalker.Core.ViewModels
 {
@@ -16,7 +18,6 @@ namespace MountainWalker.Core.ViewModels
 
         public IMvxCommand TrailStartCommand { get; }
         public IMvxCommand NearestPointCommand { get; }
-
 
         private string _trialTitle = "";
         public string TrailTitle
@@ -52,17 +53,22 @@ namespace MountainWalker.Core.ViewModels
             }
         }
 
-        public DialogViewModel(IMainActivityService mainService) // tutaj ILocationService
+        public DialogViewModel(IMainActivityService mainService, ILocationService locationService) // tutaj ILocationService
         {
             _mainService = mainService;
+            _locationService = locationService;
 
-            TrailTitle = "Hala Gąsienicowa"; //some function should be here, but idk how i want to do there
-            Point Location = HomeViewModel.Location; //ugly ygh
+            var point = _locationService.GetCurrentLocation();
+            Debug.WriteLine(point.Latitude + " " + point.Longitude + " - ja jestem tutaj");
 
-            Point Test = new Point(54.034448, 19.033126);
+            TrailTitle = "Hala Gąsienicowa"; //some function should be here, but idk how i want to do here
 
+            Point test = new Point(54.090506, 18.790464);
+            Debug.WriteLine(test.Latitude + " " + test.Longitude + " - a test tutaj");
 
-            if (_mainService.CheckPointIsNear(Location, Test)) // user and point location
+            //Point Point = new Point(54.090506, 18.790464);
+
+            if (_mainService.CheckPointIsNear(point, test)) // user and point location
             {
                 CanStart = true;
                 TrailStartCommand = new MvxCommand(StartTrail);
@@ -73,7 +79,6 @@ namespace MountainWalker.Core.ViewModels
                 CanStart = false;
                 TrailInfo = "You are to far away from any start point";
             }
-
             NearestPointCommand = new MvxCommand(ShowNearestPoint);
         }
 

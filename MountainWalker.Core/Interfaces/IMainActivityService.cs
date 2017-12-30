@@ -11,6 +11,6 @@ namespace MountainWalker.Core.Interfaces
         bool CheckPointIsNear(Point userLocation, Point pointLocation);
         double GetDistanceBetweenTwoPointsOnMapInMeters(Point firstLocation, Point secondLocation);
         double ConvertDegreeToRadian(double angle);
-        void SetPoints(PointList points);
+        void SetPointsAndTrials(PointList points, ConnectionList connections);
     }
 }

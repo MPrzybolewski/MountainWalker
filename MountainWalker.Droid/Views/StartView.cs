@@ -2,7 +2,9 @@
 using Android.App;
 using Android.Content.PM;
 using Android.OS;
+using MountainWalker.Droid.NavigationDrawer;
 using MvvmCross.Droid.Views;
+using MvvmCross.Platform;
 
 namespace MountainWalker.Droid.Views
 {
@@ -17,6 +19,9 @@ namespace MountainWalker.Droid.Views
             base.OnCreate(bundle);
             SetContentView(Resource.Layout.StartView);
 
+
+           // var presenter = (NavigationDrawerPresenter)Mvx.Resolve<IMvxAndroidViewPresenter>();
+           // presenter.RegisterAttributeTypes();
         }
 
     }

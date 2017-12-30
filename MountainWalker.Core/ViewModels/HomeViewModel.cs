@@ -5,6 +5,7 @@ using System.Threading.Tasks;
 using MountainWalker.Core.Interfaces;
 using MountainWalker.Core.Messages;
 using MountainWalker.Core.Models;
+using MvvmCross.Core.Navigation;
 using MvvmCross.Core.ViewModels;
 using MvvmCross.Plugins.Messenger;
 
@@ -15,57 +16,54 @@ namespace MountainWalker.Core.ViewModels
         private readonly ILocationService _locationService;
         private readonly IMainActivityService _mainService;
         private readonly ISharedPreferencesService _sharedPreferencesService;
-        private readonly IMvxMessenger _messenger;
+        private readonly IMvxNavigationService _navigationService;
         private MvxSubscriptionToken _token;
 
-        public static Point Location { get; set; }
+        public Point Location { get; set; }
         private PointList _points;
+        private ConnectionList _connections;
 
         public IMvxCommand OpenMainDialogCommand { get; }
 
         public IMvxCommand LogoutCommand { get; }
 
-        readonly Type[] _menuItemTypes = {typeof(SettingsViewModel)};
-
+        public static Point UserPosition;
 
         public HomeViewModel(ILocationService locationService, IMainActivityService mainService,
-            ISharedPreferencesService sharedPreferencesService, IMvxMessenger messenger)
+            ISharedPreferencesService sharedPreferencesService, IMvxNavigationService navigationService, IMvxMessenger messenger)
         {
             _locationService = locationService;
             _mainService = mainService;
             _sharedPreferencesService = sharedPreferencesService;
             _token = messenger.Subscribe<LocationMessage>(OnLocationMessage);
+            _navigationService = navigationService;
 
             OpenMainDialogCommand = new MvxAsyncCommand(OpenDialog);
             LogoutCommand = new MvxCommand(Logout);
 
+            _locationService.StartFollow();
+
             _points = new PointList();
-            _mainService.SetPoints(_points);
+            _connections = new ConnectionList();
+
+            _mainService.SetPointsAndTrials(_points, _connections);
         }
 
         private void OnLocationMessage(LocationMessage message)
         {
             Location = message.Location;
-            _mainService.SetCurrentLocation(Location);
+            //_mainService.SetCurrentLocation(Location); this should be enable after started walking
         }
 
         private async Task OpenDialog()
         {
-            Location = await _locationService.GetLocation();
-            ShowViewModel(typeof(DialogViewModel));
-            Debug.WriteLine("OPEN DIALOG");
+            await _navigationService.Navigate(typeof(DialogViewModel));
         }
 
         private void Logout()
         {
             _sharedPreferencesService.CleanSharedPreferences();
-            ShowViewModel<SignInViewModel>();
-            Debug.WriteLine("OPEN LOGOUT");
-        }
-
-        public void NavigateTo(int position)
-        {
-            ShowViewModel(_menuItemTypes[position]);
+            _navigationService.Navigate<SignInViewModel>();
         }
     }
 }

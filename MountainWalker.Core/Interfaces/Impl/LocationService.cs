@@ -13,6 +13,7 @@ namespace MountainWalker.Core.Interfaces.Impl
     {
         private readonly IMvxLocationWatcher _watcher;
         private readonly IMvxMessenger _messenger;
+        private Point _currentLocation;
 
         public LocationService(IMvxLocationWatcher watcher, IMvxMessenger messenger)
         {
@@ -22,9 +23,9 @@ namespace MountainWalker.Core.Interfaces.Impl
 
         private void OnLocation(MvxGeoLocation location)
         {
-            Point Location = new Point(location.Coordinates.Latitude, location.Coordinates.Longitude);
+            _currentLocation = new Point(location.Coordinates.Latitude, location.Coordinates.Longitude);
 
-            var message = new LocationMessage(this, Location);
+            var message = new LocationMessage(this, _currentLocation);
             _messenger.Publish(message);
         }
 
@@ -47,6 +48,11 @@ namespace MountainWalker.Core.Interfaces.Impl
             Point location = new Point(position.Latitude, position.Longitude);
 
             return location;
+        }
+
+        public Point GetCurrentLocation()
+        {
+            return _currentLocation;
         }
     }
 }

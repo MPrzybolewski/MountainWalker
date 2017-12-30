@@ -12,11 +12,7 @@ namespace MountainWalker.Core.Interfaces
     public interface ILocationService
     { 
         Task<Point> GetLocation();
-//
-//        void OnLocation(MvxGeoLocation location);
-//
-//        void StartFollow();
-//
-//        void OnError(MvxLocationError error);
+        Point GetCurrentLocation();
+        void StartFollow();
     }
 }
