@@ -3,9 +3,9 @@ using MvvmCross.Core.ViewModels;
 
 namespace MountainWalker.Core.ViewModels
 {
-    public class TrialsViewModel : MvxViewModel
+    public class TrailsViewModel : MvxViewModel
     {
-        public TrialsViewModel()
+        public TrailsViewModel()
         {
         }
     }
