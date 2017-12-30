@@ -71,9 +71,15 @@ namespace MountainWalker.Droid.Fragments
                 case Resource.Id.nav_home:
                     ViewModel.ShowHomeCommand.Execute();
                     break;
-                case Resource.Id.nav_test:
-                    ViewModel.ShowSettingCommand.Execute();
-                    break;   
+                case Resource.Id.nav_trails:
+                    ViewModel.ShowTrailsCommand.Execute();
+                    break;
+                case Resource.Id.nav_achievements:
+                    ViewModel.ShowAchievementsCommand.Execute();
+                    break;
+                case Resource.Id.nav_appDescription:
+                    ViewModel.ShowAppDescriptionCommand.Execute();
+                    break;
                 case Resource.Id.nav_settings:
                     ViewModel.ShowSettingCommand.Execute();
                     break;
