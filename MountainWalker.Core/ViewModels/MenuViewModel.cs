@@ -22,14 +22,14 @@ namespace MountainWalker.Core.ViewModels
             _navigationService.Navigate<HomeViewModel>();
         }
 
-        public IMvxCommand ShowTrialCommand
+        public IMvxCommand ShowTrailsCommand
         {
-            get { return new MvxCommand(ShowTrialExecuted); }
+            get { return new MvxCommand(ShowTrailsExecuted); }
         }
 
-        private void ShowTrialExecuted()
+        private void ShowTrailsExecuted()
         {
-            _navigationService.Navigate<TrialsViewModel>();
+            _navigationService.Navigate<TrailsViewModel>();
         }
 
         public IMvxCommand ShowAchievementsCommand
