@@ -63,7 +63,7 @@ namespace MountainWalker.Core.ViewModels
 
             TrailTitle = "Hala Gąsienicowa"; //some function should be here, but idk how i want to do here
 
-            Point test = new Point(54.090506, 18.790464);
+            Point test = new Point(54.034424, 19.033050);
             Debug.WriteLine(test.Latitude + " " + test.Longitude + " - a test tutaj");
 
             //Point Point = new Point(54.090506, 18.790464);
