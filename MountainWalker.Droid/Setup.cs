@@ -10,6 +10,7 @@ using MvvmCross.Platform.IoC;
 using MvvmCross.Plugins.Messenger;
 using MvvmCross.Droid.Support.V7.AppCompat;
 using MvvmCross.Droid.Views;
+using MountainWalker.Droid.NavigationDrawer;
 
 namespace MountainWalker.Droid
 {
@@ -41,12 +42,12 @@ namespace MountainWalker.Droid
             //Mvx.LazyConstructAndRegisterSingleton<IDialogService>(new DroidDialogService());
             Mvx.RegisterSingleton<IDialogService>(new DroidDialogService());
             Mvx.RegisterSingleton<ISharedPreferencesService>(new DroidSharedPreferencesService());
-            Mvx.RegisterSingleton<IMapService>(new DroidMapService());
+            Mvx.RegisterSingleton<IMainActivityService>(new DroidMainActivityService());
         }
 
         protected override IMvxAndroidViewPresenter CreateViewPresenter()
         {
-            var mvxFragmentsPresenter = new MvxAppCompatViewPresenter(AndroidViewAssemblies);
+            var mvxFragmentsPresenter = new NavigationDrawerPresenter(AndroidViewAssemblies);
             Mvx.RegisterSingleton<IMvxAndroidViewPresenter>(mvxFragmentsPresenter);
             return mvxFragmentsPresenter;
         }
