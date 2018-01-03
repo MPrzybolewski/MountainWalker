@@ -7,6 +7,9 @@ using MountainWalker.Droid.Fragments;
 using MountainWalker.Droid.Views;
 using Debug = System.Diagnostics.Debug;
 using DialogFragment = MountainWalker.Droid.Fragments.DialogFragment;
+using MvvmCross.Platform;
+using MvvmCross.Platform.Droid.Platform;
+using Android.Content;
 
 namespace MountainWalker.Droid.Services
 {
@@ -24,6 +27,27 @@ namespace MountainWalker.Droid.Services
             LatLng coordinate = new LatLng(latitude, longitude);
             CameraUpdate yourLocation = CameraUpdateFactory.NewLatLngZoom(coordinate, 17);
             HomeFragment.Map.AnimateCamera(yourLocation);
+        }
+
+        public void SendNotification()
+        {
+
+            var top = Mvx.Resolve<IMvxAndroidCurrentTopActivity>();
+            var act = top.Activity;
+
+            Notification.Builder builder = new Notification.Builder(act)
+                .SetContentTitle("Congrats user!")
+                .SetContentText("You started a trail!")
+                .SetDefaults(NotificationDefaults.All)
+                .SetSmallIcon(Resource.Drawable.SignInViewBackground);
+
+            Notification notification = builder.Build();
+
+            NotificationManager notificationManager =
+                act.GetSystemService(Context.NotificationService) as NotificationManager;
+
+            const int notificationId = 0;
+            notificationManager.Notify(notificationId, notification);
         }
 
         public void CloseMainDialog()

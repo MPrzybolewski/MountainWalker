@@ -79,6 +79,7 @@ namespace MountainWalker.Core.ViewModels
 
         private void StartTrail()
         {
+            _mainService.SendNotification();
             _mainService.SetLatLngButton(54.3956171, 18.5724856); //mfi
             _mainService.CloseMainDialog();
         }

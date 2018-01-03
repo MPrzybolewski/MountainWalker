@@ -8,9 +8,11 @@ namespace MountainWalker.Core.ViewModels
     public class StartViewModel : MvxViewModel
     {
         private ISharedPreferencesService _sharedPreferencesService;
-        public StartViewModel(ISharedPreferencesService sharedPreferencesService)
+        private IWebAPIService _webAPIService;
+        public StartViewModel(ISharedPreferencesService sharedPreferencesService , IWebAPIService webAPIService)
         {
             _sharedPreferencesService = sharedPreferencesService;
+            _webAPIService = webAPIService;
         }
 
         public override Task Initialize()
@@ -19,7 +21,7 @@ namespace MountainWalker.Core.ViewModels
             return base.Initialize();
         }
 
-        private void CheckPreferences()
+        private async void CheckPreferences()
         {
             string userName = string.Empty;
             string password = string.Empty;
@@ -34,13 +36,11 @@ namespace MountainWalker.Core.ViewModels
             {
                 //There are saved credentials
 
-                /*This is where you would query the database
-                 *
-                 * 
-                 * 
-                 Done querying*/
+                string RestUrl = "http://mountainwalkerwebapi.azurewebsites.net/api/users/" + userName + "?password=" +
+                             password;
+                string result = await _webAPIService.CheckIfUserCanLogin(RestUrl);
 
-                if (userName == "admin" && password == "admin")
+                if (result.Trim(new char[] { '"' }).Equals("true"))
                 {
                     //Successful so take the user to application
                     ShowViewModel<MainViewModel>();
