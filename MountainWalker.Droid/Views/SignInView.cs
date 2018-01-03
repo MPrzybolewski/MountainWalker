@@ -12,13 +12,13 @@ namespace MountainWalker.Droid.Views
         ScreenOrientation = ScreenOrientation.Portrait)]
     public class SignInView : MvxActivity
     {
-        public MediaPlayer _mediaPlayer;
+        //public MediaPlayer _mediaPlayer;
         protected override void OnCreate(Bundle bundle)
         {
             base.OnCreate(bundle);
 
-            _mediaPlayer = MediaPlayer.Create(this, Resource.Raw.background);
-            _mediaPlayer.Start();
+            //_mediaPlayer = MediaPlayer.Create(this, Resource.Raw.background);
+            //_mediaPlayer.Start(); panowie, ile mozna? XD
             SetContentView(Resource.Layout.SignInView);
 
         }

@@ -5,23 +5,22 @@ using Android.OS;
 using Android.Runtime;
 using Android.Views;
 using MountainWalker.Core.ViewModels;
-using MvvmCross.Droid.Support.V4;
-using MvvmCross.Droid.Views.Attributes;
 using Plugin.Geolocator;
 using Android.Gms.Maps.Model;
 using Android.App;
+using MountainWalker.Droid.Services;
 using MvvmCross.Binding.Droid.BindingContext;
 using MvvmCross.Droid.Views;
 using Debug = System.Diagnostics.Debug;
+using MountainWalker.Droid.NavigationDrawer;
 
 namespace MountainWalker.Droid.Fragments
 {
-    [MvxFragmentPresentationAttribute(activityHostViewModelType:typeof(MainViewModel), addToBackStack:true,fragmentContentId: Resource.Id.frameLayout)]
+    [DrawerLayoutPresentation(typeof(HomeFragment), typeof(MainViewModel), Resource.Id.content_frame, addToBackStack: false)]
     [Register("MountainWalker.android.HomeFragment")]
-    public class HomeFragment : MvxFragment<HomeViewModel>, IOnMapReadyCallback
+    public class HomeFragment : BaseFragment<HomeViewModel>, IOnMapReadyCallback
     {
         public static GoogleMap Map;
-        //private static View _view;
 
         public async void OnMapReady(GoogleMap map)
         {
@@ -30,35 +29,16 @@ namespace MountainWalker.Droid.Fragments
 
             Map.MyLocationEnabled = true;
             Map.UiSettings.MyLocationButtonEnabled = true;
-
             Map.AddMarker(new MarkerOptions().SetPosition(new LatLng(54.394121, 18.569394))
                 .SetTitle("Best place to go!"));
+            Debug.WriteLine("biforek");
+            DroidMainActivityService.CreatePointsAndTrails();
         }
 
         public override View OnCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState)
         {
-            /*
-            //            if (_view == null)
-            //            {
-            //                _view = inflater.Inflate(Resource.Layout.HomeView, container, false);
-            //                Debug.WriteLine("JESTEEEEM HIHI");
-            //            }
+            ShowHamburgerMenu = true;
 
-            if (BindingContext == null)
-            {
-                BindingContext = new MvxAndroidBindingContext(Activity,
-                    new MvxSimpleLayoutInflaterHolder(Activity.LayoutInflater), DataContext);
-            }
-
-            _view = this.BindingInflate(Resource.Layout.HomeView, container, false); // jak nie zadziala to wez wrzuc to w tego ifa co wyzej
-//            _view = this.BindingInflate(Resource.Layout.HomeView, null);
-
-            */
-
-            //View view = inflater.Inflate(Resource.Layout.HomeView, container, false);
-
-            base.OnCreateView(inflater, container, savedInstanceState);
-            View view = this.BindingInflate(Resource.Layout.HomeView, null);
             FragmentManager fragmentManager = this.Activity.FragmentManager;
 
             MapFragment _mapFragment = fragmentManager.FindFragmentByTag("map") as MapFragment;
@@ -71,13 +51,15 @@ namespace MountainWalker.Droid.Fragments
                     .InvokeCompassEnabled(true);
 
                 FragmentTransaction fragTx = fragmentManager.BeginTransaction();
+
                 _mapFragment = MapFragment.NewInstance(mapOptions);
+
                 fragTx.Add(Resource.Id.map, _mapFragment, "map");
                 fragTx.Commit();
             }
             _mapFragment.GetMapAsync(this);
 
-            return view;
+            return base.OnCreateView(inflater, container, savedInstanceState);
         }
 
         public async Task ShowUserLocation()
@@ -86,7 +68,6 @@ namespace MountainWalker.Droid.Fragments
             locator.DesiredAccuracy = 1;
             TimeSpan ts = TimeSpan.FromMilliseconds(1000);
             var position = await locator.GetPositionAsync(ts);
-
 
             UpdateCamera(position.Latitude, position.Longitude);
         }
@@ -97,5 +78,7 @@ namespace MountainWalker.Droid.Fragments
             CameraUpdate yourLocation = CameraUpdateFactory.NewLatLngZoom(coordinate, 17);
             Map.MoveCamera(yourLocation);
         }
+
+        protected override int FragmentId => Resource.Layout.HomeView;
     }
 }

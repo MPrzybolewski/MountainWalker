@@ -4,7 +4,10 @@ using System.Linq.Expressions;
 using System.Threading.Tasks;
 using MountainWalker.Core.Interfaces;
 using MountainWalker.Core.Interfaces.Impl;
+using MountainWalker.Core.Messages;
+using MountainWalker.Core.Models;
 using MvvmCross.Core.ViewModels;
+using MvvmCross.Plugins.Messenger;
 
 namespace MountainWalker.Core.ViewModels
 {
@@ -15,7 +18,6 @@ namespace MountainWalker.Core.ViewModels
 
         public IMvxCommand TrailStartCommand { get; }
         public IMvxCommand NearestPointCommand { get; }
-
 
         private string _trialTitle = "";
         public string TrailTitle
@@ -51,18 +53,22 @@ namespace MountainWalker.Core.ViewModels
             }
         }
 
-        public DialogViewModel(IMainActivityService mainService, ILocationService locationService )
+        public DialogViewModel(IMainActivityService mainService, ILocationService locationService) // tutaj ILocationService
         {
             _mainService = mainService;
             _locationService = locationService;
 
+            var point = _locationService.GetCurrentLocation();
+            Debug.WriteLine(point.Latitude + " " + point.Longitude + " - ja jestem tutaj");
 
+            TrailTitle = "Hala Gąsienicowa"; //some function should be here, but idk how i want to do here
 
-            TrailTitle = "Hala Gąsienicowa"; //some function should be here, but idk how i want to do this
-            double[] userPosition = HomeViewModel.UserPosition;
+            Point test = new Point(54.090506, 18.790464);
+            Debug.WriteLine(test.Latitude + " " + test.Longitude + " - a test tutaj");
 
+            //Point Point = new Point(54.090506, 18.790464);
 
-            if (_mainService.CheckPointIsNear(userPosition[0],userPosition[1],54.034448, 19.033126)) // user and point location
+            if (_mainService.CheckPointIsNear(point, test)) // user and point location
             {
                 CanStart = true;
                 TrailStartCommand = new MvxCommand(StartTrail);
@@ -73,20 +79,20 @@ namespace MountainWalker.Core.ViewModels
                 CanStart = false;
                 TrailInfo = "You are to far away from any start point";
             }
-
             NearestPointCommand = new MvxCommand(ShowNearestPoint);
         }
 
         private void StartTrail()
         {
-            _mainService.SendNotification();
-            _mainService.SetLatLngButton(54.3956171, 18.5724856); //mfi
+            _mainService.SetLatLngButton(new Point(54.3956171, 18.5724856)); //mfi
+            _locationService.SetNewList();
+            _locationService.SetStateOfJourney(true);
             _mainService.CloseMainDialog();
         }
 
         private void ShowNearestPoint()
         {
-            _mainService.SetLatLngButton(54.394121, 18.569394); //best place to go every monday <3
+            _mainService.SetLatLngButton(new Point(54.394121, 18.569394)); //best place to go every monday <3
             _mainService.CloseMainDialog();
         }
     }

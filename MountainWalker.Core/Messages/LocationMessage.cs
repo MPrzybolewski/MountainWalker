@@ -1,22 +1,17 @@
-﻿using MvvmCross.Plugins.Messenger;
+﻿using MountainWalker.Core.Models;
+using MvvmCross.Plugins.Messenger;
 
 namespace MountainWalker.Core.Messages
 {
     public class LocationMessage : MvxMessage
     {
-        public LocationMessage(object sender, double lat, double lng)
+        public LocationMessage(object sender, Point location)
             : base(sender)
         {
-            Lng = lng;
-            Lat = lat;
+            Location = location;
         }
 
-        public double Lat
-        {
-            get;
-            private set;
-        }
-        public double Lng
+        public Point Location
         {
             get;
             private set;

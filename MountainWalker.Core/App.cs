@@ -15,6 +15,7 @@ namespace MountainWalker.Core
                 .RegisterAsLazySingleton();
             
             RegisterNavigationServiceAppStart<ViewModels.MainViewModel>();
+            Mvx.LazyConstructAndRegisterSingleton<IMvxMessenger, MvxMessengerHub>();
         }
     }
 }

@@ -1,0 +1,28 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+xmlns:local="http://schemas.android.com/apk/res-auto">
+
+    <group android:id="@+id/nav_items">
+        <item
+            android:id="@+id/nav_home"
+            android:title="Mapa" />        
+    </group>
+
+    <item android:id="@+id/nav_menu">
+        <menu>
+            <item
+                android:id="@+id/nav_trails"
+                android:title="Szlaki"/>
+            <item
+                android:id="@+id/nav_achievements"
+                android:title="Osiągnięcia"/>
+            <item
+                android:id="@+id/nav_appDescription"
+                android:title="Jak to działa"/>
+            <item
+                android:id="@+id/nav_settings"
+                android:title="Język" />
+        </menu>
+    </item>
+
+</menu>
