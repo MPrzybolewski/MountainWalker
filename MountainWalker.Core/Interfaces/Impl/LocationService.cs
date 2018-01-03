@@ -17,6 +17,7 @@ namespace MountainWalker.Core.Interfaces.Impl
         private Point _currentLocation;
         private bool _isTrailStarted = false;
         private List<Point> _reachedPoints;
+        private string _dialogButtonText = "Start";
 
 
         public LocationService(IMvxLocationWatcher watcher, IMvxMessenger messenger)
@@ -82,6 +83,16 @@ namespace MountainWalker.Core.Interfaces.Impl
         public void SetNewList()
         {
             _reachedPoints = new List<Point>();
+        }
+
+        public void SetDialogButtonText(string text)
+        {
+            _dialogButtonText = text;
+        }
+
+        public string GetDialogButtonText()
+        {
+            return _dialogButtonText;
         }
     }
 }

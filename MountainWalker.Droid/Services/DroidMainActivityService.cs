@@ -6,6 +6,7 @@ using Android.Gms.Maps.Model;
 using Android.Graphics;
 using MountainWalker.Core;
 using MountainWalker.Core.Interfaces;
+using MountainWalker.Core.ViewModels;
 using MountainWalker.Droid.Fragments;
 using Debug = System.Diagnostics.Debug;
 
@@ -32,6 +33,7 @@ namespace MountainWalker.Droid.Services
                 LatLng coordinate = new LatLng(location.Latitude, location.Longitude);
                 CameraUpdate yourLocation = CameraUpdateFactory.NewLatLngZoom(coordinate, 17);
                 HomeFragment.Map.AnimateCamera(yourLocation);
+
             }
         }
 

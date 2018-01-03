@@ -9,6 +9,7 @@ namespace MountainWalker.Core.ViewModels
     public class AfterStartDialogViewModel : MvxViewModel
     {
         private readonly IMainActivityService _mainService;
+        private readonly ILocationService _locationService;
 
         public IMvxCommand StopTravel { get; }
         public IMvxCommand DontStropTravel { get; }
@@ -35,9 +36,10 @@ namespace MountainWalker.Core.ViewModels
             }
         }
 
-        public AfterStartDialogViewModel(IMainActivityService mainService) 
+        public AfterStartDialogViewModel(IMainActivityService mainService, ILocationService locationService) 
         {
             _mainService = mainService;
+            _locationService = locationService;
             TimeInfo = "Twoj czas";
             StopTravel = new MvxCommand(ExecuteStopTravel);
             DontStropTravel = new MvxCommand(ExecuteDontStopTravel);
@@ -46,6 +48,9 @@ namespace MountainWalker.Core.ViewModels
         private void ExecuteStopTravel()
         {
             _mainService.CloseMainDialog(true);
+            _locationService.SetStateOfJourney(false);
+            _locationService.SetDialogButtonText("Start");
+
         }
 
         private void ExecuteDontStopTravel()

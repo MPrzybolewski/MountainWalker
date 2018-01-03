@@ -87,7 +87,9 @@ namespace MountainWalker.Core.ViewModels
             _mainService.SetLatLngButton(new Point(54.3956171, 18.5724856)); //mfi
             _locationService.SetNewList();
             _locationService.SetStateOfJourney(true);
+            _locationService.SetDialogButtonText("Stop");
             _mainService.CloseMainDialog(false);
+
         }
 
         private void ShowNearestPoint()
