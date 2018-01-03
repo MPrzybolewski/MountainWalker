@@ -8,7 +8,7 @@ using MountainWalker.Core;
 using MountainWalker.Core.Interfaces;
 using MountainWalker.Droid.Fragments;
 using Debug = System.Diagnostics.Debug;
-using DialogFragment = MountainWalker.Droid.Fragments.DialogFragment;
+
 using Point = MountainWalker.Core.Models.Point;
 
 namespace MountainWalker.Droid.Services
@@ -35,9 +35,15 @@ namespace MountainWalker.Droid.Services
             }
         }
 
-        public void CloseMainDialog()
+        public void CloseMainDialog(bool isStopButton)
         {
-            DialogFragment.dialog.Dismiss();
+            if(isStopButton)
+            {
+                AfterStartDialogFragment.dialog.Dismiss();
+            } else 
+            {
+                Fragments.DialogFragment.dialog.Dismiss();
+            }
         }
 
         public bool CheckPointIsNear(Point userLocation, Point pointLocation)
