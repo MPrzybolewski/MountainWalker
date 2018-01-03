@@ -29,20 +29,30 @@ namespace MountainWalker.Core.ViewModels
 
         public IMvxCommand LogoutCommand { get; }
 
+        private string _buttonText;
+        public string ButtonText
+        {
+            get { return _buttonText; }
+            set { SetProperty(ref _buttonText, value);}
+        }
+
         public static Point UserPosition;
 
         public HomeViewModel(ILocationService locationService, IMainActivityService mainService,
             ISharedPreferencesService sharedPreferencesService, IMvxNavigationService navigationService, 
             IMvxMessenger messenger, IDialogService dialogService)
         {
-            _locationService = locationService;
+            
             _mainService = mainService;
             _sharedPreferencesService = sharedPreferencesService;
             _token = messenger.Subscribe<LocationMessage>(OnLocationMessage);
             _navigationService = navigationService;
             _dialogService = dialogService;
+            _locationService = locationService;
 
-            OpenMainDialogCommand = new MvxAsyncCommand(OpenDialog);
+            ButtonText = "Start";
+
+
             LogoutCommand = new MvxCommand(Logout);
 
             _locationService.StartFollow();
@@ -51,6 +61,8 @@ namespace MountainWalker.Core.ViewModels
             _connections = new ConnectionList();
 
             _mainService.SetPointsAndTrials(_points, _connections);
+            OpenMainDialogCommand = new MvxAsyncCommand(OpenDialog);
+
         }
 
         private void OnLocationMessage(LocationMessage message)
@@ -81,7 +93,9 @@ namespace MountainWalker.Core.ViewModels
 
         private async Task OpenDialog()
         {
+            
             await _navigationService.Navigate(typeof(DialogViewModel));
+
         }
 
         private void Logout()
