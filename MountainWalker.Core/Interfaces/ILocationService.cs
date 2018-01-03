@@ -22,5 +22,9 @@ namespace MountainWalker.Core.Interfaces
         void SetDialogButtonText(string text);
         string GetDialogButtonText();
         void StartFollow();
+        void StartTimer();
+        void StopTimer();
+        void SetTravelTime();
+        TravelTime GetTravelTime();
     }
 }

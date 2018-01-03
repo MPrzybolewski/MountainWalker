@@ -40,13 +40,15 @@ namespace MountainWalker.Core.ViewModels
         {
             _mainService = mainService;
             _locationService = locationService;
-            TimeInfo = "Twoj czas";
+            _locationService.SetTravelTime();
+            TimeInfo = "Twoj czas: " +  _locationService.GetTravelTime();
             StopTravel = new MvxCommand(ExecuteStopTravel);
             DontStropTravel = new MvxCommand(ExecuteDontStopTravel);
         }
 
         private void ExecuteStopTravel()
         {
+            Stopwatch timer = new Stopwatch();
             _mainService.CloseMainDialog(true);
             _locationService.SetStateOfJourney(false);
             _locationService.SetDialogButtonText("Start");

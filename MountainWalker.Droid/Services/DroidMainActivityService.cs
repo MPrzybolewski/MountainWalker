@@ -52,7 +52,7 @@ namespace MountainWalker.Droid.Services
         {
             double distanceBetweenNearestPointAndUserCurrentLocation = GetDistanceBetweenTwoPointsOnMapInMeters(userLocation, pointLocation);
             Debug.WriteLine("Odelglosc: {0}",distanceBetweenNearestPointAndUserCurrentLocation);
-            if(distanceBetweenNearestPointAndUserCurrentLocation < 50)
+            if(distanceBetweenNearestPointAndUserCurrentLocation < 100)
             {
                 return true;
             }

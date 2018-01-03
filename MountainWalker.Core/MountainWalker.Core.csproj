@@ -55,6 +55,7 @@
     <Compile Include="ViewModels\AchievementsViewModel.cs" />
     <Compile Include="ViewModels\AppDescriptionViewModel.cs" />
     <Compile Include="ViewModels\AfterStartDialogViewModel.cs" />
+    <Compile Include="Models\TravelTime.cs" />
   </ItemGroup>
   <ItemGroup>
     <Reference Include="MvvmCross.Platform">
