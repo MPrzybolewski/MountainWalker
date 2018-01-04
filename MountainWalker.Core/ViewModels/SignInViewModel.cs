@@ -44,6 +44,7 @@ namespace MountainWalker.Core.ViewModels
             }
             else
             {
+                _dialogService.WaitingAlertDismiss();
                 _dialogService.ShowAlert("Uwaga!", "Login i/lub hasło są nieprawidłowe!", "OK");
             }
         }
