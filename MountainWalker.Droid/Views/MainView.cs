@@ -46,7 +46,6 @@ namespace MountainWalker.Droid.Views
                 ViewModel.ShowMenu();
             }
 
-
         }
 
 
@@ -90,5 +89,7 @@ namespace MountainWalker.Droid.Views
 
             CurrentFocus.ClearFocus();
         }
+
+
     }
 }

@@ -34,7 +34,7 @@ namespace MountainWalker.Core.ViewModels
             if (userName == String.Empty || password == String.Empty)
             {
                 //There is no saved credentials, take user to the login page
-                _navigationService.Navigate<SignInViewModel>();
+                _navigationService.Navigate<MainViewModel>();
 
             }
             else
