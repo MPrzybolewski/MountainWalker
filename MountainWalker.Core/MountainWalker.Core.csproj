@@ -53,6 +53,9 @@
     <Compile Include="ViewModels\HomeViewModel.cs" />
     <Compile Include="ViewModels\MenuViewModel.cs" />
     <Compile Include="ViewModels\TrailDialogViewModel.cs" />
+    <Compile Include="ViewModels\TrailsViewModel.cs" />
+    <Compile Include="ViewModels\AchievementsViewModel.cs" />
+    <Compile Include="ViewModels\AppDescriptionViewModel.cs" />
   </ItemGroup>
   <ItemGroup>
     <Reference Include="MvvmCross.Platform">

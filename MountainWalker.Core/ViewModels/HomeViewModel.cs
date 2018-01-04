@@ -85,7 +85,7 @@ namespace MountainWalker.Core.ViewModels
             int id = 1;
             _locationService.TrailId = id;
             Debug.WriteLine("HomeViewModel kurłaaaaaaaaaaaa");
-            //await _navigationService.Navigate(typeof(TrailDialogViewModel));
+            await _navigationService.Navigate(typeof(TrailDialogViewModel));
         }
 
         private void Logout()

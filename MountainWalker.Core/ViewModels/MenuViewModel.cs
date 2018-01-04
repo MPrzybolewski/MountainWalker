@@ -22,6 +22,36 @@ namespace MountainWalker.Core.ViewModels
             _navigationService.Navigate<HomeViewModel>();
         }
 
+        public IMvxCommand ShowTrailsCommand
+        {
+            get { return new MvxCommand(ShowTrailsExecuted); }
+        }
+
+        private void ShowTrailsExecuted()
+        {
+            _navigationService.Navigate<TrailsViewModel>();
+        }
+
+        public IMvxCommand ShowAchievementsCommand
+        {
+            get { return new MvxCommand(ShowAchievementsExecuted); }
+        }
+
+        private void ShowAchievementsExecuted()
+        {
+            _navigationService.Navigate<AchievementsViewModel>();
+        }
+
+        public IMvxCommand ShowAppDescriptionCommand
+        {
+            get { return new MvxCommand(ShowAppDescriptionExecuted); }
+        }
+
+        private void ShowAppDescriptionExecuted()
+        {
+            _navigationService.Navigate<AppDescriptionViewModel>();
+        }
+
         public IMvxCommand ShowSettingCommand
         {
             get { return new MvxCommand(ShowSettingsExecuted); }
