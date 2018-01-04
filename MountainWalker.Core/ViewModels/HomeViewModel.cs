@@ -1,8 +1,5 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.Diagnostics;
-using System.Dynamic;
-using System.Linq.Expressions;
 using System.Threading.Tasks;
 using MountainWalker.Core.Interfaces;
 using MountainWalker.Core.Messages;
@@ -20,25 +17,20 @@ namespace MountainWalker.Core.ViewModels
         private readonly ISharedPreferencesService _sharedPreferencesService;
         private readonly IMvxNavigationService _navigationService;
         private readonly IDialogService _dialogService;
+        private readonly ITrailService _trailService;
         private MvxSubscriptionToken _token;
 
         public Point Location { get; set; }
-        private PointList _points;
-        private ConnectionList _connections;
 
         public IMvxCommand OpenMainDialogCommand { get; }
-
+        public IMvxCommand OpenTrailDialogCommand { get; set; }
         public IMvxCommand LogoutCommand { get; }
 
         public static Point UserPosition;
 
-        public string MyProperty { get; set; }
-
-        public event EventHandler MyPropertyChanged;
-
         public HomeViewModel(ILocationService locationService, IMainActivityService mainService,
             ISharedPreferencesService sharedPreferencesService, IMvxNavigationService navigationService, 
-            IMvxMessenger messenger, IDialogService dialogService)
+            IMvxMessenger messenger, IDialogService dialogService, ITrailService trailService)
         {
             _locationService = locationService;
             _mainService = mainService;
@@ -46,31 +38,30 @@ namespace MountainWalker.Core.ViewModels
             _token = messenger.Subscribe<LocationMessage>(OnLocationMessage);
             _navigationService = navigationService;
             _dialogService = dialogService;
+            _trailService = trailService;
 
             OpenMainDialogCommand = new MvxAsyncCommand(OpenDialog);
+            OpenTrailDialogCommand = new MvxAsyncCommand(OpenTrailDialog);
             LogoutCommand = new MvxCommand(Logout);
 
             _locationService.StartFollow();
 
-            _points = new PointList();
-            _connections = new ConnectionList();
-
-            _mainService.SetPointsAndTrials(_points, _connections);
+            _mainService.SetPointsAndTrials(_trailService.Points, _trailService.Trails);
         }
 
         private void OnLocationMessage(LocationMessage message)
         {
             Location = message.Location;
-            if (_locationService.GetStateOfJourney())
+            if (_locationService.IsTrailStarted)
             {
-                _mainService.SetCurrentLocation(Location); //this should be enable after started walking
-                foreach (var point in _points.Points)
+                _mainService.SetCurrentLocation(Location); //this should be enable after starting walking
+                foreach (var point in _trailService.Points)
                 {
-                    if (_mainService.GetDistanceBetweenTwoPointsOnMapInMeters(Location, point) < 30
+                    if (_mainService.GetDistanceBetweenTwoPointsOnMapInMeters(Location, point) < 20
                         && _mainService.GetDistanceBetweenTwoPointsOnMapInMeters(
-                            _locationService.GetReachedPoints()[_locationService.GetReachedPoints().Count], point) < 30) 
+                            _locationService.ReachedPoints[_locationService.ReachedPoints.Count], point) < 20) 
                     {
-                        _locationService.AddReachedPoint(point);
+                        _locationService.ReachedPoints.Add(point);
                     }
                 }
             }
@@ -89,13 +80,21 @@ namespace MountainWalker.Core.ViewModels
             await _navigationService.Navigate(typeof(DialogViewModel));
         }
 
+        private async Task OpenTrailDialog()
+        {
+            int id = 1;
+            _locationService.TrailId = id;
+            Debug.WriteLine("HomeViewModel kurłaaaaaaaaaaaa");
+            //await _navigationService.Navigate(typeof(TrailDialogViewModel));
+        }
+
         private void Logout()
         {
             _sharedPreferencesService.CleanSharedPreferences();
             _navigationService.Navigate<SignInViewModel>();
         }
 
-        public static void RaiseTrailPopup(string polylineId)
+        public void RaiseTrailPopup(string polylineId)
         {
             Debug.WriteLine("nie wolno tak");
         }

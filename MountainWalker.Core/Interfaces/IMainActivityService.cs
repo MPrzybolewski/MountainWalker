@@ -1,4 +1,5 @@
 ﻿
+using System.Collections.Generic;
 using MountainWalker.Core.Models;
 
 namespace MountainWalker.Core.Interfaces
@@ -8,9 +9,10 @@ namespace MountainWalker.Core.Interfaces
         void SetLatLngButton(Point location);
         void SetCurrentLocation(Point location);
         void CloseMainDialog();
+        void CloseTrailDialog();
         bool CheckPointIsNear(Point userLocation, Point pointLocation);
         double GetDistanceBetweenTwoPointsOnMapInMeters(Point firstLocation, Point secondLocation);
         double ConvertDegreeToRadian(double angle);
-        void SetPointsAndTrials(PointList points, ConnectionList connections);
+        void SetPointsAndTrials(List<Point> points, List<Connection> connections);
     }
 }

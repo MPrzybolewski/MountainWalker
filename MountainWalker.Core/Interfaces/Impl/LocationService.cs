@@ -6,6 +6,7 @@ using MountainWalker.Core.Models;
 using MvvmCross.Platform;
 using MvvmCross.Plugins.Location;
 using MvvmCross.Plugins.Messenger;
+using Newtonsoft.Json.Bson;
 using Plugin.Geolocator;
 
 namespace MountainWalker.Core.Interfaces.Impl
@@ -14,9 +15,10 @@ namespace MountainWalker.Core.Interfaces.Impl
     {
         private readonly IMvxLocationWatcher _watcher;
         private readonly IMvxMessenger _messenger;
-        private Point _currentLocation;
-        private bool _isTrailStarted = false;
-        private List<Point> _reachedPoints;
+        public Point CurrentLocation { get; set; }
+        public bool IsTrailStarted { get; set; }
+        public List<Point> ReachedPoints { get; set; }
+        public int TrailId { get; set; }
 
 
         public LocationService(IMvxLocationWatcher watcher, IMvxMessenger messenger)
@@ -27,9 +29,9 @@ namespace MountainWalker.Core.Interfaces.Impl
 
         private void OnLocation(MvxGeoLocation location)
         {
-            _currentLocation = new Point(location.Coordinates.Latitude, location.Coordinates.Longitude);
+            CurrentLocation = new Point(location.Coordinates.Latitude, location.Coordinates.Longitude);
 
-            var message = new LocationMessage(this, _currentLocation);
+            var message = new LocationMessage(this, CurrentLocation);
             _messenger.Publish(message);
         }
         
@@ -54,34 +56,9 @@ namespace MountainWalker.Core.Interfaces.Impl
             return location;
         }
 
-        public Point GetCurrentLocation()
-        {
-            return _currentLocation;
-        }
-
-        public bool GetStateOfJourney()
-        {
-            return _isTrailStarted;
-        }
-
-        public void SetStateOfJourney(bool state)
-        {
-            _isTrailStarted = state;
-        }
-
-        public List<Point> GetReachedPoints()
-        {
-            return _reachedPoints;
-        }
-
-        public void AddReachedPoint(Point point)
-        {
-            _reachedPoints.Add(point);
-        }
-
         public void SetNewList()
         {
-            _reachedPoints = new List<Point>();
+            ReachedPoints = new List<Point>();
         }
     }
 }

@@ -1,18 +1,23 @@
 ﻿using System;
+using System.Diagnostics;
 using System.Reflection;
+using Android.Gms.Maps;
 using MountainWalker.Core.ViewModels;
 using MountainWalker.Droid.Fragments;
 using MvvmCross.Binding;
 using MvvmCross.Binding.Bindings.Target;
+using MvvmCross.Core.ViewModels;
 using MvvmCross.Platform.Platform;
 
 namespace MountainWalker.Droid.Bindings
 {
-    public class TrailDialogBinding : MvxPropertyInfoTargetBinding<HomeViewModel>
+    public class TrailDialogBinding : MvxPropertyInfoTargetBinding<GoogleMap>
     {
         // used to figure out whether a subscription to MyPropertyChanged
         // has been made
         private bool _subscribed;
+
+        private IMvxCommand _command;
 
         public override MvxBindingMode DefaultMode => MvxBindingMode.TwoWay;
 
@@ -24,10 +29,11 @@ namespace MountainWalker.Droid.Bindings
         // describes how to set MyProperty on MyView
         protected override void SetValueImpl(object target, object value)
         {
-            var view = target as HomeViewModel;
+            var view = target as HomeFragment;
             if (view == null) return;
 
-            view.MyProperty = (string)value;
+             view.Faken = (string)value;
+
         }
 
         // is called when we are ready to listen for change events
@@ -41,15 +47,18 @@ namespace MountainWalker.Droid.Bindings
             }
 
             _subscribed = true;
-            myView.MyPropertyChanged += HandleMyPropertyChanged;
+            myView.PolylineClick += HandlePolylineClick;
         }
 
-        private void HandleMyPropertyChanged(object sender, EventArgs e)
+        private void HandlePolylineClick(object sender, GoogleMap.PolylineClickEventArgs poly)
         {
             var myView = View;
+            
             if (myView == null) return;
 
-            FireValueChanged(myView.MyProperty);
+            _command = (IMvxCommand) sender;
+            _command.Execute(poly.Polyline.Id);
+            //FireValueChanged(myView.MyProperty);
         }
 
         // clean up
@@ -62,7 +71,7 @@ namespace MountainWalker.Droid.Bindings
                 var myView = View;
                 if (myView != null && _subscribed)
                 {
-                    myView.MyPropertyChanged -= HandleMyPropertyChanged;
+                    myView.PolylineClick -= HandlePolylineClick;
                     _subscribed = false;
                 }
             }

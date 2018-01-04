@@ -5420,6 +5420,9 @@ namespace MountainWalker.Droid
 			// aapt resource value: 0x7f040047
 			public const int tooltip = 2130968647;
 			
+			// aapt resource value: 0x7f040048
+			public const int TrailDialog = 2130968648;
+			
 			static Layout()
 			{
 				global::Android.Runtime.ResourceIdManager.UpdateIdValues();

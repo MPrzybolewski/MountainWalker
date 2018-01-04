@@ -1,16 +1,13 @@
 using Android.Content;
+using Android.Gms.Maps;
 using MvvmCross.Droid.Platform;
 using MvvmCross.Core.ViewModels;
 using MvvmCross.Platform.Platform;
 using MvvmCross.Platform;
 using MountainWalker.Core.Interfaces;
-using MountainWalker.Core.ViewModels;
 using MountainWalker.Droid.Bindings;
+using MountainWalker.Droid.Fragments;
 using MountainWalker.Droid.Services;
-using MountainWalker.Droid.Views;
-using MvvmCross.Platform.IoC;
-using MvvmCross.Plugins.Messenger;
-using MvvmCross.Droid.Support.V7.AppCompat;
 using MvvmCross.Droid.Views;
 using MountainWalker.Droid.NavigationDrawer;
 using MvvmCross.Binding.Bindings.Target.Construction;
@@ -62,7 +59,7 @@ namespace MountainWalker.Droid
 
             registry.RegisterPropertyInfoBindingFactory(
                 typeof(TrailDialogBinding),
-                typeof(HomeViewModel), "MyProperty");
+                typeof(HomeFragment), "Faken");
         }
     }
 }

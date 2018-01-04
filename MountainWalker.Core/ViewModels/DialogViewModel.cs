@@ -58,7 +58,7 @@ namespace MountainWalker.Core.ViewModels
             _mainService = mainService;
             _locationService = locationService;
 
-            var point = _locationService.GetCurrentLocation();
+            var point = _locationService.CurrentLocation;
             if (point == null)
             {
                 point.Latitude = 0.0;
@@ -92,7 +92,7 @@ namespace MountainWalker.Core.ViewModels
         {
             _mainService.SetLatLngButton(new Point(54.3956171, 18.5724856)); //mfi
             _locationService.SetNewList();
-            _locationService.SetStateOfJourney(true);
+            _locationService.IsTrailStarted = true;
             _mainService.CloseMainDialog();
         }
 

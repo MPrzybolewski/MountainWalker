@@ -13,6 +13,8 @@ using MvvmCross.Binding.Droid.BindingContext;
 using MvvmCross.Droid.Views;
 using Debug = System.Diagnostics.Debug;
 using MountainWalker.Droid.NavigationDrawer;
+using MvvmCross.Binding.BindingContext;
+using MvvmCross.Core.ViewModels;
 using MvvmCross.Plugins.Messenger;
 
 namespace MountainWalker.Droid.Fragments
@@ -22,13 +24,9 @@ namespace MountainWalker.Droid.Fragments
     public class HomeFragment : BaseFragment<HomeViewModel>, IOnMapReadyCallback
     {
         public static GoogleMap Map;
-        private IMvxMessenger _messenger;
 
-        public HomeFragment(IMvxMessenger messenger)
-        {
-            _messenger = messenger;
-            Debug.WriteLine("Messenger is set");
-        }
+        public IMvxCommand Command;
+        public string Faken { get; set; }
 
         public async void OnMapReady(GoogleMap map)
         {
@@ -41,6 +39,14 @@ namespace MountainWalker.Droid.Fragments
                 .SetTitle("Best place to go!"));
 
             DroidMainActivityService.CreatePointsAndTrails();
+
+            Map.PolylineClick += (sender, args) =>
+            {
+                int id = int.Parse(args.Polyline.Id.Trim(new Char[] { 'p', 'l' }));
+                Debug.WriteLine("Id of this polyline is  => " + id);
+                Faken = "dawaj";
+                //HomeViewModel.RaiseTrailPopup(args.Polyline.Id);
+            };
         }
 
         public override View OnCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState)
@@ -67,8 +73,16 @@ namespace MountainWalker.Droid.Fragments
             }
             _mapFragment.GetMapAsync(this);
 
-            return base.OnCreateView(inflater, container, savedInstanceState);
+            var view = base.OnCreateView(inflater, container, savedInstanceState);
+
+            var set = this.CreateBindingSet<HomeFragment, HomeViewModel>();
+            set.Bind(this).For(v => v.Faken).To(vm => vm.OpenTrailDialogCommand);
+            set.Apply();
+
+            return view;
         }
+
+        
 
         public async Task ShowUserLocation()
         {
@@ -87,8 +101,6 @@ namespace MountainWalker.Droid.Fragments
             Map.MoveCamera(yourLocation);
         }
 
-        protected override int FragmentId => Resource.Layout.HomeView;
-        
-        
+        protected override int FragmentId => Resource.Layout.HomeView;        
     }
 }
