@@ -24,4 +24,14 @@
         android:textSize="20dp"
         android:paddingBottom="15dp"
         android:text="Settings View" />
+  <CheckBox
+        android:text="Wyłącz powiadomienia"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        local:MvxBind="Checked IsNotificationOff"
+        android:layout_marginTop="20dp"
+        android:layout_marginLeft="100dp"
+        android:layout_marginRight="100dp"
+        android:gravity="center"
+        android:textColor="@color/foreground_material_light" />
 </LinearLayout>

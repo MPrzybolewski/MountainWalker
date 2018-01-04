@@ -8,6 +8,7 @@ namespace MountainWalker.Core.Interfaces
         void SetLatLngButton(Point location);
         void SetCurrentLocation(Point location);
         void CloseMainDialog();
+        void SendNotification(string title, string content);
         bool CheckPointIsNear(Point userLocation, Point pointLocation);
         double GetDistanceBetweenTwoPointsOnMapInMeters(Point firstLocation, Point secondLocation);
         double ConvertDegreeToRadian(double angle);

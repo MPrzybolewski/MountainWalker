@@ -10,6 +10,9 @@ using MountainWalker.Droid.Fragments;
 using Debug = System.Diagnostics.Debug;
 using DialogFragment = MountainWalker.Droid.Fragments.DialogFragment;
 using Point = MountainWalker.Core.Models.Point;
+using MvvmCross.Platform;
+using MvvmCross.Platform.Droid.Platform;
+using Android.Content;
 
 namespace MountainWalker.Droid.Services
 {
@@ -38,6 +41,27 @@ namespace MountainWalker.Droid.Services
         public void CloseMainDialog()
         {
             DialogFragment.dialog.Dismiss();
+        }
+
+        public void SendNotification(string title, string content)
+        {
+
+            var top = Mvx.Resolve<IMvxAndroidCurrentTopActivity>();
+            var act = top.Activity;
+
+            Notification.Builder builder = new Notification.Builder(act)
+                .SetContentTitle(title)
+                .SetContentText(content)
+                .SetDefaults(NotificationDefaults.All)
+                .SetSmallIcon(Resource.Drawable.SignInViewBackground);
+
+            Notification notification = builder.Build();
+
+            NotificationManager notificationManager =
+                act.GetSystemService(Context.NotificationService) as NotificationManager;
+
+            const int notificationId = 0;
+            notificationManager.Notify(notificationId, notification);
         }
 
         public bool CheckPointIsNear(Point userLocation, Point pointLocation)
