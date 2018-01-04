@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Diagnostics;
+using System.Dynamic;
 using System.Linq.Expressions;
 using System.Threading.Tasks;
 using MountainWalker.Core.Interfaces;
@@ -30,6 +31,10 @@ namespace MountainWalker.Core.ViewModels
         public IMvxCommand LogoutCommand { get; }
 
         public static Point UserPosition;
+
+        public string MyProperty { get; set; }
+
+        public event EventHandler MyPropertyChanged;
 
         public HomeViewModel(ILocationService locationService, IMainActivityService mainService,
             ISharedPreferencesService sharedPreferencesService, IMvxNavigationService navigationService, 
@@ -88,6 +93,11 @@ namespace MountainWalker.Core.ViewModels
         {
             _sharedPreferencesService.CleanSharedPreferences();
             _navigationService.Navigate<SignInViewModel>();
+        }
+
+        public static void RaiseTrailPopup(string polylineId)
+        {
+            Debug.WriteLine("nie wolno tak");
         }
     }
 }

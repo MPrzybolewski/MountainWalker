@@ -13,6 +13,7 @@ using MvvmCross.Binding.Droid.BindingContext;
 using MvvmCross.Droid.Views;
 using Debug = System.Diagnostics.Debug;
 using MountainWalker.Droid.NavigationDrawer;
+using MvvmCross.Plugins.Messenger;
 
 namespace MountainWalker.Droid.Fragments
 {
@@ -21,6 +22,13 @@ namespace MountainWalker.Droid.Fragments
     public class HomeFragment : BaseFragment<HomeViewModel>, IOnMapReadyCallback
     {
         public static GoogleMap Map;
+        private IMvxMessenger _messenger;
+
+        public HomeFragment(IMvxMessenger messenger)
+        {
+            _messenger = messenger;
+            Debug.WriteLine("Messenger is set");
+        }
 
         public async void OnMapReady(GoogleMap map)
         {
@@ -31,7 +39,7 @@ namespace MountainWalker.Droid.Fragments
             Map.UiSettings.MyLocationButtonEnabled = true;
             Map.AddMarker(new MarkerOptions().SetPosition(new LatLng(54.394121, 18.569394))
                 .SetTitle("Best place to go!"));
-            Debug.WriteLine("biforek");
+
             DroidMainActivityService.CreatePointsAndTrails();
         }
 
@@ -80,5 +88,7 @@ namespace MountainWalker.Droid.Fragments
         }
 
         protected override int FragmentId => Resource.Layout.HomeView;
+        
+        
     }
 }

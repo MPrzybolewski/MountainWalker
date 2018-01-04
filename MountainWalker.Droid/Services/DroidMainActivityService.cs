@@ -6,7 +6,9 @@ using Android.Gms.Maps.Model;
 using Android.Graphics;
 using MountainWalker.Core;
 using MountainWalker.Core.Interfaces;
+using MountainWalker.Core.ViewModels;
 using MountainWalker.Droid.Fragments;
+using MvvmCross.Binding.Bindings.Target;
 using Debug = System.Diagnostics.Debug;
 using DialogFragment = MountainWalker.Droid.Fragments.DialogFragment;
 using Point = MountainWalker.Core.Models.Point;
@@ -104,8 +106,22 @@ namespace MountainWalker.Droid.Services
                 }
                 poly.Width = 10;
                 poly.Points = latlng;
+                Debug.WriteLine(poly.Id);
+                
             }
+
+            HomeFragment.Map.PolylineClick += (sender, args) =>
+            {
+                HomeViewModel.RaiseTrailPopup(args.Polyline.Id);
+            };
+
         }
+
+        //private void MapOnMarkerClick(object sender, GoogleMap.PolylineClickEventArgs markerClickEventArgs)
+        //{
+        //    Polyline poly = markerClickEventArgs.Polyline;
+        //    Debug.WriteLine("Kliknieto polyline o id = " + poly.Id);
+        //}
 
         public void SetPointsAndTrials(PointList points, ConnectionList connections)
         {
