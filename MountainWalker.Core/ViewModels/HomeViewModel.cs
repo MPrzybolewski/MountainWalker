@@ -22,7 +22,9 @@ namespace MountainWalker.Core.ViewModels
         private MvxSubscriptionToken _token;
 
         public Point Location { get; set; }
+        public Point usedPoint = null;
         private PointList _points;
+        private PointList _usedPoints;
         private ConnectionList _connections;
 
         public IMvxCommand OpenMainDialogCommand { get; }
@@ -48,6 +50,7 @@ namespace MountainWalker.Core.ViewModels
             _locationService.StartFollow();
 
             _points = new PointList();
+            _usedPoints = new PointList();
             _connections = new ConnectionList();
 
             _mainService.SetPointsAndTrials(_points, _connections);
@@ -69,6 +72,21 @@ namespace MountainWalker.Core.ViewModels
                     }
                 }
             }
+            else
+            {
+                foreach (var point in _points.Points)
+                {
+                    if(_mainService.GetDistanceBetweenTwoPointsOnMapInMeters(Location, point) < 30 && _mainService.GetDistanceBetweenTwoPointsOnMapInMeters(Location, usedPoint) > 30 )
+                    {
+                        _mainService.SendNotification("Brawo!", "Zdobyłeś punkt"+point.Description);
+                        usedPoint = Location;
+                    }
+                    else
+                    {
+                        usedPoint = null;
+                    }
+                }
+            }
         }
 
         //private void StopTrail()
@@ -81,7 +99,7 @@ namespace MountainWalker.Core.ViewModels
 
         private async Task OpenDialog()
         {
-            await _navigationService.Navigate(typeof(DialogViewModel));
+             _navigationService.Navigate(typeof(DialogViewModel));
         }
 
         private void Logout()

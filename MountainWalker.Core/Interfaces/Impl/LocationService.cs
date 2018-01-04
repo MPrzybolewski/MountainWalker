@@ -7,6 +7,7 @@ using MvvmCross.Platform;
 using MvvmCross.Plugins.Location;
 using MvvmCross.Plugins.Messenger;
 using Plugin.Geolocator;
+using System.Diagnostics;
 
 namespace MountainWalker.Core.Interfaces.Impl
 {
@@ -27,9 +28,11 @@ namespace MountainWalker.Core.Interfaces.Impl
 
         private void OnLocation(MvxGeoLocation location)
         {
+
             _currentLocation = new Point(location.Coordinates.Latitude, location.Coordinates.Longitude);
 
             var message = new LocationMessage(this, _currentLocation);
+
             _messenger.Publish(message);
         }
         

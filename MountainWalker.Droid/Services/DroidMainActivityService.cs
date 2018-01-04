@@ -77,6 +77,10 @@ namespace MountainWalker.Droid.Services
 
         public double GetDistanceBetweenTwoPointsOnMapInMeters(Point firstLocation, Point secondLocation)
         {
+            if (secondLocation==null)
+            {
+                return 1000000;
+            }
             Debug.WriteLine("Uzytkownik: {0} , {1}", firstLocation.Latitude, firstLocation.Longitude);
             Debug.WriteLine("Punkt: {0} , {1}", secondLocation.Latitude, secondLocation.Longitude);
             int R = 6378137; //Earth's mean radius in meter
