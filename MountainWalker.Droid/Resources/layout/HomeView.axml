@@ -6,21 +6,42 @@
     android:orientation="vertical">
     <include
         layout="@layout/toolbar_actionbar" />
-    <fragment
-        android:id="@+id/map"
-        android:layout_width="match_parent"
+    <RelativeLayout
+        android:layout_width="wrap_content"
         android:layout_height="match_parent"
-        class="com.google.android.gms.maps.MapFragment">
-        <Button
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_gravity="center_horizontal"
-            local:MvxBind="Click OpenMainDialogCommand; Text ButtonText" />
-        <Button
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="Logout"
-            android:layout_gravity="bottom|left"
-            local:MvxBind="Click LogoutCommand" />
-    </fragment>
+        android:orientation="vertical"
+        android:background="#A0FFFFFF">
+        <fragment
+            android:id="@+id/map"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            class="com.google.android.gms.maps.MapFragment"
+            android:layout_marginBottom="0.0dp">
+            <Button
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_horizontal"
+                local:MvxBind="Click OpenMainDialogCommand; Text ButtonText" />
+            <Button
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Logout"
+                android:layout_gravity="bottom|left"
+                local:MvxBind="Click LogoutCommand" />
+        </fragment>
+        <RelativeLayout
+            android:id="@+id/bottomPanel"
+            android:layout_width="match_parent"
+            android:layout_height="30dp"
+            android:orientation="vertical"
+            android:background="#A0FFFFFF"
+            android:layout_alignParentBottom="true"
+            local:MvxBind="Visibility BottomPanelVisibility">
+            <TextView
+                android:id="@+id/TimeInfo"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="TEST TEST TEST" />
+        </RelativeLayout>
+    </RelativeLayout>
 </LinearLayout>

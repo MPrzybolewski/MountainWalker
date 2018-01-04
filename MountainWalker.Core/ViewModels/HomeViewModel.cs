@@ -24,7 +24,6 @@ namespace MountainWalker.Core.ViewModels
         public Point Location { get; set; }
         private PointList _points;
         private ConnectionList _connections;
-
         public IMvxCommand OpenMainDialogCommand { get; }
 
         public IMvxCommand LogoutCommand { get; }
@@ -40,6 +39,13 @@ namespace MountainWalker.Core.ViewModels
             }
         }
 
+        private string _bottomPanelVisibility = "gone";
+        public  string BottomPanelVisibility
+        {
+            get => _bottomPanelVisibility;
+            set => SetProperty(ref _bottomPanelVisibility, value);
+        }
+
         public static Point UserPosition;
 
 
@@ -48,7 +54,6 @@ namespace MountainWalker.Core.ViewModels
             ISharedPreferencesService sharedPreferencesService, IMvxNavigationService navigationService, 
             IMvxMessenger messenger, IDialogService dialogService)
         {
-            
             _mainService = mainService;
             _sharedPreferencesService = sharedPreferencesService;
             _token = messenger.Subscribe<LocationMessage>(OnLocationMessage);
@@ -100,9 +105,11 @@ namespace MountainWalker.Core.ViewModels
         {
             if(_locationService.GetStateOfJourney())
             {
+                BottomPanelVisibility = "gone";
                 await _navigationService.Navigate<AfterStartDialogViewModel>();
             } else 
             {
+                BottomPanelVisibility = "visible";
                 await _navigationService.Navigate<DialogViewModel>();
             }
         }

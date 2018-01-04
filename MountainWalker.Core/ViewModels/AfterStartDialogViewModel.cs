@@ -2,6 +2,7 @@
 using System.Diagnostics;
 using MountainWalker.Core.Interfaces;
 using MountainWalker.Core.Models;
+using MvvmCross.Core.Navigation;
 using MvvmCross.Core.ViewModels;
 
 namespace MountainWalker.Core.ViewModels
@@ -40,6 +41,7 @@ namespace MountainWalker.Core.ViewModels
         {
             _mainService = mainService;
             _locationService = locationService;
+
             _locationService.SetTravelTime();
             TimeInfo = "Twoj czas: " +  _locationService.GetTravelTime();
             StopTravel = new MvxCommand(ExecuteStopTravel);
@@ -52,7 +54,6 @@ namespace MountainWalker.Core.ViewModels
             _mainService.CloseMainDialog(true);
             _locationService.SetStateOfJourney(false);
             _locationService.SetDialogButtonText("Start");
-
         }
 
         private void ExecuteDontStopTravel()

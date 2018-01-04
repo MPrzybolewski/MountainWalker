@@ -69,7 +69,7 @@ namespace MountainWalker.Droid.Fragments
             switch (itemId)
             {
                 case Resource.Id.nav_home:
-                    ViewModel.ShowHomeCommand.Execute();
+                    ViewModel.ShowHomeCommand.Execute();    
                     break;
                 case Resource.Id.nav_trails:
                     ViewModel.ShowTrailsCommand.Execute();
