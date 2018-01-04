@@ -11,11 +11,13 @@ namespace MountainWalker.Core.ViewModels
     {
         private ISharedPreferencesService _sharedPreferencesService;
         private readonly IMvxNavigationService _navigationService;
+        private IWebAPIService _webAPIService;
 
-        public StartViewModel(ISharedPreferencesService sharedPreferencesService, IMvxNavigationService navigationService)
+        public StartViewModel(ISharedPreferencesService sharedPreferencesService, IMvxNavigationService navigationService, IWebAPIService webAPIService)
         {
             _sharedPreferencesService = sharedPreferencesService;
             _navigationService = navigationService;
+            _webAPIService = webAPIService;
         }
 
         public override Task Initialize()
@@ -24,7 +26,7 @@ namespace MountainWalker.Core.ViewModels
             return base.Initialize();
         }
 
-        private void CheckPreferences()
+        private async void CheckPreferences()
         {
             string userName = string.Empty;
             string password = string.Empty;
@@ -37,15 +39,11 @@ namespace MountainWalker.Core.ViewModels
             }
             else
             {
-                //There are saved credentials
+                string RestUrl = "http://mountainwalkerwebapi.azurewebsites.net/api/users/" + userName + "?password=" +
+                             password;
+                string result = await _webAPIService.CheckIfUserCanLogin(RestUrl);
 
-                /*This is where you would query the database
-                 *
-                 * 
-                 * 
-                 Done querying*/
-
-                if (userName == "admin" && password == "admin")
+                if (result.Trim(new char[] { '"' }).Equals("true"))
                 {
                     //Successful so take the user to application
                     _navigationService.Navigate<MainViewModel>();
@@ -53,7 +51,6 @@ namespace MountainWalker.Core.ViewModels
                 else
                 {
                     //Unsuccesful so take user to login screen
-
                     //Clean SharedPreferences
                     _sharedPreferencesService.CleanSharedPreferences();
 
