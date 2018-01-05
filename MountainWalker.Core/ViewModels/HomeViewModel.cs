@@ -83,9 +83,9 @@ namespace MountainWalker.Core.ViewModels
                 _mainService.SetCurrentLocation(Location); //this should be enable after started walking
                 foreach (var point in _points.Points)
                 {
-                    if (_mainService.GetDistanceBetweenTwoPointsOnMapInMeters(Location, point) < 30
+                    if (_mainService.GetDistanceBetweenTwoPointsOnMapInMeters(Location, point) < 150
                         && _mainService.GetDistanceBetweenTwoPointsOnMapInMeters(
-                            _locationService.GetReachedPoints()[_locationService.GetReachedPoints().Count], point) < 30) 
+                            _locationService.GetReachedPoints()[_locationService.GetReachedPoints().Count], point) < 150) 
                     {
                         _locationService.AddReachedPoint(point);
                     }
