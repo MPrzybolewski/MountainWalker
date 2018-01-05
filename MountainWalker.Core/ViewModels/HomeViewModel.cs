@@ -15,11 +15,13 @@ namespace MountainWalker.Core.ViewModels
     public class HomeViewModel : MvxViewModel
     {
         private readonly ILocationService _locationService;
+        private readonly IBottomPanelService _bottomPanelService;
         private readonly IMainActivityService _mainService;
         private readonly ISharedPreferencesService _sharedPreferencesService;
         private readonly IMvxNavigationService _navigationService;
         private readonly IDialogService _dialogService;
         private MvxSubscriptionToken _token;
+        private MvxSubscriptionToken _bottomPanelToken;
 
         public Point Location { get; set; }
         private PointList _points;
@@ -52,14 +54,16 @@ namespace MountainWalker.Core.ViewModels
 
         public HomeViewModel(ILocationService locationService, IMainActivityService mainService,
             ISharedPreferencesService sharedPreferencesService, IMvxNavigationService navigationService, 
-            IMvxMessenger messenger, IDialogService dialogService)
+            IMvxMessenger messenger, IDialogService dialogService, IBottomPanelService bottomPanelService)
         {
             _mainService = mainService;
             _sharedPreferencesService = sharedPreferencesService;
             _token = messenger.Subscribe<LocationMessage>(OnLocationMessage);
+            _bottomPanelToken = messenger.Subscribe<BottomPanelMessage>(OnTimerMessage);
             _navigationService = navigationService;
             _dialogService = dialogService;
             _locationService = locationService;
+            _bottomPanelService = bottomPanelService;
 
             LogoutCommand = new MvxCommand(Logout);
 
@@ -91,6 +95,11 @@ namespace MountainWalker.Core.ViewModels
                     }
                 }
             }
+        }
+
+        private void OnTimerMessage(BottomPanelMessage message)
+        {
+            
         }
 
         //private void StopTrail()

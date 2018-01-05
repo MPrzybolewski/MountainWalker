@@ -17,6 +17,7 @@ namespace MountainWalker.Core.Messages
             get;
             private set;
         }
+
         public BottomPanelMessage(object sender, TravelTime travelTime, int numberOfReachedPoints) : base(sender)
         {
             TravelTime = travelTime;
