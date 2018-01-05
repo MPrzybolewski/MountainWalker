@@ -1,12 +1,13 @@
 ﻿using System;
 using System.Diagnostics;
+using MountainWalker.Core.Interfaces;
 using MountainWalker.Core.Messages;
 using MountainWalker.Core.Models;
 using MvvmCross.Plugins.Messenger;
 
 namespace MountainWalker.Core.Services
 {
-    public class BottomPanelService
+    public class BottomPanelService : IBottomPanelService
     {
         private readonly IMvxMessenger _bottomPanelMessenger;
 
@@ -29,12 +30,12 @@ namespace MountainWalker.Core.Services
         }
 
 
-        private void SetTravelTime(TravelTime travelTime)
+        public void SetTravelTime(TravelTime travelTime)
         {
             _travelTime = travelTime;
         }
 
-        private void SetNumberOfReachedPoints(int numberOfReachedPoints)
+        public void SetNumberOfReachedPoints(int numberOfReachedPoints)
         {
             _numberOfReachedPoints = numberOfReachedPoints;
         }
@@ -60,5 +61,7 @@ namespace MountainWalker.Core.Services
         {
             return _travelTime;
         }
+
+      
     }
 }
