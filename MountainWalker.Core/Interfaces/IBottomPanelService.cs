@@ -5,7 +5,7 @@ namespace MountainWalker.Core.Interfaces
 {
     public interface IBottomPanelService
     {
-        void GetTimeFromTimer();
+        void OnTimeFromTimer();
         void SetTravelTime(TravelTime travelTime);
         void SetNumberOfReachedPoints(int numberOfReachedPoints);
         void StartTimer();

@@ -22,7 +22,7 @@ namespace MountainWalker.Core.Services
             _bottomPanelMessenger = bottomPanelMessenger;
         }
 
-        public void GetTimeFromTimer()
+        public void OnTimeFromTimer()
         {
             var message = new BottomPanelMessage(this, _travelTime, _numberOfReachedPoints);
 
