@@ -42,8 +42,8 @@ namespace MountainWalker.Core.ViewModels
             _mainService = mainService;
             _locationService = locationService;
 
-            _locationService.SetTravelTime();
-            TimeInfo = "Twoj czas: " +  _locationService.GetTravelTime();
+            //_locationService.SetTravelTime();
+            //TimeInfo = "Twoj czas: " +  _locationService.GetTravelTime();
             StopTravel = new MvxCommand(ExecuteStopTravel);
             DontStropTravel = new MvxCommand(ExecuteDontStopTravel);
         }

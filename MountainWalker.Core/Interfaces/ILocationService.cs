@@ -11,7 +11,6 @@ namespace MountainWalker.Core.Interfaces
 {
     public interface ILocationService
     {
-        
         Task<Point> GetLocation();
         Point GetCurrentLocation();
         bool GetStateOfJourney();
@@ -22,9 +21,5 @@ namespace MountainWalker.Core.Interfaces
         void SetDialogButtonText(string text);
         string GetDialogButtonText();
         void StartFollow();
-        void StartTimer();
-        void StopTimer();
-        void SetTravelTime();
-        TravelTime GetTravelTime();
     }
 }
