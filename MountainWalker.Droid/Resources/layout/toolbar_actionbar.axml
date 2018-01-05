@@ -11,5 +11,11 @@
         android:layout_width="match_parent"
         android:layout_height="?attr/actionBarSize"
         android:background="?attr/colorPrimary"
-        local:popupTheme="@style/ThemeOverlay.AppCompat.Light" />
+        local:popupTheme="@style/ThemeOverlay.AppCompat.Light">
+        <Button
+            android:id="@+id/phoneButton"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_horizontal" />
+    </android.support.v7.widget.Toolbar>
 </android.support.design.widget.AppBarLayout>

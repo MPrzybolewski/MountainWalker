@@ -30,6 +30,7 @@ namespace MountainWalker.Core
             Points.Add(new Point(54.389535, 18.609066, "Galeria Zaspa"));
             Points.Add(new Point(54.361725, 18.642379, "Lodowisko"));
             Points.Add(new Point(54.355569, 18.645688, "Główny"));
+            Points.Add(new Point(54.493153, 18.539298, "Future Office"));
         }
     }
 }

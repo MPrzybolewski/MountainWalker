@@ -10,7 +10,8 @@ using MvvmCross.Plugins.Location;
 namespace MountainWalker.Core.Interfaces
 {
     public interface ILocationService
-    { 
+    {
+        
         Task<Point> GetLocation();
         Point GetCurrentLocation();
         bool GetStateOfJourney();
@@ -18,7 +19,12 @@ namespace MountainWalker.Core.Interfaces
         List<Point> GetReachedPoints();
         void AddReachedPoint(Point point);
         void SetNewList();
-
+        void SetDialogButtonText(string text);
+        string GetDialogButtonText();
         void StartFollow();
+        void StartTimer();
+        void StopTimer();
+        void SetTravelTime();
+        TravelTime GetTravelTime();
     }
 }

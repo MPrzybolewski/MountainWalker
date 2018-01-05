@@ -13,6 +13,8 @@ using MvvmCross.Binding.Droid.BindingContext;
 using MvvmCross.Droid.Views;
 using Debug = System.Diagnostics.Debug;
 using MountainWalker.Droid.NavigationDrawer;
+using Android.Widget;
+using MountainWalker.Droid.Views;
 
 namespace MountainWalker.Droid.Fragments
 {
@@ -62,6 +64,7 @@ namespace MountainWalker.Droid.Fragments
             return base.OnCreateView(inflater, container, savedInstanceState);
         }
 
+
         public async Task ShowUserLocation()
         {
             var locator = CrossGeolocator.Current;
@@ -80,5 +83,7 @@ namespace MountainWalker.Droid.Fragments
         }
 
         protected override int FragmentId => Resource.Layout.HomeView;
+
+
     }
 }

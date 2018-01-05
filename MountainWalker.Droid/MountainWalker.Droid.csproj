@@ -170,7 +170,6 @@
     <Compile Include="Bootstrap\LocationPluginBootstrap.cs" />
     <Compile Include="Bootstrap\MessengerPluginBootstrap.cs" />
     <Compile Include="Fragments\DialogFragment.cs" />
-    <Compile Include="Fragments\HomeFragment.cs" />
     <Compile Include="MainApplication.cs" />
     <Compile Include="Resources\Resource.designer.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -194,6 +193,8 @@
     <Compile Include="Fragments\AchievementsFragment.cs" />
     <Compile Include="Fragments\TrailsFragment.cs" />
     <Compile Include="Fragments\DescriptionFragment.cs" />
+    <Compile Include="Fragments\AfterStartDialogFragment.cs" />
+    <Compile Include="Fragments\HomeFragment.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Resources\AboutResources.txt" />
@@ -226,6 +227,7 @@
     <AndroidResource Include="Resources\layout\AchievementsView.axml" />
     <AndroidResource Include="Resources\layout\TrailsView.axml" />
     <AndroidResource Include="Resources\layout\AppDescriptionView.axml" />
+    <AndroidResource Include="Resources\layout\AfterStartDialogView.axml" />
   </ItemGroup>
   <ItemGroup>
     <AndroidResource Include="Resources\values\Strings.xml" />

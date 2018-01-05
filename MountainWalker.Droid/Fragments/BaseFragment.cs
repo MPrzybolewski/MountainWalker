@@ -7,7 +7,7 @@ using MvvmCross.Droid.Support.V4;
 using MvvmCross.Droid.Support.V7.AppCompat;
 using MvvmCross.Core.ViewModels;
 using MvvmCross.Binding.Droid.BindingContext;
-using System;
+using Android.Content;
 
 namespace MountainWalker.Droid.Fragments
 {
@@ -39,6 +39,15 @@ namespace MountainWalker.Droid.Fragments
             {
                 var mainActivity = Activity as MainView;
                 if (mainActivity == null) return view;
+
+
+                Android.Widget.Button button = view.FindViewById<Android.Widget.Button>(Resource.Id.phoneButton);
+
+                button.Click += delegate {
+                    var uri = Android.Net.Uri.Parse("tel:123346678");
+                    var intent = new Intent(Intent.ActionDial, uri);
+                    StartActivity(intent);
+                };
 
                 mainActivity.SetSupportActionBar(Toolbar);
 

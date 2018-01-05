@@ -6,9 +6,10 @@ using Android.Gms.Maps.Model;
 using Android.Graphics;
 using MountainWalker.Core;
 using MountainWalker.Core.Interfaces;
+using MountainWalker.Core.ViewModels;
 using MountainWalker.Droid.Fragments;
 using Debug = System.Diagnostics.Debug;
-using DialogFragment = MountainWalker.Droid.Fragments.DialogFragment;
+
 using Point = MountainWalker.Core.Models.Point;
 using MvvmCross.Platform;
 using MvvmCross.Platform.Droid.Platform;
@@ -35,12 +36,19 @@ namespace MountainWalker.Droid.Services
                 LatLng coordinate = new LatLng(location.Latitude, location.Longitude);
                 CameraUpdate yourLocation = CameraUpdateFactory.NewLatLngZoom(coordinate, 17);
                 HomeFragment.Map.AnimateCamera(yourLocation);
+
             }
         }
 
-        public void CloseMainDialog()
+        public void CloseMainDialog(bool isStopButton)
         {
-            DialogFragment.dialog.Dismiss();
+            if(isStopButton)
+            {
+                AfterStartDialogFragment.dialog.Dismiss();
+            } else 
+            {
+                Fragments.DialogFragment.dialog.Dismiss();
+            }
         }
 
         public void SendNotification(string title, string content)
@@ -68,7 +76,7 @@ namespace MountainWalker.Droid.Services
         {
             double distanceBetweenNearestPointAndUserCurrentLocation = GetDistanceBetweenTwoPointsOnMapInMeters(userLocation, pointLocation);
             Debug.WriteLine("Odelglosc: {0}",distanceBetweenNearestPointAndUserCurrentLocation);
-            if(distanceBetweenNearestPointAndUserCurrentLocation < 50)
+            if(distanceBetweenNearestPointAndUserCurrentLocation < 100)
             {
                 return true;
             }

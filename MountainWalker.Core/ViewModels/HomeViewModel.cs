@@ -26,25 +26,43 @@ namespace MountainWalker.Core.ViewModels
         private PointList _points;
         private PointList _usedPoints;
         private ConnectionList _connections;
-
         public IMvxCommand OpenMainDialogCommand { get; }
 
         public IMvxCommand LogoutCommand { get; }
 
+        private  string _buttonText = "Start";
+        public string ButtonText
+        {
+            get { return _buttonText; }
+            set 
+            {
+                _buttonText = value; 
+                RaisePropertyChanged();
+            }
+        }
+
+        private string _bottomPanelVisibility = "gone";
+        public  string BottomPanelVisibility
+        {
+            get => _bottomPanelVisibility;
+            set => SetProperty(ref _bottomPanelVisibility, value);
+        }
+
         public static Point UserPosition;
+
+
 
         public HomeViewModel(ILocationService locationService, IMainActivityService mainService,
             ISharedPreferencesService sharedPreferencesService, IMvxNavigationService navigationService, 
             IMvxMessenger messenger, IDialogService dialogService)
         {
-            _locationService = locationService;
             _mainService = mainService;
             _sharedPreferencesService = sharedPreferencesService;
             _token = messenger.Subscribe<LocationMessage>(OnLocationMessage);
             _navigationService = navigationService;
             _dialogService = dialogService;
+            _locationService = locationService;
 
-            OpenMainDialogCommand = new MvxAsyncCommand(OpenDialog);
             LogoutCommand = new MvxCommand(Logout);
 
             _locationService.StartFollow();
@@ -54,6 +72,10 @@ namespace MountainWalker.Core.ViewModels
             _connections = new ConnectionList();
 
             _mainService.SetPointsAndTrials(_points, _connections);
+
+            ButtonText = _locationService.GetDialogButtonText();
+            OpenMainDialogCommand = new MvxAsyncCommand(OpenDialog);
+
         }
 
         private void OnLocationMessage(LocationMessage message)
@@ -64,9 +86,9 @@ namespace MountainWalker.Core.ViewModels
                 _mainService.SetCurrentLocation(Location); //this should be enable after started walking
                 foreach (var point in _points.Points)
                 {
-                    if (_mainService.GetDistanceBetweenTwoPointsOnMapInMeters(Location, point) < 30
+                    if (_mainService.GetDistanceBetweenTwoPointsOnMapInMeters(Location, point) < 150
                         && _mainService.GetDistanceBetweenTwoPointsOnMapInMeters(
-                            _locationService.GetReachedPoints()[_locationService.GetReachedPoints().Count], point) < 30) 
+                            _locationService.GetReachedPoints()[_locationService.GetReachedPoints().Count], point) < 150) 
                     {
                         _locationService.AddReachedPoint(point);
                     }
@@ -99,7 +121,15 @@ namespace MountainWalker.Core.ViewModels
 
         private async Task OpenDialog()
         {
-             _navigationService.Navigate(typeof(DialogViewModel));
+            if(_locationService.GetStateOfJourney())
+            {
+                BottomPanelVisibility = "gone";
+                await _navigationService.Navigate<AfterStartDialogViewModel>();
+            } else 
+            {
+                BottomPanelVisibility = "visible";
+                await _navigationService.Navigate<DialogViewModel>();
+            }
         }
 
         private void Logout()
