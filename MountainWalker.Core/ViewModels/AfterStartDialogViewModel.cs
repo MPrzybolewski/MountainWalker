@@ -44,8 +44,8 @@ namespace MountainWalker.Core.ViewModels
             _locationService = locationService;
             _bottomPanelService = bottomPanelService;
 
-            //_locationService.SetTravelTime();
-            //TimeInfo = "Twoj czas: " +  _locationService.GetTravelTime();
+            _bottomPanelService.SetTravelTime();
+            TimeInfo = "Twoj czas: " +  _bottomPanelService.GetTravelTime();
             StopTravel = new MvxCommand(ExecuteStopTravel);
             DontStropTravel = new MvxCommand(ExecuteDontStopTravel);
         }
@@ -56,6 +56,7 @@ namespace MountainWalker.Core.ViewModels
             _mainService.CloseMainDialog(true);
             _locationService.SetStateOfJourney(false);
             _locationService.SetDialogButtonText("Start");
+            _bottomPanelService.StopTimer();
         }
 
         private void ExecuteDontStopTravel()
