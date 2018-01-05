@@ -16,6 +16,7 @@ namespace MountainWalker.Core.ViewModels
         private readonly IMainActivityService _mainService;
         private readonly ILocationService _locationService;
         private readonly IBottomPanelService _bottomPanelService;
+        private readonly IStartButtonService _startButtonService;
 
         public IMvxCommand TrailStartCommand { get; }
         public IMvxCommand NearestPointCommand { get; }
@@ -54,11 +55,13 @@ namespace MountainWalker.Core.ViewModels
             }
         }
 
-        public DialogViewModel(IMainActivityService mainService, ILocationService locationService, IBottomPanelService bottomPanelService) // tutaj ILocationService
+        public DialogViewModel(IMainActivityService mainService, ILocationService locationService,
+                               IBottomPanelService bottomPanelService, IStartButtonService startButtonService) // tutaj ILocationService
         {
             _mainService = mainService;
             _locationService = locationService;
             _bottomPanelService = bottomPanelService;
+            _startButtonService = startButtonService;
 
             var point = _locationService.GetCurrentLocation();
             Debug.WriteLine(point.Latitude + " " + point.Longitude + " - ja jestem tutaj");
@@ -90,7 +93,7 @@ namespace MountainWalker.Core.ViewModels
             _locationService.SetNewList();
             _locationService.SetStateOfJourney(true);
             _bottomPanelService.StartTimer();
-            _locationService.SetDialogButtonText("Stop");
+            _startButtonService.SetStartButtonText("Stop");
             _bottomPanelService.SetBottomPanelVisibility("visible");
             _mainService.CloseMainDialog(false);
 

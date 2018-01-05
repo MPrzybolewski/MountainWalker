@@ -97,7 +97,6 @@ namespace MountainWalker.Core.ViewModels
 
             _mainService.SetPointsAndTrials(_points, _connections);
 
-            ButtonText = _locationService.GetDialogButtonText();
             OpenMainDialogCommand = new MvxAsyncCommand(OpenDialog);
 
         }

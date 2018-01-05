@@ -12,6 +12,7 @@ namespace MountainWalker.Core.ViewModels
         private readonly IMainActivityService _mainService;
         private readonly ILocationService _locationService;
         private readonly IBottomPanelService _bottomPanelService;
+        private readonly IStartButtonService _startButtonService;
 
         public IMvxCommand StopTravel { get; }
         public IMvxCommand DontStropTravel { get; }
@@ -38,11 +39,13 @@ namespace MountainWalker.Core.ViewModels
             }
         }
 
-        public AfterStartDialogViewModel(IMainActivityService mainService, ILocationService locationService, IBottomPanelService bottomPanelService) 
+        public AfterStartDialogViewModel(IMainActivityService mainService, ILocationService locationService,
+                                         IBottomPanelService bottomPanelService, IStartButtonService startButtonService) 
         {
             _mainService = mainService;
             _locationService = locationService;
             _bottomPanelService = bottomPanelService;
+            _startButtonService = startButtonService;
 
             _bottomPanelService.SetTravelTime();
             TimeInfo = "Twoj czas: " +  _bottomPanelService.GetTravelTime();
@@ -55,7 +58,7 @@ namespace MountainWalker.Core.ViewModels
             Stopwatch timer = new Stopwatch();
             _mainService.CloseMainDialog(true);
             _locationService.SetStateOfJourney(false);
-            _locationService.SetDialogButtonText("Start");
+            _startButtonService.SetStartButtonText("Start");
             _bottomPanelService.StopTimer();
             _bottomPanelService.SetBottomPanelVisibility("gone");
         }
