@@ -19,6 +19,9 @@ namespace MountainWalker.Core.ViewModels
         private readonly ISharedPreferencesService _sharedPreferencesService;
         private readonly IMvxNavigationService _navigationService;
         private readonly IDialogService _dialogService;
+        private readonly IBottomPanelService _bottomPanelService;
+        private readonly IStartButtonService _startButtonService;
+
         private MvxSubscriptionToken _token;
         private MvxSubscriptionToken _bottomPanelToken;
         private MvxSubscriptionToken _startButtonToken;
@@ -76,13 +79,16 @@ namespace MountainWalker.Core.ViewModels
 
         public HomeViewModel(ILocationService locationService, IMainActivityService mainService,
             ISharedPreferencesService sharedPreferencesService, IMvxNavigationService navigationService, 
-            IMvxMessenger messenger, IDialogService dialogService)
+            IMvxMessenger messenger, IDialogService dialogService, IBottomPanelService bottomPanelService,
+                            IStartButtonService startButtonService)
         {
             _mainService = mainService;
             _sharedPreferencesService = sharedPreferencesService;
             _navigationService = navigationService;
             _dialogService = dialogService;
             _locationService = locationService;
+            _bottomPanelService = bottomPanelService;
+            _startButtonService = startButtonService;
 
             _token = messenger.Subscribe<LocationMessage>(OnLocationMessage);
             _bottomPanelToken = messenger.Subscribe<BottomPanelMessage>(OnTimerMessage);
