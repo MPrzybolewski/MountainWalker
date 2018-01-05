@@ -58,6 +58,7 @@
     <Compile Include="Models\TravelTime.cs" />
     <Compile Include="Messages\BottomPanelMessage.cs" />
     <Compile Include="Services\BottomPanelService.cs" />
+    <Compile Include="Interfaces\IBottomPanelService.cs" />
   </ItemGroup>
   <ItemGroup>
     <Reference Include="MvvmCross.Platform">
