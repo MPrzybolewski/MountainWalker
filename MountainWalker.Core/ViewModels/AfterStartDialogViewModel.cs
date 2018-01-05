@@ -11,6 +11,7 @@ namespace MountainWalker.Core.ViewModels
     {
         private readonly IMainActivityService _mainService;
         private readonly ILocationService _locationService;
+        private readonly IBottomPanelService _bottomPanelService;
 
         public IMvxCommand StopTravel { get; }
         public IMvxCommand DontStropTravel { get; }
@@ -37,10 +38,11 @@ namespace MountainWalker.Core.ViewModels
             }
         }
 
-        public AfterStartDialogViewModel(IMainActivityService mainService, ILocationService locationService) 
+        public AfterStartDialogViewModel(IMainActivityService mainService, ILocationService locationService, IBottomPanelService bottomPanelService) 
         {
             _mainService = mainService;
             _locationService = locationService;
+            _bottomPanelService = bottomPanelService;
 
             //_locationService.SetTravelTime();
             //TimeInfo = "Twoj czas: " +  _locationService.GetTravelTime();
