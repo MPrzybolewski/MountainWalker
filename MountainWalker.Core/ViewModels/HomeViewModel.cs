@@ -21,6 +21,7 @@ namespace MountainWalker.Core.ViewModels
         private readonly IDialogService _dialogService;
         private MvxSubscriptionToken _token;
         private MvxSubscriptionToken _bottomPanelToken;
+        private MvxSubscriptionToken _startButtonToken;
 
         public Point Location { get; set; }
         private PointList _points;
@@ -79,11 +80,13 @@ namespace MountainWalker.Core.ViewModels
         {
             _mainService = mainService;
             _sharedPreferencesService = sharedPreferencesService;
-            _token = messenger.Subscribe<LocationMessage>(OnLocationMessage);
-            _bottomPanelToken = messenger.Subscribe<BottomPanelMessage>(OnTimerMessage);
             _navigationService = navigationService;
             _dialogService = dialogService;
             _locationService = locationService;
+
+            _token = messenger.Subscribe<LocationMessage>(OnLocationMessage);
+            _bottomPanelToken = messenger.Subscribe<BottomPanelMessage>(OnTimerMessage);
+            _startButtonToken = messenger.Subscribe<StartButtonMessage>(OnStartButtonMessage);
 
             LogoutCommand = new MvxCommand(Logout);
 
@@ -122,6 +125,11 @@ namespace MountainWalker.Core.ViewModels
             TimeInfoText = message.TravelTime.ToString();
             PointsInfoText = message.NumberOfReachedPoints.ToString();
             BottomPanelVisibility = message.BottomPanelVisibility;
+        }
+
+        private void OnStartButtonMessage(StartButtonMessage message)
+        {
+            ButtonText = message.StartButtonText;
         }
 
         //private void StopTrail()
