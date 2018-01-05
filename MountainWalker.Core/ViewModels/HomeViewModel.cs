@@ -48,6 +48,28 @@ namespace MountainWalker.Core.ViewModels
             set => SetProperty(ref _bottomPanelVisibility, value);
         }
 
+        private string _timeInfoText = "0";
+        public string TimeInfoText
+        {
+            get { return _timeInfoText; }
+            set 
+            {
+                _timeInfoText = value;
+                RaisePropertyChanged();
+            }
+        }
+
+        private string _pointsInfoText = "0";
+        public string PointsInfoText
+        {
+            get { return _pointsInfoText; }
+            set
+            {
+                _pointsInfoText = value;
+                RaisePropertyChanged();
+            }
+        }
+
         public static Point UserPosition;
 
 
@@ -99,7 +121,8 @@ namespace MountainWalker.Core.ViewModels
 
         private void OnTimerMessage(BottomPanelMessage message)
         {
-            
+            TimeInfoText = message.TravelTime.ToString();
+            PointsInfoText = message.NumberOfReachedPoints.ToString();
         }
 
         //private void StopTrail()
