@@ -28,6 +28,7 @@ namespace MountainWalker.Core.Messages
         {
             TravelTime = travelTime;
             NumberOfReachedPoints = numberOfReachedPoints;
+            BottomPanelVisibility = bottomPanelVisibility;
         }
 
 

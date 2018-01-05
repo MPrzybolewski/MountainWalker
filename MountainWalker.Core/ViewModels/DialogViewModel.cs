@@ -91,7 +91,7 @@ namespace MountainWalker.Core.ViewModels
             _locationService.SetStateOfJourney(true);
             _bottomPanelService.StartTimer();
             _locationService.SetDialogButtonText("Stop");
-
+            _bottomPanelService.SetBottomPanelVisibility("visible");
             _mainService.CloseMainDialog(false);
 
         }

@@ -11,8 +11,8 @@ namespace MountainWalker.Core.Services
     {
         private readonly IMvxMessenger _bottomPanelMessenger;
 
-        private TravelTime _travelTime;
-        private int _numberOfReachedPoints;
+        private TravelTime _travelTime = new TravelTime(1,1,1);
+        private int _numberOfReachedPoints = 0;
         private string _bottomPanelVisibility;
 
         Stopwatch timer;
@@ -66,6 +66,7 @@ namespace MountainWalker.Core.Services
         public void SetBottomPanelVisibility(string visibility)
         {
             _bottomPanelVisibility = visibility;
+            OnTimeFromTimer();
         }
 
         public string GetBottomPanelVisibility()

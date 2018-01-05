@@ -123,6 +123,7 @@ namespace MountainWalker.Core.ViewModels
         {
             TimeInfoText = message.TravelTime.ToString();
             PointsInfoText = message.NumberOfReachedPoints.ToString();
+            BottomPanelVisibility = message.BottomPanelVisibility;
         }
 
         //private void StopTrail()
@@ -137,11 +138,9 @@ namespace MountainWalker.Core.ViewModels
         {
             if(_locationService.GetStateOfJourney())
             {
-                BottomPanelVisibility = "gone";
                 await _navigationService.Navigate<AfterStartDialogViewModel>();
             } else 
             {
-                BottomPanelVisibility = "visible";
                 await _navigationService.Navigate<DialogViewModel>();
             }
         }
