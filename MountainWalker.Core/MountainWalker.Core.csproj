@@ -56,6 +56,8 @@
     <Compile Include="ViewModels\AppDescriptionViewModel.cs" />
     <Compile Include="ViewModels\AfterStartDialogViewModel.cs" />
     <Compile Include="Models\TravelTime.cs" />
+    <Compile Include="Messages\BottomPanelMessage.cs" />
+    <Compile Include="Services\BottomPanelService.cs" />
   </ItemGroup>
   <ItemGroup>
     <Reference Include="MvvmCross.Platform">
@@ -90,5 +92,8 @@
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup />
+  <ItemGroup>
+    <Folder Include="Services\" />
+  </ItemGroup>
   <Import Project="$(MSBuildExtensionsPath32)\Microsoft\Portable\$(TargetFrameworkVersion)\Microsoft.Portable.CSharp.targets" />
 </Project>
