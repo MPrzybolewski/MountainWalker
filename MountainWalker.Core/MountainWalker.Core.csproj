@@ -61,11 +61,9 @@
     <Compile Include="Interfaces\IBottomPanelService.cs" />
     <Compile Include="Interfaces\IStartButtonService.cs" />
     <Compile Include="Messages\StartButtonMessage.cs" />
+    <Compile Include="Services\StartButtonService.cs" />
   </ItemGroup>
   <ItemGroup>
-    <Reference Include="MvvmCross.Core">
-      <HintPath>..\packages\MvvmCross.Core.5.4.2\lib\portable-net45+win+wpa81+wp80\MvvmCross.Core.dll</HintPath>
-    </Reference>
     <Reference Include="MvvmCross.Binding">
       <HintPath>..\packages\MvvmCross.Binding.5.4.2\lib\portable-net45+win+wpa81+wp80\MvvmCross.Binding.dll</HintPath>
     </Reference>
@@ -89,6 +87,9 @@
     </Reference>
     <Reference Include="MvvmCross.Platform">
       <HintPath>..\packages\MvvmCross.Platform.5.4.2\lib\portable-net45+win+wpa81+wp80\MvvmCross.Platform.dll</HintPath>
+    </Reference>
+    <Reference Include="MvvmCross.Core">
+      <HintPath>..\packages\MvvmCross.Core.5.4.2\lib\portable-net45+win+wpa81+wp80\MvvmCross.Core.dll</HintPath>
     </Reference>
   </ItemGroup>
   <ItemGroup>
