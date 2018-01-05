@@ -5,5 +5,6 @@ namespace MountainWalker.Core.Interfaces
     {
         void OnStartButton();
         void SetStartButtonText(string buttonText);
+        string GetStartButtonText();
     }
 }

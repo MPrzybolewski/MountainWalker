@@ -16,6 +16,11 @@ namespace MountainWalker.Core.Services
             _startButtonMessenger = startButtonMessenger;
         }
 
+        public string GetStartButtonText()
+        {
+            return _startButtonText;
+        }
+
         public void OnStartButton()
         {
             var message = new StartButtonMessage(this, _startButtonText);
