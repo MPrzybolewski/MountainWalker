@@ -13,6 +13,7 @@ namespace MountainWalker.Core.Services
 
         private TravelTime _travelTime;
         private int _numberOfReachedPoints;
+        private string _bottomPanelVisibility;
 
         Stopwatch timer;
         long _travelTimeInMiliseconds;
@@ -24,7 +25,7 @@ namespace MountainWalker.Core.Services
 
         public void OnTimeFromTimer()
         {
-            var message = new BottomPanelMessage(this, _travelTime, _numberOfReachedPoints);
+            var message = new BottomPanelMessage(this, _travelTime, _numberOfReachedPoints, _bottomPanelVisibility);
 
             _bottomPanelMessenger.Publish(message);
         }
@@ -60,6 +61,16 @@ namespace MountainWalker.Core.Services
         public TravelTime GetTravelTime()
         {
             return _travelTime;
+        }
+
+        public void SetBottomPanelVisibility(string visibility)
+        {
+            _bottomPanelVisibility = visibility;
+        }
+
+        public string GetBottomPanelVisibility()
+        {
+            return _bottomPanelVisibility;
         }
 
       

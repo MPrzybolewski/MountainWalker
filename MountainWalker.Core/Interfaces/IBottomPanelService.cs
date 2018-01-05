@@ -12,5 +12,7 @@ namespace MountainWalker.Core.Interfaces
         void StopTimer();
         void SetTravelTime();
         TravelTime GetTravelTime();
+        void SetBottomPanelVisibility(string visibility);
+        string GetBottomPanelVisibility();
     }
 }

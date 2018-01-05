@@ -18,7 +18,13 @@ namespace MountainWalker.Core.Messages
             private set;
         }
 
-        public BottomPanelMessage(object sender, TravelTime travelTime, int numberOfReachedPoints) : base(sender)
+        public string BottomPanelVisibility
+        {
+            get;
+            private set;
+        }
+
+        public BottomPanelMessage(object sender, TravelTime travelTime, int numberOfReachedPoints, string bottomPanelVisibility) : base(sender)
         {
             TravelTime = travelTime;
             NumberOfReachedPoints = numberOfReachedPoints;
