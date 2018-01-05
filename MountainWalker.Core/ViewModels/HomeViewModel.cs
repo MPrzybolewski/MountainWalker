@@ -15,7 +15,6 @@ namespace MountainWalker.Core.ViewModels
     public class HomeViewModel : MvxViewModel
     {
         private readonly ILocationService _locationService;
-        private readonly IBottomPanelService _bottomPanelService;
         private readonly IMainActivityService _mainService;
         private readonly ISharedPreferencesService _sharedPreferencesService;
         private readonly IMvxNavigationService _navigationService;
@@ -76,7 +75,7 @@ namespace MountainWalker.Core.ViewModels
 
         public HomeViewModel(ILocationService locationService, IMainActivityService mainService,
             ISharedPreferencesService sharedPreferencesService, IMvxNavigationService navigationService, 
-            IMvxMessenger messenger, IDialogService dialogService, IBottomPanelService bottomPanelService)
+            IMvxMessenger messenger, IDialogService dialogService)
         {
             _mainService = mainService;
             _sharedPreferencesService = sharedPreferencesService;
@@ -85,7 +84,6 @@ namespace MountainWalker.Core.ViewModels
             _navigationService = navigationService;
             _dialogService = dialogService;
             _locationService = locationService;
-            _bottomPanelService = bottomPanelService;
 
             LogoutCommand = new MvxCommand(Logout);
 
