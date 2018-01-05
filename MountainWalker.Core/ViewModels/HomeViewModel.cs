@@ -105,6 +105,14 @@ namespace MountainWalker.Core.ViewModels
 
             OpenMainDialogCommand = new MvxAsyncCommand(OpenDialog);
 
+            SetLayoutProperties();
+
+        }
+
+        void SetLayoutProperties()
+        {
+            ButtonText = _startButtonService.GetStartButtonText();
+            BottomPanelVisibility = _bottomPanelService.GetBottomPanelVisibility();
         }
 
         private void OnLocationMessage(LocationMessage message)
