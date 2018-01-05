@@ -59,6 +59,7 @@
     <Compile Include="Messages\BottomPanelMessage.cs" />
     <Compile Include="Services\BottomPanelService.cs" />
     <Compile Include="Interfaces\IBottomPanelService.cs" />
+    <Compile Include="Interfaces\IStartButtonService.cs" />
   </ItemGroup>
   <ItemGroup>
     <Reference Include="MvvmCross.Platform">
