@@ -9,7 +9,7 @@ namespace MountainWalker.Core.Services
     {
         private readonly IMvxMessenger _startButtonMessenger;
 
-        private string _startButtonText;
+        private string _startButtonText = "Start";
 
         public StartButtonService(IMvxMessenger startButtonMessenger)
         {

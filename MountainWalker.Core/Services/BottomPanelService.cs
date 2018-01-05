@@ -13,7 +13,7 @@ namespace MountainWalker.Core.Services
 
         private TravelTime _travelTime = new TravelTime(1,1,1);
         private int _numberOfReachedPoints = 0;
-        private string _bottomPanelVisibility;
+        private string _bottomPanelVisibility = "gone";
 
         Stopwatch timer;
         long _travelTimeInMiliseconds;
