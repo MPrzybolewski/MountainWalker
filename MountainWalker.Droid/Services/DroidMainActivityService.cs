@@ -6,21 +6,20 @@ using Android.Gms.Maps.Model;
 using Android.Graphics;
 using MountainWalker.Core;
 using MountainWalker.Core.Interfaces;
+using MountainWalker.Core.Models;
 using MountainWalker.Core.ViewModels;
 using MountainWalker.Droid.Fragments;
+using MvvmCross.Binding.Bindings.Target;
 using Debug = System.Diagnostics.Debug;
 
 using Point = MountainWalker.Core.Models.Point;
-using MvvmCross.Platform;
-using MvvmCross.Platform.Droid.Platform;
-using Android.Content;
 
 namespace MountainWalker.Droid.Services
 {
     public class DroidMainActivityService : IMainActivityService
     {
-        private static PointList _pointList;
-        private static ConnectionList _trails;
+        private static List<Point> _pointList;
+        private static List<Connection> _trails;
 
         public void SetLatLngButton(Point location)
         {
@@ -51,25 +50,9 @@ namespace MountainWalker.Droid.Services
             }
         }
 
-        public void SendNotification(string title, string content)
+        public void CloseTrailDialog()
         {
-
-            var top = Mvx.Resolve<IMvxAndroidCurrentTopActivity>();
-            var act = top.Activity;
-
-            Notification.Builder builder = new Notification.Builder(act)
-                .SetContentTitle(title)
-                .SetContentText(content)
-                .SetDefaults(NotificationDefaults.All)
-                .SetSmallIcon(Resource.Drawable.SignInViewBackground);
-
-            Notification notification = builder.Build();
-
-            NotificationManager notificationManager =
-                act.GetSystemService(Context.NotificationService) as NotificationManager;
-
-            const int notificationId = 0;
-            notificationManager.Notify(notificationId, notification);
+            TrailDialogFragment.dialog.Dismiss();
         }
 
         public bool CheckPointIsNear(Point userLocation, Point pointLocation)
@@ -85,10 +68,6 @@ namespace MountainWalker.Droid.Services
 
         public double GetDistanceBetweenTwoPointsOnMapInMeters(Point firstLocation, Point secondLocation)
         {
-            if (secondLocation==null)
-            {
-                return 1000000;
-            }
             Debug.WriteLine("Uzytkownik: {0} , {1}", firstLocation.Latitude, firstLocation.Longitude);
             Debug.WriteLine("Punkt: {0} , {1}", secondLocation.Latitude, secondLocation.Longitude);
             int R = 6378137; //Earth's mean radius in meter
@@ -109,14 +88,14 @@ namespace MountainWalker.Droid.Services
 
         public static void CreatePointsAndTrails()
         {
-            foreach (var point in _pointList.Points)
+            foreach (var point in _pointList)
             {
                 HomeFragment.Map.AddMarker(new MarkerOptions()
                     .SetPosition(new LatLng(point.Latitude, point.Longitude))
                     .SetTitle(point.Description));
             }
 
-            foreach (var polyline in _trails.Connections)
+            foreach (var polyline in _trails)
             {
                 var latlng = new List<LatLng>();
                 foreach (var point in polyline.Path)
@@ -140,10 +119,26 @@ namespace MountainWalker.Droid.Services
                 }
                 poly.Width = 10;
                 poly.Points = latlng;
+                Debug.WriteLine(poly.Id);
+                
             }
+
+            //HomeFragment.Map.PolylineClick += (sender, args) =>
+            //{
+            //    int id = int.Parse(args.Polyline.Id.Trim(new Char[] {'p', 'l'}));
+            //    Debug.WriteLine("Id of this polyline is  => " + id);
+            //    HomeViewModel.RaiseTrailPopup(args.Polyline.Id);
+            //};
+
         }
 
-        public void SetPointsAndTrials(PointList points, ConnectionList connections)
+        //private void MapOnMarkerClick(object sender, GoogleMap.PolylineClickEventArgs markerClickEventArgs)
+        //{
+        //    Polyline poly = markerClickEventArgs.Polyline;
+        //    Debug.WriteLine("Kliknieto polyline o id = " + poly.Id);
+        //}
+
+        public void SetPointsAndTrials(List<Point> points, List<Connection> connections)
         {
             _pointList = points;
             _trails = connections;

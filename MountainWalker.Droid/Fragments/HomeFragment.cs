@@ -8,11 +8,15 @@ using MountainWalker.Core.ViewModels;
 using Plugin.Geolocator;
 using Android.Gms.Maps.Model;
 using Android.App;
+using MountainWalker.Droid.Bindings;
 using MountainWalker.Droid.Services;
 using MvvmCross.Binding.Droid.BindingContext;
 using MvvmCross.Droid.Views;
 using Debug = System.Diagnostics.Debug;
 using MountainWalker.Droid.NavigationDrawer;
+using MvvmCross.Binding.BindingContext;
+using MvvmCross.Core.ViewModels;
+using MvvmCross.Plugins.Messenger;
 using Android.Widget;
 using MountainWalker.Droid.Views;
 
@@ -24,17 +28,22 @@ namespace MountainWalker.Droid.Fragments
     {
         public static GoogleMap Map;
 
+        public IMvxCommand Command;
+
         public async void OnMapReady(GoogleMap map)
         {
             Map = map;
             await ShowUserLocation();
-
             Map.MyLocationEnabled = true;
             Map.UiSettings.MyLocationButtonEnabled = true;
             Map.AddMarker(new MarkerOptions().SetPosition(new LatLng(54.394121, 18.569394))
                 .SetTitle("Best place to go!"));
-            Debug.WriteLine("biforek");
+            
             DroidMainActivityService.CreatePointsAndTrails();
+
+            var set = this.CreateBindingSet<HomeFragment, HomeViewModel>();
+            set.Bind(Map).For(TrailDialogBinding.BindingName).To(vm => vm.OpenTrailDialogCommand);
+            set.Apply();
         }
 
         public override View OnCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState)
@@ -61,9 +70,9 @@ namespace MountainWalker.Droid.Fragments
             }
             _mapFragment.GetMapAsync(this);
 
-            return base.OnCreateView(inflater, container, savedInstanceState);
+            var view = base.OnCreateView(inflater, container, savedInstanceState);
+            return view;
         }
-
 
         public async Task ShowUserLocation()
         {
@@ -82,8 +91,6 @@ namespace MountainWalker.Droid.Fragments
             Map.MoveCamera(yourLocation);
         }
 
-        protected override int FragmentId => Resource.Layout.HomeView;
-
-
+        protected override int FragmentId => Resource.Layout.HomeView;        
     }
 }

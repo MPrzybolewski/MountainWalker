@@ -30,18 +30,26 @@
                 local:MvxBind="Click LogoutCommand" />
         </fragment>
         <RelativeLayout
-            android:id="@+id/bottomPanel"
+            android:id="@+id/travelPanel"
             android:layout_width="match_parent"
-            android:layout_height="30dp"
+            android:layout_height="50dp"
             android:orientation="vertical"
             android:background="#A0FFFFFF"
             android:layout_alignParentBottom="true"
-            local:MvxBind="Visibility BottomPanelVisibility">
+            local:MvxBind="Visibility TravelPanelVisibility">
             <TextView
-                android:id="@+id/TimeInfo"
+                android:id="@+id/timeInfo"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="TEST TEST TEST" />
+                android:text="czas"
+                local:MvxBind="Text TimeInfoText" />
+            <TextView
+                android:id="@+id/pointsInfo"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="punkty"
+                android:layout_below="@id/timeInfo"
+                local:MvxBind="Text PointsInfoText" />
         </RelativeLayout>
     </RelativeLayout>
 </LinearLayout>

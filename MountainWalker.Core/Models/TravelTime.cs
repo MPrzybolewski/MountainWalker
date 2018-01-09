@@ -49,7 +49,7 @@ namespace MountainWalker.Core.Models
 
         public override string ToString()
         {
-            return string.Format("{0}h:{1}m:{2}s]", Houre, Minute, Second);
+            return string.Format("{0}h:{1}m:{2}s", Houre, Minute, Second);
         }
 
     }
