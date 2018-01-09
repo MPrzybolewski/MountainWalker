@@ -17,6 +17,7 @@ namespace MountainWalker.Core.ViewModels
         private readonly ILocationService _locationService;
         private readonly ITravelPanelService _travelPanelService;
         private readonly IStartButtonService _startButtonService;
+        private readonly ITrailService _trailService;
 
         public IMvxCommand TrailStartCommand { get; }
         public IMvxCommand NearestPointCommand { get; }
@@ -56,30 +57,32 @@ namespace MountainWalker.Core.ViewModels
         }
 
         public DialogViewModel(IMainActivityService mainService, ILocationService locationService,
-                               ITravelPanelService travelPanelService, IStartButtonService startButtonService) // tutaj ILocationService
+                               ITravelPanelService travelPanelService, IStartButtonService startButtonService,
+                              ITrailService trailService) // tutaj ILocationService
         {
             _mainService = mainService;
             _locationService = locationService;
             _travelPanelService = travelPanelService;
             _startButtonService = startButtonService;
+            _trailService = trailService;
 
-            var point = _locationService.CurrentLocation;
-            if (point == null)
+            var currentLocation = _locationService.CurrentLocation;
+            if (currentLocation == null)
             {
-                point.Latitude = 0.0;
-                point.Longitude = 0.0;
+                currentLocation.Latitude = 0.0;
+                currentLocation.Longitude = 0.0;
             }
 
-            Debug.WriteLine(point.Latitude + " " + point.Longitude + " - ja jestem tutaj");
+            Debug.WriteLine(currentLocation.Latitude + " " + currentLocation.Longitude + " - ja jestem tutaj");
 
             TrailTitle = "Hala Gąsienicowa"; //some function should be here, but idk how i want to do here
 
-            Point test = new Point(54.090426, 18.790808);
-            Debug.WriteLine(test.Latitude + " " + test.Longitude + " - a test tutaj");
+            Point nearestPoint = GetNearestPoint(currentLocation);
+            Debug.WriteLine(currentLocation.Latitude + " " + currentLocation.Longitude + " - a test tutaj");
 
             //Point Point = new Point(54.090506, 18.790464);
 
-            if (_mainService.CheckPointIsNear(point, test)) // user and point location
+            if (_mainService.CheckPointIsNear(currentLocation, nearestPoint)) // user and point location
             {
                 CanStart = true;
                 TrailStartCommand = new MvxCommand(StartTrail);
@@ -110,6 +113,23 @@ namespace MountainWalker.Core.ViewModels
         {
             _mainService.SetLatLngButton(new Point(54.394121, 18.569394)); //best place to go every monday <3
             _mainService.CloseMainDialog(false);
+        }
+
+        private Point GetNearestPoint(Point userLocation)
+        {
+            double minDistanceBettwenPoints = Double.MaxValue;
+            Point nearestPoint = new Point(0,0);
+            foreach(Point point in _trailService.Points)
+            {
+                double distanceBettwenPoints = _mainService.GetDistanceBetweenTwoPointsOnMapInMeters(userLocation, point);
+                if(minDistanceBettwenPoints > distanceBettwenPoints)
+                {
+                    minDistanceBettwenPoints = distanceBettwenPoints;
+                    nearestPoint = point;
+                }
+            }
+
+            return nearestPoint;
         }
     }
 }
