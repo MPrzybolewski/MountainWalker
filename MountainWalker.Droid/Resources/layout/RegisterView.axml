@@ -1,109 +1,117 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:local="http://schemas.android.com/apk/res-auto"
-    android:orientation="vertical"
     android:layout_width="fill_parent"
     android:layout_height="fill_parent"
-    android:background="@drawable/nice_mountains">
-    <TextView
-        android:layout_width="fill_parent"
+    android:fillViewport="true">
+  
+    <LinearLayout
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:gravity="center_horizontal"
-        android:textColor="@color/foreground_material_light"
-        android:textSize="20dp"
-        android:paddingBottom="15dp"
-        android:text="Podaj dane niezbędne do założenia konta." />
-    <TextView
-        android:layout_width="fill_parent"
-        android:layout_height="wrap_content"
-        android:textColor="@color/foreground_material_light"
-        android:paddingBottom="2dp"
-        android:textSize="15dp"
-        android:text="Imię" />
-    <EditText
-        android:layout_width="fill_parent"
-        android:layout_height="wrap_content"
-        android:textColor="@color/foreground_material_light"
-        android:paddingBottom="10dp"
-        android:textSize="15dp"
-        local:MvxBind="Text Name" />
-    <TextView
-        android:layout_width="fill_parent"
-        android:layout_height="wrap_content"
-        android:textColor="@color/foreground_material_light"
-        android:paddingBottom="2dp"
-        android:textSize="15dp"
-        android:text="Nazwisko" />
-    <EditText
-        android:layout_width="fill_parent"
-        android:layout_height="wrap_content"
-        android:textColor="@color/foreground_material_light"
-        android:paddingBottom="10dp"
-        android:textSize="15dp"
-        local:MvxBind="Text Surname" />
-    <TextView
-        android:layout_width="fill_parent"
-        android:layout_height="wrap_content"
-        android:textColor="@color/foreground_material_light"
-        android:paddingBottom="2dp"
-        android:textSize="15dp"
-        android:text="Login" />
-    <EditText
-        android:layout_width="fill_parent"
-        android:layout_height="wrap_content"
-        android:textColor="@color/foreground_material_light"
-        android:paddingBottom="10dp"
-        android:textSize="15dp"
-        local:MvxBind="Text Login" />
-    <TextView
-        android:layout_width="fill_parent"
-        android:layout_height="wrap_content"
-        android:textColor="@color/foreground_material_light"
-        android:paddingBottom="2dp"
-        android:textSize="15dp"
-        android:text="Hasło" />
-    <EditText
-        android:layout_width="fill_parent"
-        android:layout_height="wrap_content"
-        android:textColor="@color/foreground_material_light"
-        android:paddingBottom="10dp"
-        android:textSize="15dp"
-        android:inputType="textPassword"
-        local:MvxBind="Text Password" />
-    <TextView
-        android:layout_width="fill_parent"
-        android:layout_height="wrap_content"
-        android:textColor="@color/foreground_material_light"
-        android:paddingBottom="2dp"
-        android:textSize="15dp"
-        android:text="Powtórz hasło" />
-    <EditText
-        android:layout_width="fill_parent"
-        android:layout_height="wrap_content"
-        android:textColor="@color/foreground_material_light"
-        android:paddingBottom="10dp"
-        android:textSize="15dp"
-        android:inputType="textPassword"
-        local:MvxBind="Text RepPassword" />
-    <TextView
-        android:layout_width="fill_parent"
-        android:layout_height="wrap_content"
-        android:textColor="@color/foreground_material_light"
-        android:paddingBottom="2dp"
-        android:textSize="15dp"
-        android:text="E-mail" />
-    <EditText
-        android:layout_width="fill_parent"
-        android:layout_height="wrap_content"
-        android:textColor="@color/foreground_material_light"
-        android:paddingBottom="10dp"
-        android:textSize="15dp"
-        local:MvxBind="Text Email" />
-    <Button
-        android:layout_width="fill_parent"
-        android:layout_height="wrap_content"
-        android:textColor="@color/foreground_material_light"
-        android:text="Zaloguj"
-        android:textSize="15dp"
-        local:MvxBind="Click RegisterButton" />
-</LinearLayout>
+        android:background="@drawable/nice_mountains"
+        android:orientation="vertical"
+        android:paddingTop="20dip">
+        <TextView
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center_horizontal"
+            android:textColor="@color/foreground_material_light"
+            android:textSize="20dp"
+            android:paddingBottom="15dp"
+            android:text="Podaj dane niezbędne do założenia konta." />
+        <TextView
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:textColor="@color/foreground_material_light"
+            android:paddingBottom="2dp"
+            android:textSize="15dp"
+            android:text="Imię"
+            android:id="@+id/textView1" />
+        <EditText
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:textColor="@color/foreground_material_light"
+            android:paddingBottom="10dp"
+            android:textSize="15dp"
+            local:MvxBind="Text Name" />
+        <TextView
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:textColor="@color/foreground_material_light"
+            android:paddingBottom="2dp"
+            android:textSize="15dp"
+            android:text="Nazwisko" />
+        <EditText
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:textColor="@color/foreground_material_light"
+            android:paddingBottom="10dp"
+            android:textSize="15dp"
+            local:MvxBind="Text Surname" />
+        <TextView
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:textColor="@color/foreground_material_light"
+            android:paddingBottom="2dp"
+            android:textSize="15dp"
+            android:text="Login" />
+        <EditText
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:textColor="@color/foreground_material_light"
+            android:paddingBottom="10dp"
+            android:textSize="15dp"
+            local:MvxBind="Text Login" />
+        <TextView
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:textColor="@color/foreground_material_light"
+            android:paddingBottom="2dp"
+            android:textSize="15dp"
+            android:text="Hasło" />
+        <EditText
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:textColor="@color/foreground_material_light"
+            android:paddingBottom="10dp"
+            android:textSize="15dp"
+            android:inputType="textPassword"
+            local:MvxBind="Text Password" />
+        <TextView
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:textColor="@color/foreground_material_light"
+            android:paddingBottom="2dp"
+            android:textSize="15dp"
+            android:text="Powtórz hasło" />
+        <EditText
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:textColor="@color/foreground_material_light"
+            android:paddingBottom="10dp"
+            android:textSize="15dp"
+            android:inputType="textPassword"
+            local:MvxBind="Text RepPassword" />
+        <TextView
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:textColor="@color/foreground_material_light"
+            android:paddingBottom="2dp"
+            android:textSize="15dp"
+            android:text="E-mail" />
+        <EditText
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:textColor="@color/foreground_material_light"
+            android:paddingBottom="10dp"
+            android:textSize="15dp"
+            local:MvxBind="Text Email" />
+        <Button
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:textColor="@color/foreground_material_light"
+            android:text="Zarejestruj"
+            android:textSize="15dp"
+            local:MvxBind="Click RegisterButton" />
+    </LinearLayout>
+</ScrollView>

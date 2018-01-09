@@ -20,6 +20,9 @@ using MountainWalker.Droid.NavigationDrawer;
 using MvvmCross.Droid.Views;
 using MvvmCross.Platform;
 using MountainWalker.Droid.Fragments;
+using Android.Media;
+using Acr.UserDialogs;
+using MvvmCross.Platform.Droid.Platform;
 
 namespace MountainWalker.Droid.Views
 {
@@ -31,12 +34,19 @@ namespace MountainWalker.Droid.Views
               ScreenOrientation = ScreenOrientation.Portrait)]
     public class MainView : MvxAppCompatActivity<MainViewModel>
     {
-         public DrawerLayout DrawerLayout;
+        public DrawerLayout DrawerLayout;
 
+
+        public MediaPlayer _mediaPlayer;
         protected override void OnCreate(Bundle bundle)
         {
             
             base.OnCreate(bundle);
+
+
+            UserDialogs.Init(() => Mvx.Resolve<IMvxAndroidCurrentTopActivity>().Activity);
+            _mediaPlayer = MediaPlayer.Create(this, Resource.Raw.background_main);
+            _mediaPlayer.Start();
             SetContentView(Resource.Layout.MainView);
 
             DrawerLayout = FindViewById<DrawerLayout>(Resource.Id.drawerLayout);

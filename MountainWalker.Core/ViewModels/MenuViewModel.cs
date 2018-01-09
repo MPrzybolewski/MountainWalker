@@ -62,5 +62,15 @@ namespace MountainWalker.Core.ViewModels
             _navigationService.Navigate<SettingsViewModel>();
         }
 
+        public IMvxCommand ShowSignInCommand
+        {
+            get { return new MvxCommand(ShowSignInExecuted); }
+        }
+
+        private void ShowSignInExecuted()
+        {
+            _navigationService.Navigate<SignInViewModel>();
+        }
+
     }
 }

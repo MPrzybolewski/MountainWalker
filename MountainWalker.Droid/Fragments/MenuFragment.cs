@@ -18,6 +18,7 @@ using MountainWalker.Droid.Views;
 using MvvmCross.Binding.Droid.BindingContext;
 using MvvmCross.Droid.Support.V4;
 using MvvmCross.Droid.Views.Attributes;
+using Plugin.SecureStorage;
 
 namespace MountainWalker.Droid.Fragments
 {
@@ -82,6 +83,10 @@ namespace MountainWalker.Droid.Fragments
                     break;
                 case Resource.Id.nav_settings:
                     ViewModel.ShowSettingCommand.Execute();
+                    break;
+                case Resource.Id.nav_logout:
+                    CrossSecureStorage.Current.DeleteKey("Sesja");
+                    ViewModel.ShowSignInCommand.Execute();
                     break;
             }
         }

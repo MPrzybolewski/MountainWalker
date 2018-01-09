@@ -7,6 +7,7 @@ using MountainWalker.Core.Interfaces;
 using MvvmCross.Core.Navigation;
 using MvvmCross.Core.ViewModels;
 using MvvmCross.Platform;
+using Acr.UserDialogs;
 
 namespace MountainWalker.Core.ViewModels
 {
@@ -64,17 +65,37 @@ namespace MountainWalker.Core.ViewModels
         {
             if (_password.Equals(_repPassword))
             {
-                string RestUrl = "http://mountainwalkerwebapi.azurewebsites.net";
-                string result = await _webAPIService.CheckIfUserCanRegister(RestUrl, _name, _surname, _login, _password, _email);
-                if (result.Trim(new char[] { '"' }).Equals("true"))
+                bool result = await CheckIfRegistered();
+                if (result)
                 {
-                    _dialogService.ShowAlert("Powiadomienie!", "Rejestracja przebiegła pomyślnie", "OK");
                     _navigationService.Navigate<SignInViewModel>();
+                }
+                else
+                {
+                    _dialogService.ShowAlert("Uwaga!", "Błędne dane. Nie można zarejestrować!", "OK");
+                    _navigationService.Navigate<RegisterViewModel>();
                 }
             }
             else
             {
-                _dialogService.ShowAlert("Uwaga!", "Dane są nieprawidłowe!", "OK");
+                _dialogService.ShowAlert("Uwaga!", "Podane hasła są nieprawidłowe!", "OK");
+            }
+        }
+
+        public async Task<bool> CheckIfRegistered()
+        {
+
+            UserDialogs.Instance.ShowLoading("Rejestrowanie...");
+            string RestUrl = "http://mountainwalkerwebapi.azurewebsites.net/api/users/" + _login + "?password=" +
+                             _password;
+            string result = await _webAPIService.CheckIfUserCanLogin(RestUrl);
+            if (result.Trim(new char[] { '"' }).Equals("true"))
+            {
+                return true;
+            }
+            else
+            {
+                return false;
             }
         }
     }

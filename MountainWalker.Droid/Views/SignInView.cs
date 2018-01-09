@@ -4,6 +4,9 @@ using Android.Content.PM;
 using Android.Media;
 using Android.OS;
 using MvvmCross.Droid.Views;
+using Acr.UserDialogs;
+using MvvmCross.Platform;
+using MvvmCross.Platform.Droid.Platform;
 
 namespace MountainWalker.Droid.Views
 {
@@ -16,6 +19,8 @@ namespace MountainWalker.Droid.Views
         protected override void OnCreate(Bundle bundle)
         {
             base.OnCreate(bundle);
+
+            UserDialogs.Init(() => Mvx.Resolve<IMvxAndroidCurrentTopActivity>().Activity);
 
             //_mediaPlayer = MediaPlayer.Create(this, Resource.Raw.background);
             //_mediaPlayer.Start(); panowie, ile mozna? XD
