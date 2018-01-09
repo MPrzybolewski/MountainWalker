@@ -14,7 +14,6 @@ namespace MountainWalker.Core.ViewModels
     {
         private readonly ILocationService _locationService;
         private readonly IMainActivityService _mainService;
-        private readonly ISharedPreferencesService _sharedPreferencesService;
         private readonly IMvxNavigationService _navigationService;
         private readonly IDialogService _dialogService;
         private readonly ITrailService _trailService;
@@ -29,7 +28,6 @@ namespace MountainWalker.Core.ViewModels
 
         public IMvxCommand OpenMainDialogCommand { get; }
         public IMvxCommand<int> OpenTrailDialogCommand { get; set; }
-        public IMvxCommand LogoutCommand { get; }
 
         private  string _buttonText = "Start";
         public string ButtonText
@@ -73,15 +71,12 @@ namespace MountainWalker.Core.ViewModels
 
         public static Point UserPosition;
 
-
-
         public HomeViewModel(ILocationService locationService, IMainActivityService mainService,
             ISharedPreferencesService sharedPreferencesService, IMvxNavigationService navigationService, 
             IMvxMessenger messenger, IDialogService dialogService, ITrailService trailService, 
             ITravelPanelService travelPanelService, IStartButtonService startButtonService)
         {
             _mainService = mainService;
-            _sharedPreferencesService = sharedPreferencesService;
             _navigationService = navigationService;
             _dialogService = dialogService;
             _trailService = trailService;
@@ -95,8 +90,6 @@ namespace MountainWalker.Core.ViewModels
             _token = messenger.Subscribe<LocationMessage>(OnLocationMessage);
             _travelPanelToken = messenger.Subscribe<TravelPanelMessage>(OnTimerMessage);
             _startButtonToken = messenger.Subscribe<StartButtonMessage>(OnStartButtonMessage);
-
-            LogoutCommand = new MvxCommand(Logout);
 
             _locationService.StartFollow();
 
@@ -113,7 +106,7 @@ namespace MountainWalker.Core.ViewModels
         void SetLayoutProperties()
         {
             ButtonText = _startButtonService.GetStartButtonText();
-            TravelPanelVisibility = _travelPanelService.GetTravelPanelVisibility();
+            TravelPanelVisibility = _travelPanelService.TravelPanelVisibility;
         }
 
         private void OnLocationMessage(LocationMessage message)
@@ -124,10 +117,12 @@ namespace MountainWalker.Core.ViewModels
                 _mainService.SetCurrentLocation(Location); //this should be enable after starting walking
                 foreach (var point in _trailService.Points)
                 {
-                    if (_mainService.GetDistanceBetweenTwoPointsOnMapInMeters(Location, point) < 20
+                    Debug.WriteLine("Distance - true?" + _mainService.GetDistanceBetweenTwoPointsOnMapInMeters(Location, point));
+                    if (_mainService.GetDistanceBetweenTwoPointsOnMapInMeters(Location, point) < 30
                         &&  !_locationService.ReachedPoints.Contains(point)) 
                     {
                         _locationService.ReachedPoints.Add(point);
+                        _travelPanelService.NumberOfReachedPoints = _locationService.ReachedPoints.Count;
                     }
                 }
             }
@@ -137,8 +132,7 @@ namespace MountainWalker.Core.ViewModels
         {
             TravelPanelVisibility = message.TravelPanelVisibility;
             RunTravelPanelTimer();
-            //PointsInfoText = message.NumberOfReachedPoints.ToString();
-            PointsInfoText = "Ilość zdobytych punktów - " + _locationService.ReachedPoints.Count;
+            PointsInfoText = "Ilość zdobytych punktów - " + message.NumberOfReachedPoints;
         }
 
         private void OnStartButtonMessage(StartButtonMessage message)
@@ -152,17 +146,9 @@ namespace MountainWalker.Core.ViewModels
             {
                 await Task.Delay(1000);
                 _travelPanelService.SetTravelTime();
-                TimeInfoText = "Czas podróży: " +  _travelPanelService.GetTravelTime().ToString();
+                TimeInfoText = "Czas podróży: " +  _travelPanelService.TravelTime;
             }
         }
-
-        //private void StopTrail()
-        //{
-        //    //timer stop
-        //    _isTrailStarted = false;
-        //    //new view with reached points
-        //    _dialogService.ShowAlert("You've reached" + _reachedPoints.Count + " points", "It's nice, it is?", "Fuck yea");
-        //}
 
         private async Task OpenDialog()
         {
@@ -180,12 +166,6 @@ namespace MountainWalker.Core.ViewModels
             int id = args;
             _locationService.TrailId = id;
             await _navigationService.Navigate(typeof(TrailDialogViewModel));
-        }
-
-        private void Logout()
-        {
-            _sharedPreferencesService.CleanSharedPreferences();
-            _navigationService.Navigate<SignInViewModel>();
         }
     }
 }
