@@ -20,13 +20,13 @@ namespace MountainWalker.Core.Interfaces.Impl
 
         private void ReadAllPoints()
         {
-            Points.Add(new Point(54.400680, 18.576661)); //skm
-            Points.Add(new Point(54.400810, 18.574563)); //grunwaldzka
-            Points.Add(new Point(54.397705, 18.577010)); //przejscie
-            Points.Add(new Point(54.396158, 18.573407)); //Mfi kckckc
-            Points.Add(new Point(54.394345, 18.579970)); //KFC
-            Points.Add(new Point(54.394121, 18.569394)); //Ygrek <3
-            Points.Add(new Point(54.034417, 19.033257)); //Malbork
+            Points.Add(new Point(54.400680, 18.576661, "skm")); //skm
+            Points.Add(new Point(54.400810, 18.574563, "grunwaldzka")); //grunwaldzka
+            Points.Add(new Point(54.397705, 18.577010, "przejscie")); //przejscie
+            Points.Add(new Point(54.396158, 18.573407, "Mfi")); //Mfi kckckc
+            Points.Add(new Point(54.394345, 18.579970, "KFC")); //KFC
+            Points.Add(new Point(54.394121, 18.569394, "Ygrek")); //Ygrek <3
+            Points.Add(new Point(54.034417, 19.033257, "Malbork")); //Malbork
 
             Points.Add(new Point(54.090550, 18.790999, "Misiu")); //xvoxin house
         }

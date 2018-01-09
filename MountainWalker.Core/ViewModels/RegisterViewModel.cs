@@ -91,6 +91,7 @@ namespace MountainWalker.Core.ViewModels
             string result = await _webAPIService.CheckIfUserCanLogin(RestUrl);
             if (result.Trim(new char[] { '"' }).Equals("true"))
             {
+                UserDialogs.Instance.HideLoading();
                 return true;
             }
             else
