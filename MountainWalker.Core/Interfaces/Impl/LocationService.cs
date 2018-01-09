@@ -19,9 +19,6 @@ namespace MountainWalker.Core.Interfaces.Impl
         private bool _isTrailStarted = false;
         private List<Point> _reachedPoints;
         private string _dialogButtonText = "Start";
-        Stopwatch timer;
-        long _travelTimeInMiliseconds;
-        TravelTime _travelTime;
 
 
         public LocationService(IMvxLocationWatcher watcher, IMvxMessenger messenger)
@@ -99,26 +96,6 @@ namespace MountainWalker.Core.Interfaces.Impl
             return _dialogButtonText;
         }
 
-        public void StartTimer()
-        {
-            timer = new Stopwatch();
-            timer.Start();
-        }
-
-        public void StopTimer()
-        {
-            timer.Stop();
-        }
-
-        public void SetTravelTime()
-        {
-            _travelTimeInMiliseconds = timer.ElapsedMilliseconds;
-            _travelTime = new TravelTime(_travelTimeInMiliseconds / 1000);
-        }
-
-        public TravelTime GetTravelTime()
-        {
-            return _travelTime;
-        }
+     
     }
 }
