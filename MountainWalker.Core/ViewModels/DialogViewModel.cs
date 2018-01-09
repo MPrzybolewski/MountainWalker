@@ -67,31 +67,22 @@ namespace MountainWalker.Core.ViewModels
             _trailService = trailService;
 
             var currentLocation = _locationService.CurrentLocation;
-            if (currentLocation == null)
-            {
-                currentLocation.Latitude = 0.0;
-                currentLocation.Longitude = 0.0;
-            }
 
-            Debug.WriteLine(currentLocation.Latitude + " " + currentLocation.Longitude + " - ja jestem tutaj");
-
-            TrailTitle = "Hala Gąsienicowa"; //some function should be here, but idk how i want to do here
 
             Point nearestPoint = GetNearestPoint(currentLocation);
-            Debug.WriteLine(currentLocation.Latitude + " " + currentLocation.Longitude + " - a test tutaj");
-
-            //Point Point = new Point(54.090506, 18.790464);
 
             if (_mainService.CheckPointIsNear(currentLocation, nearestPoint)) // user and point location
             {
                 CanStart = true;
                 TrailStartCommand = new MvxCommand(StartTrail);
-                TrailInfo = "You can start right now!";
+                TrailTitle = "MOŻNA";
+                TrailInfo = "Możesz rozpocząć swoją wędrówkę!";
             }
             else
             {
                 CanStart = false;
-                TrailInfo = "You are to far away from any start point";
+                TrailTitle = "NIE MOŻNA"; //some function should be here, but idk how i want to do here
+                TrailInfo = "Jesteś zbyt oddalony od najbliższego punktu!";
             }
             NearestPointCommand = new MvxCommand(ShowNearestPoint);
         }
@@ -104,7 +95,7 @@ namespace MountainWalker.Core.ViewModels
 
             _travelPanelService.StartTimer();
             _startButtonService.SetStartButtonText("Stop");
-            _travelPanelService.SetTravelPanelVisibility("visible");
+            _travelPanelService.TravelPanelVisibility = "visible";
             _mainService.CloseMainDialog(false);
 
         }
@@ -122,13 +113,13 @@ namespace MountainWalker.Core.ViewModels
             foreach(Point point in _trailService.Points)
             {
                 double distanceBettwenPoints = _mainService.GetDistanceBetweenTwoPointsOnMapInMeters(userLocation, point);
+                Debug.WriteLine("Distance between I and point is - " + distanceBettwenPoints);
                 if(minDistanceBettwenPoints > distanceBettwenPoints)
                 {
                     minDistanceBettwenPoints = distanceBettwenPoints;
                     nearestPoint = point;
                 }
             }
-
             return nearestPoint;
         }
     }
