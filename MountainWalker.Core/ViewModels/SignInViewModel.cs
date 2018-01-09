@@ -94,6 +94,7 @@ namespace MountainWalker.Core.ViewModels
             }
             else
             {
+                UserDialogs.Instance.HideLoading();
                 return false;
             }
         }
