@@ -5448,7 +5448,10 @@ namespace MountainWalker.Droid
 			public const int tooltip = 2130968650;
 			
 			// aapt resource value: 0x7f04004b
-			public const int TrailsView = 2130968651;
+			public const int TrailDialog = 2130968651;
+			
+			// aapt resource value: 0x7f04004c
+			public const int TrailsView = 2130968652;
 			
 			static Layout()
 			{

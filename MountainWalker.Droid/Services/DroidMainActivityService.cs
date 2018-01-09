@@ -6,8 +6,10 @@ using Android.Gms.Maps.Model;
 using Android.Graphics;
 using MountainWalker.Core;
 using MountainWalker.Core.Interfaces;
+using MountainWalker.Core.Models;
 using MountainWalker.Core.ViewModels;
 using MountainWalker.Droid.Fragments;
+using MvvmCross.Binding.Bindings.Target;
 using Debug = System.Diagnostics.Debug;
 
 using Point = MountainWalker.Core.Models.Point;
@@ -16,8 +18,8 @@ namespace MountainWalker.Droid.Services
 {
     public class DroidMainActivityService : IMainActivityService
     {
-        private static PointList _pointList;
-        private static ConnectionList _trails;
+        private static List<Point> _pointList;
+        private static List<Connection> _trails;
 
         public void SetLatLngButton(Point location)
         {
@@ -46,6 +48,11 @@ namespace MountainWalker.Droid.Services
             {
                 Fragments.DialogFragment.dialog.Dismiss();
             }
+        }
+
+        public void CloseTrailDialog()
+        {
+            TrailDialogFragment.dialog.Dismiss();
         }
 
         public bool CheckPointIsNear(Point userLocation, Point pointLocation)
@@ -81,14 +88,14 @@ namespace MountainWalker.Droid.Services
 
         public static void CreatePointsAndTrails()
         {
-            foreach (var point in _pointList.Points)
+            foreach (var point in _pointList)
             {
                 HomeFragment.Map.AddMarker(new MarkerOptions()
                     .SetPosition(new LatLng(point.Latitude, point.Longitude))
                     .SetTitle(point.Description));
             }
 
-            foreach (var polyline in _trails.Connections)
+            foreach (var polyline in _trails)
             {
                 var latlng = new List<LatLng>();
                 foreach (var point in polyline.Path)
@@ -112,10 +119,26 @@ namespace MountainWalker.Droid.Services
                 }
                 poly.Width = 10;
                 poly.Points = latlng;
+                Debug.WriteLine(poly.Id);
+                
             }
+
+            //HomeFragment.Map.PolylineClick += (sender, args) =>
+            //{
+            //    int id = int.Parse(args.Polyline.Id.Trim(new Char[] {'p', 'l'}));
+            //    Debug.WriteLine("Id of this polyline is  => " + id);
+            //    HomeViewModel.RaiseTrailPopup(args.Polyline.Id);
+            //};
+
         }
 
-        public void SetPointsAndTrials(PointList points, ConnectionList connections)
+        //private void MapOnMarkerClick(object sender, GoogleMap.PolylineClickEventArgs markerClickEventArgs)
+        //{
+        //    Polyline poly = markerClickEventArgs.Polyline;
+        //    Debug.WriteLine("Kliknieto polyline o id = " + poly.Id);
+        //}
+
+        public void SetPointsAndTrials(List<Point> points, List<Connection> connections)
         {
             _pointList = points;
             _trails = connections;

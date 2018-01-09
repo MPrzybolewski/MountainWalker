@@ -1,4 +1,5 @@
-﻿using System.Threading.Tasks;
+﻿using System.Diagnostics;
+using System.Threading.Tasks;
 using MountainWalker.Core.Interfaces;
 using MvvmCross.Core.Navigation;
 using MvvmCross.Core.ViewModels;
@@ -44,6 +45,7 @@ namespace MountainWalker.Core.ViewModels
             }
             else
             {
+                _dialogService.WaitingAlertDismiss();
                 _dialogService.ShowAlert("Uwaga!", "Login i/lub hasło są nieprawidłowe!", "OK");
             }
         }
@@ -77,7 +79,7 @@ namespace MountainWalker.Core.ViewModels
             set
             {
                 _isChecked = value;
-                // RaisePropertyChanged(() => IsChecked);
+                RaisePropertyChanged(() => IsChecked);
             }
         }
     }

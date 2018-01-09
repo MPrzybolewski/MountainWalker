@@ -63,12 +63,18 @@ namespace MountainWalker.Core.ViewModels
             _travelPanelService = travelPanelService;
             _startButtonService = startButtonService;
 
-            var point = _locationService.GetCurrentLocation();
+            var point = _locationService.CurrentLocation;
+            if (point == null)
+            {
+                point.Latitude = 0.0;
+                point.Longitude = 0.0;
+            }
+
             Debug.WriteLine(point.Latitude + " " + point.Longitude + " - ja jestem tutaj");
 
             TrailTitle = "Hala Gąsienicowa"; //some function should be here, but idk how i want to do here
 
-            Point test = new Point(54.034424, 19.033050);
+            Point test = new Point(54.090426, 18.790808);
             Debug.WriteLine(test.Latitude + " " + test.Longitude + " - a test tutaj");
 
             //Point Point = new Point(54.090506, 18.790464);
@@ -91,7 +97,8 @@ namespace MountainWalker.Core.ViewModels
         {
             _mainService.SetLatLngButton(new Point(54.3956171, 18.5724856)); //mfi
             _locationService.SetNewList();
-            _locationService.SetStateOfJourney(true);
+            _locationService.IsTrailStarted = true;
+
             _travelPanelService.StartTimer();
             _startButtonService.SetStartButtonText("Stop");
             _travelPanelService.SetTravelPanelVisibility("visible");

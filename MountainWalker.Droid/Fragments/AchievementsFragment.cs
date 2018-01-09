@@ -1,5 +1,4 @@
-﻿using System;
-using Android.OS;
+﻿using Android.OS;
 using Android.Runtime;
 using Android.Views;
 using MountainWalker.Core.ViewModels;

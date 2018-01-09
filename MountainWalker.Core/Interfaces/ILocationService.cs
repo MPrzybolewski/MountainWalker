@@ -12,14 +12,11 @@ namespace MountainWalker.Core.Interfaces
     public interface ILocationService
     {
         Task<Point> GetLocation();
-        Point GetCurrentLocation();
-        bool GetStateOfJourney();
-        void SetStateOfJourney(bool state);
-        List<Point> GetReachedPoints();
-        void AddReachedPoint(Point point);
+        Point CurrentLocation { get; set; }
+        bool IsTrailStarted { get; set; }
+        List<Point> ReachedPoints { get; set; }
+        int TrailId { get; set; }
         void SetNewList();
-        void SetDialogButtonText(string text);
-        string GetDialogButtonText();
         void StartFollow();
     }
 }
