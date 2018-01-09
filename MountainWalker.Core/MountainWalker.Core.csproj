@@ -30,9 +30,9 @@
   <ItemGroup>
     <Compile Include="Interfaces\IMainActivityService.cs" />
     <Compile Include="Interfaces\ILocationService.cs" />
-    <Compile Include="Interfaces\Impl\LocationService.cs" />
-    <Compile Include="Interfaces\Impl\TrailService.cs" />
-    <Compile Include="Interfaces\Impl\WebAPIService.cs" />
+    <Compile Include="Services\LocationService.cs" />
+    <Compile Include="Services\TrailService.cs" />
+    <Compile Include="Services\WebAPIService.cs" />
     <Compile Include="Interfaces\ITrailService.cs" />
     <Compile Include="Interfaces\IRegisterService.cs" />
     <Compile Include="Interfaces\IWebAPIService.cs" />
@@ -66,6 +66,12 @@
     <Compile Include="Services\StartButtonService.cs" />
   </ItemGroup>
   <ItemGroup>
+    <Reference Include="Acr.UserDialogs, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\Acr.UserDialogs.6.5.1\lib\netstandard1.1\Acr.UserDialogs.dll</HintPath>
+    </Reference>
+    <Reference Include="Acr.UserDialogs.Interface, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\Acr.UserDialogs.6.5.1\lib\netstandard1.1\Acr.UserDialogs.Interface.dll</HintPath>
+    </Reference>
     <Reference Include="MvvmCross.Binding">
       <HintPath>..\packages\MvvmCross.Binding.5.4.2\lib\portable-net45+win+wpa81+wp80\MvvmCross.Binding.dll</HintPath>
     </Reference>
@@ -93,13 +99,20 @@
     <Reference Include="MvvmCross.Core">
       <HintPath>..\packages\MvvmCross.Core.5.4.2\lib\portable-net45+win+wpa81+wp80\MvvmCross.Core.dll</HintPath>
     </Reference>
+    <Reference Include="Plugin.SecureStorage, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\sameerIOTApps.Plugin.SecureStorage.2.0.0\lib\portable-net45+wp8+wpa81+win8+MonoAndroid10+MonoTouch10+Xamarin.iOS10\Plugin.SecureStorage.dll</HintPath>
+    </Reference>
+    <Reference Include="Plugin.SecureStorage.Abstractions, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\sameerIOTApps.Plugin.SecureStorage.2.0.0\lib\portable-net45+wp8+wpa81+win8+MonoAndroid10+MonoTouch10+Xamarin.iOS10\Plugin.SecureStorage.Abstractions.dll</HintPath>
+    </Reference>
+    <Reference Include="Splat, Version=2.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\Splat.2.0.0\lib\netstandard1.1\Splat.dll</HintPath>
+    </Reference>
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup />
-  <ItemGroup>
-    <Folder Include="Services\" />
-  </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildExtensionsPath32)\Microsoft\Portable\$(TargetFrameworkVersion)\Microsoft.Portable.CSharp.targets" />
 </Project>

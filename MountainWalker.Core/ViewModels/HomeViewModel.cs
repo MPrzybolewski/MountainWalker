@@ -7,6 +7,7 @@ using MountainWalker.Core.Models;
 using MvvmCross.Core.Navigation;
 using MvvmCross.Core.ViewModels;
 using MvvmCross.Plugins.Messenger;
+using Plugin.SecureStorage;
 
 namespace MountainWalker.Core.ViewModels
 {
@@ -14,7 +15,6 @@ namespace MountainWalker.Core.ViewModels
     {
         private readonly ILocationService _locationService;
         private readonly IMainActivityService _mainService;
-        private readonly ISharedPreferencesService _sharedPreferencesService;
         private readonly IMvxNavigationService _navigationService;
         private readonly IDialogService _dialogService;
         private readonly ITrailService _trailService;
@@ -76,12 +76,10 @@ namespace MountainWalker.Core.ViewModels
 
 
         public HomeViewModel(ILocationService locationService, IMainActivityService mainService,
-            ISharedPreferencesService sharedPreferencesService, IMvxNavigationService navigationService, 
-            IMvxMessenger messenger, IDialogService dialogService, ITrailService trailService, 
-            ITravelPanelService travelPanelService, IStartButtonService startButtonService)
+            IMvxNavigationService navigationService, IMvxMessenger messenger, 
+            IDialogService dialogService, ITrailService trailService, ITravelPanelService travelPanelService, IStartButtonService startButtonService)
         {
             _mainService = mainService;
-            _sharedPreferencesService = sharedPreferencesService;
             _navigationService = navigationService;
             _dialogService = dialogService;
             _trailService = trailService;
@@ -185,7 +183,7 @@ namespace MountainWalker.Core.ViewModels
 
         private void Logout()
         {
-            _sharedPreferencesService.CleanSharedPreferences();
+            CrossSecureStorage.Current.DeleteKey("Sesja");
             _navigationService.Navigate<SignInViewModel>();
         }
 

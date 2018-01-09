@@ -20,7 +20,6 @@ namespace MountainWalker.Core.Interfaces.Impl
 
         public async Task<string> CheckIfUserCanRegister(string RestUrl, string _name, string _surname, string _login, string _password, string _email)
         {
-            _dialog.ShowWaitingAlert("Rejestracja i logowanko");
             var clientt = new HttpClient();
             clientt.BaseAddress = new Uri(RestUrl);
             object userInfos = new { id = "2", name = _name, surname = _surname, login = _login, password = _password, email = _email };
@@ -40,13 +39,11 @@ namespace MountainWalker.Core.Interfaces.Impl
 
         public async Task<string> CheckIfUserCanLogin(string RestUrl)
         {
-            _dialog.ShowWaitingAlert("Logowanko");
             var uri = new Uri(string.Format(RestUrl, string.Empty));
             var response = await client.GetAsync(uri);
             if (response.IsSuccessStatusCode)
             {
                 var content = await response.Content.ReadAsStringAsync();
-                _dialog.WaitingAlertDismiss();
                 return content;
             }
             return "false";
