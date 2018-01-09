@@ -22,6 +22,9 @@ xmlns:local="http://schemas.android.com/apk/res-auto">
             <item
                 android:id="@+id/nav_settings"
                 android:title="Język" />
+          <item
+                android:id="@+id/nav_logout"
+                android:title="Wyloguj" />
         </menu>
     </item>
 

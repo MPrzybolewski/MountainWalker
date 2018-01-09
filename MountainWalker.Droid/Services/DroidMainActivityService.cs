@@ -13,6 +13,7 @@ using MvvmCross.Binding.Bindings.Target;
 using Debug = System.Diagnostics.Debug;
 
 using Point = MountainWalker.Core.Models.Point;
+using Acr.UserDialogs;
 
 namespace MountainWalker.Droid.Services
 {

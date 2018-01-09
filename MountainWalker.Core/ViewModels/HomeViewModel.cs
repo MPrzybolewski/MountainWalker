@@ -72,9 +72,8 @@ namespace MountainWalker.Core.ViewModels
         public static Point UserPosition;
 
         public HomeViewModel(ILocationService locationService, IMainActivityService mainService,
-            ISharedPreferencesService sharedPreferencesService, IMvxNavigationService navigationService, 
-            IMvxMessenger messenger, IDialogService dialogService, ITrailService trailService, 
-            ITravelPanelService travelPanelService, IStartButtonService startButtonService)
+            IMvxNavigationService navigationService, IMvxMessenger messenger, 
+            IDialogService dialogService, ITrailService trailService, ITravelPanelService travelPanelService, IStartButtonService startButtonService)
         {
             _mainService = mainService;
             _navigationService = navigationService;
