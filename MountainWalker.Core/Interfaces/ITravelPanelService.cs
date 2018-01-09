@@ -3,7 +3,7 @@ using MountainWalker.Core.Models;
 
 namespace MountainWalker.Core.Interfaces
 {
-    public interface IBottomPanelService
+    public interface ITravelPanelService
     {
         void OnTimeFromTimer();
         void SetTravelTime(TravelTime travelTime);
@@ -12,7 +12,7 @@ namespace MountainWalker.Core.Interfaces
         void StopTimer();
         void SetTravelTime();
         TravelTime GetTravelTime();
-        void SetBottomPanelVisibility(string visibility);
-        string GetBottomPanelVisibility();
+        void SetTravelPanelVisibility(string visibility);
+        string GetTravelPanelVisibility();
     }
 }

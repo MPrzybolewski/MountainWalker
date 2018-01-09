@@ -19,11 +19,11 @@ namespace MountainWalker.Core.ViewModels
         private readonly ISharedPreferencesService _sharedPreferencesService;
         private readonly IMvxNavigationService _navigationService;
         private readonly IDialogService _dialogService;
-        private readonly IBottomPanelService _bottomPanelService;
+        private readonly ITravelPanelService _travelPanelService;
         private readonly IStartButtonService _startButtonService;
 
         private MvxSubscriptionToken _token;
-        private MvxSubscriptionToken _bottomPanelToken;
+        private MvxSubscriptionToken _travelPanelToken;
         private MvxSubscriptionToken _startButtonToken;
 
         public Point Location { get; set; }
@@ -44,11 +44,11 @@ namespace MountainWalker.Core.ViewModels
             }
         }
 
-        private string _bottomPanelVisibility = "gone";
-        public  string BottomPanelVisibility
+        private string _travelPanelVisibility = "gone";
+        public  string TravelPanelVisibility
         {
-            get => _bottomPanelVisibility;
-            set => SetProperty(ref _bottomPanelVisibility, value);
+            get => _travelPanelVisibility;
+            set => SetProperty(ref _travelPanelVisibility, value);
         }
 
         private string _timeInfoText = "0";
@@ -79,7 +79,7 @@ namespace MountainWalker.Core.ViewModels
 
         public HomeViewModel(ILocationService locationService, IMainActivityService mainService,
             ISharedPreferencesService sharedPreferencesService, IMvxNavigationService navigationService, 
-            IMvxMessenger messenger, IDialogService dialogService, IBottomPanelService bottomPanelService,
+            IMvxMessenger messenger, IDialogService dialogService, ITravelPanelService travelPanelService,
                             IStartButtonService startButtonService)
         {
             _mainService = mainService;
@@ -87,11 +87,11 @@ namespace MountainWalker.Core.ViewModels
             _navigationService = navigationService;
             _dialogService = dialogService;
             _locationService = locationService;
-            _bottomPanelService = bottomPanelService;
+            _travelPanelService = travelPanelService;
             _startButtonService = startButtonService;
 
             _token = messenger.Subscribe<LocationMessage>(OnLocationMessage);
-            _bottomPanelToken = messenger.Subscribe<BottomPanelMessage>(OnTimerMessage);
+            _travelPanelToken = messenger.Subscribe<TravelPanelMessage>(OnTimerMessage);
             _startButtonToken = messenger.Subscribe<StartButtonMessage>(OnStartButtonMessage);
 
             LogoutCommand = new MvxCommand(Logout);
@@ -112,7 +112,7 @@ namespace MountainWalker.Core.ViewModels
         void SetLayoutProperties()
         {
             ButtonText = _startButtonService.GetStartButtonText();
-            BottomPanelVisibility = _bottomPanelService.GetBottomPanelVisibility();
+            TravelPanelVisibility = _travelPanelService.GetTravelPanelVisibility();
         }
 
         private void OnLocationMessage(LocationMessage message)
@@ -133,10 +133,10 @@ namespace MountainWalker.Core.ViewModels
             }
         }
 
-        private void OnTimerMessage(BottomPanelMessage message)
+        private void OnTimerMessage(TravelPanelMessage message)
         {
-            BottomPanelVisibility = message.BottomPanelVisibility;
-            RunBottomPanelTimer();
+            TravelPanelVisibility = message.TravelPanelVisibility;
+            RunTravelPanelTimer();
             PointsInfoText = message.NumberOfReachedPoints.ToString();
         }
 
@@ -145,13 +145,13 @@ namespace MountainWalker.Core.ViewModels
             ButtonText = message.StartButtonText;
         }
 
-        private async void RunBottomPanelTimer()
+        private async void RunTravelPanelTimer()
         {
             while(_locationService.GetStateOfJourney())
             {
                 await Task.Delay(1000);
-                _bottomPanelService.SetTravelTime();
-                TimeInfoText = "Czas podróży: " +  _bottomPanelService.GetTravelTime().ToString();
+                _travelPanelService.SetTravelTime();
+                TimeInfoText = "Czas podróży: " +  _travelPanelService.GetTravelTime().ToString();
             }
         }
 

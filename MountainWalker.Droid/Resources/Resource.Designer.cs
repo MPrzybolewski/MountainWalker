@@ -4644,9 +4644,6 @@ namespace MountainWalker.Droid
 			// aapt resource value: 0x7f0d0049
 			public const int bottom = 2131558473;
 			
-			// aapt resource value: 0x7f0d00ae
-			public const int bottomPanel = 2131558574;
-			
 			// aapt resource value: 0x7f0d0098
 			public const int btn_dialog = 2131558552;
 			
@@ -5138,6 +5135,9 @@ namespace MountainWalker.Droid
 			
 			// aapt resource value: 0x7f0d0013
 			public const int transition_transform = 2131558419;
+			
+			// aapt resource value: 0x7f0d00ae
+			public const int travelPanel = 2131558574;
 			
 			// aapt resource value: 0x7f0d0039
 			public const int uniform = 2131558457;

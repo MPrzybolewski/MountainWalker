@@ -4,7 +4,7 @@ using MvvmCross.Plugins.Messenger;
 
 namespace MountainWalker.Core.Messages
 {
-    public class BottomPanelMessage : MvxMessage
+    public class TravelPanelMessage : MvxMessage
     {
         public TravelTime TravelTime 
         {
@@ -18,17 +18,17 @@ namespace MountainWalker.Core.Messages
             private set;
         }
 
-        public string BottomPanelVisibility
+        public string TravelPanelVisibility
         {
             get;
             private set;
         }
 
-        public BottomPanelMessage(object sender, TravelTime travelTime, int numberOfReachedPoints, string bottomPanelVisibility) : base(sender)
+        public TravelPanelMessage(object sender, TravelTime travelTime, int numberOfReachedPoints, string travelPanelVisibility) : base(sender)
         {
             TravelTime = travelTime;
             NumberOfReachedPoints = numberOfReachedPoints;
-            BottomPanelVisibility = bottomPanelVisibility;
+            TravelPanelVisibility = travelPanelVisibility;
         }
 
 

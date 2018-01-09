@@ -7,27 +7,27 @@ using MvvmCross.Plugins.Messenger;
 
 namespace MountainWalker.Core.Services
 {
-    public class BottomPanelService : IBottomPanelService
+    public class TravelPanelService : ITravelPanelService
     {
-        private readonly IMvxMessenger _bottomPanelMessenger;
+        private readonly IMvxMessenger _travelPanelMessenger;
 
         private TravelTime _travelTime = new TravelTime(1,1,1);
         private int _numberOfReachedPoints = 0;
-        private string _bottomPanelVisibility = "gone";
+        private string _travelPanelVisibility = "gone";
 
         Stopwatch timer;
         long _travelTimeInMiliseconds;
 
-        public BottomPanelService(IMvxMessenger bottomPanelMessenger)
+        public TravelPanelService(IMvxMessenger travelPanelMessenger)
         {
-            _bottomPanelMessenger = bottomPanelMessenger;
+            _travelPanelMessenger = travelPanelMessenger;
         }
 
         public void OnTimeFromTimer()
         {
-            var message = new BottomPanelMessage(this, _travelTime, _numberOfReachedPoints, _bottomPanelVisibility);
+            var message = new TravelPanelMessage(this, _travelTime, _numberOfReachedPoints, _travelPanelVisibility);
 
-            _bottomPanelMessenger.Publish(message);
+            _travelPanelMessenger.Publish(message);
         }
 
 
@@ -63,15 +63,15 @@ namespace MountainWalker.Core.Services
             return _travelTime;
         }
 
-        public void SetBottomPanelVisibility(string visibility)
+        public void SetTravelPanelVisibility(string visibility)
         {
-            _bottomPanelVisibility = visibility;
+            _travelPanelVisibility = visibility;
             OnTimeFromTimer();
         }
 
-        public string GetBottomPanelVisibility()
+        public string GetTravelPanelVisibility()
         {
-            return _bottomPanelVisibility;
+            return _travelPanelVisibility;
         }
 
       
