@@ -125,8 +125,7 @@ namespace MountainWalker.Core.ViewModels
                 foreach (var point in _trailService.Points)
                 {
                     if (_mainService.GetDistanceBetweenTwoPointsOnMapInMeters(Location, point) < 20
-                        && _mainService.GetDistanceBetweenTwoPointsOnMapInMeters(
-                            _locationService.ReachedPoints[_locationService.ReachedPoints.Count], point) < 20) 
+                        &&  !_locationService.ReachedPoints.Contains(point)) 
                     {
                         _locationService.ReachedPoints.Add(point);
                     }
@@ -138,7 +137,8 @@ namespace MountainWalker.Core.ViewModels
         {
             TravelPanelVisibility = message.TravelPanelVisibility;
             RunTravelPanelTimer();
-            PointsInfoText = message.NumberOfReachedPoints.ToString();
+            //PointsInfoText = message.NumberOfReachedPoints.ToString();
+            PointsInfoText = "Ilość zdobytych punktów - " + _locationService.ReachedPoints.Count;
         }
 
         private void OnStartButtonMessage(StartButtonMessage message)
@@ -178,9 +178,7 @@ namespace MountainWalker.Core.ViewModels
         private async Task OpenTrailDialog(int args)
         {
             int id = args;
-            Debug.WriteLine("dostalem w homeviewmodel args = " + args);
             _locationService.TrailId = id;
-            Debug.WriteLine("HomeViewModel");
             await _navigationService.Navigate(typeof(TrailDialogViewModel));
         }
 
@@ -188,11 +186,6 @@ namespace MountainWalker.Core.ViewModels
         {
             _sharedPreferencesService.CleanSharedPreferences();
             _navigationService.Navigate<SignInViewModel>();
-        }
-
-        public void RaiseTrailPopup(string polylineId)
-        {
-            Debug.WriteLine("nie wolno tak");
         }
     }
 }

@@ -35,7 +35,7 @@ namespace MountainWalker.Core.Interfaces.Impl
             Trails.Add(new Connection());
             Trails[0].Color = "blue";
             Trails[0].Id = 0;
-            Trails[0].Description = "Legendary main road from SKM to UG";
+            Trails[0].Description = "Legendarna droga z SKM na UG";
             Trails[0].Name = "Dolina Alchemii";
             Trails[0].Path.Add(new Point(54.400647, 18.576544));
             Trails[0].Path.Add(new Point(54.400528, 18.576064));
@@ -62,7 +62,7 @@ namespace MountainWalker.Core.Interfaces.Impl
             Trails.Add(new Connection());
             Trails[1].Color = "red";
             Trails[1].Id = 1;
-            Trails[1].Description = "Every Monday poor students go there for some food";
+            Trails[1].Description = "Co poniedziałek biedni studenci podróżują w to miejsce w poszukiwaniu jedzienia";
             Trails[1].Name = "Burgerogrzmoty KFC";
             Trails[1].Path.Add(new Point(54.396567, 18.574493));
             Trails[1].Path.Add(new Point(54.396234, 18.576797));
@@ -79,7 +79,7 @@ namespace MountainWalker.Core.Interfaces.Impl
 
             Trails.Add(new Connection());
             Trails[2].Color = "green";
-            Trails[2].Description = "After long and painfull works on project, student go there for beer";
+            Trails[2].Description = "Po długiej i bolesnej pracy nad projektami, biedni studenci udają się tutaj na piwko";
             Trails[2].Name = "Piwne Oko";
             Trails[2].Path.Add(new Point(54.396157, 18.573419));
             Trails[2].Path.Add(new Point(54.396257, 18.573158));

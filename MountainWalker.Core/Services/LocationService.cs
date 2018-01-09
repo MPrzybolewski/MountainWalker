@@ -25,6 +25,7 @@ namespace MountainWalker.Core.Interfaces.Impl
 
         public LocationService(IMvxLocationWatcher watcher, IMvxMessenger messenger)
         {
+            CurrentLocation = new Point(0.0, 0.0);
             _watcher = watcher;
             _messenger = messenger;
         }

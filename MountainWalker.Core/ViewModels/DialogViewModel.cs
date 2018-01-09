@@ -70,25 +70,20 @@ namespace MountainWalker.Core.ViewModels
                 point.Longitude = 0.0;
             }
 
-            Debug.WriteLine(point.Latitude + " " + point.Longitude + " - ja jestem tutaj");
-
             TrailTitle = "Hala Gąsienicowa"; //some function should be here, but idk how i want to do here
 
             Point test = new Point(54.090426, 18.790808);
-            Debug.WriteLine(test.Latitude + " " + test.Longitude + " - a test tutaj");
-
-            //Point Point = new Point(54.090506, 18.790464);
 
             if (_mainService.CheckPointIsNear(point, test)) // user and point location
             {
                 CanStart = true;
                 TrailStartCommand = new MvxCommand(StartTrail);
-                TrailInfo = "You can start right now!";
+                TrailInfo = "Możesz rozpocząć swoją wędrówkę!";
             }
             else
             {
                 CanStart = false;
-                TrailInfo = "You are to far away from any start point";
+                TrailInfo = "Jesteś zbyt oddalony od najbliższego punktu!";
             }
             NearestPointCommand = new MvxCommand(ShowNearestPoint);
         }

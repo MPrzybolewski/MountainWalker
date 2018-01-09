@@ -30,9 +30,9 @@
   <ItemGroup>
     <Compile Include="Interfaces\IMainActivityService.cs" />
     <Compile Include="Interfaces\ILocationService.cs" />
-    <Compile Include="Interfaces\Impl\LocationService.cs" />
-    <Compile Include="Interfaces\Impl\TrailService.cs" />
-    <Compile Include="Interfaces\Impl\WebAPIService.cs" />
+    <Compile Include="Services\LocationService.cs" />
+    <Compile Include="Services\TrailService.cs" />
+    <Compile Include="Services\WebAPIService.cs" />
     <Compile Include="Interfaces\ITrailService.cs" />
     <Compile Include="Interfaces\IRegisterService.cs" />
     <Compile Include="Interfaces\IWebAPIService.cs" />
@@ -98,8 +98,6 @@
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup />
-  <ItemGroup>
-    <Folder Include="Services\" />
-  </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildExtensionsPath32)\Microsoft\Portable\$(TargetFrameworkVersion)\Microsoft.Portable.CSharp.targets" />
 </Project>
