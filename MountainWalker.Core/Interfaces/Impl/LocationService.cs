@@ -27,6 +27,7 @@ namespace MountainWalker.Core.Interfaces.Impl
         {
             _watcher = watcher;
             _messenger = messenger;
+            CurrentLocation = new Point(0.0, 0.0);
         }
 
         private void OnLocation(MvxGeoLocation location)

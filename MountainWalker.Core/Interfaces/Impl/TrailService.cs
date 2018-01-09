@@ -26,6 +26,7 @@ namespace MountainWalker.Core.Interfaces.Impl
             Points.Add(new Point(54.396158, 18.573407)); //Mfi kckckc
             Points.Add(new Point(54.394345, 18.579970)); //KFC
             Points.Add(new Point(54.394121, 18.569394)); //Ygrek <3
+            Points.Add(new Point(54.034417, 19.033257)); //Malbork
         }
 
         private void CreateConnections()
