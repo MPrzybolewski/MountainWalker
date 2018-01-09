@@ -135,14 +135,24 @@ namespace MountainWalker.Core.ViewModels
 
         private void OnTimerMessage(BottomPanelMessage message)
         {
-            TimeInfoText = message.TravelTime.ToString();
-            PointsInfoText = message.NumberOfReachedPoints.ToString();
             BottomPanelVisibility = message.BottomPanelVisibility;
+            RunBottomPanelTimer();
+            PointsInfoText = message.NumberOfReachedPoints.ToString();
         }
 
         private void OnStartButtonMessage(StartButtonMessage message)
         {
             ButtonText = message.StartButtonText;
+        }
+
+        private async void RunBottomPanelTimer()
+        {
+            while(_locationService.GetStateOfJourney())
+            {
+                await Task.Delay(1000);
+                _bottomPanelService.SetTravelTime();
+                TimeInfoText = "Czas podróży: " +  _bottomPanelService.GetTravelTime().ToString();
+            }
         }
 
         //private void StopTrail()
