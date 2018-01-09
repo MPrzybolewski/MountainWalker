@@ -23,7 +23,7 @@ namespace MountainWalker.Core.ViewModels
         public Point Location { get; set; }
 
         public IMvxCommand OpenMainDialogCommand { get; }
-        public IMvxCommand OpenTrailDialogCommand { get; set; }
+        public IMvxCommand<int> OpenTrailDialogCommand { get; set; }
         public IMvxCommand LogoutCommand { get; }
 
         public static Point UserPosition;
@@ -41,7 +41,7 @@ namespace MountainWalker.Core.ViewModels
             _trailService = trailService;
 
             OpenMainDialogCommand = new MvxAsyncCommand(OpenDialog);
-            OpenTrailDialogCommand = new MvxAsyncCommand(OpenTrailDialog);
+            OpenTrailDialogCommand = new MvxAsyncCommand<int>(OpenTrailDialog);
             LogoutCommand = new MvxCommand(Logout);
 
             _locationService.StartFollow();
@@ -80,11 +80,12 @@ namespace MountainWalker.Core.ViewModels
             await _navigationService.Navigate(typeof(DialogViewModel));
         }
 
-        private async Task OpenTrailDialog()
+        private async Task OpenTrailDialog(int args)
         {
-            int id = 1;
+            int id = args;
+            Debug.WriteLine("dostalem w homeviewmodel args = " + args);
             _locationService.TrailId = id;
-            Debug.WriteLine("HomeViewModel kurłaaaaaaaaaaaa");
+            Debug.WriteLine("HomeViewModel");
             await _navigationService.Navigate(typeof(TrailDialogViewModel));
         }
 

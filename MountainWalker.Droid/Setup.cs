@@ -55,11 +55,9 @@ namespace MountainWalker.Droid
 
         protected override void FillTargetFactories(IMvxTargetBindingFactoryRegistry registry)
         {
-            base.FillTargetFactories(registry);
+            registry.RegisterCustomBindingFactory<GoogleMap>(TrailDialogBinding.BindingName, v => new TrailDialogBinding(v));
 
-            registry.RegisterPropertyInfoBindingFactory(
-                typeof(TrailDialogBinding),
-                typeof(HomeFragment), "Faken");
+            base.FillTargetFactories(registry);
         }
     }
 }

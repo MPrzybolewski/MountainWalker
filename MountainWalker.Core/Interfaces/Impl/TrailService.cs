@@ -36,7 +36,7 @@ namespace MountainWalker.Core.Interfaces.Impl
             Trails[0].Color = "blue";
             Trails[0].Id = 0;
             Trails[0].Description = "Legendary main road from SKM to UG";
-            Trails[0].Name = "Dolina Alhemii";
+            Trails[0].Name = "Dolina Alchemii";
             Trails[0].Path.Add(new Point(54.400647, 18.576544));
             Trails[0].Path.Add(new Point(54.400528, 18.576064));
             Trails[0].Path.Add(new Point(54.400712, 18.575901));

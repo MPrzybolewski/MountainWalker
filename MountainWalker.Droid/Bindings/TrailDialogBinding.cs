@@ -6,75 +6,58 @@ using MountainWalker.Core.ViewModels;
 using MountainWalker.Droid.Fragments;
 using MvvmCross.Binding;
 using MvvmCross.Binding.Bindings.Target;
+using MvvmCross.Binding.Droid.Target;
 using MvvmCross.Core.ViewModels;
 using MvvmCross.Platform.Platform;
 
 namespace MountainWalker.Droid.Bindings
 {
-    public class TrailDialogBinding : MvxPropertyInfoTargetBinding<GoogleMap>
+    public class TrailDialogBinding : MvxAndroidTargetBinding
     {
-        // used to figure out whether a subscription to MyPropertyChanged
-        // has been made
+        private readonly GoogleMap _googleMap;
         private bool _subscribed;
+        private IMvxAsyncCommand<int> _command;
+        public TrailDialogBinding(object target)
+            : base(target)
+        {
+            _googleMap = target as GoogleMap;
+        }
 
-        private IMvxCommand _command;
+        public static string BindingName => "TrailDialogBinding";
+        public override Type TargetType => typeof(GoogleMap);
 
         public override MvxBindingMode DefaultMode => MvxBindingMode.TwoWay;
-
-        public TrailDialogBinding(object target, PropertyInfo targetPropertyInfo)
-            : base(target, targetPropertyInfo)
-        {
-        }
-
-        // describes how to set MyProperty on MyView
-        protected override void SetValueImpl(object target, object value)
-        {
-            var view = target as HomeFragment;
-            if (view == null) return;
-
-             view.Faken = (string)value;
-
-        }
-
-        // is called when we are ready to listen for change events
         public override void SubscribeToEvents()
         {
-            var myView = View;
-            if (myView == null)
-            {
-                MvxBindingTrace.Trace(MvxTraceLevel.Error, "Error - MyView is null in MyViewMyPropertyTargetBinding");
+            if (_googleMap == null)
                 return;
-            }
 
+            _googleMap.PolylineClick += HandlePolylineClick;
             _subscribed = true;
-            myView.PolylineClick += HandlePolylineClick;
         }
 
-        private void HandlePolylineClick(object sender, GoogleMap.PolylineClickEventArgs poly)
+        protected override void SetValueImpl(object target, object value)
         {
-            var myView = View;
-            
-            if (myView == null) return;
-
-            _command = (IMvxCommand) sender;
-            _command.Execute(poly.Polyline.Id);
-            //FireValueChanged(myView.MyProperty);
+            _command = value as MvxAsyncCommand<int>;
         }
-
-        // clean up
         protected override void Dispose(bool isDisposing)
         {
             base.Dispose(isDisposing);
 
             if (isDisposing)
             {
-                var myView = View;
-                if (myView != null && _subscribed)
-                {
-                    myView.PolylineClick -= HandlePolylineClick;
-                    _subscribed = false;
-                }
+                if (_googleMap == null || _subscribed == false)
+                    return;
+
+                _googleMap.PolylineClick += HandlePolylineClick;
+                _subscribed = false;
             }
+        }
+
+        private async void HandlePolylineClick(object sender, GoogleMap.PolylineClickEventArgs poly)
+        {
+            int id = int.Parse(poly.Polyline.Id.Trim(new Char[] { 'p', 'l' }));
+            await _command.ExecuteAsync(id);
         }
     }
 }
