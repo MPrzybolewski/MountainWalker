@@ -10,7 +10,7 @@ using MvvmCross.Plugins.Location;
 namespace MountainWalker.Core.Interfaces
 {
     public interface ILocationService
-    { 
+    {
         Task<Point> GetLocation();
         Point CurrentLocation { get; set; }
         bool IsTrailStarted { get; set; }

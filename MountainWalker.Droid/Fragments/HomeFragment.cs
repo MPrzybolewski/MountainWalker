@@ -17,6 +17,8 @@ using MountainWalker.Droid.NavigationDrawer;
 using MvvmCross.Binding.BindingContext;
 using MvvmCross.Core.ViewModels;
 using MvvmCross.Plugins.Messenger;
+using Android.Widget;
+using MountainWalker.Droid.Views;
 
 namespace MountainWalker.Droid.Fragments
 {
@@ -71,8 +73,6 @@ namespace MountainWalker.Droid.Fragments
             var view = base.OnCreateView(inflater, container, savedInstanceState);
             return view;
         }
-
-        
 
         public async Task ShowUserLocation()
         {

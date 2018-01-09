@@ -1,4 +1,5 @@
-﻿using System.Threading.Tasks;
+﻿using System.Diagnostics;
+using System.Threading.Tasks;
 using MountainWalker.Core.Interfaces;
 using MvvmCross.Core.Navigation;
 using MvvmCross.Core.ViewModels;
@@ -78,7 +79,7 @@ namespace MountainWalker.Core.ViewModels
             set
             {
                 _isChecked = value;
-                // RaisePropertyChanged(() => IsChecked);
+                RaisePropertyChanged(() => IsChecked);
             }
         }
     }

@@ -18,7 +18,12 @@ namespace MountainWalker.Core.ViewModels
         private readonly IMvxNavigationService _navigationService;
         private readonly IDialogService _dialogService;
         private readonly ITrailService _trailService;
+        private readonly ITravelPanelService _travelPanelService;
+        private readonly IStartButtonService _startButtonService;
+
         private MvxSubscriptionToken _token;
+        private MvxSubscriptionToken _travelPanelToken;
+        private MvxSubscriptionToken _startButtonToken;
 
         public Point Location { get; set; }
 
@@ -26,27 +31,89 @@ namespace MountainWalker.Core.ViewModels
         public IMvxCommand<int> OpenTrailDialogCommand { get; set; }
         public IMvxCommand LogoutCommand { get; }
 
+        private  string _buttonText = "Start";
+        public string ButtonText
+        {
+            get { return _buttonText; }
+            set 
+            {
+                _buttonText = value; 
+                RaisePropertyChanged();
+            }
+        }
+
+        private string _travelPanelVisibility = "gone";
+        public  string TravelPanelVisibility
+        {
+            get => _travelPanelVisibility;
+            set => SetProperty(ref _travelPanelVisibility, value);
+        }
+
+        private string _timeInfoText = "0";
+        public string TimeInfoText
+        {
+            get { return _timeInfoText; }
+            set 
+            {
+                _timeInfoText = value;
+                RaisePropertyChanged();
+            }
+        }
+
+        private string _pointsInfoText = "0";
+        public string PointsInfoText
+        {
+            get { return _pointsInfoText; }
+            set
+            {
+                _pointsInfoText = value;
+                RaisePropertyChanged();
+            }
+        }
+
         public static Point UserPosition;
+
+
 
         public HomeViewModel(ILocationService locationService, IMainActivityService mainService,
             ISharedPreferencesService sharedPreferencesService, IMvxNavigationService navigationService, 
-            IMvxMessenger messenger, IDialogService dialogService, ITrailService trailService)
+            IMvxMessenger messenger, IDialogService dialogService, ITrailService trailService, 
+            ITravelPanelService travelPanelService, IStartButtonService startButtonService)
         {
-            _locationService = locationService;
             _mainService = mainService;
             _sharedPreferencesService = sharedPreferencesService;
-            _token = messenger.Subscribe<LocationMessage>(OnLocationMessage);
             _navigationService = navigationService;
             _dialogService = dialogService;
             _trailService = trailService;
 
             OpenMainDialogCommand = new MvxAsyncCommand(OpenDialog);
             OpenTrailDialogCommand = new MvxAsyncCommand<int>(OpenTrailDialog);
+            _locationService = locationService;
+            _travelPanelService = travelPanelService;
+            _startButtonService = startButtonService;
+
+            _token = messenger.Subscribe<LocationMessage>(OnLocationMessage);
+            _travelPanelToken = messenger.Subscribe<TravelPanelMessage>(OnTimerMessage);
+            _startButtonToken = messenger.Subscribe<StartButtonMessage>(OnStartButtonMessage);
+
             LogoutCommand = new MvxCommand(Logout);
 
             _locationService.StartFollow();
 
             _mainService.SetPointsAndTrials(_trailService.Points, _trailService.Trails);
+
+            _mainService.SetPointsAndTrials(_trailService.Points, _trailService.Trails);
+
+            OpenMainDialogCommand = new MvxAsyncCommand(OpenDialog);
+
+            SetLayoutProperties();
+
+        }
+
+        void SetLayoutProperties()
+        {
+            ButtonText = _startButtonService.GetStartButtonText();
+            TravelPanelVisibility = _travelPanelService.GetTravelPanelVisibility();
         }
 
         private void OnLocationMessage(LocationMessage message)
@@ -67,6 +134,28 @@ namespace MountainWalker.Core.ViewModels
             }
         }
 
+        private void OnTimerMessage(TravelPanelMessage message)
+        {
+            TravelPanelVisibility = message.TravelPanelVisibility;
+            RunTravelPanelTimer();
+            PointsInfoText = message.NumberOfReachedPoints.ToString();
+        }
+
+        private void OnStartButtonMessage(StartButtonMessage message)
+        {
+            ButtonText = message.StartButtonText;
+        }
+
+        private async void RunTravelPanelTimer()
+        {
+            while(_locationService.IsTrailStarted)
+            {
+                await Task.Delay(1000);
+                _travelPanelService.SetTravelTime();
+                TimeInfoText = "Czas podróży: " +  _travelPanelService.GetTravelTime().ToString();
+            }
+        }
+
         //private void StopTrail()
         //{
         //    //timer stop
@@ -77,7 +166,13 @@ namespace MountainWalker.Core.ViewModels
 
         private async Task OpenDialog()
         {
-            await _navigationService.Navigate(typeof(DialogViewModel));
+            if(_locationService.IsTrailStarted)
+            {
+                await _navigationService.Navigate<AfterStartDialogViewModel>();
+            } else 
+            {
+                await _navigationService.Navigate<DialogViewModel>();
+            }
         }
 
         private async Task OpenTrailDialog(int args)

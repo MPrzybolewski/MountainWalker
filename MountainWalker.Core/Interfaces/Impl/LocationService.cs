@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.Threading.Tasks;
 using MountainWalker.Core.Messages;
 using MountainWalker.Core.Models;
@@ -15,6 +16,7 @@ namespace MountainWalker.Core.Interfaces.Impl
     {
         private readonly IMvxLocationWatcher _watcher;
         private readonly IMvxMessenger _messenger;
+
         public Point CurrentLocation { get; set; }
         public bool IsTrailStarted { get; set; }
         public List<Point> ReachedPoints { get; set; }

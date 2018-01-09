@@ -15,6 +15,8 @@ namespace MountainWalker.Core.ViewModels
     {
         private readonly IMainActivityService _mainService;
         private readonly ILocationService _locationService;
+        private readonly ITravelPanelService _travelPanelService;
+        private readonly IStartButtonService _startButtonService;
 
         public IMvxCommand TrailStartCommand { get; }
         public IMvxCommand NearestPointCommand { get; }
@@ -53,10 +55,13 @@ namespace MountainWalker.Core.ViewModels
             }
         }
 
-        public DialogViewModel(IMainActivityService mainService, ILocationService locationService) // tutaj ILocationService
+        public DialogViewModel(IMainActivityService mainService, ILocationService locationService,
+                               ITravelPanelService travelPanelService, IStartButtonService startButtonService) // tutaj ILocationService
         {
             _mainService = mainService;
             _locationService = locationService;
+            _travelPanelService = travelPanelService;
+            _startButtonService = startButtonService;
 
             var point = _locationService.CurrentLocation;
             if (point == null)
@@ -69,7 +74,7 @@ namespace MountainWalker.Core.ViewModels
 
             TrailTitle = "Hala Gąsienicowa"; //some function should be here, but idk how i want to do here
 
-            Point test = new Point(54.090506, 18.790464);
+            Point test = new Point(54.090426, 18.790808);
             Debug.WriteLine(test.Latitude + " " + test.Longitude + " - a test tutaj");
 
             //Point Point = new Point(54.090506, 18.790464);
@@ -93,13 +98,18 @@ namespace MountainWalker.Core.ViewModels
             _mainService.SetLatLngButton(new Point(54.3956171, 18.5724856)); //mfi
             _locationService.SetNewList();
             _locationService.IsTrailStarted = true;
-            _mainService.CloseMainDialog();
+
+            _travelPanelService.StartTimer();
+            _startButtonService.SetStartButtonText("Stop");
+            _travelPanelService.SetTravelPanelVisibility("visible");
+            _mainService.CloseMainDialog(false);
+
         }
 
         private void ShowNearestPoint()
         {
             _mainService.SetLatLngButton(new Point(54.394121, 18.569394)); //best place to go every monday <3
-            _mainService.CloseMainDialog();
+            _mainService.CloseMainDialog(false);
         }
     }
 }
