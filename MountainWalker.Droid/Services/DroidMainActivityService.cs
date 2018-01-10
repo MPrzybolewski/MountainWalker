@@ -22,13 +22,6 @@ namespace MountainWalker.Droid.Services
         private static List<Point> _pointList;
         private static List<Connection> _trails;
 
-        public void SetLatLngButton(Point location)
-        {
-            LatLng coordinate = new LatLng(location.Latitude, location.Longitude);
-            CameraUpdate yourLocation = CameraUpdateFactory.NewLatLngZoom(coordinate, 17);
-            HomeFragment.Map.AnimateCamera(yourLocation);
-        }
-
         public void SetCurrentLocation(Point location)
         {
             if (HomeFragment.Map != null)
@@ -86,58 +79,6 @@ namespace MountainWalker.Droid.Services
         {
             return (Math.PI * angle) / 180.0;
         }
-
-        public static void CreatePointsAndTrails()
-        {
-            foreach (var point in _pointList)
-            {
-                HomeFragment.Map.AddMarker(new MarkerOptions()
-                    .SetPosition(new LatLng(point.Latitude, point.Longitude))
-                    .SetTitle(point.Description));
-            }
-
-            foreach (var polyline in _trails)
-            {
-                var latlng = new List<LatLng>();
-                foreach (var point in polyline.Path)
-                {
-                    latlng.Add(new LatLng(point.Latitude, point.Longitude));
-                }
-
-                var poly = HomeFragment.Map.AddPolyline(new PolylineOptions().Clickable(true));
-
-                if (polyline.Color.Equals("blue"))
-                {
-                    poly.Color = Color.Blue;
-                }
-                else if (polyline.Color.Equals("red"))
-                {
-                    poly.Color = Color.Red;
-                }
-                else if (polyline.Color.Equals("green"))
-                {
-                    poly.Color = Color.Green;
-                }
-                poly.Width = 10;
-                poly.Points = latlng;
-                Debug.WriteLine(poly.Id);
-                
-            }
-
-            //HomeFragment.Map.PolylineClick += (sender, args) =>
-            //{
-            //    int id = int.Parse(args.Polyline.Id.Trim(new Char[] {'p', 'l'}));
-            //    Debug.WriteLine("Id of this polyline is  => " + id);
-            //    HomeViewModel.RaiseTrailPopup(args.Polyline.Id);
-            //};
-
-        }
-
-        //private void MapOnMarkerClick(object sender, GoogleMap.PolylineClickEventArgs markerClickEventArgs)
-        //{
-        //    Polyline poly = markerClickEventArgs.Polyline;
-        //    Debug.WriteLine("Kliknieto polyline o id = " + poly.Id);
-        //}
 
         public void SetPointsAndTrials(List<Point> points, List<Connection> connections)
         {

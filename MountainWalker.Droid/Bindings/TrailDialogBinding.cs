@@ -1,7 +1,11 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.Diagnostics;
 using System.Reflection;
 using Android.Gms.Maps;
+using Android.Gms.Maps.Model;
+using Android.Graphics;
+using MountainWalker.Core.Interfaces;
 using MountainWalker.Core.ViewModels;
 using MountainWalker.Droid.Fragments;
 using MvvmCross.Binding;
@@ -17,6 +21,7 @@ namespace MountainWalker.Droid.Bindings
         private readonly GoogleMap _googleMap;
         private bool _subscribed;
         private IMvxAsyncCommand<int> _command;
+        
         public TrailDialogBinding(object target)
             : base(target)
         {
@@ -49,7 +54,7 @@ namespace MountainWalker.Droid.Bindings
                 if (_googleMap == null || _subscribed == false)
                     return;
 
-                _googleMap.PolylineClick += HandlePolylineClick;
+                _googleMap.PolylineClick -= HandlePolylineClick;
                 _subscribed = false;
             }
         }

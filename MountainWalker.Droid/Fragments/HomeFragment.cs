@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.Threading.Tasks;
 using Android.Gms.Maps;
 using Android.OS;
@@ -8,6 +9,7 @@ using MountainWalker.Core.ViewModels;
 using Plugin.Geolocator;
 using Android.Gms.Maps.Model;
 using Android.App;
+using Android.Graphics;
 using MountainWalker.Droid.Bindings;
 using MountainWalker.Droid.Services;
 using MvvmCross.Binding.Droid.BindingContext;
@@ -18,7 +20,9 @@ using MvvmCross.Binding.BindingContext;
 using MvvmCross.Core.ViewModels;
 using MvvmCross.Plugins.Messenger;
 using Android.Widget;
+using MountainWalker.Core.Models;
 using MountainWalker.Droid.Views;
+using Point = MountainWalker.Core.Models.Point;
 
 namespace MountainWalker.Droid.Fragments
 {
@@ -38,8 +42,10 @@ namespace MountainWalker.Droid.Fragments
             Map.UiSettings.MyLocationButtonEnabled = true;
             Map.AddMarker(new MarkerOptions().SetPosition(new LatLng(54.394121, 18.569394))
                 .SetTitle("Best place to go!"));
+
+            var home = (HomeViewModel) ViewModel;
             
-            DroidMainActivityService.CreatePointsAndTrails();
+            CreatePointsAndTrails(home.Points, home.Trails);
 
             var set = this.CreateBindingSet<HomeFragment, HomeViewModel>();
             set.Bind(Map).For(TrailDialogBinding.BindingName).To(vm => vm.OpenTrailDialogCommand);
@@ -92,5 +98,43 @@ namespace MountainWalker.Droid.Fragments
         }
 
         protected override int FragmentId => Resource.Layout.HomeView;        
+        
+        private void CreatePointsAndTrails(List<Point> points, List<Connection> trails)
+        {
+            foreach (var point in points)
+            {
+                Map.AddMarker(new MarkerOptions()
+                    .SetPosition(new LatLng(point.Latitude, point.Longitude))
+                    .SetTitle(point.Description));
+            }
+
+            foreach (var polyline in trails)
+            {
+                var latlng = new List<LatLng>();
+                foreach (var point in polyline.Path)
+                {
+                    latlng.Add(new LatLng(point.Latitude, point.Longitude));
+                }
+
+                var poly = Map.AddPolyline(new PolylineOptions().Clickable(true));
+
+                if (polyline.Color.Equals("blue"))
+                {
+                    poly.Color = Color.Blue;
+                }
+                else if (polyline.Color.Equals("red"))
+                {
+                    poly.Color = Color.Red;
+                }
+                else if (polyline.Color.Equals("green"))
+                {
+                    poly.Color = Color.Green;
+                }
+                poly.Width = 10;
+                poly.Points = latlng;
+                Debug.WriteLine(poly.Id);
+            }
+                Debug.WriteLine("Wykonalem sie prawidlowo");
+        }
     }
 }

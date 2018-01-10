@@ -89,7 +89,7 @@ namespace MountainWalker.Core.ViewModels
 
         private void StartTrail()
         {
-            _mainService.SetLatLngButton(new Point(54.3956171, 18.5724856)); //mfi
+            _mainService.SetCurrentLocation(new Point(54.3956171, 18.5724856)); //mfi
             _locationService.SetNewList();
             _locationService.IsTrailStarted = true;
 
@@ -102,7 +102,7 @@ namespace MountainWalker.Core.ViewModels
 
         private void ShowNearestPoint()
         {
-            _mainService.SetLatLngButton(GetNearestPoint(_locationService.CurrentLocation)); //best place to go every monday <3
+            _mainService.SetCurrentLocation(GetNearestPoint(_locationService.CurrentLocation)); //best place to go every monday <3
             _mainService.CloseMainDialog(false);
         }
 

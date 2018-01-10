@@ -22,8 +22,6 @@ namespace MountainWalker.Core.Services
         public List<Point> ReachedPoints { get; set; }
         public int TrailId { get; set; }
 
-
-
         public LocationService(IMvxMessenger messenger)
         {
             CurrentLocation = new Point(0.0, 0.0);
@@ -41,7 +39,6 @@ namespace MountainWalker.Core.Services
             var message = new LocationMessage(this, CurrentLocation);
             _messenger.Publish(message);
         }
-
 
         private void OnError(object sender, PositionErrorEventArgs e)
         {
@@ -61,8 +58,10 @@ namespace MountainWalker.Core.Services
         
         async Task StartListening()
         {
-            if(CrossGeolocator.Current.IsListening)
+            if (CrossGeolocator.Current.IsListening)
+            {
                 return;
+            }
 	
             await CrossGeolocator.Current.StartListeningAsync(TimeSpan.FromSeconds(5), 10, true);
 
