@@ -29,6 +29,7 @@ namespace MountainWalker.Core.Interfaces.Impl
             Points.Add(new Point(54.034417, 19.033257, "Malbork")); //Malbork
 
             Points.Add(new Point(54.090550, 18.790999, "Misiu")); //xvoxin house
+            Points.Add(new Point(54.493148, 18.539386, "Jit Solution"));
         }
 
         private void CreateConnections()
