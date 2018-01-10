@@ -7,14 +7,14 @@ using MountainWalker.Core.Models;
 using MvvmCross.Platform;
 using MvvmCross.Plugins.Location;
 using MvvmCross.Plugins.Messenger;
-using Newtonsoft.Json.Bson;
 using Plugin.Geolocator;
+using MountainWalker.Core.Interfaces;
+using Plugin.Geolocator.Abstractions;
 
-namespace MountainWalker.Core.Interfaces.Impl
+namespace MountainWalker.Core.Services
 {
     public class LocationService : ILocationService
     {
-        private readonly IMvxLocationWatcher _watcher;
         private readonly IMvxMessenger _messenger;
 
         public Point CurrentLocation { get; set; }
@@ -24,27 +24,29 @@ namespace MountainWalker.Core.Interfaces.Impl
 
 
 
-        public LocationService(IMvxLocationWatcher watcher, IMvxMessenger messenger)
+        public LocationService(IMvxMessenger messenger)
         {
             CurrentLocation = new Point(0.0, 0.0);
-            _watcher = watcher;
             _messenger = messenger;
-            _watcher.Start(new MvxLocationOptions(), OnLocation, OnError);
+            StartListening(); // async?
         }
 
-        private void OnLocation(MvxGeoLocation location)
+        private void OnLocation(object sender, PositionEventArgs e)
         {
-            CurrentLocation = new Point(location.Coordinates.Latitude, location.Coordinates.Longitude);
+            Debug.WriteLine("Zlapalem nowa lokalizacje!");
+            var location = e.Position;
+            
+            CurrentLocation = new Point(location.Latitude, location.Longitude);
 
             var message = new LocationMessage(this, CurrentLocation);
             _messenger.Publish(message);
         }
 
 
-        private void OnError(MvxLocationError error)
+        private void OnError(object sender, PositionErrorEventArgs e)
         {
-            Mvx.Error("Seen location error {0}", error.Code);
-        }
+            Debug.WriteLine(e.Error);
+        } 
 
         public async Task<Point> GetLocation()
         {
@@ -55,6 +57,17 @@ namespace MountainWalker.Core.Interfaces.Impl
             Point location = new Point(position.Latitude, position.Longitude);
 
             return location;
+        }
+        
+        async Task StartListening()
+        {
+            if(CrossGeolocator.Current.IsListening)
+                return;
+	
+            await CrossGeolocator.Current.StartListeningAsync(TimeSpan.FromSeconds(5), 10, true);
+
+            CrossGeolocator.Current.PositionChanged += OnLocation;
+            CrossGeolocator.Current.PositionError += OnError;
         }
 
         public void SetNewList()
