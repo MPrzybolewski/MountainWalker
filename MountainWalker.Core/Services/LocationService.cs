@@ -23,7 +23,6 @@ namespace MountainWalker.Core.Interfaces.Impl
         public int TrailId { get; set; }
 
 
-        bool watcherFlag = true;
 
         public LocationService(IMvxLocationWatcher watcher, IMvxMessenger messenger)
         {
@@ -42,10 +41,9 @@ namespace MountainWalker.Core.Interfaces.Impl
         
         public void StartFollow()
         {
-            if(watcherFlag)
+            if(!_watcher.Started)
             {
                 _watcher.Start(new MvxLocationOptions(), OnLocation, OnError);
-                watcherFlag = false;
             }
 
         }

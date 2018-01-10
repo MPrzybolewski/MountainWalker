@@ -166,5 +166,13 @@ namespace MountainWalker.Core.ViewModels
             _locationService.TrailId = id;
             await _navigationService.Navigate(typeof(TrailDialogViewModel));
         }
+
+
+        public override void ViewDestroy()
+        {
+
+
+            base.ViewDestroy();
+        }
     }
 }
