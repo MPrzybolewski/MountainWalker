@@ -117,7 +117,7 @@ namespace MountainWalker.Core.ViewModels
                 foreach (var point in _trailService.Points)
                 {
                     Debug.WriteLine("Distance - true?" + _mainService.GetDistanceBetweenTwoPointsOnMapInMeters(Location, point));
-                    if (_mainService.GetDistanceBetweenTwoPointsOnMapInMeters(Location, point) < 30
+                    if (_mainService.GetDistanceBetweenTwoPointsOnMapInMeters(Location, point) < 50
                         &&  !_locationService.ReachedPoints.Contains(point)) 
                     {
                         _locationService.ReachedPoints.Add(point);

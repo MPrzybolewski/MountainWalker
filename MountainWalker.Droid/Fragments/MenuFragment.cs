@@ -84,7 +84,7 @@ namespace MountainWalker.Droid.Fragments
                     ViewModel.ShowSettingCommand.Execute();
                     break;
                 case Resource.Id.nav_logout:
-                    CrossSecureStorage.Current.DeleteKey("Sesja");
+                    CrossSecureStorage.Current.DeleteKey("Session");
                     ViewModel.ShowSignInCommand.Execute();
                     break;
             }
