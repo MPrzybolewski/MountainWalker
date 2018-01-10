@@ -102,7 +102,7 @@ namespace MountainWalker.Core.ViewModels
 
         private void ShowNearestPoint()
         {
-            _mainService.SetLatLngButton(new Point(54.394121, 18.569394)); //best place to go every monday <3
+            _mainService.SetLatLngButton(GetNearestPoint(_locationService.CurrentLocation)); //best place to go every monday <3
             _mainService.CloseMainDialog(false);
         }
 
