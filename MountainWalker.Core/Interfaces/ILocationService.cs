@@ -17,6 +17,5 @@ namespace MountainWalker.Core.Interfaces
         List<Point> ReachedPoints { get; set; }
         int TrailId { get; set; }
         void SetNewList();
-        void StartFollow();
     }
 }

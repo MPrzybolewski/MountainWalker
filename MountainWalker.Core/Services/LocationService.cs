@@ -29,6 +29,7 @@ namespace MountainWalker.Core.Interfaces.Impl
             CurrentLocation = new Point(0.0, 0.0);
             _watcher = watcher;
             _messenger = messenger;
+            _watcher.Start(new MvxLocationOptions(), OnLocation, OnError);
         }
 
         private void OnLocation(MvxGeoLocation location)
@@ -38,15 +39,7 @@ namespace MountainWalker.Core.Interfaces.Impl
             var message = new LocationMessage(this, CurrentLocation);
             _messenger.Publish(message);
         }
-        
-        public void StartFollow()
-        {
-            if(!_watcher.Started)
-            {
-                _watcher.Start(new MvxLocationOptions(), OnLocation, OnError);
-            }
 
-        }
 
         private void OnError(MvxLocationError error)
         {

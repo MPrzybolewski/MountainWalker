@@ -90,8 +90,6 @@ namespace MountainWalker.Core.ViewModels
             _travelPanelToken = messenger.Subscribe<TravelPanelMessage>(OnTimerMessage);
             _startButtonToken = messenger.Subscribe<StartButtonMessage>(OnStartButtonMessage);
 
-            _locationService.StartFollow();
-
             _mainService.SetPointsAndTrials(_trailService.Points, _trailService.Trails);
 
             _mainService.SetPointsAndTrials(_trailService.Points, _trailService.Trails);
@@ -165,14 +163,6 @@ namespace MountainWalker.Core.ViewModels
             int id = args;
             _locationService.TrailId = id;
             await _navigationService.Navigate(typeof(TrailDialogViewModel));
-        }
-
-
-        public override void ViewDestroy()
-        {
-
-
-            base.ViewDestroy();
         }
     }
 }
