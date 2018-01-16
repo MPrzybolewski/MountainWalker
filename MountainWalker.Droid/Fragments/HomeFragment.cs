@@ -23,6 +23,7 @@ using Android.Widget;
 using MountainWalker.Core.Models;
 using MountainWalker.Core.Services;
 using MountainWalker.Droid.Views;
+using MvvmCross.Platform.Core;
 using Point = MountainWalker.Core.Models.Point;
 
 namespace MountainWalker.Droid.Fragments
@@ -34,6 +35,20 @@ namespace MountainWalker.Droid.Fragments
         public static GoogleMap Map;
 
         private IMvxCommand<Point> _command;
+        
+        private IMvxInteraction<Point> _interaction;
+        public IMvxInteraction<Point> Interaction
+        {
+            get => _interaction;
+            set
+            {
+                if (_interaction != null)
+                    _interaction.Requested -= ChangeLocationCameraHandler;
+            
+                _interaction = value;
+                _interaction.Requested += ChangeLocationCameraHandler;
+            }
+        }
 
         public async void OnMapReady(GoogleMap map)
         {
@@ -93,11 +108,17 @@ namespace MountainWalker.Droid.Fragments
             SetCurrentLocation(new Point(pos.Latitude, pos.Longitude));
         }
 
-        public void SetCurrentLocation(Point location)
+        private void SetCurrentLocation(Point location)
         {
             LatLng coordinate = new LatLng(location.Latitude, location.Longitude);
             CameraUpdate yourLocation = CameraUpdateFactory.NewLatLngZoom(coordinate, 17);
             Map.MoveCamera(yourLocation);
+        }
+
+        private void ChangeLocationCameraHandler(object sender, MvxValueEventArgs<Point> loc)
+        {
+            Debug.WriteLine("[SUPER WAZNA WIADOMOSC]: Jestem we View");
+            SetCurrentLocation(loc.Value);
         }
 
         protected override int FragmentId => Resource.Layout.HomeView;        

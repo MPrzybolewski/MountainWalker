@@ -21,6 +21,9 @@ namespace MountainWalker.Core.ViewModels
         private readonly ITrailService _trailService;
         private readonly ITravelPanelService _travelPanelService;
         private readonly IStartButtonService _startButtonService;
+        
+        private MvxInteraction<Point> _interaction = new MvxInteraction<Point>();
+        public IMvxInteraction<Point> Interaction => _interaction;
 
         private MvxSubscriptionToken _token;
         private MvxSubscriptionToken _travelPanelToken;
@@ -110,10 +113,11 @@ namespace MountainWalker.Core.ViewModels
         private void OnLocationMessage(LocationMessage message)
         {
             Location = message.Location;
+            Debug.WriteLine("[SUPER WAZNA WIADOMOSC]: Pode mna jest event kurka wodna");
+            _locationService.OnCurrentLocationChanged();
             if (_locationService.IsTrailStarted)
             {
                 _mainService.SetCurrentLocation(Location);
-                _locationService.OnCurrentLocationChanged();
                 foreach (var point in _trailService.Points)
                 {
                     Debug.WriteLine("Distance - true?" + _mainService.GetDistanceBetweenTwoPointsOnMapInMeters(Location, point));
@@ -171,6 +175,7 @@ namespace MountainWalker.Core.ViewModels
         {
             //.Execute(loc.Location);
             Debug.WriteLine("[SUPER WAZNA WIADOMOSC]: Event sie obsluguje");
+            _interaction.Raise(loc.Location);
         }
     }
 }
