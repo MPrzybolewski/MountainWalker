@@ -23,11 +23,13 @@ namespace MountainWalker.Core.Interfaces.Impl
         public int TrailId { get; set; }
 
 
+
         public LocationService(IMvxLocationWatcher watcher, IMvxMessenger messenger)
         {
+            CurrentLocation = new Point(0.0, 0.0);
             _watcher = watcher;
             _messenger = messenger;
-            CurrentLocation = new Point(0.0, 0.0);
+            _watcher.Start(new MvxLocationOptions(), OnLocation, OnError);
         }
 
         private void OnLocation(MvxGeoLocation location)
@@ -37,11 +39,7 @@ namespace MountainWalker.Core.Interfaces.Impl
             var message = new LocationMessage(this, CurrentLocation);
             _messenger.Publish(message);
         }
-        
-        public void StartFollow()
-        {
-            _watcher.Start(new MvxLocationOptions(), OnLocation, OnError);
-        }
+
 
         private void OnError(MvxLocationError error)
         {

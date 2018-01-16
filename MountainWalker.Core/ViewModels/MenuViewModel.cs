@@ -69,7 +69,7 @@ namespace MountainWalker.Core.ViewModels
 
         private void ShowSignInExecuted()
         {
-            _navigationService.Navigate<SignInViewModel>();
+            _navigationService.Navigate<StartViewModel>();
         }
 
     }

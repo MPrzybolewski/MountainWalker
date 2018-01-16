@@ -73,7 +73,6 @@ namespace MountainWalker.Core.ViewModels
                 else
                 {
                     _dialogService.ShowAlert("Uwaga!", "Błędne dane. Nie można zarejestrować!", "OK");
-                    _navigationService.Navigate<RegisterViewModel>();
                 }
             }
             else
@@ -91,6 +90,7 @@ namespace MountainWalker.Core.ViewModels
             string result = await _webAPIService.CheckIfUserCanLogin(RestUrl);
             if (result.Trim(new char[] { '"' }).Equals("true"))
             {
+                UserDialogs.Instance.HideLoading();
                 return true;
             }
             else

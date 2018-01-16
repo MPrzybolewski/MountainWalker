@@ -11,69 +11,63 @@ namespace MountainWalker.Core.Services
     {
         private readonly IMvxMessenger _travelPanelMessenger;
 
-        private TravelTime _travelTime = new TravelTime(1,1,1);
-        private int _numberOfReachedPoints = 0;
-        private string _travelPanelVisibility = "gone";
+        public TravelTime TravelTime { get; set; }
 
-        Stopwatch timer;
-        long _travelTimeInMiliseconds;
+        public long TravelTimeInMiliseconds { get; set; }
+
+        private int _reachedPoints = 0;
+        public int NumberOfReachedPoints
+        {
+            get => _reachedPoints;
+            set
+            {
+                _reachedPoints = value;
+                OnTimeFromTimer();
+            }
+        }
+
+        private string _travelPanelVisibility = "gone";
+        public string TravelPanelVisibility
+        {
+            get => _travelPanelVisibility;
+            set
+            {
+                _travelPanelVisibility = value;
+                OnTimeFromTimer();
+            }
+        }
+
+
+        private Stopwatch _timer;
 
         public TravelPanelService(IMvxMessenger travelPanelMessenger)
         {
             _travelPanelMessenger = travelPanelMessenger;
+            TravelTime = new TravelTime(1, 1, 1);
         }
 
         public void OnTimeFromTimer()
         {
-            var message = new TravelPanelMessage(this, _travelTime, _numberOfReachedPoints, _travelPanelVisibility);
+            var message = new TravelPanelMessage(this, TravelTime, NumberOfReachedPoints, TravelPanelVisibility);
 
             _travelPanelMessenger.Publish(message);
         }
 
-
-        public void SetTravelTime(TravelTime travelTime)
-        {
-            _travelTime = travelTime;
-        }
-
-        public void SetNumberOfReachedPoints(int numberOfReachedPoints)
-        {
-            _numberOfReachedPoints = numberOfReachedPoints;
-        }
-
         public void StartTimer()
         {
-            timer = new Stopwatch();
-            timer.Start();
+            _timer = new Stopwatch();
+            _timer.Start();
         }
 
         public void StopTimer()
         {
-            timer.Stop();
+            _timer.Stop();
         }
 
         public void SetTravelTime()
         {
-            _travelTimeInMiliseconds = timer.ElapsedMilliseconds;
-            _travelTime = new TravelTime(_travelTimeInMiliseconds / 1000);
+            TravelTimeInMiliseconds = _timer.ElapsedMilliseconds;
+            TravelTime = new TravelTime(TravelTimeInMiliseconds / 1000);
         }
-
-        public TravelTime GetTravelTime()
-        {
-            return _travelTime;
-        }
-
-        public void SetTravelPanelVisibility(string visibility)
-        {
-            _travelPanelVisibility = visibility;
-            OnTimeFromTimer();
-        }
-
-        public string GetTravelPanelVisibility()
-        {
-            return _travelPanelVisibility;
-        }
-
-      
     }
 }

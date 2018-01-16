@@ -33,7 +33,6 @@ namespace MountainWalker.Droid.Fragments
         public override View OnCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState)
         {
             var ignore = base.OnCreateView(inflater, container, savedInstanceState);
-
             var view = this.BindingInflate(Resource.Layout.fragment_navigation, null);
 
             _navigationView = view.FindViewById<NavigationView>(Resource.Id.navigation_view);
@@ -85,7 +84,7 @@ namespace MountainWalker.Droid.Fragments
                     ViewModel.ShowSettingCommand.Execute();
                     break;
                 case Resource.Id.nav_logout:
-                    CrossSecureStorage.Current.DeleteKey("Sesja");
+                    CrossSecureStorage.Current.DeleteKey("Session");
                     ViewModel.ShowSignInCommand.Execute();
                     break;
             }

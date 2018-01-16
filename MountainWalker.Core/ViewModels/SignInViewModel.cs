@@ -90,6 +90,7 @@ namespace MountainWalker.Core.ViewModels
                 {
                     CrossSecureStorage.Current.SetValue("Session", _password);
                 }
+                UserDialogs.Instance.HideLoading();
                 return true;
             }
             else

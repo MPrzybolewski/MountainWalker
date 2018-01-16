@@ -59,7 +59,7 @@ namespace MountainWalker.Droid.Services
         public bool CheckPointIsNear(Point userLocation, Point pointLocation)
         {
             double distanceBetweenNearestPointAndUserCurrentLocation = GetDistanceBetweenTwoPointsOnMapInMeters(userLocation, pointLocation);
-            Debug.WriteLine("Odelglosc: {0}",distanceBetweenNearestPointAndUserCurrentLocation);
+            //Debug.WriteLine("Odelglosc: {0}",distanceBetweenNearestPointAndUserCurrentLocation);
             if(distanceBetweenNearestPointAndUserCurrentLocation < 100)
             {
                 return true;
@@ -69,8 +69,8 @@ namespace MountainWalker.Droid.Services
 
         public double GetDistanceBetweenTwoPointsOnMapInMeters(Point firstLocation, Point secondLocation)
         {
-            Debug.WriteLine("Uzytkownik: {0} , {1}", firstLocation.Latitude, firstLocation.Longitude);
-            Debug.WriteLine("Punkt: {0} , {1}", secondLocation.Latitude, secondLocation.Longitude);
+            //Debug.WriteLine("Uzytkownik: {0} , {1}", firstLocation.Latitude, firstLocation.Longitude);
+            //Debug.WriteLine("Punkt: {0} , {1}", secondLocation.Latitude, secondLocation.Longitude);
             int R = 6378137; //Earth's mean radius in meter
             double dLat = ConvertDegreeToRadian(secondLocation.Latitude - firstLocation.Latitude);
             double dLong = ConvertDegreeToRadian(secondLocation.Longitude - firstLocation.Longitude);
