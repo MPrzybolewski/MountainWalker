@@ -66,9 +66,7 @@ namespace MountainWalker.Core.ViewModels
         {
             if (_password.Equals(_repPassword))
             {
-                Debug.WriteLine("Name: {0}, Surname: {1}, Login: {2}, Password: {3}, Email: {4}", _name, _surname, _login, _password, _email);
                 bool result = await CheckIfRegistered(_name, _surname, _login, _password, _email);
-                Debug.WriteLine("Bekaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa" + result.ToString());
                 if (result)
                 {
                     _navigationService.Navigate<SignInViewModel>();

@@ -69,15 +69,5 @@ namespace MountainWalker.Core.Interfaces.Impl
                 return false;
             }
         }
-
-        public bool CheckLength(string name, string surname, string login, string password, string email)
-        {
-            if ((name.Length <= 0) && (surname.Length <= 0) && (login.Length <= 0) && (password.Length <= 0) && (email.Length <= 0))
-            {
-                return false;
-            }
-
-            return true;
-        }
     }
 }
