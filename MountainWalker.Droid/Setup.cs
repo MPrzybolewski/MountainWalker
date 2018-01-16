@@ -5,6 +5,7 @@ using MvvmCross.Core.ViewModels;
 using MvvmCross.Platform.Platform;
 using MvvmCross.Platform;
 using MountainWalker.Core.Interfaces;
+using MountainWalker.Core.Services;
 using MountainWalker.Droid.Bindings;
 using MountainWalker.Droid.Fragments;
 using MountainWalker.Droid.Services;
@@ -55,6 +56,8 @@ namespace MountainWalker.Droid
         protected override void FillTargetFactories(IMvxTargetBindingFactoryRegistry registry)
         {
             registry.RegisterCustomBindingFactory<GoogleMap>(TrailDialogBinding.BindingName, v => new TrailDialogBinding(v));
+            registry.RegisterCustomBindingFactory<LocationService>(ChangeLocationCameraBinding.BindingName, 
+                v => new ChangeLocationCameraBinding(v));
 
             base.FillTargetFactories(registry);
         }

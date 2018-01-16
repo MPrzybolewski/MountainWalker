@@ -21,6 +21,7 @@ using MvvmCross.Core.ViewModels;
 using MvvmCross.Plugins.Messenger;
 using Android.Widget;
 using MountainWalker.Core.Models;
+using MountainWalker.Core.Services;
 using MountainWalker.Droid.Views;
 using Point = MountainWalker.Core.Models.Point;
 
@@ -32,7 +33,7 @@ namespace MountainWalker.Droid.Fragments
     {
         public static GoogleMap Map;
 
-        public IMvxCommand Command;
+        private IMvxCommand<Point> _command;
 
         public async void OnMapReady(GoogleMap map)
         {
@@ -46,10 +47,11 @@ namespace MountainWalker.Droid.Fragments
             var home = (HomeViewModel) ViewModel;
             
             CreatePointsAndTrails(home.Points, home.Trails);
-
+            
             var set = this.CreateBindingSet<HomeFragment, HomeViewModel>();
             set.Bind(Map).For(TrailDialogBinding.BindingName).To(vm => vm.OpenTrailDialogCommand);
             set.Apply();
+            
         }
 
         public override View OnCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState)
@@ -77,6 +79,7 @@ namespace MountainWalker.Droid.Fragments
             _mapFragment.GetMapAsync(this);
 
             var view = base.OnCreateView(inflater, container, savedInstanceState);
+            _command = new MvxCommand<Point>(SetCurrentLocation);
             return view;
         }
 
@@ -85,14 +88,14 @@ namespace MountainWalker.Droid.Fragments
             var locator = CrossGeolocator.Current;
             locator.DesiredAccuracy = 1;
             TimeSpan ts = TimeSpan.FromMilliseconds(1000);
-            var position = await locator.GetPositionAsync(ts);
+            var pos = await locator.GetPositionAsync(ts);
 
-            UpdateCamera(position.Latitude, position.Longitude);
+            SetCurrentLocation(new Point(pos.Latitude, pos.Longitude));
         }
 
-        public void UpdateCamera(double lat, double lng)
+        public void SetCurrentLocation(Point location)
         {
-            LatLng coordinate = new LatLng(lat, lng);
+            LatLng coordinate = new LatLng(location.Latitude, location.Longitude);
             CameraUpdate yourLocation = CameraUpdateFactory.NewLatLngZoom(coordinate, 17);
             Map.MoveCamera(yourLocation);
         }

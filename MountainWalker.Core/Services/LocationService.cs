@@ -22,12 +22,23 @@ namespace MountainWalker.Core.Services
         public List<Point> ReachedPoints { get; set; }
         public int TrailId { get; set; }
 
+        //public delegate void EventHandler(object source, LocationEventArgs args);
+
+        public event EventHandler<LocationEventArgs> CurrentLocationChanged;
+
         public LocationService(IMvxMessenger messenger)
         {
             CurrentLocation = new Point(0.0, 0.0);
             _messenger = messenger;
             StartListening(); // async?
         }
+
+        public void OnCurrentLocationChanged()
+        {
+            if (CurrentLocationChanged != null)
+                CurrentLocationChanged(this, new LocationEventArgs(){ Location = CurrentLocation});
+        }
+        
 
         private void OnLocation(object sender, PositionEventArgs e)
         {
@@ -73,5 +84,10 @@ namespace MountainWalker.Core.Services
         {
             ReachedPoints = new List<Point>();
         }
+    }
+
+    public class LocationEventArgs : EventArgs
+    {
+        public Point Location { get; set; }
     }
 }

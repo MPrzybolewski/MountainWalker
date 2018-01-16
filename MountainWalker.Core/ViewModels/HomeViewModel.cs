@@ -5,6 +5,8 @@ using System.Threading.Tasks;
 using MountainWalker.Core.Interfaces;
 using MountainWalker.Core.Messages;
 using MountainWalker.Core.Models;
+using MountainWalker.Core.Services;
+using MvvmCross.Binding.BindingContext;
 using MvvmCross.Core.Navigation;
 using MvvmCross.Core.ViewModels;
 using MvvmCross.Plugins.Messenger;
@@ -89,6 +91,7 @@ namespace MountainWalker.Core.ViewModels
             _travelPanelToken = messenger.Subscribe<TravelPanelMessage>(OnTimerMessage);
             _startButtonToken = messenger.Subscribe<StartButtonMessage>(OnStartButtonMessage);
 
+            _locationService.CurrentLocationChanged += HandleCurrentLocationCameraChanged;
             Points = _trailService.Points;
             Trails = _trailService.Trails;
 
@@ -110,6 +113,7 @@ namespace MountainWalker.Core.ViewModels
             if (_locationService.IsTrailStarted)
             {
                 _mainService.SetCurrentLocation(Location);
+                _locationService.OnCurrentLocationChanged();
                 foreach (var point in _trailService.Points)
                 {
                     Debug.WriteLine("Distance - true?" + _mainService.GetDistanceBetweenTwoPointsOnMapInMeters(Location, point));
@@ -163,6 +167,10 @@ namespace MountainWalker.Core.ViewModels
             await _navigationService.Navigate(typeof(TrailDialogViewModel));
         }
         
-        
+        private void HandleCurrentLocationCameraChanged(object sender, LocationEventArgs loc)
+        {
+            //.Execute(loc.Location);
+            Debug.WriteLine("[SUPER WAZNA WIADOMOSC]: Event sie obsluguje");
+        }
     }
 }

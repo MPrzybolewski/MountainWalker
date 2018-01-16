@@ -5,6 +5,7 @@ using System.Text;
 using System.Threading.Tasks;
 using MountainWalker.Core.Messages;
 using MountainWalker.Core.Models;
+using MountainWalker.Core.Services;
 using MvvmCross.Plugins.Location;
 
 namespace MountainWalker.Core.Interfaces
@@ -13,6 +14,8 @@ namespace MountainWalker.Core.Interfaces
     {
         Task<Point> GetLocation();
         Point CurrentLocation { get; set; }
+        event EventHandler<LocationEventArgs> CurrentLocationChanged;
+        void OnCurrentLocationChanged();
         bool IsTrailStarted { get; set; }
         List<Point> ReachedPoints { get; set; }
         int TrailId { get; set; }
