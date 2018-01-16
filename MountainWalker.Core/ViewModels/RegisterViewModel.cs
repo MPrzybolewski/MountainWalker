@@ -8,6 +8,7 @@ using MvvmCross.Core.Navigation;
 using MvvmCross.Core.ViewModels;
 using MvvmCross.Platform;
 using Acr.UserDialogs;
+using System.Diagnostics;
 
 namespace MountainWalker.Core.ViewModels
 {
@@ -65,7 +66,9 @@ namespace MountainWalker.Core.ViewModels
         {
             if (_password.Equals(_repPassword))
             {
-                bool result = await CheckIfRegistered();
+                Debug.WriteLine("Name: {0}, Surname: {1}, Login: {2}, Password: {3}, Email: {4}", _name, _surname, _login, _password, _email);
+                bool result = await CheckIfRegistered(_name, _surname, _login, _password, _email);
+                Debug.WriteLine("Bekaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa" + result.ToString());
                 if (result)
                 {
                     _navigationService.Navigate<SignInViewModel>();
@@ -81,14 +84,11 @@ namespace MountainWalker.Core.ViewModels
             }
         }
 
-        public async Task<bool> CheckIfRegistered()
+        public async Task<bool> CheckIfRegistered(string name, string surname, string login, string password, string email)
         {
-
-            UserDialogs.Instance.ShowLoading("Rejestrowanie...");
-            string RestUrl = "http://mountainwalkerwebapi.azurewebsites.net/api/users/" + _login + "?password=" +
-                             _password;
-            string result = await _webAPIService.CheckIfUserCanLogin(RestUrl);
-            if (result.Trim(new char[] { '"' }).Equals("true"))
+            UserDialogs.Instance.ShowLoading("Rejestrowanie...");          
+            bool result = await _webAPIService.CheckIfUserCanRegister(name, surname, login, password, email);
+            if (result)
             {
                 UserDialogs.Instance.HideLoading();
                 return true;
