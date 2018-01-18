@@ -34,8 +34,6 @@ namespace MountainWalker.Droid.Fragments
     {
         private GoogleMap _map;
 
-        private IMvxCommand<Point> _command;
-        
         private IMvxInteraction<Point> _interaction;
         public IMvxInteraction<Point> Interaction
         {
@@ -94,7 +92,6 @@ namespace MountainWalker.Droid.Fragments
             _mapFragment.GetMapAsync(this);
             
             var view = base.OnCreateView(inflater, container, savedInstanceState);
-            _command = new MvxCommand<Point>(SetCurrentLocation);
             
             var interact = this.CreateBindingSet<HomeFragment, HomeViewModel>();
             interact.Bind(this).For(v => v.Interaction).To(viewModel => viewModel.Interaction).TwoWay();

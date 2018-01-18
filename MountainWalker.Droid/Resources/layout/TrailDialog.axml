@@ -37,21 +37,13 @@
     <Button
         android:layout_height="60dp"
         android:layout_width="120dp"
-        android:text="OK"
+        android:text="Czytaj więcej"
         android:id="@+id/btn_dialog"
         android:gravity="center_vertical|center_horizontal"
         android:textColor="#ffffffff"
         android:layout_below="@+id/text_dialog"
         android:layout_alignParentStart="true"
-        local:MvxBind="Click CloseDialogCommand" />
-    <Button
-        android:layout_height="60dp"
-        android:layout_width="120dp"
-        android:text="Read More"
-        android:gravity="center_vertical|center_horizontal"
-        android:id="@+id/button"
-        android:textColor="#ffffffff"
-        android:layout_alignTop="@+id/btn_dialog"
-        android:layout_alignParentEnd="true"
+        android:layout_centerHorizontal="true"
         local:MvxBind="Click ReadMoreCommand" />
+
 </RelativeLayout>

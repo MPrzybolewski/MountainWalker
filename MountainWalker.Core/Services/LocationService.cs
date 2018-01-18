@@ -67,6 +67,51 @@ namespace MountainWalker.Core.Services
         {
             ReachedPoints = new List<Point>();
         }
+        
+        public bool CheckPointIsNear(Point userLocation, Point pointLocation)
+        {
+            double distanceBetweenNearestPointAndUserCurrentLocation = GetDistanceBetweenTwoPointsOnMapInMeters(userLocation, pointLocation);
+            if(distanceBetweenNearestPointAndUserCurrentLocation < 100)
+            {
+                return true;
+            }
+            return false;
+        }
+        
+        public double GetDistanceBetweenTwoPointsOnMapInMeters(Point firstLocation, Point secondLocation)
+        {
+            int R = 6378137; //Earth's mean radius in meter
+            double dLat = ConvertDegreeToRadian(secondLocation.Latitude - firstLocation.Latitude);
+            double dLong = ConvertDegreeToRadian(secondLocation.Longitude - firstLocation.Longitude);
+            double a = Math.Sin(dLat / 2) * Math.Sin(dLat / 2) 
+                       + Math.Cos(ConvertDegreeToRadian(firstLocation.Latitude)) * Math.Cos(ConvertDegreeToRadian(secondLocation.Latitude))
+                                                                                 * Math.Sin(dLong / 2) * Math.Sin(dLong / 2);
+            double c = 2 * Math.Atan2(Math.Sqrt(a), Math.Sqrt(1 - a));
+            double d = R * c;
+            return d;
+        }
+
+        public double ConvertDegreeToRadian(double angle)
+        {
+            return (Math.PI * angle) / 180.0;
+        }
+        
+        public Point GetNearestPoint(Point userLocation, List<Point> points)
+        {
+            var minDistanceBettwenPoints = Double.MaxValue;
+            var nearestPoint = new Point(0,0);
+            foreach(var point in points)
+            {
+                double distanceBettwenPoints = GetDistanceBetweenTwoPointsOnMapInMeters(userLocation, point);
+                Debug.WriteLine("Distance between I and point is - " + distanceBettwenPoints);
+                if(minDistanceBettwenPoints > distanceBettwenPoints)
+                {
+                    minDistanceBettwenPoints = distanceBettwenPoints;
+                    nearestPoint = point;
+                }
+            }
+            return nearestPoint;
+        }
     }
 
     public class LocationEventArgs : EventArgs

@@ -3,21 +3,44 @@ using Android.OS;
 using Android.Runtime;
 using MountainWalker.Core.ViewModels;
 using MountainWalker.Droid.Views;
+using MvvmCross.Binding.BindingContext;
 using MvvmCross.Binding.Droid.BindingContext;
+using MvvmCross.Core.ViewModels;
 using MvvmCross.Droid.Support.V4;
 using MvvmCross.Droid.Views;
 using MvvmCross.Platform;
+using MvvmCross.Platform.Core;
 using MvvmCross.Platform.Droid.Platform;
 
 namespace MountainWalker.Droid.Fragments
 {
     public class DialogFragment : MvxDialogFragment<DialogViewModel>
     {
-        public static Dialog dialog;
+        private Dialog _dialog;
+
+        private IMvxInteraction<bool> _visible;
+        public IMvxInteraction<bool> Interaction
+        {
+            get => _visible;
+            set
+            {
+                if (_visible != null)
+                    _visible.Requested -= CloseDialogHandler;
+            
+                _visible = value;
+                _visible.Requested += CloseDialogHandler;
+            }
+        }
+
+        private void CloseDialogHandler(object sender, MvxValueEventArgs<bool> visible)
+        {
+            if (!visible.Value)
+                _dialog.Dismiss();
+        }
 
         public override Dialog OnCreateDialog(Bundle savedState)
         {
-            dialog = base.OnCreateDialog(savedState);
+            _dialog = base.OnCreateDialog(savedState);
 
             if (BindingContext == null)
             {
@@ -27,10 +50,14 @@ namespace MountainWalker.Droid.Fragments
 
             var view = this.BindingInflate(Resource.Layout.MainDialog, null);
                 
-            dialog.SetContentView(view);
-            dialog.SetCancelable(true);
+            _dialog.SetContentView(view);
+            _dialog.SetCancelable(true);
+            
+            var interact = this.CreateBindingSet<DialogFragment, DialogViewModel>();
+            interact.Bind(this).For(v => v.Interaction).To(viewModel => viewModel.Interaction);
+            interact.Apply();
 
-            return dialog;
+            return _dialog;
         }
     }
 }

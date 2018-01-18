@@ -47,7 +47,7 @@
     <Button
         android:layout_height="60dp"
         android:layout_width="120dp"
-        android:text="Nearest Point"
+        android:text="Najbliży punkt"
         android:gravity="center_vertical|center_horizontal"
         android:id="@+id/button"
         android:textColor="#ffffffff"

@@ -13,11 +13,13 @@ namespace MountainWalker.Core.ViewModels
 {
     public class DialogViewModel : MvxViewModel
     {
-        private readonly IMainActivityService _mainService;
         private readonly ILocationService _locationService;
         private readonly ITravelPanelService _travelPanelService;
         private readonly IStartButtonService _startButtonService;
         private readonly ITrailService _trailService;
+        
+        private readonly MvxInteraction<bool> _visible = new MvxInteraction<bool>();
+        public IMvxInteraction<bool> Interaction => _visible;
 
         public IMvxCommand TrailStartCommand { get; }
         public IMvxCommand NearestPointCommand { get; }
@@ -56,11 +58,10 @@ namespace MountainWalker.Core.ViewModels
             }
         }
 
-        public DialogViewModel(IMainActivityService mainService, ILocationService locationService,
-                               ITravelPanelService travelPanelService, IStartButtonService startButtonService,
-                              ITrailService trailService)
+        public DialogViewModel(ILocationService locationService, ITravelPanelService travelPanelService, 
+            IStartButtonService startButtonService, ITrailService trailService)
         {
-            _mainService = mainService;
+            _visible.Raise(true);
             _locationService = locationService;
             _travelPanelService = travelPanelService;
             _startButtonService = startButtonService;
@@ -69,9 +70,9 @@ namespace MountainWalker.Core.ViewModels
             var currentLocation = _locationService.CurrentLocation;
 
 
-            Point nearestPoint = GetNearestPoint(currentLocation);
+            Point nearestPoint = _locationService.GetNearestPoint(currentLocation, _trailService.Points);
 
-            if (_mainService.CheckPointIsNear(currentLocation, nearestPoint)) // user and point location
+            if (_locationService.CheckPointIsNear(currentLocation, nearestPoint)) // user and point location
             {
                 CanStart = true;
                 TrailStartCommand = new MvxCommand(StartTrail);
@@ -96,31 +97,14 @@ namespace MountainWalker.Core.ViewModels
             _travelPanelService.StartTimer();
             _startButtonService.SetStartButtonText("Stop");
             _travelPanelService.TravelPanelVisibility = "visible";
-            _mainService.CloseMainDialog(false);
-
+            _visible.Raise(false);
         }
 
         private void ShowNearestPoint()
         {
-            _locationService.OnCurrentLocationChanged(GetNearestPoint(_locationService.CurrentLocation));
-            _mainService.CloseMainDialog(false);
-        }
-
-        private Point GetNearestPoint(Point userLocation)
-        {
-            double minDistanceBettwenPoints = Double.MaxValue;
-            Point nearestPoint = new Point(0,0);
-            foreach(Point point in _trailService.Points)
-            {
-                double distanceBettwenPoints = _mainService.GetDistanceBetweenTwoPointsOnMapInMeters(userLocation, point);
-                Debug.WriteLine("Distance between I and point is - " + distanceBettwenPoints);
-                if(minDistanceBettwenPoints > distanceBettwenPoints)
-                {
-                    minDistanceBettwenPoints = distanceBettwenPoints;
-                    nearestPoint = point;
-                }
-            }
-            return nearestPoint;
+            _locationService.OnCurrentLocationChanged(_locationService.GetNearestPoint(
+            _locationService.CurrentLocation, _trailService.Points));
+            _visible.Raise(false);
         }
     }
 }

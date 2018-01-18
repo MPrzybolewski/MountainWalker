@@ -16,7 +16,6 @@ namespace MountainWalker.Core.ViewModels
     public class HomeViewModel : MvxViewModel
     {
         private readonly ILocationService _locationService;
-        private readonly IMainActivityService _mainService;
         private readonly IMvxNavigationService _navigationService;
         private readonly ITrailService _trailService;
         private readonly ITravelPanelService _travelPanelService;
@@ -76,11 +75,9 @@ namespace MountainWalker.Core.ViewModels
             }
         }
 
-        public HomeViewModel(ILocationService locationService, IMainActivityService mainService,
-            IMvxNavigationService navigationService, IMvxMessenger messenger, 
+        public HomeViewModel(ILocationService locationService, IMvxNavigationService navigationService, IMvxMessenger messenger, 
             ITrailService trailService, ITravelPanelService travelPanelService, IStartButtonService startButtonService)
         {
-            _mainService = mainService;
             _navigationService = navigationService;
             _trailService = trailService;
 
@@ -116,12 +113,11 @@ namespace MountainWalker.Core.ViewModels
             
             if (_locationService.IsTrailStarted)
             {
-//                _mainService.SetCurrentLocation(Location);
                 _locationService.OnCurrentLocationChanged(Location);
                 foreach (var point in _trailService.Points)
                 {
-                    Debug.WriteLine("Distance - true?" + _mainService.GetDistanceBetweenTwoPointsOnMapInMeters(Location, point));
-                    if (_mainService.GetDistanceBetweenTwoPointsOnMapInMeters(Location, point) < 50
+                    Debug.WriteLine("Distance - true?" + _locationService.GetDistanceBetweenTwoPointsOnMapInMeters(Location, point));
+                    if (_locationService.GetDistanceBetweenTwoPointsOnMapInMeters(Location, point) < 50
                         &&  !_locationService.ReachedPoints.Contains(point)) 
                     {
                         _locationService.ReachedPoints.Add(point);

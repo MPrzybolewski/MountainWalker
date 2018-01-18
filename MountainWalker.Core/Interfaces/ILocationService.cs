@@ -19,5 +19,9 @@ namespace MountainWalker.Core.Interfaces
         List<Point> ReachedPoints { get; set; }
         int TrailId { get; set; }
         void SetNewList();
+        bool CheckPointIsNear(Point userLocation, Point pointLocation);
+        double GetDistanceBetweenTwoPointsOnMapInMeters(Point firstLocation, Point secondLocation);
+        double ConvertDegreeToRadian(double angle);
+        Point GetNearestPoint(Point userLocation, List<Point> points);
     }
 }
