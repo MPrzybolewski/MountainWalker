@@ -6,7 +6,6 @@ namespace MountainWalker.Core.Interfaces
 {
     public interface IMainActivityService
     {
-        void SetCurrentLocation(Point location);
         void CloseTrailDialog();
         void CloseMainDialog(bool isStopButton);
         bool CheckPointIsNear(Point userLocation, Point pointLocation);

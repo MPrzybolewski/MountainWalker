@@ -12,10 +12,9 @@ namespace MountainWalker.Core.Interfaces
 {
     public interface ILocationService
     {
-        Task<Point> GetLocation();
         Point CurrentLocation { get; set; }
         event EventHandler<LocationEventArgs> CurrentLocationChanged;
-        void OnCurrentLocationChanged();
+        void OnCurrentLocationChanged(Point loc);
         bool IsTrailStarted { get; set; }
         List<Point> ReachedPoints { get; set; }
         int TrailId { get; set; }

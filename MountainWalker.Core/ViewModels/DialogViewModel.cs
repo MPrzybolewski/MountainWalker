@@ -58,7 +58,7 @@ namespace MountainWalker.Core.ViewModels
 
         public DialogViewModel(IMainActivityService mainService, ILocationService locationService,
                                ITravelPanelService travelPanelService, IStartButtonService startButtonService,
-                              ITrailService trailService) // tutaj ILocationService
+                              ITrailService trailService)
         {
             _mainService = mainService;
             _locationService = locationService;
@@ -89,7 +89,7 @@ namespace MountainWalker.Core.ViewModels
 
         private void StartTrail()
         {
-            _mainService.SetCurrentLocation(new Point(54.3956171, 18.5724856)); //mfi
+            _locationService.OnCurrentLocationChanged(new Point(54.3956171, 18.5724856));
             _locationService.SetNewList();
             _locationService.IsTrailStarted = true;
 
@@ -102,7 +102,7 @@ namespace MountainWalker.Core.ViewModels
 
         private void ShowNearestPoint()
         {
-            _mainService.SetCurrentLocation(GetNearestPoint(_locationService.CurrentLocation)); //best place to go every monday <3
+            _locationService.OnCurrentLocationChanged(GetNearestPoint(_locationService.CurrentLocation));
             _mainService.CloseMainDialog(false);
         }
 

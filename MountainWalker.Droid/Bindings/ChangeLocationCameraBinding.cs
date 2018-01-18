@@ -1,5 +1,4 @@
 ﻿using System;
-using Android.Gms.Maps;
 using MountainWalker.Core.Models;
 using MountainWalker.Core.Services;
 using MvvmCross.Binding;

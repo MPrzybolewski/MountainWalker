@@ -22,17 +22,6 @@ namespace MountainWalker.Droid.Services
         private static List<Point> _pointList;
         private static List<Connection> _trails;
 
-        public void SetCurrentLocation(Point location)
-        {
-            if (HomeFragment.Map != null)
-            {
-                LatLng coordinate = new LatLng(location.Latitude, location.Longitude);
-                CameraUpdate yourLocation = CameraUpdateFactory.NewLatLngZoom(coordinate, 17);
-                HomeFragment.Map.AnimateCamera(yourLocation);
-
-            }
-        }
-
         public void CloseMainDialog(bool isStopButton)
         {
             if(isStopButton)

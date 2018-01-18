@@ -32,7 +32,7 @@ namespace MountainWalker.Droid.Fragments
     [Register("MountainWalker.android.HomeFragment")]
     public class HomeFragment : BaseFragment<HomeViewModel>, IOnMapReadyCallback
     {
-        public static GoogleMap Map;
+        private GoogleMap _map;
 
         private IMvxCommand<Point> _command;
         
@@ -52,11 +52,11 @@ namespace MountainWalker.Droid.Fragments
 
         public async void OnMapReady(GoogleMap map)
         {
-            Map = map;
+            _map = map;
             await ShowUserLocation();
-            Map.MyLocationEnabled = true;
-            Map.UiSettings.MyLocationButtonEnabled = true;
-            Map.AddMarker(new MarkerOptions().SetPosition(new LatLng(54.394121, 18.569394))
+            _map.MyLocationEnabled = true;
+            _map.UiSettings.MyLocationButtonEnabled = true;
+            _map.AddMarker(new MarkerOptions().SetPosition(new LatLng(54.394121, 18.569394))
                 .SetTitle("Best place to go!"));
 
             var home = (HomeViewModel) ViewModel;
@@ -64,7 +64,7 @@ namespace MountainWalker.Droid.Fragments
             CreatePointsAndTrails(home.Points, home.Trails);
             
             var set = this.CreateBindingSet<HomeFragment, HomeViewModel>();
-            set.Bind(Map).For(TrailDialogBinding.BindingName).To(vm => vm.OpenTrailDialogCommand);
+            set.Bind(_map).For(TrailDialogBinding.BindingName).To(vm => vm.OpenTrailDialogCommand);
             set.Apply();
             
         }
@@ -92,9 +92,14 @@ namespace MountainWalker.Droid.Fragments
                 fragTx.Commit();
             }
             _mapFragment.GetMapAsync(this);
-
+            
             var view = base.OnCreateView(inflater, container, savedInstanceState);
             _command = new MvxCommand<Point>(SetCurrentLocation);
+            
+            var interact = this.CreateBindingSet<HomeFragment, HomeViewModel>();
+            interact.Bind(this).For(v => v.Interaction).To(viewModel => viewModel.Interaction).TwoWay();
+            interact.Apply();
+            
             return view;
         }
 
@@ -112,12 +117,11 @@ namespace MountainWalker.Droid.Fragments
         {
             LatLng coordinate = new LatLng(location.Latitude, location.Longitude);
             CameraUpdate yourLocation = CameraUpdateFactory.NewLatLngZoom(coordinate, 17);
-            Map.MoveCamera(yourLocation);
+            _map.AnimateCamera(yourLocation);
         }
 
         private void ChangeLocationCameraHandler(object sender, MvxValueEventArgs<Point> loc)
         {
-            Debug.WriteLine("[SUPER WAZNA WIADOMOSC]: Jestem we View");
             SetCurrentLocation(loc.Value);
         }
 
@@ -127,7 +131,7 @@ namespace MountainWalker.Droid.Fragments
         {
             foreach (var point in points)
             {
-                Map.AddMarker(new MarkerOptions()
+                _map.AddMarker(new MarkerOptions()
                     .SetPosition(new LatLng(point.Latitude, point.Longitude))
                     .SetTitle(point.Description));
             }
@@ -140,7 +144,7 @@ namespace MountainWalker.Droid.Fragments
                     latlng.Add(new LatLng(point.Latitude, point.Longitude));
                 }
 
-                var poly = Map.AddPolyline(new PolylineOptions().Clickable(true));
+                var poly = _map.AddPolyline(new PolylineOptions().Clickable(true));
 
                 if (polyline.Color.Equals("blue"))
                 {
@@ -156,9 +160,7 @@ namespace MountainWalker.Droid.Fragments
                 }
                 poly.Width = 10;
                 poly.Points = latlng;
-                Debug.WriteLine(poly.Id);
             }
-                Debug.WriteLine("Wykonalem sie prawidlowo");
         }
     }
 }

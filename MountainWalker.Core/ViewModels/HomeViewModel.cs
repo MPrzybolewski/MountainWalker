@@ -113,11 +113,11 @@ namespace MountainWalker.Core.ViewModels
         private void OnLocationMessage(LocationMessage message)
         {
             Location = message.Location;
-            Debug.WriteLine("[SUPER WAZNA WIADOMOSC]: Pode mna jest event kurka wodna");
-            _locationService.OnCurrentLocationChanged();
+            
             if (_locationService.IsTrailStarted)
             {
-                _mainService.SetCurrentLocation(Location);
+//                _mainService.SetCurrentLocation(Location);
+                _locationService.OnCurrentLocationChanged(Location);
                 foreach (var point in _trailService.Points)
                 {
                     Debug.WriteLine("Distance - true?" + _mainService.GetDistanceBetweenTwoPointsOnMapInMeters(Location, point));
@@ -173,8 +173,6 @@ namespace MountainWalker.Core.ViewModels
         
         private void HandleCurrentLocationCameraChanged(object sender, LocationEventArgs loc)
         {
-            //.Execute(loc.Location);
-            Debug.WriteLine("[SUPER WAZNA WIADOMOSC]: Event sie obsluguje");
             _interaction.Raise(loc.Location);
         }
     }
