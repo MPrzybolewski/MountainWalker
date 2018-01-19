@@ -4,21 +4,21 @@
     android:orientation="vertical"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="#ffffffff">
+    android:background="@drawable/dialog_bg">
     <TextView
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:id="@+id/trailText"
-        android:text="Czy chcesz zakończysz swoją trasę?"
-        android:gravity="center"
-        android:background="#3F48CC"
-        android:textColor="#fff"
-        android:scaleType="fitCenter"
-        android:textSize="32dp"
-        android:textStyle="bold"
-        android:paddingTop="20dp"
-        android:paddingBottom="20dp"
-        local:MvxBind="Text TrailTitle" />
+          android:layout_width="match_parent"
+          android:layout_height="wrap_content"
+          android:id="@+id/trailText"
+          android:text="Czy chcesz zakończysz swoją trasę?"
+          android:gravity="center"
+          android:background="#3F48CC"
+          android:textColor="#fff"
+          android:scaleType="fitCenter"
+          android:textSize="32dp"
+          android:textStyle="bold"
+          android:paddingTop="20dp"
+          android:paddingBottom="20dp"
+          local:MvxBind="Text TrailTitle" />
     <TextView
         android:id="@+id/text_dialog"
         android:layout_width="wrap_content"

@@ -1,4 +1,6 @@
 ﻿using Android.App;
+using Android.Graphics;
+using Android.Graphics.Drawables;
 using Android.OS;
 using Android.Runtime;
 using MountainWalker.Core.ViewModels;
@@ -13,11 +15,11 @@ namespace MountainWalker.Droid.Fragments
 {
     public class TrailDialogFragment : MvxDialogFragment<TrailDialogViewModel>
     {
-        public static Dialog dialog;
+        public Dialog _dialog;
 
         public override Dialog OnCreateDialog(Bundle savedState)
         {
-            dialog = base.OnCreateDialog(savedState);
+            _dialog = base.OnCreateDialog(savedState);
 
             if (BindingContext == null)
             {
@@ -27,10 +29,11 @@ namespace MountainWalker.Droid.Fragments
 
             var view = this.BindingInflate(Resource.Layout.TrailDialog, null);
 
-            dialog.SetContentView(view);
-            dialog.SetCancelable(true);
+            _dialog.SetContentView(view);
+            _dialog.SetCancelable(true);
+            _dialog.Window.SetBackgroundDrawable(new ColorDrawable(Color.Transparent));
 
-            return dialog;
+            return _dialog;
         }
     }
 }

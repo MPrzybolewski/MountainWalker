@@ -252,7 +252,9 @@
     <AndroidResource Include="Resources\layout\AchievementsView.axml" />
     <AndroidResource Include="Resources\layout\TrailsView.axml" />
     <AndroidResource Include="Resources\layout\AppDescriptionView.axml" />
-    <AndroidResource Include="Resources\layout\AfterStartDialogView.axml" />
+    <AndroidResource Include="Resources\layout\AfterStartDialogView.axml">
+      <SubType>Designer</SubType>
+    </AndroidResource>
   </ItemGroup>
   <ItemGroup>
     <AndroidResource Include="Resources\values\Strings.xml" />
@@ -289,6 +291,10 @@
   </ItemGroup>
   <ItemGroup>
     <AndroidResource Include="Resources\drawable\phoneIcon.jpg" />
+  </ItemGroup>
+  <ItemGroup />
+  <ItemGroup>
+    <AndroidResource Include="Resources\drawable\dialog_bg.xml" />
   </ItemGroup>
   <Import Project="$(MSBuildExtensionsPath)\Xamarin\Android\Xamarin.Android.CSharp.targets" />
   <Target Name="EnsureNuGetPackageBuildImports" BeforeTargets="PrepareForBuild">
