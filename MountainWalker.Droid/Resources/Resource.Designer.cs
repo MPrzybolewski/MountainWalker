@@ -4423,26 +4423,26 @@ namespace MountainWalker.Droid
 			// aapt resource value: 0x7f020055
 			public const int avd_hide_password = 2130837589;
 			
-			// aapt resource value: 0x7f02008c
-			public const int avd_hide_password_1 = 2130837644;
+			// aapt resource value: 0x7f020093
+			public const int avd_hide_password_1 = 2130837651;
 			
-			// aapt resource value: 0x7f02008d
-			public const int avd_hide_password_2 = 2130837645;
+			// aapt resource value: 0x7f020094
+			public const int avd_hide_password_2 = 2130837652;
 			
-			// aapt resource value: 0x7f02008e
-			public const int avd_hide_password_3 = 2130837646;
+			// aapt resource value: 0x7f020095
+			public const int avd_hide_password_3 = 2130837653;
 			
 			// aapt resource value: 0x7f020056
 			public const int avd_show_password = 2130837590;
 			
-			// aapt resource value: 0x7f02008f
-			public const int avd_show_password_1 = 2130837647;
+			// aapt resource value: 0x7f020096
+			public const int avd_show_password_1 = 2130837654;
 			
-			// aapt resource value: 0x7f020090
-			public const int avd_show_password_2 = 2130837648;
+			// aapt resource value: 0x7f020097
+			public const int avd_show_password_2 = 2130837655;
 			
-			// aapt resource value: 0x7f020091
-			public const int avd_show_password_3 = 2130837649;
+			// aapt resource value: 0x7f020098
+			public const int avd_show_password_3 = 2130837656;
 			
 			// aapt resource value: 0x7f020057
 			public const int common_full_open_on_phone = 2130837591;
@@ -4502,106 +4502,127 @@ namespace MountainWalker.Droid
 			public const int common_google_signin_btn_text_light_normal_background = 2130837609;
 			
 			// aapt resource value: 0x7f02006a
-			public const int design_bottom_navigation_item_background = 2130837610;
+			public const int custom_edittext = 2130837610;
 			
 			// aapt resource value: 0x7f02006b
-			public const int design_fab_background = 2130837611;
+			public const int design_bottom_navigation_item_background = 2130837611;
 			
 			// aapt resource value: 0x7f02006c
-			public const int design_ic_visibility = 2130837612;
+			public const int design_fab_background = 2130837612;
 			
 			// aapt resource value: 0x7f02006d
-			public const int design_ic_visibility_off = 2130837613;
+			public const int design_ic_visibility = 2130837613;
 			
 			// aapt resource value: 0x7f02006e
-			public const int design_password_eye = 2130837614;
+			public const int design_ic_visibility_off = 2130837614;
 			
 			// aapt resource value: 0x7f02006f
-			public const int design_snackbar_background = 2130837615;
+			public const int design_password_eye = 2130837615;
 			
 			// aapt resource value: 0x7f020070
-			public const int dialog = 2130837616;
+			public const int design_snackbar_background = 2130837616;
 			
 			// aapt resource value: 0x7f020071
-			public const int dialog_bg = 2130837617;
+			public const int dialog = 2130837617;
 			
 			// aapt resource value: 0x7f020072
-			public const int googleg_disabled_color_18 = 2130837618;
+			public const int dialog_bg = 2130837618;
 			
 			// aapt resource value: 0x7f020073
-			public const int googleg_standard_color_18 = 2130837619;
+			public const int googleg_disabled_color_18 = 2130837619;
 			
 			// aapt resource value: 0x7f020074
-			public const int ic_errorstatus = 2130837620;
+			public const int googleg_standard_color_18 = 2130837620;
 			
 			// aapt resource value: 0x7f020075
-			public const int ic_successstatus = 2130837621;
+			public const int gradient_background = 2130837621;
 			
 			// aapt resource value: 0x7f020076
-			public const int location = 2130837622;
+			public const int ic_errorstatus = 2130837622;
 			
 			// aapt resource value: 0x7f020077
-			public const int navigation_empty_icon = 2130837623;
+			public const int ic_successstatus = 2130837623;
 			
 			// aapt resource value: 0x7f020078
-			public const int nice_mountains = 2130837624;
+			public const int location = 2130837624;
 			
 			// aapt resource value: 0x7f020079
-			public const int notification_action_background = 2130837625;
+			public const int loginbg = 2130837625;
 			
 			// aapt resource value: 0x7f02007a
-			public const int notification_bg = 2130837626;
+			public const int mw = 2130837626;
 			
 			// aapt resource value: 0x7f02007b
-			public const int notification_bg_low = 2130837627;
+			public const int navigation_empty_icon = 2130837627;
 			
 			// aapt resource value: 0x7f02007c
-			public const int notification_bg_low_normal = 2130837628;
+			public const int notification_action_background = 2130837628;
 			
 			// aapt resource value: 0x7f02007d
-			public const int notification_bg_low_pressed = 2130837629;
+			public const int notification_bg = 2130837629;
 			
 			// aapt resource value: 0x7f02007e
-			public const int notification_bg_normal = 2130837630;
+			public const int notification_bg_low = 2130837630;
 			
 			// aapt resource value: 0x7f02007f
-			public const int notification_bg_normal_pressed = 2130837631;
+			public const int notification_bg_low_normal = 2130837631;
 			
 			// aapt resource value: 0x7f020080
-			public const int notification_icon_background = 2130837632;
-			
-			// aapt resource value: 0x7f02008a
-			public const int notification_template_icon_bg = 2130837642;
-			
-			// aapt resource value: 0x7f02008b
-			public const int notification_template_icon_low_bg = 2130837643;
+			public const int notification_bg_low_pressed = 2130837632;
 			
 			// aapt resource value: 0x7f020081
-			public const int notification_tile_bg = 2130837633;
+			public const int notification_bg_normal = 2130837633;
 			
 			// aapt resource value: 0x7f020082
-			public const int notify_panel_notification_icon_bg = 2130837634;
+			public const int notification_bg_normal_pressed = 2130837634;
 			
 			// aapt resource value: 0x7f020083
-			public const int phoneIcon = 2130837635;
+			public const int notification_icon_background = 2130837635;
+			
+			// aapt resource value: 0x7f020091
+			public const int notification_template_icon_bg = 2130837649;
+			
+			// aapt resource value: 0x7f020092
+			public const int notification_template_icon_low_bg = 2130837650;
 			
 			// aapt resource value: 0x7f020084
-			public const int roundedbg = 2130837636;
+			public const int notification_tile_bg = 2130837636;
 			
 			// aapt resource value: 0x7f020085
-			public const int roundedbgdark = 2130837637;
+			public const int notify_panel_notification_icon_bg = 2130837637;
 			
 			// aapt resource value: 0x7f020086
-			public const int SignInViewBackground = 2130837638;
+			public const int phoneIcon = 2130837638;
 			
 			// aapt resource value: 0x7f020087
-			public const int splash = 2130837639;
+			public const int rounded_button = 2130837639;
 			
 			// aapt resource value: 0x7f020088
-			public const int tooltip_frame_dark = 2130837640;
+			public const int roundedbg = 2130837640;
 			
 			// aapt resource value: 0x7f020089
-			public const int tooltip_frame_light = 2130837641;
+			public const int roundedbgdark = 2130837641;
+			
+			// aapt resource value: 0x7f02008a
+			public const int SignInViewBackground = 2130837642;
+			
+			// aapt resource value: 0x7f02008b
+			public const int splash = 2130837643;
+			
+			// aapt resource value: 0x7f02008c
+			public const int start_button = 2130837644;
+			
+			// aapt resource value: 0x7f02008d
+			public const int start_button_pressed = 2130837645;
+			
+			// aapt resource value: 0x7f02008e
+			public const int start_button_states = 2130837646;
+			
+			// aapt resource value: 0x7f02008f
+			public const int tooltip_frame_dark = 2130837647;
+			
+			// aapt resource value: 0x7f020090
+			public const int tooltip_frame_light = 2130837648;
 			
 			static Drawable()
 			{
@@ -4718,8 +4739,8 @@ namespace MountainWalker.Droid
 			// aapt resource value: 0x7f0d0044
 			public const int always = 2131558468;
 			
-			// aapt resource value: 0x7f0d00cd
-			public const int appbar = 2131558605;
+			// aapt resource value: 0x7f0d00d2
+			public const int appbar = 2131558610;
 			
 			// aapt resource value: 0x7f0d0061
 			public const int async = 2131558497;
@@ -4886,6 +4907,9 @@ namespace MountainWalker.Droid
 			// aapt resource value: 0x7f0d006a
 			public const int image = 2131558506;
 			
+			// aapt resource value: 0x7f0d00ce
+			public const int imageView = 2131558606;
+			
 			// aapt resource value: 0x7f0d00a9
 			public const int image_view_row_icon = 2131558569;
 			
@@ -4928,20 +4952,26 @@ namespace MountainWalker.Droid
 			// aapt resource value: 0x7f0d00b4
 			public const int loadingProgressWheel = 2131558580;
 			
+			// aapt resource value: 0x7f0d00cf
+			public const int login = 2131558607;
+			
+			// aapt resource value: 0x7f0d00cd
+			public const int loginBtn = 2131558605;
+			
 			// aapt resource value: 0x7f0d00b6
 			public const int main_frame = 2131558582;
 			
 			// aapt resource value: 0x7f0d00ad
 			public const int map = 2131558573;
 			
-			// aapt resource value: 0x7f0d00d2
-			public const int masked = 2131558610;
+			// aapt resource value: 0x7f0d00d7
+			public const int masked = 2131558615;
 			
 			// aapt resource value: 0x7f0d00bf
 			public const int media_actions = 2131558591;
 			
-			// aapt resource value: 0x7f0d00d0
-			public const int message = 2131558608;
+			// aapt resource value: 0x7f0d00d5
+			public const int message = 2131558613;
 			
 			// aapt resource value: 0x7f0d003d
 			public const int middle = 2131558461;
@@ -4952,29 +4982,29 @@ namespace MountainWalker.Droid
 			// aapt resource value: 0x7f0d0033
 			public const int multiply = 2131558451;
 			
-			// aapt resource value: 0x7f0d00d7
-			public const int nav_achievements = 2131558615;
+			// aapt resource value: 0x7f0d00dc
+			public const int nav_achievements = 2131558620;
 			
-			// aapt resource value: 0x7f0d00d8
-			public const int nav_appDescription = 2131558616;
-			
-			// aapt resource value: 0x7f0d00d4
-			public const int nav_home = 2131558612;
-			
-			// aapt resource value: 0x7f0d00d3
-			public const int nav_items = 2131558611;
-			
-			// aapt resource value: 0x7f0d00da
-			public const int nav_logout = 2131558618;
-			
-			// aapt resource value: 0x7f0d00d5
-			public const int nav_menu = 2131558613;
+			// aapt resource value: 0x7f0d00dd
+			public const int nav_appDescription = 2131558621;
 			
 			// aapt resource value: 0x7f0d00d9
-			public const int nav_settings = 2131558617;
+			public const int nav_home = 2131558617;
 			
-			// aapt resource value: 0x7f0d00d6
-			public const int nav_trails = 2131558614;
+			// aapt resource value: 0x7f0d00d8
+			public const int nav_items = 2131558616;
+			
+			// aapt resource value: 0x7f0d00df
+			public const int nav_logout = 2131558623;
+			
+			// aapt resource value: 0x7f0d00da
+			public const int nav_menu = 2131558618;
+			
+			// aapt resource value: 0x7f0d00de
+			public const int nav_settings = 2131558622;
+			
+			// aapt resource value: 0x7f0d00db
+			public const int nav_trails = 2131558619;
 			
 			// aapt resource value: 0x7f0d00b8
 			public const int navigation_frame = 2131558584;
@@ -5012,8 +5042,11 @@ namespace MountainWalker.Droid
 			// aapt resource value: 0x7f0d000b
 			public const int parent_matrix = 2131558411;
 			
-			// aapt resource value: 0x7f0d00cf
-			public const int phoneButton = 2131558607;
+			// aapt resource value: 0x7f0d00d0
+			public const int password = 2131558608;
+			
+			// aapt resource value: 0x7f0d00d4
+			public const int phoneButton = 2131558612;
 			
 			// aapt resource value: 0x7f0d0058
 			public const int pin = 2131558488;
@@ -5174,8 +5207,11 @@ namespace MountainWalker.Droid
 			// aapt resource value: 0x7f0d0074
 			public const int textSpacerNoTitle = 2131558516;
 			
+			// aapt resource value: 0x7f0d00d1
+			public const int textView = 2131558609;
+			
 			// aapt resource value: 0x7f0d00cc
-			public const int textView1 = 2131558604;
+			public const int textView2 = 2131558604;
 			
 			// aapt resource value: 0x7f0d00b2
 			public const int textViewStatus = 2131558578;
@@ -5216,8 +5252,8 @@ namespace MountainWalker.Droid
 			// aapt resource value: 0x7f0d007a
 			public const int title_template = 2131558522;
 			
-			// aapt resource value: 0x7f0d00ce
-			public const int toolbar = 2131558606;
+			// aapt resource value: 0x7f0d00d3
+			public const int toolbar = 2131558611;
 			
 			// aapt resource value: 0x7f0d004a
 			public const int top = 2131558474;
@@ -5261,8 +5297,8 @@ namespace MountainWalker.Droid
 			// aapt resource value: 0x7f0d0016
 			public const int view_offset_helper = 2131558422;
 			
-			// aapt resource value: 0x7f0d00d1
-			public const int visible = 2131558609;
+			// aapt resource value: 0x7f0d00d6
+			public const int visible = 2131558614;
 			
 			// aapt resource value: 0x7f0d0027
 			public const int wide = 2131558439;
@@ -7073,6 +7109,15 @@ namespace MountainWalker.Droid
 			
 			// aapt resource value: 0x7f0e0182
 			public const int Widget_Design_TextInputLayout = 2131624322;
+			
+			// aapt resource value: 0x7f0e0192
+			public const int login_button_style = 2131624338;
+			
+			// aapt resource value: 0x7f0e0193
+			public const int text_style = 2131624339;
+			
+			// aapt resource value: 0x7f0e0191
+			public const int textboxes_style = 2131624337;
 			
 			static Style()
 			{

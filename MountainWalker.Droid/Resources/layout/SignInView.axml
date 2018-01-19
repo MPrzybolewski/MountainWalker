@@ -1,88 +1,67 @@
 <?xml version="1.0" encoding="utf-8"?>
-<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:local="http://schemas.android.com/apk/res-auto"
-    android:layout_width="fill_parent"
-    android:layout_height="fill_parent"
-    android:fillViewport="true">
+    android:orientation="vertical"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:padding="40dp"
+    android:background="@drawable/loginbg"
+    android:layout_centerHorizontal="true"
+    android:layout_centerVertical="false">
     <LinearLayout
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:background="@drawable/nice_mountains"
         android:orientation="vertical"
-        android:paddingTop="20dip">
-        <TextView
-            android:layout_width="fill_parent"
-            android:layout_height="wrap_content"
-            android:text="Witamy w MountainWalker."
-            android:gravity="center_horizontal"
-            android:paddingBottom="0dp"
-            android:textSize="20dp"
-            android:textColor="@color/foreground_material_light" />
-        <TextView
-            android:layout_width="fill_parent"
-            android:layout_height="wrap_content"
-            android:text="Zaloguj się i ruszaj w góry!"
-            android:gravity="center_horizontal"
-            android:paddingBottom="20dp"
-            android:textSize="20dp"
-            android:textColor="@color/foreground_material_light" />
-        <TextView
-            android:layout_width="fill_parent"
-            android:layout_height="wrap_content"
-            android:text="Login"
-            android:gravity="center_horizontal"
-            android:paddingBottom="5dp"
-            android:textSize="20dp"
-            android:textColor="@color/foreground_material_light" />
+        android:gravity="center_vertical"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:weightSum="1">
+        <ImageView
+            android:layout_width="150dp"
+            android:layout_height="130dp"
+            android:layout_marginBottom="20dp"
+            android:id="@+id/imageView"
+            android:layout_gravity="center"
+            android:src="@drawable/mw" />
         <EditText
-            android:layout_width="fill_parent"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            style="@style/textboxes_style"
+            android:hint="Email"
+            android:id="@+id/login"
+            android:textAlignment="center"
             local:MvxBind="Text Login" />
-        <TextView
-            android:layout_width="fill_parent"
-            android:layout_height="wrap_content"
-            android:text="Hasło"
-            android:gravity="center_horizontal"
-            android:paddingBottom="5dp"
-            android:textSize="20dp"
-            android:textColor="@color/foreground_material_light" />
         <EditText
-            android:layout_width="fill_parent"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            style="@style/textboxes_style"
+            android:hint="Hasło"
+            android:id="@+id/password"
             android:inputType="textPassword"
-            android:paddingBottom="10dp"
             local:MvxBind="Text Password" />
         <Button
-            android:layout_width="fill_parent"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            style="@style/login_button_style"
             android:text="Zaloguj"
-            android:layout_marginBottom="5dp"
-            android:textColor="@color/foreground_material_light"
+            android:id="@+id/loginBtn"
+            android:layout_gravity="center_horizontal"
             local:MvxBind="Click SignInButton" />
         <CheckBox
             android:text="Zapamiętaj mnie"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            local:MvxBind="Checked IsChecked"
-            android:layout_marginTop="5dp"
-            android:layout_marginLeft="100dp"
-            android:layout_marginRight="100dp"
-            android:layout_marginBottom="45dp"
             android:gravity="center"
-            android:textColor="@color/foreground_material_light" />
-        <TextView
-            android:layout_width="fill_parent"
-            android:layout_height="wrap_content"
-            android:text="Nie masz konta? Zarejestruj się!"
-            android:gravity="center_horizontal"
-            android:paddingBottom="0dp"
-            android:textSize="20dp"
-            android:textColor="@color/foreground_material_light" />
-        <Button
-            android:layout_width="fill_parent"
-            android:layout_height="wrap_content"
-            android:text="Zarejestruj"
+            android:layout_marginLeft="70dp"
+            android:layout_marginRight="70dp"
+            android:layout_marginBottom="50dp"
             android:textColor="@color/foreground_material_light"
+            local:MvxBind="Checked IsChecked" />
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textAppearance="?android:attr/textAppearanceMedium"
+            android:layout_gravity="center"
+            android:text="Nie masz konta? Zarejestruj się!"
+            android:id="@+id/textView"
             local:MvxBind="Click RegisterButton" />
     </LinearLayout>
-</ScrollView>
+</RelativeLayout>
