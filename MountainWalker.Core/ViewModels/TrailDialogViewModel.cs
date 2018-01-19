@@ -9,13 +9,8 @@ namespace MountainWalker.Core.ViewModels
 
         private readonly ILocationService _locationService;
         private readonly ITrailService _trailService;
-        private readonly IMainActivityService _mainService;
 
-        public IMvxCommand CloseDialogCommand { get; }
         public IMvxCommand ReadMoreCommand { get; }
-
-
-
 
         private string _trailName = "";
         public string TrailName
@@ -39,23 +34,15 @@ namespace MountainWalker.Core.ViewModels
             }
         }
 
-
-        public TrailDialogViewModel(ILocationService locationService, ITrailService trailService, IMainActivityService mainService)
+        public TrailDialogViewModel(ILocationService locationService, ITrailService trailService)
         {
             _locationService = locationService;
             _trailService = trailService;
-            _mainService = mainService;
             _trailId = _locationService.TrailId;
 
             TrailName = _trailService.Trails[_trailId].Name;
             TrailDescription = _trailService.Trails[_trailId].Description;
-            CloseDialogCommand = new MvxCommand(CloseDialog);
             ReadMoreCommand = new MvxCommand(ReadMore);
-        }
-
-        private void CloseDialog()
-        {
-            _mainService.CloseTrailDialog();
         }
 
         private void ReadMore()

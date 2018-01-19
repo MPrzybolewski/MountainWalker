@@ -1,7 +1,8 @@
 ﻿using System.Collections.Generic;
 using MountainWalker.Core.Models;
+using MountainWalker.Core.Interfaces;
 
-namespace MountainWalker.Core.Interfaces.Impl
+namespace MountainWalker.Core.Services
 {
     public class TrailService : ITrailService
     {

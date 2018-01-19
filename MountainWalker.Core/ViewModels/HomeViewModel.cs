@@ -1,9 +1,12 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.Diagnostics;
 using System.Threading.Tasks;
 using MountainWalker.Core.Interfaces;
 using MountainWalker.Core.Messages;
 using MountainWalker.Core.Models;
+using MountainWalker.Core.Services;
+using MvvmCross.Binding.BindingContext;
 using MvvmCross.Core.Navigation;
 using MvvmCross.Core.ViewModels;
 using MvvmCross.Plugins.Messenger;
@@ -13,21 +16,24 @@ namespace MountainWalker.Core.ViewModels
     public class HomeViewModel : MvxViewModel
     {
         private readonly ILocationService _locationService;
-        private readonly IMainActivityService _mainService;
         private readonly IMvxNavigationService _navigationService;
-        private readonly IDialogService _dialogService;
         private readonly ITrailService _trailService;
         private readonly ITravelPanelService _travelPanelService;
         private readonly IStartButtonService _startButtonService;
+        
+        private MvxInteraction<Point> _interaction = new MvxInteraction<Point>();
+        public IMvxInteraction<Point> Interaction => _interaction;
 
         private MvxSubscriptionToken _token;
         private MvxSubscriptionToken _travelPanelToken;
         private MvxSubscriptionToken _startButtonToken;
 
         public Point Location { get; set; }
+        public List<Point> Points { get; private set;  }
+        public List<Connection> Trails { get; private set;  }
 
         public IMvxCommand OpenMainDialogCommand { get; }
-        public IMvxCommand<int> OpenTrailDialogCommand { get; set; }
+        public IMvxCommand<int> OpenTrailDialogCommand { get; }
 
         private  string _buttonText = "Start";
         public string ButtonText
@@ -69,15 +75,10 @@ namespace MountainWalker.Core.ViewModels
             }
         }
 
-        public static Point UserPosition;
-
-        public HomeViewModel(ILocationService locationService, IMainActivityService mainService,
-            IMvxNavigationService navigationService, IMvxMessenger messenger, 
-            IDialogService dialogService, ITrailService trailService, ITravelPanelService travelPanelService, IStartButtonService startButtonService)
+        public HomeViewModel(ILocationService locationService, IMvxNavigationService navigationService, IMvxMessenger messenger, 
+            ITrailService trailService, ITravelPanelService travelPanelService, IStartButtonService startButtonService)
         {
-            _mainService = mainService;
             _navigationService = navigationService;
-            _dialogService = dialogService;
             _trailService = trailService;
 
             OpenMainDialogCommand = new MvxAsyncCommand(OpenDialog);
@@ -90,9 +91,9 @@ namespace MountainWalker.Core.ViewModels
             _travelPanelToken = messenger.Subscribe<TravelPanelMessage>(OnTimerMessage);
             _startButtonToken = messenger.Subscribe<StartButtonMessage>(OnStartButtonMessage);
 
-            _mainService.SetPointsAndTrials(_trailService.Points, _trailService.Trails);
-
-            _mainService.SetPointsAndTrials(_trailService.Points, _trailService.Trails);
+            _locationService.CurrentLocationChanged += HandleCurrentLocationCameraChanged;
+            Points = _trailService.Points;
+            Trails = _trailService.Trails;
 
             OpenMainDialogCommand = new MvxAsyncCommand(OpenDialog);
 
@@ -109,13 +110,14 @@ namespace MountainWalker.Core.ViewModels
         private void OnLocationMessage(LocationMessage message)
         {
             Location = message.Location;
+            
             if (_locationService.IsTrailStarted)
             {
-                _mainService.SetCurrentLocation(Location); //this should be enable after starting walking
+                _locationService.OnCurrentLocationChanged(Location);
                 foreach (var point in _trailService.Points)
                 {
-                    Debug.WriteLine("Distance - true?" + _mainService.GetDistanceBetweenTwoPointsOnMapInMeters(Location, point));
-                    if (_mainService.GetDistanceBetweenTwoPointsOnMapInMeters(Location, point) < 50
+                    Debug.WriteLine("Distance - true?" + _locationService.GetDistanceBetweenTwoPointsOnMapInMeters(Location, point));
+                    if (_locationService.GetDistanceBetweenTwoPointsOnMapInMeters(Location, point) < 50
                         &&  !_locationService.ReachedPoints.Contains(point)) 
                     {
                         _locationService.ReachedPoints.Add(point);
@@ -163,6 +165,11 @@ namespace MountainWalker.Core.ViewModels
             int id = args;
             _locationService.TrailId = id;
             await _navigationService.Navigate(typeof(TrailDialogViewModel));
+        }
+        
+        private void HandleCurrentLocationCameraChanged(object sender, LocationEventArgs loc)
+        {
+            _interaction.Raise(loc.Location);
         }
     }
 }
