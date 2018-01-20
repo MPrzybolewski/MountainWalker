@@ -3,22 +3,12 @@
     xmlns:local="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="170dp"
-    android:background="@color/colorPrimaryDark"
+    android:background="@drawable/headermenu"
     android:padding="16dp">
-    <ImageView
-        android:src="@drawable/avatar"
-        android:layout_width="wrap_content"
-        android:layout_centerHorizontal="true"
-        android:layout_height="80dp"
-        android:id="@+id/image_view_row_icon"
-        android:layout_centerVertical="true"
-        android:layout_alignParentTop="true"
-        android:layout_marginTop="@dimen/element_margin_medium"
-        android:scaleType="fitStart" />
     <LinearLayout
         android:orientation="vertical"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        android:layout_height="match_parent"
         android:id="@+id/text_container"
         android:layout_alignParentBottom="true">
         <TextView
@@ -27,16 +17,21 @@
             android:textStyle="bold"
             android:textColor="@color/white"
             android:textSize="@dimen/text_medium"
-            android:layout_width="match_parent"
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Imie i nazwisko" />
+            android:text="Imie i nazwisko"
+            android:layout_marginRight="0.0dp"
+            android:layout_gravity="right"
+            android:gravity="top"
+            android:layout_marginTop="50dp" />
         <TextView
             android:id="@+id/text_view_username"
             android:singleLine="true"
             android:textColor="@color/light_gray"
             android:textSize="@dimen/text_medium"
-            android:layout_width="match_parent"
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Punkty: 100" />
+            android:text="Punkty: 100"
+            android:layout_gravity="right" />
     </LinearLayout>
 </RelativeLayout>

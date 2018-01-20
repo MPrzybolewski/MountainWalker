@@ -253,6 +253,8 @@
     <AndroidResource Include="Resources\layout\TrailsView.axml" />
     <AndroidResource Include="Resources\layout\AppDescriptionView.axml" />
     <AndroidResource Include="Resources\layout\AfterStartDialogView.axml" />
+    <AndroidResource Include="Resources\drawable\headerMenu.jpg" />
+    <AndroidResource Include="Resources\drawable\menuBackground.jpg" />
   </ItemGroup>
   <ItemGroup>
     <AndroidResource Include="Resources\values\Strings.xml" />

@@ -18,6 +18,6 @@
             android:layout_height="40dp"
             android:layout_width="40dp"
             android:layout_gravity="center_horizontal"
-            android:background="@drawable/phoneIcon"/>
+            android:background="@android:drawable/ic_menu_call" />
     </android.support.v7.widget.Toolbar>
 </android.support.design.widget.AppBarLayout>
