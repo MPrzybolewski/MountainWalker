@@ -9,13 +9,15 @@ namespace MountainWalker.Core.ViewModels
 {
     public class AfterStartDialogViewModel : MvxViewModel
     {
-        private readonly IMainActivityService _mainService;
         private readonly ILocationService _locationService;
         private readonly ITravelPanelService _travelPanelService;
         private readonly IStartButtonService _startButtonService;
+        
+        private readonly MvxInteraction<bool> _visible = new MvxInteraction<bool>();
+        public IMvxInteraction<bool> Interaction => _visible;
 
         public IMvxCommand StopTravel { get; }
-        public IMvxCommand DontStropTravel { get; }
+        public IMvxCommand DontStopTravel { get; }
 
         private string _trialTitle = "Czy chcesz zakończyć swoją podróż?";
         public string TrailTitle
@@ -39,10 +41,10 @@ namespace MountainWalker.Core.ViewModels
             }
         }
 
-        public AfterStartDialogViewModel(IMainActivityService mainService, ILocationService locationService,
-                                         ITravelPanelService travelPanelService, IStartButtonService startButtonService) 
+        public AfterStartDialogViewModel(ILocationService locationService, ITravelPanelService travelPanelService, 
+            IStartButtonService startButtonService) 
         {
-            _mainService = mainService;
+            _visible.Raise(true);
             _locationService = locationService;
             _travelPanelService = travelPanelService;
             _startButtonService = startButtonService;
@@ -50,23 +52,23 @@ namespace MountainWalker.Core.ViewModels
             _travelPanelService.SetTravelTime();
             TimeInfo = "Twoj czas: " +  _travelPanelService.TravelTime;
             StopTravel = new MvxCommand(ExecuteStopTravel);
-            DontStropTravel = new MvxCommand(ExecuteDontStopTravel);
+            DontStopTravel = new MvxCommand(ExecuteDontStopTravel);
         }
 
         private void ExecuteStopTravel()
         {
             Stopwatch timer = new Stopwatch();
-            _mainService.CloseMainDialog(true);
             _locationService.IsTrailStarted = false;
             _startButtonService.SetStartButtonText("Start");
             _travelPanelService.StopTimer();
             _travelPanelService.TravelPanelVisibility = "gone";
             _travelPanelService.NumberOfReachedPoints = 0;
+            _visible.Raise(false);
         }
 
         private void ExecuteDontStopTravel()
         {
-            _mainService.CloseMainDialog(true);
+            _visible.Raise(false);
         }
     }
 }

@@ -7,14 +7,14 @@ using MountainWalker.Core.Models;
 using MvvmCross.Platform;
 using MvvmCross.Plugins.Location;
 using MvvmCross.Plugins.Messenger;
-using Newtonsoft.Json.Bson;
 using Plugin.Geolocator;
+using MountainWalker.Core.Interfaces;
+using Plugin.Geolocator.Abstractions;
 
-namespace MountainWalker.Core.Interfaces.Impl
+namespace MountainWalker.Core.Services
 {
     public class LocationService : ILocationService
     {
-        private readonly IMvxLocationWatcher _watcher;
         private readonly IMvxMessenger _messenger;
 
         public Point CurrentLocation { get; set; }
@@ -22,44 +22,100 @@ namespace MountainWalker.Core.Interfaces.Impl
         public List<Point> ReachedPoints { get; set; }
         public int TrailId { get; set; }
 
+        public event EventHandler<LocationEventArgs> CurrentLocationChanged;
 
-
-        public LocationService(IMvxLocationWatcher watcher, IMvxMessenger messenger)
+        public LocationService(IMvxMessenger messenger)
         {
             CurrentLocation = new Point(0.0, 0.0);
-            _watcher = watcher;
             _messenger = messenger;
-            _watcher.Start(new MvxLocationOptions(), OnLocation, OnError);
+            StartListening(); // async?
+        }
+        
+        async Task StartListening()
+        {
+            if (CrossGeolocator.Current.IsListening)
+                return;
+	
+            await CrossGeolocator.Current.StartListeningAsync(TimeSpan.FromSeconds(3), 5, true);
+
+            CrossGeolocator.Current.PositionChanged += OnLocation;
+            CrossGeolocator.Current.PositionError += OnError;
         }
 
-        private void OnLocation(MvxGeoLocation location)
+        public void OnCurrentLocationChanged(Point loc)
         {
-            CurrentLocation = new Point(location.Coordinates.Latitude, location.Coordinates.Longitude);
+            if (CurrentLocationChanged != null)
+                CurrentLocationChanged(this, new LocationEventArgs(){ Location = loc});
+        }
+
+        private void OnLocation(object sender, PositionEventArgs e)
+        {
+            var location = e.Position;
+            
+            CurrentLocation = new Point(location.Latitude, location.Longitude);
 
             var message = new LocationMessage(this, CurrentLocation);
             _messenger.Publish(message);
         }
 
-
-        private void OnError(MvxLocationError error)
+        private void OnError(object sender, PositionErrorEventArgs e)
         {
-            Mvx.Error("Seen location error {0}", error.Code);
-        }
-
-        public async Task<Point> GetLocation()
-        {
-            var locator = CrossGeolocator.Current;
-            locator.DesiredAccuracy = 1;
-            TimeSpan ts = TimeSpan.FromMilliseconds(1000);
-            var position = await locator.GetPositionAsync(ts);
-            Point location = new Point(position.Latitude, position.Longitude);
-
-            return location;
-        }
-
+            Debug.WriteLine(e.Error);
+        } 
+        
         public void SetNewList()
         {
             ReachedPoints = new List<Point>();
         }
+        
+        public bool CheckPointIsNear(Point userLocation, Point pointLocation)
+        {
+            double distanceBetweenNearestPointAndUserCurrentLocation = GetDistanceBetweenTwoPointsOnMapInMeters(userLocation, pointLocation);
+            if(distanceBetweenNearestPointAndUserCurrentLocation < 100)
+            {
+                return true;
+            }
+            return false;
+        }
+        
+        public double GetDistanceBetweenTwoPointsOnMapInMeters(Point firstLocation, Point secondLocation)
+        {
+            int R = 6378137; //Earth's mean radius in meter
+            double dLat = ConvertDegreeToRadian(secondLocation.Latitude - firstLocation.Latitude);
+            double dLong = ConvertDegreeToRadian(secondLocation.Longitude - firstLocation.Longitude);
+            double a = Math.Sin(dLat / 2) * Math.Sin(dLat / 2) 
+                       + Math.Cos(ConvertDegreeToRadian(firstLocation.Latitude)) * Math.Cos(ConvertDegreeToRadian(secondLocation.Latitude))
+                                                                                 * Math.Sin(dLong / 2) * Math.Sin(dLong / 2);
+            double c = 2 * Math.Atan2(Math.Sqrt(a), Math.Sqrt(1 - a));
+            double d = R * c;
+            return d;
+        }
+
+        public double ConvertDegreeToRadian(double angle)
+        {
+            return (Math.PI * angle) / 180.0;
+        }
+        
+        public Point GetNearestPoint(Point userLocation, List<Point> points)
+        {
+            var minDistanceBettwenPoints = Double.MaxValue;
+            var nearestPoint = new Point(0,0);
+            foreach(var point in points)
+            {
+                double distanceBettwenPoints = GetDistanceBetweenTwoPointsOnMapInMeters(userLocation, point);
+                Debug.WriteLine("Distance between I and point is - " + distanceBettwenPoints);
+                if(minDistanceBettwenPoints > distanceBettwenPoints)
+                {
+                    minDistanceBettwenPoints = distanceBettwenPoints;
+                    nearestPoint = point;
+                }
+            }
+            return nearestPoint;
+        }
+    }
+
+    public class LocationEventArgs : EventArgs
+    {
+        public Point Location { get; set; }
     }
 }

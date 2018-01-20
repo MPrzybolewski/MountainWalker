@@ -80,11 +80,9 @@ namespace MountainWalker.Core.ViewModels
         {
 
             UserDialogs.Instance.ShowLoading("Logowanie...");
-            string RestUrl = "http://mountainwalkerwebapi.azurewebsites.net/api/users/" + _login + "?password=" +
-                             _password;
-            string result = await _webAPIService.CheckIfUserCanLogin(RestUrl);
+            bool result = await _webAPIService.CheckIfUserCanLogin(_login, _password);
 
-            if (result.Trim(new char[] { '"' }).Equals("true"))
+            if (result)
             {
                 if (_isChecked == true)
                 {

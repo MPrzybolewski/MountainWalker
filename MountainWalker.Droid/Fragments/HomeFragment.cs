@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.Threading.Tasks;
 using Android.Gms.Maps;
 using Android.OS;
@@ -8,6 +9,7 @@ using MountainWalker.Core.ViewModels;
 using Plugin.Geolocator;
 using Android.Gms.Maps.Model;
 using Android.App;
+using Android.Graphics;
 using MountainWalker.Droid.Bindings;
 using MountainWalker.Droid.Services;
 using MvvmCross.Binding.Droid.BindingContext;
@@ -18,7 +20,11 @@ using MvvmCross.Binding.BindingContext;
 using MvvmCross.Core.ViewModels;
 using MvvmCross.Plugins.Messenger;
 using Android.Widget;
+using MountainWalker.Core.Models;
+using MountainWalker.Core.Services;
 using MountainWalker.Droid.Views;
+using MvvmCross.Platform.Core;
+using Point = MountainWalker.Core.Models.Point;
 
 namespace MountainWalker.Droid.Fragments
 {
@@ -26,24 +32,39 @@ namespace MountainWalker.Droid.Fragments
     [Register("MountainWalker.android.HomeFragment")]
     public class HomeFragment : BaseFragment<HomeViewModel>, IOnMapReadyCallback
     {
-        public static GoogleMap Map;
+        private GoogleMap _map;
 
-        public IMvxCommand Command;
+        private IMvxInteraction<Point> _interaction;
+        public IMvxInteraction<Point> Interaction
+        {
+            get => _interaction;
+            set
+            {
+                if (_interaction != null)
+                    _interaction.Requested -= ChangeLocationCameraHandler;
+            
+                _interaction = value;
+                _interaction.Requested += ChangeLocationCameraHandler;
+            }
+        }
 
         public async void OnMapReady(GoogleMap map)
         {
-            Map = map;
+            _map = map;
             await ShowUserLocation();
-            Map.MyLocationEnabled = true;
-            Map.UiSettings.MyLocationButtonEnabled = true;
-            Map.AddMarker(new MarkerOptions().SetPosition(new LatLng(54.394121, 18.569394))
+            _map.MyLocationEnabled = true;
+            _map.UiSettings.MyLocationButtonEnabled = true;
+            _map.AddMarker(new MarkerOptions().SetPosition(new LatLng(54.394121, 18.569394))
                 .SetTitle("Best place to go!"));
-            
-            DroidMainActivityService.CreatePointsAndTrails();
 
+            var home = (HomeViewModel) ViewModel;
+            
+            CreatePointsAndTrails(home.Points, home.Trails);
+            
             var set = this.CreateBindingSet<HomeFragment, HomeViewModel>();
-            set.Bind(Map).For(TrailDialogBinding.BindingName).To(vm => vm.OpenTrailDialogCommand);
+            set.Bind(_map).For(TrailDialogBinding.BindingName).To(vm => vm.OpenTrailDialogCommand);
             set.Apply();
+            
         }
 
         public override View OnCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState)
@@ -69,8 +90,13 @@ namespace MountainWalker.Droid.Fragments
                 fragTx.Commit();
             }
             _mapFragment.GetMapAsync(this);
-
+            
             var view = base.OnCreateView(inflater, container, savedInstanceState);
+            
+            var interact = this.CreateBindingSet<HomeFragment, HomeViewModel>();
+            interact.Bind(this).For(v => v.Interaction).To(viewModel => viewModel.Interaction).TwoWay();
+            interact.Apply();
+            
             return view;
         }
 
@@ -79,18 +105,59 @@ namespace MountainWalker.Droid.Fragments
             var locator = CrossGeolocator.Current;
             locator.DesiredAccuracy = 1;
             TimeSpan ts = TimeSpan.FromMilliseconds(1000);
-            var position = await locator.GetPositionAsync(ts);
+            var pos = await locator.GetPositionAsync(ts);
 
-            UpdateCamera(position.Latitude, position.Longitude);
+            SetCurrentLocation(new Point(pos.Latitude, pos.Longitude));
         }
 
-        public void UpdateCamera(double lat, double lng)
+        private void SetCurrentLocation(Point location)
         {
-            LatLng coordinate = new LatLng(lat, lng);
+            LatLng coordinate = new LatLng(location.Latitude, location.Longitude);
             CameraUpdate yourLocation = CameraUpdateFactory.NewLatLngZoom(coordinate, 17);
-            Map.MoveCamera(yourLocation);
+            _map.AnimateCamera(yourLocation);
+        }
+
+        private void ChangeLocationCameraHandler(object sender, MvxValueEventArgs<Point> loc)
+        {
+            SetCurrentLocation(loc.Value);
         }
 
         protected override int FragmentId => Resource.Layout.HomeView;        
+        
+        private void CreatePointsAndTrails(List<Point> points, List<Connection> trails)
+        {
+            foreach (var point in points)
+            {
+                _map.AddMarker(new MarkerOptions()
+                    .SetPosition(new LatLng(point.Latitude, point.Longitude))
+                    .SetTitle(point.Description));
+            }
+
+            foreach (var polyline in trails)
+            {
+                var latlng = new List<LatLng>();
+                foreach (var point in polyline.Path)
+                {
+                    latlng.Add(new LatLng(point.Latitude, point.Longitude));
+                }
+
+                var poly = _map.AddPolyline(new PolylineOptions().Clickable(true));
+
+                if (polyline.Color.Equals("blue"))
+                {
+                    poly.Color = Color.Blue;
+                }
+                else if (polyline.Color.Equals("red"))
+                {
+                    poly.Color = Color.Red;
+                }
+                else if (polyline.Color.Equals("green"))
+                {
+                    poly.Color = Color.Green;
+                }
+                poly.Width = 10;
+                poly.Points = latlng;
+            }
+        }
     }
 }
