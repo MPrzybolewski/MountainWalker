@@ -6,6 +6,8 @@ using System.Text;
 
 using Android.App;
 using Android.Content;
+using Android.Graphics;
+using Android.Graphics.Drawables;
 using Android.OS;
 using Android.Runtime;
 using Android.Views;
@@ -59,6 +61,7 @@ namespace MountainWalker.Droid.Fragments
 
             _dialog.SetContentView(view);
             _dialog.SetCancelable(true);
+            _dialog.Window.SetBackgroundDrawable(new ColorDrawable(Color.Transparent));
             
             var interact = this.CreateBindingSet<AfterStartDialogFragment, AfterStartDialogViewModel>();
             interact.Bind(this).For(v => v.Interaction).To(viewModel => viewModel.Interaction);

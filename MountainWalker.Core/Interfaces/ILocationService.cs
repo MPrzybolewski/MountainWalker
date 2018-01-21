@@ -23,5 +23,6 @@ namespace MountainWalker.Core.Interfaces
         double GetDistanceBetweenTwoPointsOnMapInMeters(Point firstLocation, Point secondLocation);
         double ConvertDegreeToRadian(double angle);
         Point GetNearestPoint(Point userLocation, List<Point> points);
+        string Distance(double dist);
     }
 }

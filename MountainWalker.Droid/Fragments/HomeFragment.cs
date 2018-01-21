@@ -28,7 +28,7 @@ using Point = MountainWalker.Core.Models.Point;
 
 namespace MountainWalker.Droid.Fragments
 {
-    [DrawerLayoutPresentation(typeof(HomeFragment), typeof(MainViewModel), Resource.Id.content_frame, addToBackStack: false)]
+    [DrawerLayoutPresentation(typeof(HomeFragment), typeof(MainViewModel), Resource.Id.content_frame, addToBackStack: true)]
     [Register("MountainWalker.android.HomeFragment")]
     public class HomeFragment : BaseFragment<HomeViewModel>, IOnMapReadyCallback
     {
@@ -130,7 +130,7 @@ namespace MountainWalker.Droid.Fragments
             {
                 _map.AddMarker(new MarkerOptions()
                     .SetPosition(new LatLng(point.Latitude, point.Longitude))
-                    .SetTitle(point.Description));
+                    .SetTitle(point.Name));
             }
 
             foreach (var polyline in trails)

@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Diagnostics;
+using System.Runtime.InteropServices.WindowsRuntime;
 using System.Threading.Tasks;
 using MountainWalker.Core.Messages;
 using MountainWalker.Core.Models;
@@ -111,6 +112,19 @@ namespace MountainWalker.Core.Services
                 }
             }
             return nearestPoint;
+        }
+
+        public string Distance(double dist)
+        {
+            var distance = (int) dist;
+
+            if (distance < 1000)
+                return distance + " metrów";
+            else
+            {
+                var distKilometers = (double)distance / 1000;
+                return distKilometers + " kilometrów";
+            }
         }
     }
 

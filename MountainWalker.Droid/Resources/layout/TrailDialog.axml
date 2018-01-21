@@ -4,20 +4,13 @@
     android:orientation="vertical"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="#ffffffff">
+    android:background="@drawable/dialog_bg">
     <TextView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:id="@+id/trailText"
         android:text=""
-        android:gravity="center"
-        android:background="#3F48CC"
-        android:textColor="#fff"
-        android:scaleType="fitCenter"
-        android:textSize="32dp"
-        android:textStyle="bold"
-        android:paddingTop="20dp"
-        android:paddingBottom="20dp"
+        style="@style/dialog_title_style"
         local:MvxBind="Text TrailName" />
     <TextView
         android:id="@+id/text_dialog"
@@ -35,15 +28,15 @@
         android:gravity="center_horizontal"
         local:MvxBind="Text TrailDescription" />
     <Button
-        android:layout_height="60dp"
-        android:layout_width="120dp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
         android:text="Czytaj więcej"
         android:id="@+id/btn_dialog"
         android:gravity="center_vertical|center_horizontal"
-        android:textColor="#ffffffff"
         android:layout_below="@+id/text_dialog"
         android:layout_alignParentStart="true"
         android:layout_centerHorizontal="true"
+        android:background="@drawable/dialog_button_states"
+        android:ems="8"
         local:MvxBind="Click ReadMoreCommand" />
-
 </RelativeLayout>
