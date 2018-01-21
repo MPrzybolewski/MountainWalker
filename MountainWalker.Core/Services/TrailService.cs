@@ -29,7 +29,7 @@ namespace MountainWalker.Core.Services
             Points.Add(new Point(54.394121, 18.569394, "Ygrek")); //Ygrek <3
             Points.Add(new Point(54.034417, 19.033257, "Malbork")); //Malbork
 
-            Points.Add(new Point(54.090550, 18.790999, "Misiu")); //xvoxin house
+            //Points.Add(new Point(54.090550, 18.790999, "Misiu")); //xvoxin house
             Points.Add(new Point(54.416570, 18.594687, "Lecha Kaczyńskiego xd"));
             Points.Add(new Point(54.493148, 18.539386, "Jit Solution"));
         }

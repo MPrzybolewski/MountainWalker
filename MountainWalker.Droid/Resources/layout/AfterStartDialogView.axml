@@ -6,19 +6,12 @@
     android:layout_height="match_parent"
     android:background="@drawable/dialog_bg">
     <TextView
-          android:layout_width="match_parent"
-          android:layout_height="wrap_content"
-          android:id="@+id/trailText"
-          android:text="Czy chcesz zakończysz swoją trasę?"
-          android:gravity="center"
-          android:background="#3F48CC"
-          android:textColor="#fff"
-          android:scaleType="fitCenter"
-          android:textSize="32dp"
-          android:textStyle="bold"
-          android:paddingTop="20dp"
-          android:paddingBottom="20dp"
-          local:MvxBind="Text TrailTitle" />
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/trailText"
+        android:text="Czy chcesz zakończysz swoją trasę?"
+        style="@style/dialog_title_style"
+        local:MvxBind="Text TrailTitle" />
     <TextView
         android:id="@+id/text_dialog"
         android:layout_width="wrap_content"
@@ -35,22 +28,26 @@
         android:gravity="center_horizontal"
         local:MvxBind="Text TimeInfo" />
     <Button
-        android:layout_height="60dp"
-        android:layout_width="120dp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:background="@drawable/dialog_button_states"
+        android:ems="8"
+        android:layout_marginLeft="5dp"
         android:text="Zakończ podróż"
         android:id="@+id/btn_dialog"
         android:gravity="center_vertical|center_horizontal"
-        android:textColor="#ffffffff"
         android:layout_below="@+id/text_dialog"
         android:layout_alignParentStart="true"
         local:MvxBind="Click StopTravel" />
     <Button
-        android:layout_height="60dp"
-        android:layout_width="120dp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:background="@drawable/dialog_button_states"
+        android:ems="8"
+        android:layout_marginRight="5dp"
         android:text="Anuluj"
         android:gravity="center_vertical|center_horizontal"
         android:id="@+id/button"
-        android:textColor="#ffffffff"
         android:layout_alignTop="@+id/btn_dialog"
         android:layout_alignParentEnd="true"
         local:MvxBind="Click DontStopTravel" />

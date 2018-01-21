@@ -130,7 +130,7 @@ namespace MountainWalker.Droid.Fragments
             {
                 _map.AddMarker(new MarkerOptions()
                     .SetPosition(new LatLng(point.Latitude, point.Longitude))
-                    .SetTitle(point.Description));
+                    .SetTitle(point.Name));
             }
 
             foreach (var polyline in trails)
