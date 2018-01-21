@@ -25,7 +25,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             style="@style/textboxes_style"
-            android:hint="Email"
+            android:hint="Login"
             android:id="@+id/login"
             android:textAlignment="center"
             local:MvxBind="Text Login" />

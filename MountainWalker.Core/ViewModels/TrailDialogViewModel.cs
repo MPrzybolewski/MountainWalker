@@ -12,6 +12,9 @@ namespace MountainWalker.Core.ViewModels
         private readonly ITrailService _trailService;
         private readonly IMvxNavigationService _navigationService;
 
+        private readonly MvxInteraction<bool> _visible = new MvxInteraction<bool>();
+        public IMvxInteraction<bool> Interaction => _visible;
+
         public IMvxCommand ReadMoreCommand { get; }
 
         private string _trailName = "";
@@ -51,6 +54,7 @@ namespace MountainWalker.Core.ViewModels
         private void ReadMore()
         {
             _navigationService.Navigate<TrailDetailsViewModel>();
+            _visible.Raise(false);
         }
     }
 }

@@ -78,7 +78,8 @@
                     style="@style/login_button_style"
                     android:text="Zarejestruj"
                     android:id="@+id/loginBtn"
-                    android:layout_gravity="center_horizontal" />
+                    android:layout_gravity="center_horizontal" 
+                    local:MvxBind="Click RegisterButton"/>
             </LinearLayout>
         </RelativeLayout>
     </ScrollView>
