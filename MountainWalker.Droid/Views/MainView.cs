@@ -22,6 +22,7 @@ using MvvmCross.Platform;
 using MountainWalker.Droid.Fragments;
 using Android.Media;
 using Acr.UserDialogs;
+using Android.Arch.Lifecycle;
 using MvvmCross.Platform.Droid.Platform;
 
 namespace MountainWalker.Droid.Views
@@ -31,11 +32,12 @@ namespace MountainWalker.Droid.Views
               Theme = "@style/MyTheme",
               LaunchMode = LaunchMode.SingleTop,
               ConfigurationChanges = ConfigChanges.Orientation,
-              ScreenOrientation = ScreenOrientation.Portrait)]
+              ScreenOrientation = ScreenOrientation.Portrait
+        )]
     public class MainView : MvxAppCompatActivity<MainViewModel>
     {
         public DrawerLayout DrawerLayout;
-
+        public View TrailDetailFragment;
 
         public MediaPlayer _mediaPlayer;
         protected override void OnCreate(Bundle bundle)
@@ -50,6 +52,7 @@ namespace MountainWalker.Droid.Views
             SetContentView(Resource.Layout.MainView);
 
             DrawerLayout = FindViewById<DrawerLayout>(Resource.Id.drawerLayout);
+            TrailDetailFragment = FindViewById(Resource.Layout.TrailDetailsView);
 
             if(bundle == null)
             {
@@ -87,7 +90,7 @@ namespace MountainWalker.Droid.Views
             if (DrawerLayout != null && DrawerLayout.IsDrawerOpen(GravityCompat.Start))
                 DrawerLayout.CloseDrawers();
             else
-                base.OnBackPressed();
+                MoveTaskToBack(true);
         }
 
         public void HideSoftKeyboard()
@@ -100,6 +103,14 @@ namespace MountainWalker.Droid.Views
             CurrentFocus.ClearFocus();
         }
 
+        public override void OnSaveInstanceState(Bundle outState, PersistableBundle outPersistentState)
+        {
+            base.OnSaveInstanceState(outState, outPersistentState);
+        }
 
+        public override void OnRestoreInstanceState(Bundle savedInstanceState, PersistableBundle persistentState)
+        {
+            base.OnRestoreInstanceState(savedInstanceState, persistentState);
+        }
     }
 }

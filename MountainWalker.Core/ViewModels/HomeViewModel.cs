@@ -30,7 +30,7 @@ namespace MountainWalker.Core.ViewModels
 
         public Point Location { get; set; }
         public List<Point> Points { get; private set;  }
-        public List<Connection> Trails { get; private set;  }
+        public List<Trail> Trails { get; private set;  }
 
         public IMvxCommand OpenMainDialogCommand { get; }
         public IMvxCommand<int> OpenTrailDialogCommand { get; }

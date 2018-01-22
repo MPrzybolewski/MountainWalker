@@ -5,7 +5,7 @@ namespace MountainWalker.Core.Interfaces
 {
     public interface ITrailService
     {
-        List<Connection> Trails { get; set; }
+        List<Trail> Trails { get; set; }
         List<Point> Points { get; set; }
 
     }

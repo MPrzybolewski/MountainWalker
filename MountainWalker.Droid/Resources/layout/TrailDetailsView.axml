@@ -3,19 +3,39 @@
     xmlns:local="http://schemas.android.com/apk/res-auto"
     android:orientation="vertical"
     android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    android:layout_height="match_parent"
+    android:layout_margin="10dp">
     <TextView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_margin="10dp"
         android:id="@+id/trailText"
         android:text=""
+        android:layout_marginBottom="20dp"
         style="@style/dialog_title_style"
         local:MvxBind="Text TrailTitle" />
-
     <TextView
-      android:layout_width="match_parent"
-      android:layout_height="wrap_content"
-      android:text="jakis tam opis i obrazek"
-    />
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:textStyle="bold"
+        android:textSize="18dp"
+        local:MvxBind="Text TimeUp"
+        android:text="xxx" />
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:textStyle="bold"
+        android:textSize="18dp"
+        android:layout_marginBottom="20dp"
+        local:MvxBind="Text TimeDown"
+        android:text="xxx" />
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="20dp"
+        local:MvxBind="Text TrailDescription"
+        android:text="jakis tam opis" />
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="jakis tam obrazek" />
 </LinearLayout>

@@ -1,5 +1,6 @@
 ﻿using System;
 using Android.App;
+using Android.Content;
 using Android.Content.PM;
 using Android.OS;
 using MountainWalker.Droid.NavigationDrawer;
@@ -13,15 +14,17 @@ namespace MountainWalker.Droid.Views
         ScreenOrientation = ScreenOrientation.Portrait)]
     public class StartView : MvxActivity
     {
-        
         protected override void OnCreate(Bundle bundle)
         {
             base.OnCreate(bundle);
             SetContentView(Resource.Layout.StartView);
+            //var intent = new Intent(this, typeof(MainView));
+            //intent.SetFlags(ActivityFlags.NewTask);
+            //StartActivity(intent);
+            Finish();
 
-
-           // var presenter = (NavigationDrawerPresenter)Mvx.Resolve<IMvxAndroidViewPresenter>();
-           // presenter.RegisterAttributeTypes();
+            // var presenter = (NavigationDrawerPresenter)Mvx.Resolve<IMvxAndroidViewPresenter>();
+            // presenter.RegisterAttributeTypes();
         }
 
     }

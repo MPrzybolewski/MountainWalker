@@ -124,7 +124,7 @@ namespace MountainWalker.Droid.Fragments
 
         protected override int FragmentId => Resource.Layout.HomeView;        
         
-        private void CreatePointsAndTrails(List<Point> points, List<Connection> trails)
+        private void CreatePointsAndTrails(List<Point> points, List<Trail> trails)
         {
             foreach (var point in points)
             {
