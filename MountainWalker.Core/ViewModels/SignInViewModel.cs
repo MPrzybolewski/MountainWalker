@@ -30,7 +30,6 @@ namespace MountainWalker.Core.ViewModels
 
         private async void CheckLogin()
         {
-
             bool result = await CheckIfLogged();
             if(result)
             {
@@ -78,7 +77,6 @@ namespace MountainWalker.Core.ViewModels
 
         public async Task<bool> CheckIfLogged()
         {
-
             UserDialogs.Instance.ShowLoading("Logowanie...");
             bool result = await _webAPIService.CheckIfUserCanLogin(_login, _password);
 
@@ -86,7 +84,7 @@ namespace MountainWalker.Core.ViewModels
             {
                 if (_isChecked == true)
                 {
-                    CrossSecureStorage.Current.SetValue("Session", _password);
+                    CrossSecureStorage.Current.SetValue("Session", _login);
                 }
                 UserDialogs.Instance.HideLoading();
                 return true;

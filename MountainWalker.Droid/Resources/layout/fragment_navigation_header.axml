@@ -29,7 +29,8 @@
             android:textSize="@dimen/text_medium"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="Imie i nazwisko" />
+            android:text=""
+            local:MvxBind="Text UserName"/>
         <TextView
             android:id="@+id/text_view_username"
             android:singleLine="true"

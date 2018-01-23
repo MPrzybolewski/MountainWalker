@@ -1,16 +1,21 @@
 ﻿using System;
+using System.Diagnostics;
+using MountainWalker.Core.Interfaces;
 using MvvmCross.Core.Navigation;
 using MvvmCross.Core.ViewModels;
+using Plugin.SecureStorage;
 
 namespace MountainWalker.Core.ViewModels
 {
     public class MenuViewModel : MvxViewModel
     {
         private readonly IMvxNavigationService _navigationService;
+        public string UserName { get; set; } = "Patryk Matuszak";
 
-        public MenuViewModel(IMvxNavigationService navigationService)
+        public MenuViewModel(IMvxNavigationService navigationService, IWebAPIService webAPIService)
         {
             _navigationService = navigationService;
+            UserName = CrossSecureStorage.Current.GetValue("Username");
         }
         public IMvxCommand ShowHomeCommand
         {

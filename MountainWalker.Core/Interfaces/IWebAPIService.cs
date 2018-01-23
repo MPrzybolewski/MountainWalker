@@ -10,5 +10,6 @@ namespace MountainWalker.Core.Interfaces
     {
         Task<bool> CheckIfUserCanRegister(string name, string surname, string login, string password, string email);
         Task<bool> CheckIfUserCanLogin(string _login, string _password);
+        Task<string> GetNameAndSurnameByLogin(string _login);
     }
 }

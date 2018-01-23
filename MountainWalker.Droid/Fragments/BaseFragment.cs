@@ -8,6 +8,9 @@ using MvvmCross.Droid.Support.V7.AppCompat;
 using MvvmCross.Core.ViewModels;
 using MvvmCross.Binding.Droid.BindingContext;
 using Android.Content;
+using MountainWalker.Core.Interfaces;
+using Plugin.SecureStorage;
+using System.Threading.Tasks;
 
 namespace MountainWalker.Droid.Fragments
 {
@@ -39,7 +42,6 @@ namespace MountainWalker.Droid.Fragments
             {
                 var mainActivity = Activity as MainView;
                 if (mainActivity == null) return view;
-
 
                 Android.Widget.Button button = view.FindViewById<Android.Widget.Button>(Resource.Id.phoneButton);
 
@@ -81,7 +83,6 @@ namespace MountainWalker.Droid.Fragments
                 DrawerToggle?.SyncState();
             }
         }
-
     }
 
 
