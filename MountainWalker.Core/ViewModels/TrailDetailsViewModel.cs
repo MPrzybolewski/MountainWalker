@@ -12,6 +12,7 @@ namespace MountainWalker.Core.ViewModels
     public class TrailDetailsViewModel : MvxViewModel
     {
         private Trail _trail;
+        private readonly ITrailService _trailService;
 
         private string _trailTitle;
         public string TrailTitle
@@ -59,12 +60,21 @@ namespace MountainWalker.Core.ViewModels
 
         public TrailDetailsViewModel(ILocationService locationService, ITrailService trailService)
         {
+            
             _trail = trailService.Trails[locationService.TrailId];
             _trailTitle = _trail.Name;
             _trailDescription = _trail.Description;
             _timeUp = "Wejście - " + _trail.TimeUp + " minut";
             _timeDown = "Zejście - " + _trail.TimeDown + " minut";
+
+
+            _trailService = trailService;
         }
+
     }
+
+
+
+
 }
 
