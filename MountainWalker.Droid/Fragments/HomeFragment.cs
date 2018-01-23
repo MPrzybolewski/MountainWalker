@@ -28,7 +28,8 @@ using Point = MountainWalker.Core.Models.Point;
 
 namespace MountainWalker.Droid.Fragments
 {
-    [DrawerLayoutPresentation(typeof(HomeFragment), typeof(MainViewModel), Resource.Id.content_frame, addToBackStack: true)]
+    [DrawerLayoutPresentation(typeof(HomeFragment), typeof(MainViewModel), Resource.Id.content_frame, addToBackStack: true,
+        IsCacheableFragment = true, AddToBackStack = true)]
     [Register("MountainWalker.android.HomeFragment")]
     public class HomeFragment : BaseFragment<HomeViewModel>, IOnMapReadyCallback
     {

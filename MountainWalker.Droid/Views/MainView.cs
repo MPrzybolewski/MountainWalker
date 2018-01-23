@@ -1,28 +1,16 @@
 using Android.App;
-using Android.Gms.Maps;
-using Android.Gms.Maps.Model;
 using Android.OS;
-using Plugin.Geolocator;
-using System;
-using System.Threading.Tasks;
 using MvvmCross.Droid.Support.V7.AppCompat;
 using MountainWalker.Core.ViewModels;
-using Android.Support.V7.App;
-using Android.Widget;
 using Android.Support.V4.Widget;
 using Android.Views;
-using System.Linq;
 using Android.Content.PM;
 using Debug = System.Diagnostics.Debug;
 using Android.Support.V4.View;
 using Android.Views.InputMethods;
-using MountainWalker.Droid.NavigationDrawer;
-using MvvmCross.Droid.Views;
 using MvvmCross.Platform;
-using MountainWalker.Droid.Fragments;
 using Android.Media;
 using Acr.UserDialogs;
-using Android.Arch.Lifecycle;
 using MvvmCross.Platform.Droid.Platform;
 
 namespace MountainWalker.Droid.Views
@@ -87,10 +75,18 @@ namespace MountainWalker.Droid.Views
 
         public override void OnBackPressed()
         {
+            FragmentManager fm = FragmentManager;
+            Debug.WriteLine("ILOSC FRAGMENTOW NA STOSIE, HALKO " + fm.BackStackEntryCount);
             if (DrawerLayout != null && DrawerLayout.IsDrawerOpen(GravityCompat.Start))
+            {
                 DrawerLayout.CloseDrawers();
+            }
+            //else if (fm.BackStackEntryCount > 0)
+            //{
+            //    fm.PopBackStack();
+            //}
             else
-                MoveTaskToBack(true);
+                base.OnBackPressed();
         }
 
         public void HideSoftKeyboard()

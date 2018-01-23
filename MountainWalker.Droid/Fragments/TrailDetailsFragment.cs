@@ -1,14 +1,16 @@
-﻿using Android.OS;
+﻿using Android.App;
+using Android.OS;
 using Android.Runtime;
 using Android.Views;
 using MountainWalker.Core.ViewModels;
 using MountainWalker.Droid.NavigationDrawer;
+using MvvmCross.Droid.Views.Fragments;
 using Debug = System.Diagnostics.Debug;
 
 namespace MountainWalker.Droid.Fragments
 {
     [DrawerLayoutPresentation(typeof(TrailDetailsFragment), typeof(MainViewModel), Resource.Id.content_frame,
-        addToBackStack: false, PopEnterAnimation = 500, IsCacheableFragment = false)]
+        addToBackStack: true, IsCacheableFragment = true, AddToBackStack = true)]
     [Register("MountainWalker.android.TrailDetailsFragment")]
     public class TrailDetailsFragment : BaseFragment<TrailDetailsViewModel>
     {
@@ -16,6 +18,11 @@ namespace MountainWalker.Droid.Fragments
         public override View OnCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState)
         {
             ShowHamburgerMenu = true;
+
+            //FragmentTransaction ft = this.Activity.FragmentManager.BeginTransaction();
+            //ft.AddToBackStack(null);
+            //ft.Commit();
+
             return base.OnCreateView(inflater, container, savedInstanceState);
         }
         
@@ -41,7 +48,9 @@ namespace MountainWalker.Droid.Fragments
         {
             base.OnDestroy();
             Debug.WriteLine(LOG + "onDestroy");
+            
         }
+
         protected override int FragmentId => Resource.Layout.TrailDetailsView;
     }
 }

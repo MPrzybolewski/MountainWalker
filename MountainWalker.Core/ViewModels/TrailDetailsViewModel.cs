@@ -4,14 +4,17 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using MountainWalker.Core.Interfaces;
+using MountainWalker.Core.Messages;
 using MountainWalker.Core.Models;
 using MvvmCross.Core.ViewModels;
+using MvvmCross.Plugins.Messenger;
 
 namespace MountainWalker.Core.ViewModels
 {
     public class TrailDetailsViewModel : MvxViewModel
     {
         private Trail _trail;
+        private MvxSubscriptionToken _token;
 
         private string _trailTitle;
         public string TrailTitle
@@ -57,14 +60,26 @@ namespace MountainWalker.Core.ViewModels
             }
         }
 
-        public TrailDetailsViewModel(ILocationService locationService, ITrailService trailService)
+        public TrailDetailsViewModel(ILocationService locationService, ITrailService trailService, IMvxMessenger messenger)
         {
-            _trail = trailService.Trails[locationService.TrailId];
-            _trailTitle = _trail.Name;
-            _trailDescription = _trail.Description;
-            _timeUp = "Wejście - " + _trail.TimeUp + " minut";
-            _timeDown = "Zejście - " + _trail.TimeDown + " minut";
+            //SetTrailInfo(trailService.Trails[locationService.TrailId]);
+            _token = messenger.Subscribe<TrailMessage>(OnTrailMessage);
         }
+
+        private void OnTrailMessage(TrailMessage obj)
+        {
+            SetTrailInfo(obj.Trail);
+        }
+
+        private void SetTrailInfo(Trail trail)
+        {
+            _trail = trail;
+            _trailTitle = trail.Name;
+            _trailDescription = trail.Description;
+            _timeUp = "Wejście - " + trail.TimeUp + " minut";
+            _timeDown = "Zejście - " + trail.TimeDown + " minut";
+        }
+
     }
 }
 
