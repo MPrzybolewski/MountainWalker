@@ -35,8 +35,8 @@ namespace MountainWalker.Droid.Views
 
 
             UserDialogs.Init(() => Mvx.Resolve<IMvxAndroidCurrentTopActivity>().Activity);
-            _mediaPlayer = MediaPlayer.Create(this, Resource.Raw.background_main);
-            _mediaPlayer.Start();
+            //_mediaPlayer = MediaPlayer.Create(this, Resource.Raw.background_main);
+            //_mediaPlayer.Start();
             SetContentView(Resource.Layout.MainView);
 
             DrawerLayout = FindViewById<DrawerLayout>(Resource.Id.drawerLayout);
