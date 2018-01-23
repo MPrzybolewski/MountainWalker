@@ -52,7 +52,6 @@ namespace MountainWalker.Droid.Fragments
         public async void OnMapReady(GoogleMap map)
         {
             _map = map;
-            await ShowUserLocation();
             _map.MyLocationEnabled = true;
             _map.UiSettings.MyLocationButtonEnabled = true;
             _map.AddMarker(new MarkerOptions().SetPosition(new LatLng(54.394121, 18.569394))
@@ -66,6 +65,7 @@ namespace MountainWalker.Droid.Fragments
             set.Bind(_map).For(TrailDialogBinding.BindingName).To(vm => vm.OpenTrailDialogCommand);
             set.Apply();
             
+            await ShowUserLocation();
         }
 
         public override View OnCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState)

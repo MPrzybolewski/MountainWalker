@@ -1,9 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using MountainWalker.Core.Interfaces;
+﻿using MountainWalker.Core.Interfaces;
 using MountainWalker.Core.Messages;
 using MountainWalker.Core.Models;
 using MvvmCross.Core.ViewModels;
@@ -15,6 +10,9 @@ namespace MountainWalker.Core.ViewModels
     {
         private Trail _trail;
         private MvxSubscriptionToken _token;
+
+        private readonly ITrailService _trailService;
+
 
         private string _trailTitle;
         public string TrailTitle
@@ -74,12 +72,15 @@ namespace MountainWalker.Core.ViewModels
         private void SetTrailInfo(Trail trail)
         {
             _trail = trail;
-            _trailTitle = trail.Name;
-            _trailDescription = trail.Description;
-            _timeUp = "Wejście - " + trail.TimeUp + " minut";
-            _timeDown = "Zejście - " + trail.TimeDown + " minut";
+            TrailTitle = trail.Name;
+            TrailDescription = trail.Description;
+            TimeUp = "Wejście - " + trail.TimeUp + " minut";
+            TimeDown = "Zejście - " + trail.TimeDown + " minut";
         }
-
     }
+
+
+
+
 }
 
