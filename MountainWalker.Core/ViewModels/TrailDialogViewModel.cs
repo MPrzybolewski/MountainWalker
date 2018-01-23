@@ -1,6 +1,8 @@
 ﻿using MountainWalker.Core.Interfaces;
+using MountainWalker.Core.Messages;
 using MvvmCross.Core.Navigation;
 using MvvmCross.Core.ViewModels;
+using MvvmCross.Plugins.Messenger;
 
 namespace MountainWalker.Core.ViewModels
 {
@@ -14,6 +16,7 @@ namespace MountainWalker.Core.ViewModels
 
         private readonly MvxInteraction<bool> _visible = new MvxInteraction<bool>();
         public IMvxInteraction<bool> Interaction => _visible;
+        private IMvxMessenger _messenger;
 
         public IMvxCommand ReadMoreCommand { get; }
 
@@ -39,12 +42,14 @@ namespace MountainWalker.Core.ViewModels
             }
         }
 
-        public TrailDialogViewModel(ILocationService locationService, ITrailService trailService, IMvxNavigationService navigationService)
+        public TrailDialogViewModel(ILocationService locationService, ITrailService trailService, 
+            IMvxNavigationService navigationService, IMvxMessenger messenger)
         {
             _locationService = locationService;
             _trailService = trailService;
             _navigationService = navigationService;
             _trailId = _locationService.TrailId;
+            _messenger = messenger;
 
             TrailName = _trailService.Trails[_trailId].Name;
             TrailDescription = _trailService.Trails[_trailId].Description;
@@ -53,8 +58,10 @@ namespace MountainWalker.Core.ViewModels
 
         private void ReadMore()
         {
+            var message = new TrailMessage(this, _trailService.Trails[_trailId]);
             _navigationService.Navigate<TrailDetailsViewModel>();
             _visible.Raise(false);
+            _messenger.Publish(message);
         }
     }
 }

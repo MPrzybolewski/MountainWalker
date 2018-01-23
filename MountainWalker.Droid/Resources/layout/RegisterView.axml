@@ -57,6 +57,7 @@
                     android:layout_height="wrap_content"
                     style="@style/textboxes_style"
                     android:hint="Hasło"
+                    android:inputType="textPassword"
                     local:MvxBind="Text Password"
                     android:textAlignment="center" />
                 <EditText
@@ -64,6 +65,7 @@
                     android:layout_height="wrap_content"
                     style="@style/textboxes_style"
                     android:hint="Powtórz hasło"
+                    android:inputType="textPassword"
                     local:MvxBind="Text RepPassword"
                     android:textAlignment="center" />
                 <EditText

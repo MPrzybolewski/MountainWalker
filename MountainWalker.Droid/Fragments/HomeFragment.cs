@@ -28,7 +28,8 @@ using Point = MountainWalker.Core.Models.Point;
 
 namespace MountainWalker.Droid.Fragments
 {
-    [DrawerLayoutPresentation(typeof(HomeFragment), typeof(MainViewModel), Resource.Id.content_frame, addToBackStack: true)]
+    [DrawerLayoutPresentation(typeof(HomeFragment), typeof(MainViewModel), Resource.Id.content_frame, addToBackStack: true,
+        IsCacheableFragment = true, AddToBackStack = true)]
     [Register("MountainWalker.android.HomeFragment")]
     public class HomeFragment : BaseFragment<HomeViewModel>, IOnMapReadyCallback
     {
@@ -51,7 +52,6 @@ namespace MountainWalker.Droid.Fragments
         public async void OnMapReady(GoogleMap map)
         {
             _map = map;
-            await ShowUserLocation();
             _map.MyLocationEnabled = true;
             _map.UiSettings.MyLocationButtonEnabled = true;
             _map.AddMarker(new MarkerOptions().SetPosition(new LatLng(54.394121, 18.569394))
@@ -65,6 +65,7 @@ namespace MountainWalker.Droid.Fragments
             set.Bind(_map).For(TrailDialogBinding.BindingName).To(vm => vm.OpenTrailDialogCommand);
             set.Apply();
             
+            await ShowUserLocation();
         }
 
         public override View OnCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState)
@@ -124,7 +125,7 @@ namespace MountainWalker.Droid.Fragments
 
         protected override int FragmentId => Resource.Layout.HomeView;        
         
-        private void CreatePointsAndTrails(List<Point> points, List<Connection> trails)
+        private void CreatePointsAndTrails(List<Point> points, List<Trail> trails)
         {
             foreach (var point in points)
             {
