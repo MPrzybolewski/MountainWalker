@@ -4,51 +4,54 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@color/light_gray">
-  <TextView
-      android:layout_width="match_parent"
-      android:layout_height="wrap_content"
-      android:id="@+id/trailText"
-      android:text=""
-      android:layout_marginBottom="20dp"
-      style="@style/dialog_title_style"
-      local:MvxBind="Text TrailTitle" />
-  <LinearLayout
-      android:orientation="vertical"
-      android:layout_width="match_parent"
-      android:layout_height="match_parent"
-      android:background="@color/light_gray"
-      android:layout_margin="20dp">
-    <TextView
+    <include
+        layout="@layout/toolbar_actionbar" />
+    <LinearLayout
+        android:orientation="vertical"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:textStyle="bold"
-        android:textSize="18dp"
-        local:MvxBind="Text TimeUp"
-        android:text="xxx" />
-    <TextView
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:textStyle="bold"
-        android:textSize="18dp"
-        android:layout_marginBottom="20dp"
-        local:MvxBind="Text TimeDown"
-        android:text="xxx" />
-    <TextView
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginBottom="20dp"
-        local:MvxBind="Text TrailDescription"
-        android:text="jakis tam opis" />
-    <ImageView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginBottom="20dp"
-        android:id="@+id/imageView"
-        android:layout_gravity="center"
-        android:src="@drawable/alps" />
-    <TextView
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="jakis tam obrazek" />
-  </LinearLayout>
+        android:layout_height="match_parent"
+        android:background="@color/light_gray"
+        android:layout_margin="20dp">
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:id="@+id/trailText"
+            android:text=""
+            android:layout_marginTop="30dp"
+            android:layout_marginBottom="20dp"
+            style="@style/details_title_style"
+            local:MvxBind="Text TrailTitle" />
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:textStyle="bold"
+            android:textSize="18dp"
+            local:MvxBind="Text TimeUp"
+            android:text="xxx" />
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:textStyle="bold"
+            android:textSize="18dp"
+            android:layout_marginBottom="20dp"
+            local:MvxBind="Text TimeDown"
+            android:text="xxx" />
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="20dp"
+            local:MvxBind="Text TrailDescription"
+            android:text="jakis tam opis" />
+        <ImageView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="20dp"
+            android:id="@+id/imageView"
+            android:layout_gravity="center"
+            android:src="@drawable/alps" />
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="jakis tam obrazek" />
+    </LinearLayout>
 </RelativeLayout>

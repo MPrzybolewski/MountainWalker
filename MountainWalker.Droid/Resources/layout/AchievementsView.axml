@@ -3,15 +3,14 @@
     xmlns:local="http://schemas.android.com/apk/res-auto"
     android:orientation="vertical"
     android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    android:layout_height="match_parent"
+    android:background="@color/light_gray">
     <include
         layout="@layout/toolbar_actionbar" />
-    <TextView
+    <Mvx.MvxListView
+        android:orientation="vertical"
         android:layout_width="fill_parent"
-        android:layout_height="wrap_content"
-        android:gravity="center_horizontal"
-        android:textColor="@color/dark_gray"
-        android:textSize="20dp"
-        android:paddingBottom="15dp"
-        android:text="Achievments View" />
+        android:layout_height="fill_parent"
+        local:MvxBind="ItemsSource Items"
+        local:MvxItemTemplate="@layout/achievements" />
 </LinearLayout>
