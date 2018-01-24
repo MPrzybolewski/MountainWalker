@@ -7,14 +7,14 @@ namespace MountainWalker.Core.Services
     public class TrailService : ITrailService
     {
         public List<Point> Points { get; set; }
-        public List<Connection> Trails { get; set; }
+        public List<Trail> Trails { get; set; }
 
         public TrailService()
         {
             Points = new List<Point>();
             ReadAllPoints();
 
-            Trails = new List<Connection>();
+            Trails = new List<Trail>();
             CreateConnections();
             
         }
@@ -29,7 +29,7 @@ namespace MountainWalker.Core.Services
             Points.Add(new Point(54.394121, 18.569394, "Ygrek")); //Ygrek <3
             Points.Add(new Point(54.034417, 19.033257, "Malbork")); //Malbork
 
-            Points.Add(new Point(54.090550, 18.790999, "Misiu")); //xvoxin house
+            //Points.Add(new Point(54.090550, 18.790999, "Misiu")); //xvoxin house
             Points.Add(new Point(54.416570, 18.594687, "Lecha Kaczyńskiego xd"));
             Points.Add(new Point(54.493148, 18.539386, "Jit Solution"));
         }
@@ -38,11 +38,13 @@ namespace MountainWalker.Core.Services
         {
 
             //////////////////////// Test Trail ////////////////////////
-            Trails.Add(new Connection());
+            Trails.Add(new Trail());
             Trails[0].Color = "blue";
             Trails[0].Id = 0;
             Trails[0].Description = "Legendarna droga z SKM na UG";
             Trails[0].Name = "Dolina Alchemii";
+            Trails[0].TimeUp = 5;
+            Trails[0].TimeDown = 5;
             Trails[0].Path.Add(new Point(54.400647, 18.576544));
             Trails[0].Path.Add(new Point(54.400528, 18.576064));
             Trails[0].Path.Add(new Point(54.400712, 18.575901));
@@ -65,11 +67,13 @@ namespace MountainWalker.Core.Services
 
             //////////////////////// Road to Kfc will be second trail :D
 
-            Trails.Add(new Connection());
+            Trails.Add(new Trail());
             Trails[1].Color = "red";
             Trails[1].Id = 1;
             Trails[1].Description = "Co poniedziałek biedni studenci podróżują w to miejsce w poszukiwaniu jedzienia";
             Trails[1].Name = "Burgerogrzmoty KFC";
+            Trails[1].TimeUp = 5;
+            Trails[1].TimeDown = 5;
             Trails[1].Path.Add(new Point(54.396567, 18.574493));
             Trails[1].Path.Add(new Point(54.396234, 18.576797));
             Trails[1].Path.Add(new Point(54.396250, 18.576855));
@@ -83,10 +87,12 @@ namespace MountainWalker.Core.Services
 
             ///////////////////////// Now Finaly road to Ygrek!
 
-            Trails.Add(new Connection());
+            Trails.Add(new Trail());
             Trails[2].Color = "green";
             Trails[2].Description = "Po długiej i bolesnej pracy nad projektami, biedni studenci udają się tutaj na piwko";
             Trails[2].Name = "Piwne Oko";
+            Trails[2].TimeUp = 5;
+            Trails[2].TimeDown = 10;
             Trails[2].Path.Add(new Point(54.396157, 18.573419));
             Trails[2].Path.Add(new Point(54.396257, 18.573158));
             Trails[2].Path.Add(new Point(54.396260, 18.573036));

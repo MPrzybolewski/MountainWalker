@@ -16,7 +16,7 @@
         <item name="windowActionModeOverlay">false</item>
 
         <item name="android:windowBackground">@color/white</item>
-        <item name="android:statusBarColor">@android:color/transparent</item>
+        <item name="android:statusBarColor">@color/colorPrimaryDark</item>
 
         <item name="android:textCursorDrawable">@null</item>
     </style>
@@ -41,7 +41,7 @@
         <item name="windowActionModeOverlay">false</item>
 
         <item name="android:windowBackground">@color/white</item>
-        <item name="android:statusBarColor">@android:color/transparent</item>
+        <item name="android:statusBarColor">@color/colorPrimaryDark</item>
 
         <item name="android:textCursorDrawable">@null</item>
     </style>
@@ -51,7 +51,73 @@
         <item name="colorPrimary">@color/black</item>
     </style>
 
-   <!-- 
+    <style name="textboxes_style" >
+        <item name="android:gravity">center</item>
+        <item name="android:layout_margin">10dp</item>
+        <item name="android:background">@drawable/custom_edittext</item>
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:textAlignment">center</item>
+        <item name ="android:textColor">#545454</item>
+        <item name="android:ems">10</item>
+    </style>
+
+    <style name="login_button_style" >
+        <item name="android:gravity">center</item>
+        <item name="android:layout_margin">10dp</item>
+        <item name="android:background">@drawable/rounded_button</item>
+        <item name="android:textColor">#ffffff</item>
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:ems">10</item>
+    </style>
+
+    <style name="text_style">
+        <item name="android:textAlignment">center</item>
+        <item name="android:layout_gravity">center</item>
+    </style>
+
+  <style name="dialog_title_style">
+    <item name="android:gravity">center</item>
+    <item name="android:textColor">#fff</item>
+    <item name="android:scaleType">fitCenter</item>
+    <item name="android:textSize">26dp</item>
+    <item name="android:textStyle">bold</item>
+    <item name="android:paddingTop">20dp</item>
+    <item name="android:paddingBottom">20dp</item>
+    <item name="android:background">@drawable/rounded_title</item>
+  </style>
+
+  <style name="details_title_style">
+    <item name="android:gravity">center</item>
+    <item name="android:textColor">#fff</item>
+    <item name="android:scaleType">fitCenter</item>
+    <item name="android:textSize">26dp</item>
+    <item name="android:textStyle">bold</item>
+    <item name="android:paddingTop">20dp</item>
+    <item name="android:paddingBottom">20dp</item>
+    <item name="android:background">@drawable/details_title</item>
+  </style>
+
+  <style name="dialog_button_style">
+    <item name="android:background">@drawable/dialog_button_states</item>
+    <item name="android:ems">8</item>
+  </style>
+
+  <style name="list_item_style" >
+    <item name="android:gravity">left</item>
+    <item name="android:layout_marginRight">10dp</item>
+    <item name="android:layout_marginTop">10dp</item>
+    <item name="android:layout_marginBottom">10dp</item>
+    <item name="android:paddingLeft">10dp</item>
+    <item name="android:background">@drawable/list_item</item>
+    <item name="android:textSize">26dp</item>
+    <item name="android:textColor">@color/white</item>
+    <item name="android:layout_width">match_parent</item>
+    <item name="android:layout_height">wrap_content</item>
+    <item name ="android:textColor">@color/light_gray</item>
+  </style>
+  <!-- 
     <style name="MyTheme.Base" parent="Theme.AppCompat.Light.DarkActionBar">
         <item name="colorPrimary">@color/colorPrimary</item>
         <item name="colorPrimaryDark">@color/colorPrimaryDark</item>

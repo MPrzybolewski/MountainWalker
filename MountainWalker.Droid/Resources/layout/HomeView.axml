@@ -21,6 +21,10 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center_horizontal"
+                android:background="@drawable/start_button_states"
+                android:layout_marginTop="10dp"
+                android:textSize="16dp"
+                android:textColor="@color/white"
                 local:MvxBind="Click OpenMainDialogCommand; Text ButtonText" />
         </fragment>
         <RelativeLayout

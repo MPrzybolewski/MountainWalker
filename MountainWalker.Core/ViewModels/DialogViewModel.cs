@@ -70,27 +70,29 @@ namespace MountainWalker.Core.ViewModels
             var currentLocation = _locationService.CurrentLocation;
 
 
-            Point nearestPoint = _locationService.GetNearestPoint(currentLocation, _trailService.Points);
+            var nearestPoint = _locationService.GetNearestPoint(currentLocation, _trailService.Points);
 
             if (_locationService.CheckPointIsNear(currentLocation, nearestPoint)) // user and point location
             {
                 CanStart = true;
                 TrailStartCommand = new MvxCommand(StartTrail);
-                TrailTitle = "MOŻNA";
+                TrailTitle = "MOŻNA"; // here name of point
                 TrailInfo = "Możesz rozpocząć swoją wędrówkę!";
             }
             else
             {
+                var distance = _locationService.GetDistanceBetweenTwoPointsOnMapInMeters(currentLocation, nearestPoint);
                 CanStart = false;
                 TrailTitle = "NIE MOŻNA"; //some function should be here, but idk how i want to do here
-                TrailInfo = "Jesteś zbyt oddalony od najbliższego punktu!";
+                TrailInfo = "Najbliższy punkt to " + nearestPoint.Name + " oddalony o " + _locationService.Distance(distance); // name of nearest point
             }
             NearestPointCommand = new MvxCommand(ShowNearestPoint);
         }
 
         private void StartTrail()
         {
-            _locationService.OnCurrentLocationChanged(new Point(54.3956171, 18.5724856));
+            _locationService.OnCurrentLocationChanged(_locationService.GetNearestPoint(
+                _locationService.CurrentLocation, _trailService.Points));
             _locationService.SetNewList();
             _locationService.IsTrailStarted = true;
 
