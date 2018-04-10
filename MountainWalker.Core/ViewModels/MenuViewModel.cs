@@ -12,6 +12,7 @@ namespace MountainWalker.Core.ViewModels
         {
             _navigationService = navigationService;
         }
+
         public IMvxCommand ShowHomeCommand
         {
             get { return new MvxCommand(ShowHomeExecuted); }

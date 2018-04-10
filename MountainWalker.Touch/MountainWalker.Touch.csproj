@@ -161,7 +161,6 @@
   <ItemGroup>
     <InterfaceDefinition Include="LaunchScreen.storyboard" />
     <InterfaceDefinition Include="Main.storyboard" />
-    <InterfaceDefinition Include="Views\MainPage.xib" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Info.plist" />
@@ -183,10 +182,6 @@
     <Compile Include="Services\TouchDialogService.cs" />
     <Compile Include="Views\HomeView.cs" />
     <Compile Include="Views\MenuView.cs" />
-    <Compile Include="Views\MainPage.cs" />
-    <Compile Include="Views\MainPage.designer.cs">
-      <DependentUpon>MainPage.cs</DependentUpon>
-    </Compile>
     <Compile Include="Views\BaseMenuViewController.cs" />
     <Compile Include="Views\BaseMenuViewController.designer.cs">
       <DependentUpon>BaseMenuViewController.cs</DependentUpon>
