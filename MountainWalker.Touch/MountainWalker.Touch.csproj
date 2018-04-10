@@ -186,6 +186,7 @@
     <Compile Include="Views\BaseMenuViewController.designer.cs">
       <DependentUpon>BaseMenuViewController.cs</DependentUpon>
     </Compile>
+    <Compile Include="Views\SettingsView.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\MountainWalker.Core\MountainWalker.Core.csproj">
