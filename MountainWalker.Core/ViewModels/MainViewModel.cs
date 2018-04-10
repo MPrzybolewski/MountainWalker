@@ -5,7 +5,7 @@ using MvvmCross.Core.Navigation;
 
 namespace MountainWalker.Core.ViewModels
 {
-    public class MainViewModel : MvxViewModel
+    public class MainViewModel : BaseViewModel
     {
         private readonly IMvxNavigationService _navigationService;
 

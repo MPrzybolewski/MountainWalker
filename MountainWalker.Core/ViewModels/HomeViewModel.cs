@@ -13,7 +13,7 @@ using MvvmCross.Plugins.Messenger;
 
 namespace MountainWalker.Core.ViewModels
 {
-    public class HomeViewModel : MvxViewModel
+    public class HomeViewModel : BaseViewModel
     {
         private readonly ILocationService _locationService;
         private readonly IMvxNavigationService _navigationService;

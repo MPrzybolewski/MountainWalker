@@ -1,23 +1,27 @@
+﻿using System;
 using Foundation;
 using MountainWalker.Core.ViewModels;
 using MvvmCross.Binding.BindingContext;
 using MvvmCross.iOS.Support.XamarinSidebar;
-using MvvmCross.iOS.Views;
-using MvvmCross.iOS.Views.Presenters.Attributes;
-
-
+using UIKit;
 
 namespace MountainWalker.Touch.Views
 {
-    [Register("MainView")]
+    [Register("HomeView")]
     [MvxSidebarPresentation(MvxPanelEnum.Center, MvxPanelHintType.ResetRoot, true)]
-    public class MainView : BaseViewController<MainViewModel>
+    public class HomeView : BaseViewController<HomeViewModel>
     {
         public override void ViewDidLoad()
         {
             base.ViewDidLoad();
+            var viewModel = this.ViewModel;
 
-            ViewModel.ShowMenu();
         }
-    }   
+
+        public override void ViewWillAppear(bool animated)
+        {
+            Title = "Home View";
+            base.ViewWillAppear(animated);
+        }
+    }
 }

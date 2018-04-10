@@ -64,6 +64,7 @@
     <Compile Include="Interfaces\IStartButtonService.cs" />
     <Compile Include="Messages\StartButtonMessage.cs" />
     <Compile Include="Services\StartButtonService.cs" />
+    <Compile Include="ViewModels\BaseViewModel.cs" />
   </ItemGroup>
   <ItemGroup>
     <Reference Include="MvvmCross.Binding">
