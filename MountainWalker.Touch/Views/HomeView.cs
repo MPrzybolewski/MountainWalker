@@ -1,8 +1,14 @@
 ﻿using System;
+using System.Diagnostics;
+using System.Threading.Tasks;
+using CoreGraphics;
 using Foundation;
+using Google.Maps;
 using MountainWalker.Core.ViewModels;
 using MvvmCross.Binding.BindingContext;
 using MvvmCross.iOS.Support.XamarinSidebar;
+using Plugin.Geolocator;
+using Plugin.Geolocator.Abstractions;
 using UIKit;
 
 namespace MountainWalker.Touch.Views
@@ -11,17 +17,83 @@ namespace MountainWalker.Touch.Views
     [MvxSidebarPresentation(MvxPanelEnum.Center, MvxPanelHintType.ResetRoot, true)]
     public class HomeView : BaseViewController<HomeViewModel>
     {
+
+        MapView mapView;
         public override void ViewDidLoad()
         {
             base.ViewDidLoad();
             var viewModel = this.ViewModel;
+            var camera = new CameraPosition();
+            mapView = MapView.FromCamera(CGRect.Empty, camera);
+            mapView.MyLocationEnabled = true;
+            mapView.Settings.MyLocationButton = true;
+
+            View = mapView;
+            GetCurrentLocation();
+
 
         }
+
 
         public override void ViewWillAppear(bool animated)
         {
             Title = "Home View";
             base.ViewWillAppear(animated);
         }
-    }
+
+		public override void LoadView()
+		{
+			base.LoadView();
+		}
+
+        public async Task<Position> GetCurrentLocation()
+        {
+            Position position = null;
+            try
+            {
+                var locator = CrossGeolocator.Current;
+                locator.DesiredAccuracy = 100;
+
+                position = await locator.GetLastKnownLocationAsync();
+
+                if (position != null)
+                {
+                }
+
+                var available = locator.IsGeolocationAvailable;
+
+                var enabled = locator.IsGeolocationEnabled;
+                if (!available || !enabled)
+                {
+                    
+                }
+
+
+                position = await locator.GetPositionAsync(TimeSpan.FromSeconds(20), null, true);
+
+            }
+            catch (Exception ex)
+            {
+                return position;
+            }
+
+            if (position == null)
+            {
+                
+            }
+
+            var output = string.Format("Time: {0} \nLat: {1} \nLong: {2} \nAltitude: {3} \nAltitude Accuracy: {4} \nAccuracy: {5} \nHeading: {6} \nSpeed: {7}",
+                position.Timestamp, position.Latitude, position.Longitude,
+                position.Altitude, position.AltitudeAccuracy, position.Accuracy, position.Heading, position.Speed);
+
+            Debug.WriteLine(output);
+
+            var camera = CameraPosition.FromCamera(latitude: position.Latitude,
+                                                  longitude: position.Longitude,
+                                                  zoom: 17);
+            var camera1 = CameraUpdate.SetCamera(camera);
+            mapView.MoveCamera(camera1);
+            return position;
+        }
+	}
 }
