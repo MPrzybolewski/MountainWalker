@@ -10,7 +10,7 @@ namespace MountainWalker.Touch.Views
 {
     [Register("MenuView")]
     [MvxSidebarPresentation(MvxPanelEnum.Left, MvxPanelHintType.PushPanel, false)]
-    public class MenuView : BaseMenuViewController<MenuViewModel>
+    public class MenuView : BaseViewController<MenuViewModel>
     {
         public MenuView()
         { }

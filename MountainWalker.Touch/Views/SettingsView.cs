@@ -6,7 +6,7 @@ using MvvmCross.iOS.Support.XamarinSidebar;
 namespace MountainWalker.Touch.Views
 {
     [Register("SettingsView")]
-    [MvxSidebarPresentation(MvxPanelEnum.Center, MvxPanelHintType.PopToRoot, true)]
+    [MvxSidebarPresentation(MvxPanelEnum.Center, MvxPanelHintType.ResetRoot, true)]
     public class SettingsView : BaseViewController<SettingsViewModel>
     {
         public override void ViewWillAppear(bool animated)
