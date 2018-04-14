@@ -1,9 +1,12 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.Diagnostics;
 using System.Threading.Tasks;
 using CoreGraphics;
+using CoreLocation;
 using Foundation;
 using Google.Maps;
+using MountainWalker.Core.Models;
 using MountainWalker.Core.ViewModels;
 using MvvmCross.Binding.BindingContext;
 using MvvmCross.iOS.Support.XamarinSidebar;
@@ -18,20 +21,21 @@ namespace MountainWalker.Touch.Views
     public class HomeView : BaseViewController<HomeViewModel>
     {
 
-        MapView mapView;
+        MapView _mapView;
         public override void ViewDidLoad()
         {
             base.ViewDidLoad();
             var viewModel = this.ViewModel;
+
             var camera = new CameraPosition();
-            mapView = MapView.FromCamera(CGRect.Empty, camera);
-            mapView.MyLocationEnabled = true;
-            mapView.Settings.MyLocationButton = true;
+            _mapView = MapView.FromCamera(CGRect.Empty, camera);
+            _mapView.MyLocationEnabled = true;
+            _mapView.Settings.MyLocationButton = true;
 
-            View = mapView;
+            View = _mapView;
+
             GetCurrentLocation();
-
-
+            CreatePointsAndTrails(viewModel.Points, viewModel.Trails);
         }
 
 
@@ -52,7 +56,7 @@ namespace MountainWalker.Touch.Views
             try
             {
                 var locator = CrossGeolocator.Current;
-                locator.DesiredAccuracy = 100;
+                locator.DesiredAccuracy = 1;
 
                 position = await locator.GetLastKnownLocationAsync();
 
@@ -92,8 +96,49 @@ namespace MountainWalker.Touch.Views
                                                   longitude: position.Longitude,
                                                   zoom: 17);
             var camera1 = CameraUpdate.SetCamera(camera);
-            mapView.MoveCamera(camera1);
+            _mapView.MoveCamera(camera1);
             return position;
+        }
+
+        private void CreatePointsAndTrails(List<Point> points, List<Trail> trails)
+        {
+            foreach (var point in points)
+            {
+                var marker = new Marker()
+                {
+                    Title = point.Name,
+                    Position = new CLLocationCoordinate2D(point.Latitude, point.Longitude),
+                    Map = _mapView
+                };
+            }
+
+            foreach(var polyline in trails)
+            {
+                var path = new MutablePath();
+                foreach(var point in polyline.Path)
+                {
+                    path.AddCoordinate(new CLLocationCoordinate2D(point.Latitude, point.Longitude));
+                }
+
+                var poly = new Polyline();
+
+                poly.Path = path;
+                poly.StrokeWidth = 10;
+
+                if (polyline.Color.Equals("blue"))
+                {
+                    poly.StrokeColor = UIColor.Blue;
+                }
+                else if (polyline.Color.Equals("red"))
+                {
+                    poly.StrokeColor = UIColor.Red;
+                }
+                else if (polyline.Color.Equals("green"))
+                {
+                    poly.StrokeColor = UIColor.Green;
+                }
+                poly.Map = _mapView;
+            }
         }
 	}
 }
