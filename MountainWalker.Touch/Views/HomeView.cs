@@ -8,6 +8,7 @@ using Foundation;
 using Google.Maps;
 using MountainWalker.Core.Models;
 using MountainWalker.Core.ViewModels;
+using MountainWalker.Touch.Bindings;
 using MvvmCross.Binding.BindingContext;
 using MvvmCross.iOS.Support.XamarinSidebar;
 using Plugin.Geolocator;
@@ -34,8 +35,14 @@ namespace MountainWalker.Touch.Views
 
             View = _mapView;
 
+			CreatePointsAndTrails(viewModel.Points, viewModel.Trails);
             GetCurrentLocation();
-            CreatePointsAndTrails(viewModel.Points, viewModel.Trails);
+
+
+            var set = this.CreateBindingSet<HomeView, HomeViewModel>();
+            set.Bind(_mapView).For(TrailDialogBinding.BindingName).To(vm => vm.OpenTrailDialogCommand);
+            set.Apply();
+
         }
 
 
@@ -137,7 +144,9 @@ namespace MountainWalker.Touch.Views
                 {
                     poly.StrokeColor = UIColor.Green;
                 }
+                poly.Tappable = true;
                 poly.Map = _mapView;
+
             }
         }
 	}

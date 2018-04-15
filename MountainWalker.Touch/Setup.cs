@@ -1,4 +1,7 @@
+using Google.Maps;
 using MountainWalker.Core;
+using MountainWalker.Touch.Bindings;
+using MvvmCross.Binding.Bindings.Target.Construction;
 using MvvmCross.Core.ViewModels;
 using MvvmCross.iOS.Platform;
 using MvvmCross.iOS.Support.XamarinSidebar;
@@ -40,5 +43,12 @@ namespace MountainWalker.Touch
         {
             return new MvxSidebarPresenter((MvxApplicationDelegate)ApplicationDelegate, Window);
         }
-    }
+
+		protected override void FillTargetFactories(IMvxTargetBindingFactoryRegistry registry)
+		{
+            registry.RegisterCustomBindingFactory<MapView>(TrailDialogBinding.BindingName, v => new TrailDialogBinding(v));
+
+            base.FillTargetFactories(registry);
+		}
+	}
 }
