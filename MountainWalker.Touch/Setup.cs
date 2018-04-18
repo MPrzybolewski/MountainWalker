@@ -1,8 +1,11 @@
 using MountainWalker.Core;
+using MountainWalker.Core.Interfaces;
+using MountainWalker.Touch.Services;
 using MvvmCross.Core.ViewModels;
 using MvvmCross.iOS.Platform;
 using MvvmCross.iOS.Support.XamarinSidebar;
 using MvvmCross.iOS.Views.Presenters;
+using MvvmCross.Platform;
 using MvvmCross.Platform.Platform;
 using UIKit;
 
@@ -39,6 +42,12 @@ namespace MountainWalker.Touch
         protected override IMvxIosViewPresenter CreatePresenter()
         {
             return new MvxSidebarPresenter((MvxApplicationDelegate)ApplicationDelegate, Window);
+        }
+
+        protected override void InitializeFirstChance()
+        {
+            base.InitializeFirstChance();
+            Mvx.RegisterSingleton<IDialogService>(() => new IOSDialogService());
         }
     }
 }
