@@ -40,6 +40,12 @@ namespace MountainWalker.Touch.Views
             settingsButton.SetTitleColor(UIColor.Black, UIControlState.Normal);
             set.Bind(settingsButton).To(vm => vm.ShowSettingCommand);
 
+            var logoutButton = new UIButton(new CGRect(0, 100, 320, 40));
+            logoutButton.SetTitle("Wyloguj", UIControlState.Normal);
+            logoutButton.BackgroundColor = UIColor.White;
+            logoutButton.SetTitleColor(UIColor.Black, UIControlState.Normal);
+            set.Bind(logoutButton).To(vm => vm.ShowSignInCommand);
+
             set.Apply();
 
             Add(scrollView);
@@ -54,6 +60,7 @@ namespace MountainWalker.Touch.Views
 
             scrollView.Add(homeButton);
             scrollView.Add(settingsButton);
+            scrollView.Add(logoutButton);
 
             scrollView.SubviewsDoNotTranslateAutoresizingMaskIntoConstraints();
 

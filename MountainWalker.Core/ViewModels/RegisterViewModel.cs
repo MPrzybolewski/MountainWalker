@@ -12,7 +12,7 @@ using System.Diagnostics;
 
 namespace MountainWalker.Core.ViewModels
 {
-    class RegisterViewModel : MvxViewModel
+    public class RegisterViewModel : MvxViewModel
     {
         private string _name = "";
         private string _surname = "";

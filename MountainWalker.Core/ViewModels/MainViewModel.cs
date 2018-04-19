@@ -2,6 +2,7 @@ using MvvmCross.Core.ViewModels;
 using System;
 using System.Collections.Generic;
 using MvvmCross.Core.Navigation;
+using Plugin.SecureStorage;
 
 namespace MountainWalker.Core.ViewModels
 {
@@ -12,6 +13,7 @@ namespace MountainWalker.Core.ViewModels
         public MainViewModel(IMvxNavigationService navigationService)
         {
             _navigationService = navigationService;
+            //CrossSecureStorage.Current.DeleteKey("Session");
         }
 
         public void ShowMenu()

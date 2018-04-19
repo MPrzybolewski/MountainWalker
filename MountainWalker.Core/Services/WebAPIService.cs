@@ -27,7 +27,6 @@ namespace MountainWalker.Core.Interfaces.Impl
             clientt.BaseAddress = new Uri(_url);
             object userInfos = new { UserID = "2", name = _name, surname = _surname, login = _login, password = _password, email = _email };
             var jsonObj = JsonConvert.SerializeObject(userInfos);
-            Debug.WriteLine("BEkaaaaaa " + jsonObj);
             StringContent content = new StringContent(jsonObj.ToString(), Encoding.UTF8, "application/json");
             HttpResponseMessage response = await clientt.PostAsync("/api/users/postuser", content);
             try
