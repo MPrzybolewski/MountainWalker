@@ -80,7 +80,7 @@ namespace MountainWalker.Droid.Fragments
                 case Resource.Id.nav_appDescription:
                     ViewModel.ShowAppDescriptionCommand.Execute();
                     break;
-                case Resource.Id.nav_settings:
+                case Resource.Id.nav_history:
                     ViewModel.ShowSettingCommand.Execute();
                     break;
                 case Resource.Id.nav_logout:

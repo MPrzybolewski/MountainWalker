@@ -17,11 +17,11 @@ xmlns:local="http://schemas.android.com/apk/res-auto">
                 android:id="@+id/nav_achievements"
                 android:title="Osiągnięcia"/>
             <item
+                android:id="@+id/nav_history"
+                android:title="Zdobyte szlaki" />
+            <item
                 android:id="@+id/nav_appDescription"
                 android:title="Jak to działa"/>
-            <item
-                android:id="@+id/nav_settings"
-                android:title="Język" />
           <item
                 android:id="@+id/nav_logout"
                 android:title="Wyloguj" />

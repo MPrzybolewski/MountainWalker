@@ -1,5 +1,7 @@
-﻿using Newtonsoft.Json;
+﻿using MountainWalker.Core.Models;
+using Newtonsoft.Json;
 using System;
+using System.Collections.Generic;
 using System.Diagnostics;
 using System.Net.Http;
 using System.Text;
@@ -68,6 +70,20 @@ namespace MountainWalker.Core.Interfaces.Impl
             {
                 return false;
             }
+        }
+
+        public async Task<List<ReachedTrail>> GetReachedTrailsList(string login)
+        {
+            //all magic with dbconn
+            int id = 0;
+            var items = new List<ReachedTrail>()
+            {
+                new ReachedTrail(++id, "10.04.2010", "Ygrek", "Ug"),
+                new ReachedTrail(++id, "11.04.2010", "Skm", "Ug"),
+                new ReachedTrail(++id, "12.04.2010", "Ygrek", "KFC")
+            };
+
+            return items;
         }
     }
 }

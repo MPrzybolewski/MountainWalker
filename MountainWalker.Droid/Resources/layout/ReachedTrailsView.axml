@@ -6,12 +6,10 @@
     android:layout_height="match_parent">
     <include
         layout="@layout/toolbar_actionbar" />
-    <TextView
+    <Mvx.MvxListView
+        android:orientation="vertical"
         android:layout_width="fill_parent"
-        android:layout_height="wrap_content"
-        android:gravity="center_horizontal"
-        android:textColor="@color/dark_gray"
-        android:textSize="20dp"
-        android:paddingBottom="15dp"
-        android:text="Settings View" />
+        android:layout_height="fill_parent"
+        local:MvxBind="ItemsSource Items; ItemClick ShowReachedTrail"
+        local:MvxItemTemplate="@layout/historyitem" />
 </LinearLayout>

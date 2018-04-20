@@ -47,7 +47,7 @@
     <Compile Include="Interfaces\IDialogService.cs" />
     <Compile Include="Interfaces\ISharedPreferencesService.cs" />
     <Compile Include="ViewModels\StartViewModel.cs" />
-    <Compile Include="ViewModels\SettingsViewModel.cs" />
+    <Compile Include="ViewModels\ReachedTrailsViewModel.cs" />
     <Compile Include="ViewModels\MainViewModel.cs" />
     <Compile Include="ViewModels\HomeViewModel.cs" />
     <Compile Include="ViewModels\MenuViewModel.cs" />
@@ -64,6 +64,9 @@
     <Compile Include="Interfaces\IStartButtonService.cs" />
     <Compile Include="Messages\StartButtonMessage.cs" />
     <Compile Include="Services\StartButtonService.cs" />
+    <Compile Include="Messages\ReachedTrailMessage.cs" />
+    <Compile Include="Models\ReachedTrail.cs" />
+    <Compile Include="ViewModels\ReachedTrailMapViewModel.cs" />
   </ItemGroup>
   <ItemGroup>
     <Reference Include="MvvmCross.Binding">

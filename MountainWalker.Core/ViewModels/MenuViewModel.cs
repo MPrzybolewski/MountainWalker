@@ -59,7 +59,7 @@ namespace MountainWalker.Core.ViewModels
 
         private void ShowSettingsExecuted()
         {
-            _navigationService.Navigate<SettingsViewModel>();
+            _navigationService.Navigate<ReachedTrailsViewModel>();
         }
 
         public IMvxCommand ShowSignInCommand

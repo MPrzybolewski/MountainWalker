@@ -6,9 +6,9 @@ using MountainWalker.Droid.NavigationDrawer;
 
 namespace MountainWalker.Droid.Fragments
 {
-    [DrawerLayoutPresentation(typeof(SettingsFragment), typeof(MainViewModel), Resource.Id.content_frame, addToBackStack: false)]
+    [DrawerLayoutPresentation(typeof(ReachedTrailsFragment), typeof(MainViewModel), Resource.Id.content_frame, addToBackStack: false)]
     [Register("MountainWalker.android.SettingsFragment")]
-    public class SettingsFragment : BaseFragment<SettingsViewModel>
+    public class ReachedTrailsFragment : BaseFragment<ReachedTrailsViewModel>
     {
         public override View OnCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState)
         {
@@ -16,7 +16,7 @@ namespace MountainWalker.Droid.Fragments
             return base.OnCreateView(inflater, container, savedInstanceState);
         }
 
-        protected override int FragmentId => Resource.Layout.SettingsView;
+        protected override int FragmentId => Resource.Layout.ReachedTrailsView;
     }
 
 }
