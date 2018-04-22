@@ -29,7 +29,7 @@ namespace MountainWalker.Core.ViewModels
 
         private async void OnMessage(ReachedTrailMessage message)
         {
-			ReachedTrail = message.ReachedTrail;
+	    ReachedTrail = message.ReachedTrail;
             await Task.Delay(500);
             _interaction.Raise(message.ReachedTrail.Trail);
         }
