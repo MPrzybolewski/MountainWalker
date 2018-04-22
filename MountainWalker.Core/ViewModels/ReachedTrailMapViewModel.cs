@@ -13,6 +13,13 @@ namespace MountainWalker.Core.ViewModels
         private MvxInteraction<List<Point>> _interaction = new MvxInteraction<List<Point>>();
         public IMvxInteraction<List<Point>> Interaction => _interaction;
 
+        private ReachedTrail _reached;
+        public ReachedTrail ReachedTrail 
+        {
+            get => _reached;
+            set => SetProperty(ref _reached, value);    
+        }
+
         private MvxSubscriptionToken _token;
 
         public ReachedTrailMapViewModel(IMvxMessenger messenger)
@@ -22,6 +29,7 @@ namespace MountainWalker.Core.ViewModels
 
         private async void OnMessage(ReachedTrailMessage message)
         {
+			ReachedTrail = message.ReachedTrail;
             await Task.Delay(500);
             _interaction.Raise(message.ReachedTrail.Trail);
         }

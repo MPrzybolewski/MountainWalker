@@ -9,4 +9,4 @@
     android:theme="@style/AppTheme.Menu"
     local:headerLayout="@layout/fragment_navigation_header"
     local:menu="@menu/navigation_drawer"
-    android:background="#ff2196f3" />
+    android:background="#ffffff" />
