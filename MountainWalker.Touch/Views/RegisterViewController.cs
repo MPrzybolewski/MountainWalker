@@ -1,5 +1,6 @@
 ﻿using System;
 using MountainWalker.Core.ViewModels;
+using MvvmCross.Binding.BindingContext;
 using MvvmCross.iOS.Views;
 using UIKit;
 
@@ -17,6 +18,17 @@ namespace MountainWalker.Touch.Views
             UIImage bgImage = UIImage.FromBundle("Images/gradientbg.png");
             bgImage = bgImage.Scale(View.Frame.Size);
             View.BackgroundColor = UIColor.FromPatternImage(bgImage);
+
+            var set = this.CreateBindingSet<RegisterViewController, RegisterViewModel>();
+            set.Bind(firstnameEntry).To(vm => vm.Name);
+            set.Bind(surnameEntry).To(vm => vm.Surname);
+            set.Bind(loginEntry).To(vm => vm.Login);
+            set.Bind(passwordEntry).To(vm => vm.Password);
+            set.Bind(rePasswordEntry).To(vm => vm.RepPassword);
+            set.Bind(emailEntry).To(vm => vm.Email);
+            set.Bind(signUpButton).To(vm => vm.RegisterButton);
+
+            set.Apply();
             base.ViewDidLoad();
             // Perform any additional setup after loading the view, typically from a nib.
         }

@@ -13,7 +13,6 @@ namespace MountainWalker.Core.ViewModels
         public MainViewModel(IMvxNavigationService navigationService)
         {
             _navigationService = navigationService;
-            //CrossSecureStorage.Current.DeleteKey("Session");
         }
 
         public void ShowMenu()
