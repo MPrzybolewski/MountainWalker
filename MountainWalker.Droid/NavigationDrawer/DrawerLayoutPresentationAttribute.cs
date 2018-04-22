@@ -18,9 +18,10 @@ namespace MountainWalker.Droid.NavigationDrawer
     : MvxFragmentPresentationAttribute
     {
         public DrawerLayoutPresentationAttribute(Type fragmentType, Type activityHostViewModelType, int fragmentContentId, bool addToBackStack)
-            : base(activityHostViewModelType, fragmentContentId, addToBackStack)
+            : base(activityHostViewModelType, fragmentContentId, true)
         {
             FragmentType = fragmentType;
+            this.AddToBackStack = addToBackStack;
         }
 
         public Type FragmentType { get; }

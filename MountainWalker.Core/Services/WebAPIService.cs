@@ -78,12 +78,38 @@ namespace MountainWalker.Core.Interfaces.Impl
             int id = 0;
             var items = new List<ReachedTrail>()
             {
-                new ReachedTrail(++id, "10.04.2010", "Ygrek", "Ug"),
-                new ReachedTrail(++id, "11.04.2010", "Skm", "Ug"),
-                new ReachedTrail(++id, "12.04.2010", "Ygrek", "KFC")
+                new ReachedTrail(id++, "10.04.2010", "Ygrek", "Ug", ParePointsFromDb(id)),
+                new ReachedTrail(id++, "11.04.2010", "Skm", "Ug", ParePointsFromDb(id)),
+                new ReachedTrail(id++, "12.04.2010", "Ygrek", "KFC", ParePointsFromDb(id))
             };
 
             return items;
         }
-    }
-}
+
+        private List<Point> ParePointsFromDb(int id)
+        {
+            return new List<Point>
+            {
+                new Point(54.400647, 18.576544),
+                new Point(54.400528, 18.576064),
+                new Point(54.400712, 18.575901),
+                new Point(54.400772, 18.575757),
+                new Point(54.400763, 18.575352),
+                new Point(54.401061, 18.575101),
+                new Point(54.400818, 18.574548),
+                new Point(54.400810, 18.574563),
+                new Point(54.399849, 18.575161),
+                new Point(54.399249, 18.575701),
+                new Point(54.397705, 18.577010),
+                new Point(54.397800, 18.576788),
+                new Point(54.397216, 18.575113),
+                new Point(54.396893, 18.575427),
+                new Point(54.396567, 18.574493),
+                new Point(54.396324, 18.573653),
+                new Point(54.396269, 18.573682),
+                new Point(54.396157, 18.573419),
+                new Point(54.396110, 18.573478)
+            };
+        }     
+    }         
+}             

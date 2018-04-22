@@ -4766,8 +4766,8 @@ namespace MountainWalker.Droid
 			// aapt resource value: 0x7f0d0044
 			public const int always = 2131558468;
 			
-			// aapt resource value: 0x7f0d00d3
-			public const int appbar = 2131558611;
+			// aapt resource value: 0x7f0d00d8
+			public const int appbar = 2131558616;
 			
 			// aapt resource value: 0x7f0d0061
 			public const int async = 2131558497;
@@ -4846,6 +4846,9 @@ namespace MountainWalker.Droid
 			
 			// aapt resource value: 0x7f0d006b
 			public const int default_activity_button = 2131558507;
+			
+			// aapt resource value: 0x7f0d00cd
+			public const int desc = 2131558605;
 			
 			// aapt resource value: 0x7f0d009f
 			public const int design_bottom_sheet = 2131558559;
@@ -4940,8 +4943,8 @@ namespace MountainWalker.Droid
 			// aapt resource value: 0x7f0d006a
 			public const int image = 2131558506;
 			
-			// aapt resource value: 0x7f0d00cd
-			public const int imageView = 2131558605;
+			// aapt resource value: 0x7f0d00d4
+			public const int imageView = 2131558612;
 			
 			// aapt resource value: 0x7f0d00c7
 			public const int info = 2131558599;
@@ -4982,11 +4985,11 @@ namespace MountainWalker.Droid
 			// aapt resource value: 0x7f0d00b5
 			public const int loadingProgressWheel = 2131558581;
 			
-			// aapt resource value: 0x7f0d00d0
-			public const int login = 2131558608;
+			// aapt resource value: 0x7f0d00d5
+			public const int login = 2131558613;
 			
-			// aapt resource value: 0x7f0d00cf
-			public const int loginBtn = 2131558607;
+			// aapt resource value: 0x7f0d00d3
+			public const int loginBtn = 2131558611;
 			
 			// aapt resource value: 0x7f0d00b7
 			public const int main_frame = 2131558583;
@@ -4994,14 +4997,14 @@ namespace MountainWalker.Droid
 			// aapt resource value: 0x7f0d00ae
 			public const int map = 2131558574;
 			
-			// aapt resource value: 0x7f0d00d8
-			public const int masked = 2131558616;
+			// aapt resource value: 0x7f0d00dd
+			public const int masked = 2131558621;
 			
 			// aapt resource value: 0x7f0d00c0
 			public const int media_actions = 2131558592;
 			
-			// aapt resource value: 0x7f0d00d6
-			public const int message = 2131558614;
+			// aapt resource value: 0x7f0d00db
+			public const int message = 2131558619;
 			
 			// aapt resource value: 0x7f0d003d
 			public const int middle = 2131558461;
@@ -5012,29 +5015,29 @@ namespace MountainWalker.Droid
 			// aapt resource value: 0x7f0d0033
 			public const int multiply = 2131558451;
 			
-			// aapt resource value: 0x7f0d00dd
-			public const int nav_achievements = 2131558621;
+			// aapt resource value: 0x7f0d00e2
+			public const int nav_achievements = 2131558626;
+			
+			// aapt resource value: 0x7f0d00e4
+			public const int nav_appDescription = 2131558628;
+			
+			// aapt resource value: 0x7f0d00e3
+			public const int nav_history = 2131558627;
 			
 			// aapt resource value: 0x7f0d00df
-			public const int nav_appDescription = 2131558623;
+			public const int nav_home = 2131558623;
 			
 			// aapt resource value: 0x7f0d00de
-			public const int nav_history = 2131558622;
+			public const int nav_items = 2131558622;
 			
-			// aapt resource value: 0x7f0d00da
-			public const int nav_home = 2131558618;
-			
-			// aapt resource value: 0x7f0d00d9
-			public const int nav_items = 2131558617;
+			// aapt resource value: 0x7f0d00e5
+			public const int nav_logout = 2131558629;
 			
 			// aapt resource value: 0x7f0d00e0
-			public const int nav_logout = 2131558624;
+			public const int nav_menu = 2131558624;
 			
-			// aapt resource value: 0x7f0d00db
-			public const int nav_menu = 2131558619;
-			
-			// aapt resource value: 0x7f0d00dc
-			public const int nav_trails = 2131558620;
+			// aapt resource value: 0x7f0d00e1
+			public const int nav_trails = 2131558625;
 			
 			// aapt resource value: 0x7f0d00b9
 			public const int navigation_frame = 2131558585;
@@ -5072,11 +5075,11 @@ namespace MountainWalker.Droid
 			// aapt resource value: 0x7f0d000b
 			public const int parent_matrix = 2131558411;
 			
-			// aapt resource value: 0x7f0d00d1
-			public const int password = 2131558609;
+			// aapt resource value: 0x7f0d00d6
+			public const int password = 2131558614;
 			
-			// aapt resource value: 0x7f0d00d5
-			public const int phoneButton = 2131558613;
+			// aapt resource value: 0x7f0d00da
+			public const int phoneButton = 2131558618;
 			
 			// aapt resource value: 0x7f0d0058
 			public const int pin = 2131558488;
@@ -5092,6 +5095,9 @@ namespace MountainWalker.Droid
 			
 			// aapt resource value: 0x7f0d0080
 			public const int radio = 2131558528;
+			
+			// aapt resource value: 0x7f0d00d1
+			public const int reached = 2131558609;
 			
 			// aapt resource value: 0x7f0d0055
 			public const int right = 2131558485;
@@ -5237,11 +5243,20 @@ namespace MountainWalker.Droid
 			// aapt resource value: 0x7f0d0074
 			public const int textSpacerNoTitle = 2131558516;
 			
-			// aapt resource value: 0x7f0d00d2
-			public const int textView = 2131558610;
+			// aapt resource value: 0x7f0d00d7
+			public const int textView = 2131558615;
 			
 			// aapt resource value: 0x7f0d00ce
-			public const int textView2 = 2131558606;
+			public const int textView1 = 2131558606;
+			
+			// aapt resource value: 0x7f0d00d2
+			public const int textView2 = 2131558610;
+			
+			// aapt resource value: 0x7f0d00cf
+			public const int textView4 = 2131558607;
+			
+			// aapt resource value: 0x7f0d00d0
+			public const int textView5 = 2131558608;
 			
 			// aapt resource value: 0x7f0d00b3
 			public const int textViewStatus = 2131558579;
@@ -5282,8 +5297,8 @@ namespace MountainWalker.Droid
 			// aapt resource value: 0x7f0d007a
 			public const int title_template = 2131558522;
 			
-			// aapt resource value: 0x7f0d00d4
-			public const int toolbar = 2131558612;
+			// aapt resource value: 0x7f0d00d9
+			public const int toolbar = 2131558617;
 			
 			// aapt resource value: 0x7f0d004a
 			public const int top = 2131558474;
@@ -5327,8 +5342,8 @@ namespace MountainWalker.Droid
 			// aapt resource value: 0x7f0d0016
 			public const int view_offset_helper = 2131558422;
 			
-			// aapt resource value: 0x7f0d00d7
-			public const int visible = 2131558615;
+			// aapt resource value: 0x7f0d00dc
+			public const int visible = 2131558620;
 			
 			// aapt resource value: 0x7f0d0027
 			public const int wide = 2131558439;
