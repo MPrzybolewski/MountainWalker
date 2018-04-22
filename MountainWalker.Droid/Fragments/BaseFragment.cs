@@ -33,7 +33,6 @@ namespace MountainWalker.Droid.Fragments
 
             var view = this.BindingInflate(FragmentId, null);
 
-
             Toolbar = view.FindViewById<Toolbar>(Resource.Id.toolbar);
             if(Toolbar != null)
             {

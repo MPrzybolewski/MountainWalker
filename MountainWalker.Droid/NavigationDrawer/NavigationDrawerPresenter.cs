@@ -97,6 +97,7 @@ namespace MountainWalker.Droid.NavigationDrawer
             var fragmentTransaction = CurrentFragmentManager.BeginTransaction();
             var fragment = fragmentInfo.FragmentInstance;
             fragment.ViewModel = fragmentInfo.ViewModelInstance;
+			//fragmentTransaction.AddToBackStack(fragmentInfo.JavaFragmentName);
 
             if (CurrentFragmentManager.FindFragmentByTag(fragmentInfo.JavaFragmentName) != null)
             {

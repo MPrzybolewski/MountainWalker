@@ -15,7 +15,7 @@ using MvvmCross.Platform.Droid.Platform;
 
 namespace MountainWalker.Droid.Views
 {
-    [Activity(Label = "View for MainViewModel",
+    [Activity(Label = "Walker",
               NoHistory = true,
               Theme = "@style/MyTheme",
               LaunchMode = LaunchMode.SingleTop,
@@ -81,10 +81,10 @@ namespace MountainWalker.Droid.Views
             {
                 DrawerLayout.CloseDrawers();
             }
-            //else if (fm.BackStackEntryCount > 0)
-            //{
-            //    fm.PopBackStack();
-            //}
+            else if (fm.BackStackEntryCount > 0)
+            {
+                fm.PopBackStack();
+            }
             else
                 base.OnBackPressed();
         }

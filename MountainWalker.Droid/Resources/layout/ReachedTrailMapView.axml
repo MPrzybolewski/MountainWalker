@@ -1,0 +1,82 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:local="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical">
+    <include
+        layout="@layout/toolbar_actionbar" />
+    <LinearLayout
+        android:id="@+id/desc"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentTop="true"
+        android:orientation="horizontal"
+        android:background="@android:color/darker_gray">
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:layout_weight="0.5"
+            android:paddingLeft="10dp"
+            android:paddingRight="10dp">
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Czas start"
+                android:textSize="16dp"
+                local:MvxBind="Text ReachedTrail.StartTime"
+                android:textColor="@color/white" />
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:text="Czas stop"
+                android:textSize="16dp"
+                local:MvxBind="Text ReachedTrail.EndTime"
+                android:textColor="@color/white" />
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:text="Czas ogolnie"
+                android:textSize="16dp"
+                local:MvxBind="Text ReachedTrail.Time"
+                android:textColor="@color/white" />
+        </LinearLayout>
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:layout_weight="0.5">
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:text="Poczatek"
+                android:textSize="16dp"
+                android:textColor="@color/white"
+                local:MvxBind="Text ReachedTrail.From"
+                android:id="@+id/textView1" />
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:text="Koniec"
+                android:textSize="16dp"
+                android:textColor="@color/white"
+                local:MvxBind="Text ReachedTrail.To"
+                android:id="@+id/textView4" />
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:text="Kiloski"
+                android:textSize="16dp"
+                android:textColor="@color/white"
+                local:MvxBind="Text ReachedTrail.Distance"
+                android:id="@+id/textView5" />
+        </LinearLayout>
+    </LinearLayout>
+    <fragment
+        android:id="@+id/reached"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        class="com.google.android.gms.maps.MapFragment"
+        android:layout_marginTop="0.0dp" />
+</LinearLayout>
