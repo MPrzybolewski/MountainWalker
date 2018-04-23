@@ -1,4 +1,5 @@
 ﻿using System;
+using CoreGraphics;
 using MountainWalker.Core.ViewModels;
 using MvvmCross.Binding.BindingContext;
 using MvvmCross.iOS.Support.XamarinSidebar;
@@ -20,11 +21,30 @@ namespace MountainWalker.Touch.Views
         public override void ViewDidLoad()
         {
             var set = this.CreateBindingSet<MenuViewController, MenuViewModel>();
-            //set.Bind(homeButton).To(vm => vm.ShowHomeCommand);
-            //set.Bind(settingsButton).To(vm => vm.ShowSettingCommand);
-            //set.Bind(logoutButton).To(vm => vm.ShowSignInCommand);
+            var homeButton = new UIButton(new CGRect(0, 100, 320, 40));
+            homeButton.SetTitle("Home", UIControlState.Normal);
+            homeButton.BackgroundColor = UIColor.White;
+            homeButton.SetTitleColor(UIColor.Black, UIControlState.Normal);
+            set.Bind(homeButton).To(vm => vm.ShowHomeCommand);
+
+            var settingsButton = new UIButton(new CGRect(0, 100, 320, 40));
+            settingsButton.SetTitle("Settings", UIControlState.Normal);
+            settingsButton.BackgroundColor = UIColor.White;
+            settingsButton.SetTitleColor(UIColor.Black, UIControlState.Normal);
+            set.Bind(settingsButton).To(vm => vm.ShowSettingCommand);
+
+            var logoutButton = new UIButton(new CGRect(0, 100, 320, 40));
+            logoutButton.SetTitle("Wyloguj", UIControlState.Normal);
+            logoutButton.BackgroundColor = UIColor.White;
+            logoutButton.SetTitleColor(UIColor.Black, UIControlState.Normal);
+            set.Bind(logoutButton).To(vm => vm.ShowSignInCommand);
 
             set.Apply();
+
+            View.Add(homeButton);
+            View.Add(settingsButton);
+            View.Add(logoutButton);
+
             base.ViewDidLoad();
             // Perform any additional setup after loading the view, typically from a nib.
         }

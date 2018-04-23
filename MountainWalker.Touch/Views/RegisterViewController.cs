@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Diagnostics;
 using MountainWalker.Core.ViewModels;
 using MvvmCross.Binding.BindingContext;
 using MvvmCross.iOS.Views;
@@ -8,6 +9,12 @@ namespace MountainWalker.Touch.Views
 {
     public partial class RegisterViewController : MvxViewController<RegisterViewModel>
     {
+        partial void Clicked(UITapGestureRecognizer sender)
+        {
+            Debug.WriteLine("Test: kaalal");
+            UIApplication.SharedApplication.KeyWindow.EndEditing(true);
+        }
+
         public RegisterViewController() : base("RegisterViewController", null)
         {
         }
@@ -18,6 +25,7 @@ namespace MountainWalker.Touch.Views
             UIImage bgImage = UIImage.FromBundle("Images/gradientbg.png");
             bgImage = bgImage.Scale(View.Frame.Size);
             View.BackgroundColor = UIColor.FromPatternImage(bgImage);
+            scrollView.KeyboardDismissMode = UIScrollViewKeyboardDismissMode.Interactive;
 
             var set = this.CreateBindingSet<RegisterViewController, RegisterViewModel>();
             set.Bind(firstnameEntry).For(s => s.Text).To(vm => vm.Name);

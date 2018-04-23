@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="UTF-8"?>
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
 <document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="14109" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES">
     <device id="retina5_5" orientation="portrait">
         <adaptation id="fullscreen"/>
@@ -77,13 +77,13 @@
                     <rect key="contentStretch" x="0.0" y="0.0" width="0.5" height="0.5"/>
                 </switch>
                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Zapamiętaj mnie" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontForContentSizeCategory="YES" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="3117">
-                    <rect key="frame" x="149" y="463" width="195" height="14.333333333333314"/>
+                    <rect key="frame" x="149" y="463" width="195" height="14.5"/>
                     <fontDescription key="fontDescription" type="system" pointSize="12"/>
                     <nil key="textColor"/>
                     <nil key="highlightedColor"/>
                 </label>
                 <button opaque="NO" contentMode="scaleAspectFit" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="7084">
-                    <rect key="frame" x="40" y="570.66666666666663" width="334" height="90.333333333333371"/>
+                    <rect key="frame" x="40" y="570.5" width="334" height="90.5"/>
                     <fontDescription key="fontDescription" type="system" pointSize="12"/>
                     <state key="normal" title="Nie masz konta? Zarejestruj się!"/>
                 </button>
@@ -126,5 +126,8 @@
     </objects>
     <resources>
         <image name="Images/mw.png" width="240" height="170"/>
+        <image name="Images/loginbg.jpg" width="1085" height="1920"/>
+        <image name="Images/gradientbg.png" width="287" height="400"/>
+        <image name="Images/headerMenu.jpg" width="640" height="251"/>
     </resources>
 </document>

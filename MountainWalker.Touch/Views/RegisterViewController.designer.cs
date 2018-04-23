@@ -50,6 +50,10 @@ namespace MountainWalker.Touch.Views
         [GeneratedCode ("iOS Designer", "1.0")]
         UIKit.UITextField surnameEntry { get; set; }
 
+        [Action("Clicked:")]
+        [GeneratedCode("iOS Designer", "1.0")]
+        partial void Clicked(UIKit.UITapGestureRecognizer sender);
+
         void ReleaseDesignerOutlets ()
         {
             if (emailEntry != null) {

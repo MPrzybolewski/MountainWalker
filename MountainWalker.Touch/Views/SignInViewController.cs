@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Diagnostics;
 using MountainWalker.Core.ViewModels;
 using MvvmCross.Binding.BindingContext;
 using MvvmCross.iOS.Views;
