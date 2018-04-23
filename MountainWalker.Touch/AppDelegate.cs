@@ -3,12 +3,16 @@ using MvvmCross.iOS.Platform;
 using MvvmCross.Platform;
 using Foundation;
 using UIKit;
+using Google.Maps;
 
 namespace MountainWalker.Touch
 {
     [Register("AppDelegate")]
     public partial class AppDelegate : MvxApplicationDelegate
     {
+
+        const string MapsApiKey = "AIzaSyCSXiEevYqlWwcm9lyYmcXdINBD4Bp0R_I";
+
         public override UIWindow Window
         {
             get;
@@ -19,6 +23,7 @@ namespace MountainWalker.Touch
         {
             Window = new UIWindow(UIScreen.MainScreen.Bounds);
 
+            MapServices.ProvideAPIKey(MapsApiKey);
             var setup = new Setup(this, Window);
             setup.Initialize();
 
