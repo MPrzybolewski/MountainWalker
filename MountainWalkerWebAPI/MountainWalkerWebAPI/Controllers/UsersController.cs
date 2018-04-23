@@ -63,11 +63,6 @@ namespace MountainWalkerWebAPI.Controllers
                 return "false";
             }
 
-            if (user.UserID != user.UserID)
-            {
-                return "false";
-            }
-
             _context.Entry(user).State = EntityState.Modified;
 
             try
@@ -93,18 +88,20 @@ namespace MountainWalkerWebAPI.Controllers
         //Add new user
         // POST: api/Users
         [HttpPost]
-        public async Task<bool> PostUser([FromBody] User user)
+        public async Task<bool[]> PostUser([FromBody] User user)
         {
-            if (!ModelState.IsValid)
-            {
-                return false;
-            }
+            bool[] result = new bool[6];
+
+            //if (!ModelState.IsValid)
+            //{
+            //    return false;
+            //}
 
             user.UserID = null;
-
-            if (!CheckData(user))
+            result = CheckData(user);
+            if (!result[0])
             {
-                return false;
+                return result;
             }
 
             user.Password = CalculateHash(user.Password);
@@ -113,11 +110,11 @@ namespace MountainWalkerWebAPI.Controllers
             try
             {
                 await _context.SaveChangesAsync();
-                return true;
+                return result;
             }
             catch (Exception e)
             {
-                return false;
+                return result;
             }
 
         }
@@ -175,18 +172,40 @@ namespace MountainWalkerWebAPI.Controllers
             }
         }
 
-        private bool CheckData(User user)
+        private bool[] CheckData(User user)
         {
-            if ((user.Login.Length < 3) || (user.Password.Length < 6) || (user.Email.Length < 6) || (user.Name.Length < 3) || (user.Surname.Length < 3))
+            bool[] result = new bool[6];
+            for (int i = 0; i < 6; i++)
             {
-                return false;
+                result[i] = true;
             }
 
+            if(user.Login.Length < 3)
+            {
+                result[0] = false;
+                result[3] = false;
+            }
+            if(user.Name.Length < 2)
+            {
+                result[0] = false;
+                result[1] = false;
+            }
+            if(user.Surname.Length < 2)
+            {
+                result[0] = false;
+                result[2] = false;
+            }
+            if(user.Password.Length < 6)
+            {
+                result[0] = false;
+                result[4] = false;
+            }
             if (!IsValidEmail(user.Email))
             {
-                return false;
+                result[0] = false;
+                result[5] = false;
             }
-            return true;
+            return result;
         }
 
         private string CalculateHash(string password)

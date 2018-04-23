@@ -20,9 +20,9 @@ namespace MountainWalker.Core.Interfaces.Impl
             client.MaxResponseContentBufferSize = 256000;
         }
 
-        public async Task<bool> CheckIfUserCanRegister(string _name, string _surname, string _login, string _password, string _email)
+        public async Task<string[]> CheckIfUserCanRegister(string _name, string _surname, string _login, string _password, string _email)
         {
-
+            string[] parts = new string[6];
             var clientt = new HttpClient();
             clientt.BaseAddress = new Uri(_url);
             object userInfos = new { UserID = "2", name = _name, surname = _surname, login = _login, password = _password, email = _email };
@@ -32,15 +32,17 @@ namespace MountainWalker.Core.Interfaces.Impl
             try
             {
                 var result = await response.Content.ReadAsStringAsync();
-                if (result.Equals("true"))
+                parts = result.Split(',');
+                parts[0] = parts[0].Substring(1);
+                parts[5] = parts[5].Trim(']');
+                if (parts[0].Equals("true"))
                 {
-                    return true;
+                    return parts;
                 }
-
-                return false;
+                return parts;
             } catch (Exception)
             {
-                return false;
+                return parts;
             }
 
         }

@@ -20,12 +20,18 @@ namespace MountainWalker.Touch.Views
             View.BackgroundColor = UIColor.FromPatternImage(bgImage);
 
             var set = this.CreateBindingSet<RegisterViewController, RegisterViewModel>();
-            set.Bind(firstnameEntry).To(vm => vm.Name);
+            set.Bind(firstnameEntry).For(s => s.Text).To(vm => vm.Name);
+            set.Bind(firstnameEntry).For(s => s.Placeholder).To(vm => vm.NamePlaceholder);
             set.Bind(surnameEntry).To(vm => vm.Surname);
+            set.Bind(surnameEntry).For(s => s.Placeholder).To(vm => vm.SurnamePlaceholder);
             set.Bind(loginEntry).To(vm => vm.Login);
+            set.Bind(loginEntry).For(s => s.Placeholder).To(vm => vm.LoginPlaceholder);
             set.Bind(passwordEntry).To(vm => vm.Password);
+            set.Bind(passwordEntry).For(s => s.Placeholder).To(vm => vm.PasswordPlaceholder);
             set.Bind(rePasswordEntry).To(vm => vm.RepPassword);
+            set.Bind(rePasswordEntry).For(s => s.Placeholder).To(vm => vm.PasswordPlaceholder);
             set.Bind(emailEntry).To(vm => vm.Email);
+            set.Bind(emailEntry).For(s => s.Placeholder).To(vm => vm.EmailPlaceholder);
             set.Bind(signUpButton).To(vm => vm.RegisterButton);
 
             set.Apply();

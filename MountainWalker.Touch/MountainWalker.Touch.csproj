@@ -178,6 +178,7 @@
     <InterfaceDefinition Include="Views\SignInViewController.xib" />
     <InterfaceDefinition Include="Views\StartViewController.xib" />
     <InterfaceDefinition Include="Views\RegisterViewController.xib" />
+    <InterfaceDefinition Include="Views\MenuViewController.xib" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Info.plist" />
@@ -198,7 +199,6 @@
     <Compile Include="Views\BaseViewController.cs" />
     <Compile Include="Services\TouchDialogService.cs" />
     <Compile Include="Views\HomeView.cs" />
-    <Compile Include="Views\MenuView.cs" />
     <Compile Include="Views\SettingsView.cs" />
     <Compile Include="Services\IOSDialogService.cs" />
     <Compile Include="Views\SignInViewController.cs" />
@@ -213,6 +213,10 @@
     <Compile Include="Views\RegisterViewController.designer.cs">
       <DependentUpon>RegisterViewController.cs</DependentUpon>
     </Compile>
+    <Compile Include="Views\MenuViewController.cs" />
+    <Compile Include="Views\MenuViewController.designer.cs">
+      <DependentUpon>MenuViewController.cs</DependentUpon>
+    </Compile>
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\MountainWalker.Core\MountainWalker.Core.csproj">
@@ -225,6 +229,7 @@
     <BundleResource Include="Resources\Images\loginbg.jpg" />
     <BundleResource Include="Resources\Images\rounded_button.xml" />
     <BundleResource Include="Resources\Images\gradientbg.png" />
+    <BundleResource Include="Resources\Images\headerMenu.jpg" />
   </ItemGroup>
   <Import Project="$(MSBuildExtensionsPath)\Xamarin\iOS\Xamarin.iOS.CSharp.targets" />
 </Project>
