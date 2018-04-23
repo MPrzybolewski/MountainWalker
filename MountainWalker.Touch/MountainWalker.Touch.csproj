@@ -174,7 +174,7 @@
   <ItemGroup>
     <Folder Include="Resources\" />
     <Folder Include="Services\" />
-    <Folder Include="Bindings\" />
+    <Folder Include="Models\" />
   </ItemGroup>
   <ItemGroup>
     <InterfaceDefinition Include="LaunchScreen.storyboard" />
@@ -201,6 +201,8 @@
     <Compile Include="Views\HomeView.cs" />
     <Compile Include="Views\MenuView.cs" />
     <Compile Include="Views\SettingsView.cs" />
+    <Compile Include="Models\PolylineWithId.cs" />
+    <Compile Include="Views\TrialDialogView.cs" />
     <Compile Include="Bindings\TrailDialogBinding.cs" />
   </ItemGroup>
   <ItemGroup>

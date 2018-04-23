@@ -9,6 +9,7 @@ using Google.Maps;
 using MountainWalker.Core.Models;
 using MountainWalker.Core.ViewModels;
 using MountainWalker.Touch.Bindings;
+using MountainWalker.Touch.Models;
 using MvvmCross.Binding.BindingContext;
 using MvvmCross.iOS.Support.XamarinSidebar;
 using Plugin.Geolocator;
@@ -119,6 +120,7 @@ namespace MountainWalker.Touch.Views
                 };
             }
 
+            int i = 1;
             foreach(var polyline in trails)
             {
                 var path = new MutablePath();
@@ -127,7 +129,7 @@ namespace MountainWalker.Touch.Views
                     path.AddCoordinate(new CLLocationCoordinate2D(point.Latitude, point.Longitude));
                 }
 
-                var poly = new Polyline();
+                var poly = new PolylineWithId();
 
                 poly.Path = path;
                 poly.StrokeWidth = 10;
@@ -145,6 +147,8 @@ namespace MountainWalker.Touch.Views
                     poly.StrokeColor = UIColor.Green;
                 }
                 poly.Tappable = true;
+                poly.Id = i;
+                i++;
                 poly.Map = _mapView;
 
             }
