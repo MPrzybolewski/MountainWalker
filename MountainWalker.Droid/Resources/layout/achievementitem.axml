@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:local="http://schemas.android.com/apk/res-auto"
+    android:orientation="horizontal"
+    android:layout_width="fill_parent"
+    android:layout_height="fill_parent"
+    android:padding="10dp">
+    <LinearLayout
+        android:orientation="vertical"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_weight="0.8">
+        <TextView
+            android:paddingLeft="10dp"
+            android:textSize="20dp"
+            android:textStyle="bold"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="title"
+            local:MvxBind="Text Name" />
+        <TextView
+            android:id="@+id/historyDetails"
+            android:paddingLeft="10dp"
+            android:textSize="16dp"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="desc"
+            local:MvxBind="Text Date" />
+    </LinearLayout>
+    <ImageView
+        android:id="@+id/historyDetails"
+        android:layout_marginRight="20dp"
+        android:minWidth="50dp"
+        android:layout_width="wrap_content"
+        android:layout_height="match_parent"
+        android:layout_weight="0.5"
+        local:MvxBind="DrawableName Trophy" />
+</LinearLayout>
