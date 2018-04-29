@@ -240,7 +240,6 @@
     <AndroidResource Include="Resources\layout\TrailDetailsView.axml">
       <SubType>Designer</SubType>
     </AndroidResource>
-    <AndroidResource Include="Resources\layout\Achievements.axml" />
     <None Include="ToDo-MvvmCross\_ Droid UI.txt" />
     <AndroidResource Include="Resources\layout\StartView.axml" />
     <AndroidResource Include="Resources\layout\ReachedTrailsView.axml" />
@@ -265,6 +264,9 @@
     <AndroidResource Include="Resources\layout\CollectedTrails.axml" />
     <AndroidResource Include="Resources\layout\historyitem.axml" />
     <AndroidResource Include="Resources\layout\ReachedTrailMapView.axml" />
+    <AndroidResource Include="Resources\layout\achievements.axml" />
+    <AndroidResource Include="Resources\drawable-nodpi\trophy.png" />
+    <AndroidResource Include="Resources\drawable-nodpi\trophyx.png" />
   </ItemGroup>
   <ItemGroup>
     <AndroidResource Include="Resources\values\Strings.xml" />

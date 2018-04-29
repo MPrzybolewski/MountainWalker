@@ -15,7 +15,7 @@ using MvvmCross.Platform.Droid.Platform;
 
 namespace MountainWalker.Droid.Views
 {
-    [Activity(Label = "Walker",
+    [Activity(Label = "",
               NoHistory = true,
               Theme = "@style/MyTheme",
               LaunchMode = LaunchMode.SingleTop,
@@ -32,7 +32,6 @@ namespace MountainWalker.Droid.Views
         {
             
             base.OnCreate(bundle);
-
 
             UserDialogs.Init(() => Mvx.Resolve<IMvxAndroidCurrentTopActivity>().Activity);
             //_mediaPlayer = MediaPlayer.Create(this, Resource.Raw.background_main);

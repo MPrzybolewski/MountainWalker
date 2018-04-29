@@ -31,8 +31,8 @@ namespace MountainWalker.Core.ViewModels
         private async void CheckLogin()
         {
 
-            bool result = await CheckIfLogged();
-            if(result)
+            //bool result = await CheckIfLogged();
+            if(true)
             {
                 await _navigationService.Navigate<MainViewModel>();
             }

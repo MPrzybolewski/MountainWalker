@@ -29,7 +29,7 @@ namespace MountainWalker.Core.Services
         {
             CurrentLocation = new Point(0.0, 0.0);
             _messenger = messenger;
-            StartListening(); // async?
+            Task.Run(async () => { await StartListening(); }); // async?
         }
         
         async Task StartListening()

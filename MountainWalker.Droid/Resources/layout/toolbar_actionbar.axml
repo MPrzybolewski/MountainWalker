@@ -13,9 +13,18 @@
         android:layout_width="match_parent"
         android:layout_height="?attr/actionBarSize"
         android:background="?attr/colorPrimary"
-        android:paddingRight="20dp"
-        android:textAlignment="center"
+        android:paddingRight="10dp"
         local:popupTheme="@style/ThemeOverlay.AppCompat.Light">
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Walker"
+            android:layout_gravity="center"
+            android:textSize="26dp"
+            android:textStyle="bold"
+            android:paddingLeft="10dp"
+            android:textColor="@color/white"
+            android:id="@+id/toolbar_title" />
         <Button
             android:id="@+id/phoneButton"
             android:layout_weight="1"
