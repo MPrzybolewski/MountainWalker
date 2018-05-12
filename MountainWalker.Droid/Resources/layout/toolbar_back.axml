@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.design.widget.AppBarLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:local="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/appbar"
+    android:fitsSystemWindows="true"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:gravity="center"
+    android:textAlignment="center"
+    android:theme="@style/ThemeOverlay.AppCompat.Dark.ActionBar">
+    <android.support.v7.widget.Toolbar
+        android:id="@+id/toolbar"
+        android:layout_width="match_parent"
+        android:layout_height="?attr/actionBarSize"
+        android:background="?attr/colorPrimary"
+        android:paddingRight="10dp"
+        local:popupTheme="@style/ThemeOverlay.AppCompat.Light">
+        <Button
+            android:layout_height="26dp"
+            android:layout_width="26dp"
+            android:background="@drawable/outline_arrow_back_ios_white_48"
+            local:MvxBind="Click BackCommand" />
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Walker"
+            android:layout_gravity="center"
+            android:textSize="26dp"
+            android:textStyle="bold"
+            android:paddingLeft="10dp"
+            android:textColor="@color/white"
+            android:id="@+id/toolbar_title" />
+        <Button
+            android:id="@+id/phoneButton"
+            android:layout_weight="1"
+            android:layout_height="40dp"
+            android:layout_width="40dp"
+            android:layout_gravity="right"
+            android:background="@android:drawable/ic_menu_call" />
+    </android.support.v7.widget.Toolbar>
+</android.support.design.widget.AppBarLayout>

@@ -8,7 +8,7 @@ namespace MountainWalker.Core.ViewModels
     {
         private readonly IMvxNavigationService _navigationService;
 
-        public string UserName { get; private set; } = "Mareczek";
+        public string UserName { get; private set; } = "Mareczek Przybolewski";
 
         public MenuViewModel(IMvxNavigationService navigationService)
         {

@@ -22,12 +22,12 @@ namespace MountainWalker.Core.Models
             Id = id;
             Date = date;
             From = "Początek: "+ from;
-            To = "Koniec: " + to;
+            To = "Stop: " + to;
             Trail = points;
             StartTime = "Start: 12:45:11";
             EndTime = "Koniec: 16:53:23";
-            Time = "Czas: 04:08:12";
-            Distance = "Dystans: 4.23 km";
+            Time = "04:08:12";
+            Distance = "4.23 km";
         }
     }
  }

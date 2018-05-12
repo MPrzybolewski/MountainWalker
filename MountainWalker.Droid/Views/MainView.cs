@@ -39,7 +39,6 @@ namespace MountainWalker.Droid.Views
             SetContentView(Resource.Layout.MainView);
 
             DrawerLayout = FindViewById<DrawerLayout>(Resource.Id.drawerLayout);
-            TrailDetailFragment = FindViewById(Resource.Layout.TrailDetailsView);
 
             if(bundle == null)
             {
@@ -80,12 +79,6 @@ namespace MountainWalker.Droid.Views
             {
                 DrawerLayout.CloseDrawers();
             }
-            else if (fm.BackStackEntryCount > 0)
-            {
-                fm.PopBackStack();
-            }
-            else
-                base.OnBackPressed();
         }
 
         public void HideSoftKeyboard()

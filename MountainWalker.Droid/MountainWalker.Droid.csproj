@@ -267,6 +267,9 @@
     <AndroidResource Include="Resources\layout\achievements.axml" />
     <AndroidResource Include="Resources\drawable-nodpi\trophy.png" />
     <AndroidResource Include="Resources\drawable-nodpi\trophyx.png" />
+    <AndroidResource Include="Resources\layout\toolbar_back.axml" />
+    <AndroidResource Include="Resources\drawable-nodpi\outline_arrow_back_ios_white_48.png" />
+    <AndroidResource Include="Resources\drawable\mwcircle.png" />
   </ItemGroup>
   <ItemGroup>
     <AndroidResource Include="Resources\values\Strings.xml" />
