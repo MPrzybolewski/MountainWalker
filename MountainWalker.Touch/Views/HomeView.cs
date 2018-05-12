@@ -15,50 +15,61 @@ using MvvmCross.iOS.Support.XamarinSidebar;
 using Plugin.Geolocator;
 using Plugin.Geolocator.Abstractions;
 using UIKit;
-
 namespace MountainWalker.Touch.Views
 {
-    [Register("HomeView")]
-    [MvxSidebarPresentation(MvxPanelEnum.Center, MvxPanelHintType.ResetRoot, true)]
-    public class HomeView : BaseViewController<HomeViewModel>
+	[MvxSidebarPresentation(MvxPanelEnum.Center, MvxPanelHintType.ResetRoot, true)]
+    public partial class HomeView : BaseViewController<HomeViewModel>
     {
-
-        MapView _mapView;
+		MapView _mapView;
+        
         public override void ViewDidLoad()
         {
             base.ViewDidLoad();
+
+
+        }
+
+		public override void ViewDidLayoutSubviews()
+		{
+			base.ViewDidLayoutSubviews();
+			this.View.AutoresizingMask = UIViewAutoresizing.FlexibleWidth | UIViewAutoresizing.FlexibleHeight;
+            MyMap.AutoresizingMask = UIViewAutoresizing.FlexibleWidth | UIViewAutoresizing.FlexibleHeight;
             var viewModel = this.ViewModel;
+            var frameForMap = MyMap.Frame;
 
             var camera = new CameraPosition();
-            _mapView = MapView.FromCamera(CGRect.Empty, camera);
+            ////_mapView = MapView.FromCamera(MyMap.Bounds, camera);
+            //_mapView = new MapView(MyMap.Bounds);
+            _mapView = new MapView(new CGRect(0, 0, frameForMap.Width, frameForMap.Height));
             _mapView.MyLocationEnabled = true;
             _mapView.Settings.MyLocationButton = true;
 
-            View = _mapView;
 
-			CreatePointsAndTrails(viewModel.Points, viewModel.Trails);
-            GetCurrentLocation();
-
-
-            var set = this.CreateBindingSet<HomeView, HomeViewModel>();
-            set.Bind(_mapView).For(TrailDialogBinding.BindingName).To(vm => vm.OpenTrailDialogCommand);
-            set.Apply();
-
-        }
+            //_mapView.Center = this.MyMap.Center;
+            //_mapView.Frame = this.MyMap.Frame;
+            //_mapView.Bounds = this.MyMap.Bounds;
+            this.MyMap.AddSubview(_mapView);
 
 
-        public override void ViewWillAppear(bool animated)
-        {
-            Title = "Home View";
-            base.ViewWillAppear(animated);
-        }
-
-		public override void LoadView()
-		{
-			base.LoadView();
+            CreatePointsAndTrails(viewModel.Points, viewModel.Trails);
+            Task.Run(async () =>
+            {
+                await GetCurrentLocation();
+            });
+            //var set = this.CreateBindingSet<HomeView, HomeViewModel>();
+            //set.Bind(_mapView).For(TrailDialogBinding.BindingName).To(vm => vm.OpenTrailDialogCommand);
+            //set.Apply();
 		}
 
-        public async Task<Position> GetCurrentLocation()
+
+		public override void DidReceiveMemoryWarning()
+        {
+            base.DidReceiveMemoryWarning();
+            // Release any cached data, images, etc that aren't in use.
+        }
+        
+
+		public async Task<Position> GetCurrentLocation()
         {
             Position position = null;
             try
@@ -77,7 +88,7 @@ namespace MountainWalker.Touch.Views
                 var enabled = locator.IsGeolocationEnabled;
                 if (!available || !enabled)
                 {
-                    
+
                 }
 
 
@@ -91,14 +102,8 @@ namespace MountainWalker.Touch.Views
 
             if (position == null)
             {
-                
+
             }
-
-            var output = string.Format("Time: {0} \nLat: {1} \nLong: {2} \nAltitude: {3} \nAltitude Accuracy: {4} \nAccuracy: {5} \nHeading: {6} \nSpeed: {7}",
-                position.Timestamp, position.Latitude, position.Longitude,
-                position.Altitude, position.AltitudeAccuracy, position.Accuracy, position.Heading, position.Speed);
-
-            Debug.WriteLine(output);
 
             var camera = CameraPosition.FromCamera(latitude: position.Latitude,
                                                   longitude: position.Longitude,
@@ -121,10 +126,10 @@ namespace MountainWalker.Touch.Views
             }
 
             int i = 1;
-            foreach(var polyline in trails)
+            foreach (var polyline in trails)
             {
                 var path = new MutablePath();
-                foreach(var point in polyline.Path)
+                foreach (var point in polyline.Path)
                 {
                     path.AddCoordinate(new CLLocationCoordinate2D(point.Latitude, point.Longitude));
                 }
@@ -153,5 +158,7 @@ namespace MountainWalker.Touch.Views
 
             }
         }
-	}
+       
+    }
 }
+

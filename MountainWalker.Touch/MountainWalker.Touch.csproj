@@ -162,6 +162,7 @@
     <Reference Include="Plugin.Geolocator">
       <HintPath>..\packages\Xam.Plugin.Geolocator.4.2.0\lib\Xamarin.iOS10\Plugin.Geolocator.dll</HintPath>
     </Reference>
+    <Reference Include="MonoTouch.Dialog-1" />
   </ItemGroup>
   <ItemGroup>
     <ImageAsset Include="Assets.xcassets\AppIcon.appiconset\Contents.json">
@@ -179,6 +180,7 @@
   <ItemGroup>
     <InterfaceDefinition Include="LaunchScreen.storyboard" />
     <InterfaceDefinition Include="Main.storyboard" />
+    <InterfaceDefinition Include="Views\HomeView.xib" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Info.plist" />
@@ -198,12 +200,16 @@
     <Compile Include="DebugTrace.cs" />
     <Compile Include="Views\BaseViewController.cs" />
     <Compile Include="Services\TouchDialogService.cs" />
-    <Compile Include="Views\HomeView.cs" />
+    <Compile Include="Views\HomeViewCode.cs" />
     <Compile Include="Views\MenuView.cs" />
     <Compile Include="Views\SettingsView.cs" />
     <Compile Include="Models\PolylineWithId.cs" />
-    <Compile Include="Views\TrialDialogView.cs" />
     <Compile Include="Bindings\TrailDialogBinding.cs" />
+    <Compile Include="Views\TrialDialogView.cs" />
+    <Compile Include="Views\HomeView.cs" />
+    <Compile Include="Views\HomeView.designer.cs">
+      <DependentUpon>HomeView.cs</DependentUpon>
+    </Compile>
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\MountainWalker.Core\MountainWalker.Core.csproj">
