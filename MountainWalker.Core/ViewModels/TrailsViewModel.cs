@@ -45,10 +45,8 @@ namespace MountainWalker.Core.ViewModels
             {
                 return new MvxCommand<Trail>(item =>
                 {
-                    var message = new TrailMessage(this, _trailService.Trails[item.Id]);
-                    //_locationService.TrailId = item.Id;
-                    Debug.WriteLine("TEST TEST {0}", item.Id);
-                    _navigationService.Navigate<ReachedTrailMapViewModel>();
+                    var message = new TrailMessage(this, _trailService.Trails[item.Id], true);
+                    _navigationService.Navigate<TrailDetailsViewModel>();
                     _messenger.Publish(message);
                 });
             }

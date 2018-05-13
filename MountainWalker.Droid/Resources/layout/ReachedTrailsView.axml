@@ -3,9 +3,19 @@
     xmlns:local="http://schemas.android.com/apk/res-auto"
     android:orientation="vertical"
     android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    android:layout_height="match_parent"
+    android:background="@color/light_gray">
     <include
         layout="@layout/toolbar_actionbar" />
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:paddingTop="20dp"
+        android:paddingBottom="20dp"
+        android:text="Przebyte wędrówki"
+        android:gravity="center"
+        android:textSize="26dp"
+        android:textStyle="bold" />
     <Mvx.MvxListView
         android:orientation="vertical"
         android:layout_width="fill_parent"

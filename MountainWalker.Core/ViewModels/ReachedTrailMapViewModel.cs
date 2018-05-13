@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Threading.Tasks;
 using MountainWalker.Core.Messages;
 using MountainWalker.Core.Models;
+using MvvmCross.Core.Navigation;
 using MvvmCross.Core.ViewModels;
 using MvvmCross.Plugins.Messenger;
 
@@ -22,14 +23,24 @@ namespace MountainWalker.Core.ViewModels
 
         private MvxSubscriptionToken _token;
 
-        public ReachedTrailMapViewModel(IMvxMessenger messenger)
+        private IMvxNavigationService _navigationService;
+        public IMvxCommand BackCommand { get; }
+
+        public ReachedTrailMapViewModel(IMvxMessenger messenger, IMvxNavigationService navigationService)
         {
             _token = messenger.Subscribe<ReachedTrailMessage>(OnMessage);
+            _navigationService = navigationService;
+            BackCommand = new MvxCommand(Back);
+        }
+
+        private void Back()
+        {
+            _navigationService.Navigate<ReachedTrailsViewModel>();
         }
 
         private async void OnMessage(ReachedTrailMessage message)
         {
-	    ReachedTrail = message.ReachedTrail;
+            ReachedTrail = message.ReachedTrail;
             await Task.Delay(500);
             _interaction.Raise(message.ReachedTrail.Trail);
         }

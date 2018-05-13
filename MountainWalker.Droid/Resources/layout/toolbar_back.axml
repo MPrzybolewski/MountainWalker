@@ -15,6 +15,11 @@
         android:background="?attr/colorPrimary"
         android:paddingRight="10dp"
         local:popupTheme="@style/ThemeOverlay.AppCompat.Light">
+        <Button
+            android:layout_height="26dp"
+            android:layout_width="26dp"
+            android:background="@drawable/outline_arrow_back_ios_white_48"
+            local:MvxBind="Click BackCommand" />
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"

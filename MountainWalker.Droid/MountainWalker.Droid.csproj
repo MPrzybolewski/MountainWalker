@@ -240,11 +240,9 @@
     <AndroidResource Include="Resources\layout\TrailDetailsView.axml">
       <SubType>Designer</SubType>
     </AndroidResource>
-    <AndroidResource Include="Resources\layout\Achievements.axml" />
     <None Include="ToDo-MvvmCross\_ Droid UI.txt" />
     <AndroidResource Include="Resources\layout\StartView.axml" />
     <AndroidResource Include="Resources\layout\ReachedTrailsView.axml" />
-    <AndroidResource Include="Resources\menu\navigation_drawer.axml" />
     <AndroidResource Include="Resources\layout\fragment_navigation_header.axml" />
     <AndroidResource Include="Resources\layout\fragment_navigation.axml" />
     <AndroidResource Include="Resources\layout\toolbar_actionbar.axml" />
@@ -265,6 +263,13 @@
     <AndroidResource Include="Resources\layout\CollectedTrails.axml" />
     <AndroidResource Include="Resources\layout\historyitem.axml" />
     <AndroidResource Include="Resources\layout\ReachedTrailMapView.axml" />
+    <AndroidResource Include="Resources\layout\achievements.axml" />
+    <AndroidResource Include="Resources\drawable-nodpi\trophy.png" />
+    <AndroidResource Include="Resources\drawable-nodpi\trophyx.png" />
+    <AndroidResource Include="Resources\layout\toolbar_back.axml" />
+    <AndroidResource Include="Resources\drawable-nodpi\outline_arrow_back_ios_white_48.png" />
+    <AndroidResource Include="Resources\drawable\mwcircle.png" />
+    <AndroidResource Include="Resources\menu\navigation_drawer.axml" />
   </ItemGroup>
   <ItemGroup>
     <AndroidResource Include="Resources\values\Strings.xml" />
@@ -346,6 +351,9 @@
   </ItemGroup>
   <ItemGroup>
     <AndroidResource Include="Resources\drawable\list_item.xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="Resources\menu\" />
   </ItemGroup>
   <Import Project="$(MSBuildExtensionsPath)\Xamarin\Android\Xamarin.Android.CSharp.targets" />
   <Target Name="EnsureNuGetPackageBuildImports" BeforeTargets="PrepareForBuild">

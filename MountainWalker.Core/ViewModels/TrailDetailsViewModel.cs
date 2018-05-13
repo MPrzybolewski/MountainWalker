@@ -1,6 +1,7 @@
 ﻿using MountainWalker.Core.Interfaces;
 using MountainWalker.Core.Messages;
 using MountainWalker.Core.Models;
+using MvvmCross.Core.Navigation;
 using MvvmCross.Core.ViewModels;
 using MvvmCross.Plugins.Messenger;
 
@@ -12,60 +13,59 @@ namespace MountainWalker.Core.ViewModels
         private MvxSubscriptionToken _token;
 
         private readonly ITrailService _trailService;
-
+        private bool _isOpenedFromMenu;
 
         private string _trailTitle;
         public string TrailTitle
         {
-            get { return _trailTitle; }
-            set
-            {
-                _trailTitle = value;
-                RaisePropertyChanged();
-            }
+            get => _trailTitle;
+            set { _trailTitle = value; RaisePropertyChanged(); }
         }
 
         private string _trailDescription;
         public string TrailDescription
         {
-            get { return _trailDescription; }
-            set
-            {
-                _trailDescription = value;
-                RaisePropertyChanged();
-            }
+            get => _trailDescription; 
+            set { _trailDescription = value; RaisePropertyChanged(); }
         }
 
         private string _timeUp;
         public string TimeUp
         {
-            get { return _timeUp; }
-            set
-            {
-                _timeUp = value;
-                RaisePropertyChanged();
-            }
+            get => _timeUp;
+            set { _timeUp = value; RaisePropertyChanged(); }
         }
 
         private string _timeDown;
         public string TimeDown
         {
-            get { return _timeDown; }
-            set
-            {
-                _timeDown = value;
-                RaisePropertyChanged();
-            }
+            get => _timeDown;
+            set { _timeDown = value; RaisePropertyChanged(); }
         }
 
-        public TrailDetailsViewModel(ILocationService locationService, ITrailService trailService, IMvxMessenger messenger)
+        private IMvxNavigationService _navigationService;
+        public IMvxCommand BackCommand { get; }
+
+        public TrailDetailsViewModel(ILocationService locationService, ITrailService trailService, 
+                                     IMvxMessenger messenger, IMvxNavigationService navigationService)
         {
             //SetTrailInfo(trailService.Trails[locationService.TrailId]);
             _token = messenger.Subscribe<TrailMessage>(OnTrailMessage);
+            _navigationService = navigationService;
+            BackCommand = new MvxCommand(Back);
+        }
+
+        private void Back()
+        {
+            if (_isOpenedFromMenu)
+                _navigationService.Navigate<TrailsViewModel>();
+            else
+                _navigationService.Navigate<HomeViewModel>();
         }
 
         private void OnTrailMessage(TrailMessage obj)
         {
+            _isOpenedFromMenu = obj.IsOpenedFromMenu;
             SetTrailInfo(obj.Trail);
         }
 
