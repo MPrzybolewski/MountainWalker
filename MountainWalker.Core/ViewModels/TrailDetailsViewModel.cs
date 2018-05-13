@@ -13,7 +13,7 @@ namespace MountainWalker.Core.ViewModels
         private MvxSubscriptionToken _token;
 
         private readonly ITrailService _trailService;
-
+        private bool _isOpenedFromMenu;
 
         private string _trailTitle;
         public string TrailTitle
@@ -57,11 +57,15 @@ namespace MountainWalker.Core.ViewModels
 
         private void Back()
         {
-            _navigationService.Navigate<TrailsViewModel>();
+            if (_isOpenedFromMenu)
+                _navigationService.Navigate<TrailsViewModel>();
+            else
+                _navigationService.Navigate<HomeViewModel>();
         }
 
         private void OnTrailMessage(TrailMessage obj)
         {
+            _isOpenedFromMenu = obj.IsOpenedFromMenu;
             SetTrailInfo(obj.Trail);
         }
 

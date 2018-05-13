@@ -18,10 +18,10 @@ xmlns:local="http://schemas.android.com/apk/res-auto">
                 android:title="Szlaki"/>
             <item
                 android:id="@+id/nav_achievements"
-                android:title="Osiągnięcia"/>
+                android:title="Zdobyte szczyty"/>
             <item
                 android:id="@+id/nav_history"
-                android:title="Zdobyte szlaki" />
+                android:title="Przebyte wędrówki" />
             <item
                 android:id="@+id/nav_appDescription"
                 android:title="Jak to działa"/>

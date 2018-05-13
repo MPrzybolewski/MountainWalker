@@ -23,23 +23,15 @@ namespace MountainWalker.Core.ViewModels
         private string _trailName = "";
         public string TrailName
         {
-            get { return _trailName; }
-            set
-            {
-                _trailName = value;
-                RaisePropertyChanged();
-            }
+            get => _trailName;
+            set { _trailName = value; RaisePropertyChanged(); }
         }
 
         private string _trailDescription = "";
         public string TrailDescription
         {
-            get { return _trailDescription; }
-            set
-            {
-                _trailDescription = value;
-                RaisePropertyChanged();
-            }
+            get => _trailDescription;
+            set { _trailDescription = value; RaisePropertyChanged(); }
         }
 
         public TrailDialogViewModel(ILocationService locationService, ITrailService trailService, 
@@ -58,7 +50,7 @@ namespace MountainWalker.Core.ViewModels
 
         private void ReadMore()
         {
-            var message = new TrailMessage(this, _trailService.Trails[_trailId]);
+            var message = new TrailMessage(this, _trailService.Trails[_trailId], false);
             _navigationService.Navigate<TrailDetailsViewModel>();
             _visible.Raise(false);
             _messenger.Publish(message);
