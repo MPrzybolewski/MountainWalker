@@ -20,7 +20,7 @@
             android:layout_marginBottom="20dp"
             android:id="@+id/imageView"
             android:layout_gravity="center"
-            android:src="@drawable/mwcircle" />
+            android:src="@drawable/mwcircle_small" />
         <EditText
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
