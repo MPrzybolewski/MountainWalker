@@ -273,6 +273,7 @@
     <AndroidResource Include="Resources\drawable-nodpi\mwcircle_small.png" />
     <AndroidResource Include="Resources\layout\SplashScreen.axml" />
     <AndroidResource Include="Resources\drawable\splashscr.xml" />
+    <AndroidResource Include="Resources\drawable-nodpi\point.png" />
   </ItemGroup>
   <ItemGroup>
     <AndroidResource Include="Resources\values\Strings.xml" />
