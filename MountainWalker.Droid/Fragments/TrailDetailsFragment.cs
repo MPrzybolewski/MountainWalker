@@ -17,7 +17,7 @@ namespace MountainWalker.Droid.Fragments
         public string LOG = "[SPRAWDZAM CO SIE DZIEJE Z FRAGMENTEM] : ";
         public override View OnCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState)
         {
-            ShowHamburgerMenu = true;
+            ShowHamburgerMenu = false;
 
             //FragmentTransaction ft = this.Activity.FragmentManager.BeginTransaction();
             //ft.AddToBackStack(null);

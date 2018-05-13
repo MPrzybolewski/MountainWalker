@@ -90,13 +90,11 @@
 
   <style name="details_title_style">
     <item name="android:gravity">center</item>
-    <item name="android:textColor">#fff</item>
     <item name="android:scaleType">fitCenter</item>
     <item name="android:textSize">26dp</item>
     <item name="android:textStyle">bold</item>
     <item name="android:paddingTop">20dp</item>
     <item name="android:paddingBottom">20dp</item>
-    <item name="android:background">@drawable/details_title</item>
   </style>
 
   <style name="list_item_style" >
