@@ -274,6 +274,7 @@
     <AndroidResource Include="Resources\layout\SplashScreen.axml" />
     <AndroidResource Include="Resources\drawable\splashscr.xml" />
     <AndroidResource Include="Resources\drawable-nodpi\point.png" />
+    <None Include="Views\colors.xml" />
   </ItemGroup>
   <ItemGroup>
     <AndroidResource Include="Resources\values\Strings.xml" />
@@ -285,9 +286,6 @@
     <AndroidResource Include="Resources\values\SplashStyle.xml" />
     <AndroidResource Include="Resources\layout\MainView.axml" />
     <AndroidResource Include="Resources\layout\SignInView.axml" />
-  </ItemGroup>
-  <ItemGroup>
-    <AndroidResource Include="Resources\values\colors.xml" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\MountainWalker.Core\MountainWalker.Core.csproj">

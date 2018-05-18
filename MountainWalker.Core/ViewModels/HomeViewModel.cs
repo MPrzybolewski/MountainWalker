@@ -75,6 +75,13 @@ namespace MountainWalker.Core.ViewModels
             }
         }
 
+        private bool _followUser = true;
+        public bool FollowUser
+        {
+            get => _followUser;
+            set { _followUser = value; RaisePropertyChanged(); } 
+        }
+
         public HomeViewModel(ILocationService locationService, IMvxNavigationService navigationService, IMvxMessenger messenger, 
             ITrailService trailService, ITravelPanelService travelPanelService, IStartButtonService startButtonService)
         {
@@ -113,7 +120,9 @@ namespace MountainWalker.Core.ViewModels
             
             if (_locationService.IsTrailStarted)
             {
-                _locationService.OnCurrentLocationChanged(Location);
+                if(FollowUser)
+                    _locationService.OnCurrentLocationChanged(Location);
+                
                 foreach (var point in _trailService.Points)
                 {
                     Debug.WriteLine("Distance - true?" + _locationService.GetDistanceBetweenTwoPointsOnMapInMeters(Location, point));
