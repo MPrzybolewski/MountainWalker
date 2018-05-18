@@ -44,11 +44,11 @@ namespace MountainWalker.Core.Services
 
         private void CreateConnections()
         {
-
+            int id = 0;
             //////////////////////// Test Trail ////////////////////////
             Trails.Add(new Trail());
             Trails[0].Color = "blue";
-            Trails[0].Id = 0;
+            Trails[0].Id = id++;
             Trails[0].Description = "Legendarna droga z SKM na UG";
             Trails[0].Name = "Dolina Alchemii";
             Trails[0].TimeUp = 5;
@@ -78,7 +78,7 @@ namespace MountainWalker.Core.Services
 
             Trails.Add(new Trail());
             Trails[1].Color = "red";
-            Trails[1].Id = 1;
+            Trails[1].Id = id++;
             Trails[1].Description = "Co poniedziałek biedni studenci podróżują w to miejsce w poszukiwaniu jedzienia";
             Trails[1].Name = "Burgerogrzmoty KFC";
             Trails[1].TimeUp = 5;
@@ -99,6 +99,7 @@ namespace MountainWalker.Core.Services
 
             Trails.Add(new Trail());
             Trails[2].Color = "green";
+            Trails[2].Id = id++;
             Trails[2].Description = "Po długiej i bolesnej pracy nad projektami, biedni studenci udają się tutaj na piwko";
             Trails[2].Name = "Piwne Oko";
             Trails[2].TimeUp = 5;
@@ -124,6 +125,7 @@ namespace MountainWalker.Core.Services
             Trails.Add(new Trail()
             {
                 Color = "green",
+                Id = id++,
                 Description = "Nudna droga na kasprowy.",
                 Name = "Szlak pieszy zielony",
                 TimeUp = 120,
@@ -138,6 +140,7 @@ namespace MountainWalker.Core.Services
             Trails.Add(new Trail()
             {
                 Color = "yellow",
+                Id = id++,
                 Description = "Jakis na Hale heh",
                 Name = "Szlak pieszy żółty",
                 TimeUp = 65,
@@ -151,6 +154,7 @@ namespace MountainWalker.Core.Services
             Trails.Add(new Trail()
             {
                 Color = "blue",
+                Id = id++,
                 Description = "Piękne widoczki na Hale",
                 Name = "Dolina Gąsienicowa",
                 TimeUp = 18,
@@ -164,6 +168,7 @@ namespace MountainWalker.Core.Services
             Trails.Add(new Trail()
             {
                 Color = "blue",
+                Id = id++,
                 Description = "Z Hali do Suchej",
                 Name = "Szlak pieszy niebieski",
                 TimeUp = 1,
@@ -177,6 +182,7 @@ namespace MountainWalker.Core.Services
             Trails.Add(new Trail()
             {
                 Color = "black",
+                Id = id++,
                 Description = "nie wiem co to heh",
                 Name = "Szlak pieszy czarny",
                 TimeUp = 5,
@@ -190,6 +196,7 @@ namespace MountainWalker.Core.Services
             Trails.Add(new Trail()
             {
                 Color = "black",
+                Id = id++,
                 Description = "kolejny czarnuch",
                 Name = "Szlak pieszy czarny",
                 TimeUp = 11,
