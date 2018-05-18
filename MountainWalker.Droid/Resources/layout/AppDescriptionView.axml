@@ -3,7 +3,8 @@
     xmlns:local="http://schemas.android.com/apk/res-auto"
     android:orientation="vertical"
     android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    android:layout_height="match_parent"
+    android:background="@color/light_gray">
     <include
         layout="@layout/toolbar_actionbar" />
     <TextView
@@ -12,6 +13,7 @@
         android:gravity="center_horizontal"
         android:textColor="@color/dark_gray"
         android:textSize="20dp"
+        android:paddingTop="40dp"
         android:paddingBottom="15dp"
-        android:text="Description View" />
+        android:text="W sumie to sam nie wiem jak to działa xd" />
 </LinearLayout>

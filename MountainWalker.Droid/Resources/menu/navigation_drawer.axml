@@ -24,7 +24,7 @@ xmlns:local="http://schemas.android.com/apk/res-auto">
                 android:title="Przebyte wędrówki" />
             <item
                 android:id="@+id/nav_appDescription"
-                android:title="Jak to działa"/>
+                android:title="Jak to działa?"/>
           <item
                 android:id="@+id/nav_logout"
                 android:title="Wyloguj" />
