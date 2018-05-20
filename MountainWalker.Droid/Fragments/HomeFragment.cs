@@ -46,8 +46,8 @@ namespace MountainWalker.Droid.Fragments
             _map = map;
             _map.MyLocationEnabled = true;
             _map.UiSettings.MyLocationButtonEnabled = true;
-            _map.AddMarker(new MarkerOptions().SetPosition(new LatLng(54.394121, 18.569394))
-                .SetTitle("Best place to go!"));
+            //_map.AddMarker(new MarkerOptions().SetPosition(new LatLng(54.394121, 18.569394))
+            //    .SetTitle("Best place to go!"));
 
             var home = (HomeViewModel) ViewModel;
             
@@ -121,9 +121,9 @@ namespace MountainWalker.Droid.Fragments
         {
             foreach (var point in points)
             {
-                _map.AddMarker(new MarkerOptions()
-                    .SetPosition(new LatLng(point.Latitude, point.Longitude))
-                               .SetTitle(point.Name));
+                //_map.AddMarker(new MarkerOptions()
+                    //.SetPosition(new LatLng(point.Latitude, point.Longitude))
+                               //.SetTitle(point.Name));
                     //.SetIcon(BitmapDescriptorFactory.FromResource(Resource.Drawable.point));
             }
 

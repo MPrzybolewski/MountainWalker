@@ -1,5 +1,6 @@
 ﻿using MountainWalker.Core.Models;
 using Newtonsoft.Json;
+using Plugin.SecureStorage;
 using System;
 using System.Collections.Generic;
 using System.Diagnostics;
@@ -72,6 +73,30 @@ namespace MountainWalker.Core.Interfaces.Impl
             }
         }
 
+        public async Task<string> GetName(string _login)
+        {
+            var clientt = new HttpClient();
+            clientt.BaseAddress = new Uri(_url);
+            object userInfos = new { UserID = "", name = "", surname = "", login = _login, password = "", email = "" };
+            var jsonObj = JsonConvert.SerializeObject(userInfos);
+            var content = new StringContent(jsonObj, Encoding.UTF8, "application/json");
+            var response = await clientt.PostAsync("/api/Users/GetName", content);
+            try
+            {
+                var result = await response.Content.ReadAsStringAsync();
+                if (result != null)
+                {
+                    return result.Trim('"');
+                }
+
+                return "err";
+            }
+            catch (Exception)
+            {
+                return "err";
+            }
+        }
+
         public async Task<List<ReachedTrail>> GetReachedTrailsList(string login)
         {
             //all magic with dbconn
@@ -84,6 +109,30 @@ namespace MountainWalker.Core.Interfaces.Impl
             };
 
             return items;
+        }
+
+        public async Task GetReachedAchievements(string _login)
+        {
+            //magic
+            var clientt = new HttpClient();
+            clientt.BaseAddress = new Uri(_url);
+            object userInfos = new { UserID = "", name = "", surname = "", login = _login, password = "", email = "" };
+            var jsonObj = JsonConvert.SerializeObject(userInfos);
+            var content = new StringContent(jsonObj, Encoding.UTF8, "application/json");
+            var response = await clientt.PostAsync("/api/Users/GetAchievementsForGivenUser", content);
+            try
+            {
+                var result = await response.Content.ReadAsStringAsync();
+                CrossSecureStorage.Current.SetValue(CrossSecureStorageKeys.Achievements, result);
+                if (result != null)
+                {
+                    // ?
+                }
+            }
+            catch (Exception)
+            {
+                Debug.WriteLine("err");
+            }
         }
 
         private List<Point> ParePointsFromDb(int id)
@@ -110,6 +159,6 @@ namespace MountainWalker.Core.Interfaces.Impl
                 new Point(54.396157, 18.573419),
                 new Point(54.396110, 18.573478)
             };
-        }     
+        }
     }         
 }             

@@ -274,7 +274,7 @@
     <AndroidResource Include="Resources\layout\SplashScreen.axml" />
     <AndroidResource Include="Resources\drawable\splashscr.xml" />
     <AndroidResource Include="Resources\drawable-nodpi\point.png" />
-    <None Include="Views\colors.xml" />
+    <AndroidResource Include="Resources\values\colors.xml" />
   </ItemGroup>
   <ItemGroup>
     <AndroidResource Include="Resources\values\Strings.xml" />

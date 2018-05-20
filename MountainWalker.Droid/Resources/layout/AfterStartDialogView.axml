@@ -43,7 +43,7 @@
             android:gravity="center_vertical|center_horizontal"
             android:layout_weight="0.5"
             style="?android:attr/borderlessButtonStyle"
-            local:MvxBind="Click DontStopTravel" />
+            local:MvxBind="Click StopTravel" />
         <View
             android:layout_width="1dp"
             android:layout_height="fill_parent"
@@ -59,6 +59,6 @@
             android:gravity="center_vertical|center_horizontal"
             android:id="@+id/button"
             style="?android:attr/borderlessButtonStyle"
-            local:MvxBind="Click StopTravel" />
+            local:MvxBind="Click DontStopTravel" />
     </LinearLayout>
 </RelativeLayout>

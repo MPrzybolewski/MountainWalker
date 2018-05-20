@@ -5,6 +5,7 @@ using MvvmCross.Core.Navigation;
 using MvvmCross.Core.ViewModels;
 using Plugin.SecureStorage;
 using Acr.UserDialogs;
+using MountainWalker.Core.Models;
 
 namespace MountainWalker.Core.ViewModels
 {
@@ -13,42 +14,6 @@ namespace MountainWalker.Core.ViewModels
         private readonly IDialogService _dialogService;
         private readonly IWebAPIService _webAPIService;
         private readonly IMvxNavigationService _navigationService;
-
-        public SignInViewModel(IDialogService dialogService, IWebAPIService webAPIService, IMvxNavigationService navigationService)
-        {
-            _dialogService = dialogService;
-            _webAPIService = webAPIService;
-            _navigationService = navigationService;
-        }
-
-        public override Task Initialize()
-        {
-            return base.Initialize();
-        }
-
-        public IMvxCommand SignInButton => new MvxCommand(CheckLogin);
-
-        private async void CheckLogin()
-        {
-
-            //bool result = await CheckIfLogged();
-            if(true)
-            {
-                await _navigationService.Navigate<MainViewModel>();
-            }
-            else
-            {
-                _dialogService.ShowAlert("Uwaga!", "Login i/lub hasło są nieprawidłowe!", "OK");
-            }
-            
-        }
-
-        public IMvxCommand RegisterButton => new MvxCommand(JumpRegister);
-
-        private void JumpRegister()
-        {
-            _navigationService.Navigate<RegisterViewModel>();
-        }
 
         private string _login;
         private string _password;
@@ -76,6 +41,43 @@ namespace MountainWalker.Core.ViewModels
             }
         }
 
+        public SignInViewModel(IDialogService dialogService, IWebAPIService webAPIService, IMvxNavigationService navigationService)
+        {
+            _dialogService = dialogService;
+            _webAPIService = webAPIService;
+            _navigationService = navigationService;
+        }
+
+        public override Task Initialize()
+        {
+            return base.Initialize();
+        }
+
+        public IMvxCommand SignInButton => new MvxCommand(CheckLogin);
+
+        private async void CheckLogin()
+        {
+
+            bool result = await CheckIfLogged();
+            if(result)
+            {
+                CrossSecureStorage.Current.SetValue(CrossSecureStorageKeys.Username, await _webAPIService.GetName(Login));
+                await _navigationService.Navigate<MainViewModel>();
+            }
+            else
+            {
+                _dialogService.ShowAlert("Uwaga!", "Login i/lub hasło są nieprawidłowe!", "OK");
+            }
+            
+        }
+
+        public IMvxCommand RegisterButton => new MvxCommand(JumpRegister);
+
+        private void JumpRegister()
+        {
+            _navigationService.Navigate<RegisterViewModel>();
+        }
+
         public async Task<bool> CheckIfLogged()
         {
 
@@ -86,8 +88,9 @@ namespace MountainWalker.Core.ViewModels
             {
                 if (_isChecked == true)
                 {
-                    CrossSecureStorage.Current.SetValue("Session", _password);
+                    CrossSecureStorage.Current.SetValue(CrossSecureStorageKeys.Login, _login);
                 }
+                await _webAPIService.GetReachedAchievements(_login);
                 UserDialogs.Instance.HideLoading();
                 return true;
             }
