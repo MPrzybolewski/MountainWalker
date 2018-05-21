@@ -1,4 +1,5 @@
 ﻿
+using System;
 using MountainWalker.Core.Models;
 
 namespace MountainWalker.Core.Interfaces
@@ -11,6 +12,7 @@ namespace MountainWalker.Core.Interfaces
         int NumberOfReachedPoints { get; set; }
         string TravelPanelVisibility { get; set; }
         long TravelTimeInMiliseconds { get; set; }
+        DateTime StartTime { get; set; }
         TravelTime TravelTime { get; set; }
         void SetTravelTime();
     }

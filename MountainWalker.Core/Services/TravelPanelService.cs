@@ -12,6 +12,7 @@ namespace MountainWalker.Core.Services
         private readonly IMvxMessenger _travelPanelMessenger;
 
         public TravelTime TravelTime { get; set; }
+        public DateTime StartTime { get; set; }
 
         public long TravelTimeInMiliseconds { get; set; }
 
@@ -37,7 +38,6 @@ namespace MountainWalker.Core.Services
             }
         }
 
-
         private Stopwatch _timer;
 
         public TravelPanelService(IMvxMessenger travelPanelMessenger)
@@ -55,6 +55,7 @@ namespace MountainWalker.Core.Services
 
         public void StartTimer()
         {
+            StartTime = DateTime.Now;
             _timer = new Stopwatch();
             _timer.Start();
         }

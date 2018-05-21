@@ -1,29 +1,47 @@
 ﻿
 using System.Collections.Generic;
+using Newtonsoft.Json;
 
 namespace MountainWalker.Core.Models
 {
     public class ReachedTrail
     {
-        public int Id { get; private set; }
-        public string Date { get; private set; }
-        public string From { get; private set; }
-        public string To { get; private set; }
-        public string StartTime { get; private set; }
-        public string EndTime { get; private set; }
+        [JsonProperty("trailID")]
+        public int Id { get; set; }
+
+        public string Date { get; set; } = "Pluszak nie dodał daty";
+
+        [JsonProperty("startPoint")]
+        public string From { get; set; }
+
+        [JsonProperty("endPoint")]
+        public string To { get; set; }
+
+        [JsonProperty("startTime")]
+        public string StartTime { get; set; }
+
+        [JsonProperty("endTime")]
+        public string EndTime { get; set; }
+
         public string Time { get; set; }
+
+        [JsonProperty("distance")]
         public string Distance { get; set; }
-        public List<Point> Trail { get; private set; }
+
+        [JsonProperty("trailParts")]
+        public List<int> Trails { get; set; }
 
         public string Desc { get => From + ", " + To; }
 
-        public ReachedTrail(int id, string date, string from, string to, List<Point> points)
+        public ReachedTrail() {}
+
+        public ReachedTrail(int id, string date, string from, string to, List<int> trails)
         {
             Id = id;
             Date = date;
             From = "Początek: "+ from;
             To = "Stop: " + to;
-            Trail = points;
+            Trails = trails;
             StartTime = "Start: 12:45:11";
             EndTime = "Koniec: 16:53:23";
             Time = "04:08:12";

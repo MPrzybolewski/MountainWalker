@@ -74,6 +74,7 @@ namespace MountainWalker.Core.ViewModels
 
         private void ShowSignInExecuted()
         {
+            CrossSecureStorage.Current.DeleteKey(CrossSecureStorageKeys.Login);
             _navigationService.Navigate<StartViewModel>();
         }
 

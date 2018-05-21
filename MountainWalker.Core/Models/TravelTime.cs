@@ -36,6 +36,13 @@ namespace MountainWalker.Core.Models
             ChangedSecondsToTravelTime(second);
         }
 
+        public void ResetTravelTime()
+        {
+            _houre = 0;
+            _minute = 0;
+            _second = 0;
+        }
+
         private void ChangedSecondsToTravelTime(long second)
         {
             Houre = (int)second / 3600;
@@ -50,6 +57,11 @@ namespace MountainWalker.Core.Models
         public override string ToString()
         {
             return string.Format("{0}h:{1}m:{2}s", Houre, Minute, Second);
+        }
+
+        public string ToString(string costam)
+        {
+            return string.Format("{0}:{1}:{2}", Houre, Minute, Second);
         }
 
     }

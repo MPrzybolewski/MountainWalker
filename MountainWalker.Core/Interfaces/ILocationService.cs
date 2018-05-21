@@ -17,6 +17,7 @@ namespace MountainWalker.Core.Interfaces
         void OnCurrentLocationChanged(Point loc);
         bool IsTrailStarted { get; set; }
         List<Point> ReachedPoints { get; set; }
+        List<Trail> ReachedTrails { get; set; }
         int TrailId { get; set; }
         void SetNewList();
         bool CheckPointIsNear(Point userLocation, Point pointLocation);

@@ -91,6 +91,7 @@ namespace MountainWalker.Core.ViewModels
                     CrossSecureStorage.Current.SetValue(CrossSecureStorageKeys.Login, _login);
                 }
                 await _webAPIService.GetReachedAchievements(_login);
+                await _webAPIService.GetReachedTrailsList(_login);
                 UserDialogs.Instance.HideLoading();
                 return true;
             }

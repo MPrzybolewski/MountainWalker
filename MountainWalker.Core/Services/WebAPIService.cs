@@ -97,18 +97,32 @@ namespace MountainWalker.Core.Interfaces.Impl
             }
         }
 
-        public async Task<List<ReachedTrail>> GetReachedTrailsList(string login)
+        public async Task GetReachedTrailsList(string _login)
         {
-            //all magic with dbconn
-            int id = 0;
-            var items = new List<ReachedTrail>()
+            var clientt = new HttpClient();
+            clientt.BaseAddress = new Uri(_url);
+            object userInfos = new { UserID = "", name = "", surname = "", login = _login, password = "", email = "" };
+            var jsonObj = JsonConvert.SerializeObject(userInfos);
+            var content = new StringContent(jsonObj, Encoding.UTF8, "application/json");
+            var response = await clientt.PostAsync("/api/Users/GetTrailsForUser", content);
+            try
             {
-                new ReachedTrail(id++, "10.04.2010", "Ygrek", "Ug", ParePointsFromDb(id)),
-                new ReachedTrail(id++, "11.04.2010", "Skm", "Ug", ParePointsFromDb(id)),
-                new ReachedTrail(id++, "12.04.2010", "Ygrek", "KFC", ParePointsFromDb(id))
-            };
-
-            return items;
+                var result = await response.Content.ReadAsStringAsync();
+                if (result.Length > 1)
+                {
+                    CrossSecureStorage.Current.SetValue(CrossSecureStorageKeys.ReachedTrails, result);
+                }
+                else
+                {
+                    var ach = new ReachedTrail();
+                    var jsone = JsonConvert.SerializeObject(ach);
+                    CrossSecureStorage.Current.SetValue(CrossSecureStorageKeys.ReachedTrails, jsone);
+                }
+            }
+            catch (Exception)
+            {
+                Debug.WriteLine("err");
+            }
         }
 
         public async Task GetReachedAchievements(string _login)
@@ -123,10 +137,15 @@ namespace MountainWalker.Core.Interfaces.Impl
             try
             {
                 var result = await response.Content.ReadAsStringAsync();
-                CrossSecureStorage.Current.SetValue(CrossSecureStorageKeys.Achievements, result);
-                if (result != null)
+                if (result.Length > 1)
                 {
-                    // ?
+                    CrossSecureStorage.Current.SetValue(CrossSecureStorageKeys.Achievements, result);
+                }
+                else
+                {
+                    var ach = new Achievement();
+                    var jsone = JsonConvert.SerializeObject(ach);
+                    CrossSecureStorage.Current.SetValue(CrossSecureStorageKeys.Achievements, jsone);
                 }
             }
             catch (Exception)

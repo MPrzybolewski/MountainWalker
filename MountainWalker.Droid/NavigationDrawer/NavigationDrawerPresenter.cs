@@ -11,8 +11,7 @@ using System.Runtime.CompilerServices;
 
 namespace MountainWalker.Droid.NavigationDrawer
 {
-    public class NavigationDrawerPresenter
-       : MvxAppCompatViewPresenter
+    public class NavigationDrawerPresenter : MvxAppCompatViewPresenter
     {
         private Fragment _currentFragment;
 
@@ -96,8 +95,8 @@ namespace MountainWalker.Droid.NavigationDrawer
 
             var fragmentTransaction = CurrentFragmentManager.BeginTransaction();
             var fragment = fragmentInfo.FragmentInstance;
+
             fragment.ViewModel = fragmentInfo.ViewModelInstance;
-			//fragmentTransaction.AddToBackStack(fragmentInfo.JavaFragmentName);
 
             if (CurrentFragmentManager.FindFragmentByTag(fragmentInfo.JavaFragmentName) != null)
             {

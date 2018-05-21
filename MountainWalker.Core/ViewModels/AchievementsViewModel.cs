@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Threading.Tasks;
 using MountainWalker.Core.Interfaces;
 using MountainWalker.Core.Models;
 using MvvmCross.Core.ViewModels;
@@ -12,8 +13,8 @@ namespace MountainWalker.Core.ViewModels
     {
         private readonly IWebAPIService _webService;
 
-        private List<Achievement> _items;
-        public List<Achievement> Items
+        private MvxObservableCollection<Achievement> _items;
+        public MvxObservableCollection<Achievement> Items
         {
             get { return _items; }
             set { _items = value; RaisePropertyChanged(() => Items); }
@@ -23,7 +24,7 @@ namespace MountainWalker.Core.ViewModels
         {
             _webService = webService;
             var id = 1;
-            Items = new List<Achievement>()
+            Items = new MvxObservableCollection<Achievement>
             {
                 new Achievement(id++, "Giewont"),
                 new Achievement(id++, "Kasprowy wierch"),
@@ -38,6 +39,12 @@ namespace MountainWalker.Core.ViewModels
                 new Achievement(id++, "Gęsia Szyja")
             };
             SetAchievements();
+
+            Task.Run(async () =>
+            {
+                await Task.Delay(10000);
+                Items[9].IsReached = true;
+            });
         }
 
         private void SetAchievements()
@@ -45,17 +52,21 @@ namespace MountainWalker.Core.ViewModels
             var tops = CrossSecureStorage.Current.GetValue(CrossSecureStorageKeys.Achievements);
             var achievements = JsonConvert.DeserializeObject<List<Achievement>>(tops);
 
-            foreach(var ach in achievements)
-            {
-                foreach(var item in Items)
+            if (achievements.Count == 0)
+                Items = new MvxObservableCollection<Achievement>();
+
+            else
+                foreach(var ach in achievements)
                 {
-                    if (item.Id == ach.Id)
+                    foreach(var item in Items)
                     {
-                        item.IsReached = true;
-                        item.Date = ach.Date;
+                        if (item.Id == ach.Id)
+                        {
+                            item.IsReached = true;
+                            item.Date = ach.Date;
+                        }
                     }
                 }
-            }
         }
     }
 }

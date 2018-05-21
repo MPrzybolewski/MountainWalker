@@ -29,14 +29,15 @@ namespace MountainWalker.Core.Services
             Points.Add(new Point(54.394121, 18.569394, "Ygrek")); //Ygrek <3
             Points.Add(new Point(54.034417, 19.033257, "Malbork")); //Malbork
 
-            //Points.Add(new Point(54.090550, 18.790999, "Misiu")); //xvoxin house
+            Points.Add(new Point(54.090550, 18.790999, "Misiu")); //xvoxin house
             Points.Add(new Point(54.416570, 18.594687, "Lecha Kaczyńskiego xd"));
             Points.Add(new Point(54.493148, 18.539386, "Jit Solution"));
-            Points.Add(new Point(49.2681913, 19.9795644, "Start na Kasprowy Wierch"));
-            Points.Add(new Point(49.232748, 19.982517, "Kolejka Linowa"));
-            Points.Add(new Point(49.26898809999999, 19.9814669));
-            Points.Add(new Point(49.25490910000001, 20.0032872, "Przełęcz między Kopami"));
-            Points.Add(new Point(49.244899,20.006396, "Królowe Rówieńki"));
+
+            Points.Add(new Point(49.2681913, 19.9795644, "Start na Kasprowy Wierch")); // 49.26819, 19.97956
+            Points.Add(new Point(49.232748, 19.982517, "Kolejka Linowa")); // 49,23274, 19,98251
+            Points.Add(new Point(49.26898809999999, 19.9814669)); //49,26899, 19,98147
+            Points.Add(new Point(49.25490910000001, 20.0032872, "Przełęcz między Kopami")); //49,25491, 20,00329
+            Points.Add(new Point(49.244899,20.006396, "Królowe Rówieńki")); //49,24491, 20,00639
             Points.Add(new Point(49.2440323, 20.0061047));
             Points.Add(new Point(49.2414482, 20.001753));
             Points.Add(new Point(49.237148, 19.996585));
@@ -44,11 +45,11 @@ namespace MountainWalker.Core.Services
 
         private void CreateConnections()
         {
-            int id = 0;
+            int id = 1;
             //////////////////////// Test Trail ////////////////////////
             Trails.Add(new Trail());
             Trails[0].Color = "blue";
-            Trails[0].Id = id++;
+            Trails[0].Id = 190;
             Trails[0].Description = "Legendarna droga z SKM na UG";
             Trails[0].Name = "Dolina Alchemii";
             Trails[0].TimeUp = 5;
@@ -78,7 +79,7 @@ namespace MountainWalker.Core.Services
 
             Trails.Add(new Trail());
             Trails[1].Color = "red";
-            Trails[1].Id = id++;
+            Trails[1].Id = 191;
             Trails[1].Description = "Co poniedziałek biedni studenci podróżują w to miejsce w poszukiwaniu jedzienia";
             Trails[1].Name = "Burgerogrzmoty KFC";
             Trails[1].TimeUp = 5;
@@ -99,7 +100,7 @@ namespace MountainWalker.Core.Services
 
             Trails.Add(new Trail());
             Trails[2].Color = "green";
-            Trails[2].Id = id++;
+            Trails[2].Id = 192;
             Trails[2].Description = "Po długiej i bolesnej pracy nad projektami, biedni studenci udają się tutaj na piwko";
             Trails[2].Name = "Piwne Oko";
             Trails[2].TimeUp = 5;

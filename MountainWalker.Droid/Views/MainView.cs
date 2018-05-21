@@ -44,9 +44,7 @@ namespace MountainWalker.Droid.Views
             {
                 ViewModel.ShowMenu();
             }
-
         }
-
 
         public override bool OnOptionsItemSelected(IMenuItem item)
         {
@@ -99,6 +97,12 @@ namespace MountainWalker.Droid.Views
         public override void OnRestoreInstanceState(Bundle savedInstanceState, PersistableBundle persistentState)
         {
             base.OnRestoreInstanceState(savedInstanceState, persistentState);
+        }
+
+        protected override void OnDestroy()
+        {   
+            base.OnDestroy();
+            Finish();
         }
     }
 }
