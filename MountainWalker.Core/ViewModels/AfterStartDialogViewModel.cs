@@ -70,5 +70,10 @@ namespace MountainWalker.Core.ViewModels
         {
             _visible.Raise(false);
         }
+
+		public void Close()
+        {
+            Close(this);
+        }
     }
 }

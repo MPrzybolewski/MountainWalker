@@ -11,7 +11,9 @@ using MountainWalker.Core.ViewModels;
 using MountainWalker.Touch.Bindings;
 using MountainWalker.Touch.Models;
 using MvvmCross.Binding.BindingContext;
+using MvvmCross.Core.ViewModels;
 using MvvmCross.iOS.Support.XamarinSidebar;
+using MvvmCross.Platform.Core;
 using Plugin.Geolocator;
 using Plugin.Geolocator.Abstractions;
 using UIKit;
@@ -21,53 +23,88 @@ namespace MountainWalker.Touch.Views
     public partial class HomeView : BaseViewController<HomeViewModel>
     {
 		MapView _mapView;
-        
+		bool _isMapInitalized;
+		CGRect frameForMap;
+
+		private IMvxInteraction<Point> _interaction;
+        public IMvxInteraction<Point> Interaction
+        {
+            get => _interaction;
+            set
+            {
+                if (_interaction != null)
+                    _interaction.Requested -= ChangeLocationCameraHandler;
+
+                _interaction = value;
+                _interaction.Requested += ChangeLocationCameraHandler;
+            }
+        }
+
+
         public override void ViewDidLoad()
         {
-            base.ViewDidLoad();
+            base.ViewDidLoad();  
+			var set = this.CreateBindingSet<HomeView, HomeViewModel>();
+            set.Bind(StartButton).To(vm => vm.OpenMainDialogCommand);
+			set.Bind(StartButton).For("Title").To(vm => vm.ButtonText).TwoWay();
+			set.Bind(PointsLabel).To(vm => vm.PointsInfoText);
+			set.Bind(TimeLabel).To(vm => vm.TimeInfoText).TwoWay();
+			set.Bind(this).For(v => v.Interaction).To(viewModel => viewModel.Interaction).TwoWay();
+            set.Apply();
 
 
         }
+
+		public override void ViewWillTransitionToSize(CGSize toSize, IUIViewControllerTransitionCoordinator coordinator)
+		{
+			base.ViewWillTransitionToSize(toSize, coordinator);
+			//frameForMap = MyMap.Frame;
+			//_mapView.Frame = new CGRect(0, 0, frameForMap.Width, frameForMap.Height);
+		}
 
 		public override void ViewDidLayoutSubviews()
 		{
-			base.ViewDidLayoutSubviews();
-			this.View.AutoresizingMask = UIViewAutoresizing.FlexibleWidth | UIViewAutoresizing.FlexibleHeight;
-            MyMap.AutoresizingMask = UIViewAutoresizing.FlexibleWidth | UIViewAutoresizing.FlexibleHeight;
-            var viewModel = this.ViewModel;
-            var frameForMap = MyMap.Frame;
+		    base.ViewDidLayoutSubviews();
+			var viewModel = this.ViewModel;
 
-            var camera = new CameraPosition();
-            ////_mapView = MapView.FromCamera(MyMap.Bounds, camera);
-            //_mapView = new MapView(MyMap.Bounds);
-            _mapView = new MapView(new CGRect(0, 0, frameForMap.Width, frameForMap.Height));
-            _mapView.MyLocationEnabled = true;
-            _mapView.Settings.MyLocationButton = true;
+			frameForMap = MyMap.Frame;
+            if(!_isMapInitalized)
+			{
+				_isMapInitalized = true;
+                _mapView = new MapView(new CGRect(0, 0, frameForMap.Width, frameForMap.Height));
+                _mapView.MyLocationEnabled = true;
+                _mapView.Settings.MyLocationButton = true;
 
-
-            //_mapView.Center = this.MyMap.Center;
-            //_mapView.Frame = this.MyMap.Frame;
-            //_mapView.Bounds = this.MyMap.Bounds;
-            this.MyMap.AddSubview(_mapView);
+                this.MyMap.AddSubview(_mapView);
 
 
-            CreatePointsAndTrails(viewModel.Points, viewModel.Trails);
-            Task.Run(async () =>
-            {
-                await GetCurrentLocation();
-            });
-            //var set = this.CreateBindingSet<HomeView, HomeViewModel>();
-            //set.Bind(_mapView).For(TrailDialogBinding.BindingName).To(vm => vm.OpenTrailDialogCommand);
-            //set.Apply();
+                CreatePointsAndTrails(viewModel.Points, viewModel.Trails);
+                Task.Run(async () =>
+                {
+                    await GetCurrentLocation();
+                });	
+			}
+            if(_mapView != null)
+			{
+				_mapView.Frame = new CGRect(0, 0, frameForMap.Width, frameForMap.Height);
+			}
+
+				
 		}
 
 
-		public override void DidReceiveMemoryWarning()
+		private void ChangeLocationCameraHandler(object sender, MvxValueEventArgs<Point> loc)
         {
-            base.DidReceiveMemoryWarning();
-            // Release any cached data, images, etc that aren't in use.
+            SetCurrentLocation(loc.Value);
         }
-        
+
+		private void SetCurrentLocation(Point location)
+        {
+            
+			var camera = CameraPosition.FromCamera(location.Latitude, location.Longitude, 17);
+			var cameraUpdate = CameraUpdate.SetCamera(camera);
+            _mapView.MoveCamera(cameraUpdate);
+        }
 
 		public async Task<Position> GetCurrentLocation()
         {

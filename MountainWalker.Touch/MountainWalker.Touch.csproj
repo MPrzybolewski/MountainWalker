@@ -171,6 +171,8 @@
     <ImageAsset Include="Assets.xcassets\Contents.json">
       <Visible>false</Visible>
     </ImageAsset>
+    <ImageAsset Include="Resources\Assets.xcassets\ikona.imageset\Contents.json" />
+    <ImageAsset Include="Resources\Assets.xcassets\ikona.imageset\ikona.png" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Resources\" />
@@ -181,6 +183,8 @@
     <InterfaceDefinition Include="LaunchScreen.storyboard" />
     <InterfaceDefinition Include="Main.storyboard" />
     <InterfaceDefinition Include="Views\HomeView.xib" />
+    <InterfaceDefinition Include="Views\DialogView.xib" />
+    <InterfaceDefinition Include="Views\AfterStartDialog.xib" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Info.plist" />
@@ -209,6 +213,14 @@
     <Compile Include="Views\HomeView.cs" />
     <Compile Include="Views\HomeView.designer.cs">
       <DependentUpon>HomeView.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Views\DialogView.cs" />
+    <Compile Include="Views\DialogView.designer.cs">
+      <DependentUpon>DialogView.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Views\AfterStartDialog.cs" />
+    <Compile Include="Views\AfterStartDialog.designer.cs">
+      <DependentUpon>AfterStartDialog.cs</DependentUpon>
     </Compile>
   </ItemGroup>
   <ItemGroup>

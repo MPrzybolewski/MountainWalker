@@ -11,6 +11,9 @@
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="HomeView">
             <connections>
                 <outlet property="MyMap" destination="JRT-qO-LDi" id="name-outlet-JRT-qO-LDi"/>
+                <outlet property="PointsLabel" destination="fE7-Vs-YzI" id="name-outlet-fE7-Vs-YzI"/>
+                <outlet property="StartButton" destination="sOu-0e-xP6" id="name-outlet-sOu-0e-xP6"/>
+                <outlet property="TimeLabel" destination="Gs3-bM-Lgc" id="name-outlet-Gs3-bM-Lgc"/>
                 <outlet property="view" destination="2" id="vBr-Up-NeM"/>
             </connections>
         </placeholder>
@@ -44,9 +47,12 @@
                             <nil key="highlightedColor"/>
                         </label>
                         <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="sOu-0e-xP6">
-                            <rect key="frame" x="244" y="0.0" width="56" height="100"/>
+                            <rect key="frame" x="270" y="0.0" width="30" height="100"/>
+                            <constraints>
+                                <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="1" id="UNN-h8-2pT"/>
+                            </constraints>
                             <fontDescription key="fontDescription" type="system" pointSize="27"/>
-                            <state key="normal" title="Start">
+                            <state key="normal">
                                 <color key="titleColor" red="0.13725490200000001" green="0.13725490200000001" blue="0.13725490200000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                             </state>
                         </button>
