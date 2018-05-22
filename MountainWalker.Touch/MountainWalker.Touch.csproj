@@ -67,7 +67,7 @@
     <DefineConstants>DEBUG;ENABLE_TEST_CLOUD;</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
-    <CodesignKey>iPhone Developer: Marek Przybolewski (KVFF7TXQH7)</CodesignKey>
+    <CodesignKey>iPhone Developer</CodesignKey>
     <DeviceSpecificBuild>true</DeviceSpecificBuild>
     <MtouchDebug>true</MtouchDebug>
     <MtouchNoSymbolStrip>true</MtouchNoSymbolStrip>
@@ -177,15 +177,20 @@
   <ItemGroup>
     <Folder Include="Resources\" />
     <Folder Include="Services\" />
+    <Folder Include="Resources\Images\" />
     <Folder Include="Models\" />
   </ItemGroup>
   <ItemGroup>
     <InterfaceDefinition Include="LaunchScreen.storyboard" />
     <InterfaceDefinition Include="Main.storyboard" />
+
     <InterfaceDefinition Include="Views\HomeView.xib" />
     <InterfaceDefinition Include="Views\DialogView.xib" />
     <InterfaceDefinition Include="Views\AfterStartDialog.xib" />
     <InterfaceDefinition Include="Views\TrailDialogView.xib" />
+    <InterfaceDefinition Include="Views\SignInViewController.xib" />
+    <InterfaceDefinition Include="Views\StartViewController.xib" />
+    <InterfaceDefinition Include="Views\RegisterViewController.xib" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Info.plist" />
@@ -205,8 +210,22 @@
     <Compile Include="DebugTrace.cs" />
     <Compile Include="Views\BaseViewController.cs" />
     <Compile Include="Services\TouchDialogService.cs" />
+
     <Compile Include="Views\HomeViewCode.cs" />
     <Compile Include="Views\MenuView.cs" />
+    <Compile Include="Services\IOSDialogService.cs" />
+    <Compile Include="Views\SignInViewController.cs" />
+    <Compile Include="Views\SignInViewController.designer.cs">
+      <DependentUpon>SignInViewController.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Views\StartViewController.cs" />
+    <Compile Include="Views\StartViewController.designer.cs">
+      <DependentUpon>StartViewController.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Views\RegisterViewController.cs" />
+    <Compile Include="Views\RegisterViewController.designer.cs">
+      <DependentUpon>RegisterViewController.cs</DependentUpon>
+    </Compile>
     <Compile Include="Models\PolylineWithId.cs" />
     <Compile Include="Bindings\TrailDialogBinding.cs" />
     <Compile Include="Views\HomeView.cs" />
@@ -231,6 +250,13 @@
       <Project>{AFBD23E5-3C7F-43DD-B5D2-6B09ABB155F7}</Project>
       <Name>MountainWalker.Core</Name>
     </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <BundleResource Include="Resources\Images\mw.png" />
+    <BundleResource Include="Resources\Images\loginbg.jpg" />
+    <BundleResource Include="Resources\Images\rounded_button.xml" />
+    <BundleResource Include="Resources\Images\gradientbg.png" />
+    <BundleResource Include="Resources\Images\headerMenu.jpg" />
   </ItemGroup>
   <Import Project="$(MSBuildExtensionsPath)\Xamarin\iOS\Xamarin.iOS.CSharp.targets" />
   <Import Project="..\packages\Xamarin.Build.Download.0.4.7\build\Xamarin.Build.Download.targets" Condition="Exists('..\packages\Xamarin.Build.Download.0.4.7\build\Xamarin.Build.Download.targets')" />

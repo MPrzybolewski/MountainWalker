@@ -1,6 +1,7 @@
 ﻿using System;
 using MvvmCross.Core.Navigation;
 using MvvmCross.Core.ViewModels;
+using Plugin.SecureStorage;
 
 namespace MountainWalker.Core.ViewModels
 {
@@ -72,6 +73,7 @@ namespace MountainWalker.Core.ViewModels
 
         private void ShowSignInExecuted()
         {
+            CrossSecureStorage.Current.DeleteKey("Session");
             _navigationService.Navigate<StartViewModel>();
         }
 

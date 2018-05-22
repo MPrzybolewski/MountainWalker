@@ -55,7 +55,6 @@ namespace MountainWalker.Touch.Bindings
         {
 
             string test = poly.Overlay.Description;
-           // string test1 = poly.Overlay.;
                 int id = 1;
             await _command.ExecuteAsync(id);
         }

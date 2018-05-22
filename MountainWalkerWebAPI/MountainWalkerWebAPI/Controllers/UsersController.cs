@@ -9,11 +9,13 @@ using MountainWalkerWebAPI.Models;
 using System.Collections;
 using System.Security.Cryptography;
 using System.Text;
+using Newtonsoft.Json;
+using System.Diagnostics;
 
 namespace MountainWalkerWebAPI.Controllers
 {
     [Produces("application/json")]
-    [Route("api/[controller]")]
+    [Route("api/[controller]/[action]")]
     public class UsersController : Controller
     {
         private readonly UserContext _context;
@@ -24,7 +26,7 @@ namespace MountainWalkerWebAPI.Controllers
         }
 
         //Return all users
-        // GET: api/Users
+        // GET: api/Users/GetUsers
         [HttpGet]
         public IEnumerable<User> GetUsers()
         {
@@ -32,26 +34,26 @@ namespace MountainWalkerWebAPI.Controllers
         }
 
         //This method returns true when login and password match
-        // GET: api/Users/login?password=password
-        [HttpGet("{login}")]
-        public string CheckLogin(string login, string password)
+        // POST: api/Users/CheckLogin
+        [HttpPost]
+        public bool CheckLogin([FromBody] User userCheck)
         {
             var users = _context.Users;
-            password = CalculateHash(password);
-            foreach (var item in users)
+            userCheck.Password = CalculateHash(userCheck.Password);
+            foreach (User user in _context.Users)
             {
-                if (item.Login.Equals(login))
-                {                   
-                    if(CalculateHash(item.Password).Equals(CalculateHash(password)))
+                if (user.Login.Equals(userCheck.Login))
+                {
+                    if (user.Password.Equals(userCheck.Password))
                     {
-                        return "true";
+                        return true;
                     }
                 }
             }
-            return "false";
+            return false;
         }
 
-        //Updates user
+        //Updates data
         // PUT: api/Users
         [HttpPut]
         public async Task<string> PutUser([FromBody] User user)
@@ -60,13 +62,6 @@ namespace MountainWalkerWebAPI.Controllers
             {
                 return "false";
             }
-
-            if (user.Id != user.Id)
-            {
-                return "false";
-            }
-
-            user.Password = CalculateHash(user.Password);
 
             _context.Entry(user).State = EntityState.Modified;
 
@@ -77,7 +72,7 @@ namespace MountainWalkerWebAPI.Controllers
             }
             catch (DbUpdateConcurrencyException)
             {
-                int temp = user.Id ?? default(int);
+                int temp = user.UserID ?? default(int);
                 if (!UserExists(temp))
                 {
                     return "user not exist";
@@ -93,33 +88,49 @@ namespace MountainWalkerWebAPI.Controllers
         //Add new user
         // POST: api/Users
         [HttpPost]
-        public async Task<string> PostUser([FromBody] User user)
+        public async Task<bool[]> PostUser([FromBody] User user)
         {
-            if (!ModelState.IsValid)
-            {
-                return "false";
-            }
+            bool[] result = new bool[6];
 
-            user.Id = null;
+            //if (!ModelState.IsValid)
+            //{
+            //    return false;
+            //}
 
-            if(!CheckData(user))
+            user.UserID = null;
+            result = CheckData(user);
+            if (!result[0])
             {
-                return "false";
+                return result;
             }
 
             user.Password = CalculateHash(user.Password);
             _context.Users.Add(user);
 
-
             try
             {
                 await _context.SaveChangesAsync();
-                return "true";
-            } catch (Exception e)
-            {
-                return e.Message.ToString();
+                return result;
             }
-            
+            catch (Exception e)
+            {
+                return result;
+            }
+
+        }
+
+        // POST api/Users/Username
+        [HttpPost]
+        public async Task<IActionResult> Username([FromBody] string login)
+        {
+            foreach (User user in _context.Users)
+            {
+                if (user.Login.Equals(login))
+                {
+                    return new OkObjectResult(JsonConvert.SerializeObject(user));
+                }
+            }
+            return new OkObjectResult(JsonConvert.SerializeObject("false"));
         }
 
         // DELETE: api/Users/5
@@ -131,7 +142,7 @@ namespace MountainWalkerWebAPI.Controllers
                 return BadRequest(ModelState);
             }
 
-            var user = await _context.Users.SingleOrDefaultAsync(m => m.Id == id);
+            var user = await _context.Users.SingleOrDefaultAsync(m => m.UserID == id);
             if (user == null)
             {
                 return NotFound();
@@ -145,7 +156,7 @@ namespace MountainWalkerWebAPI.Controllers
 
         private bool UserExists(int id)
         {
-            return _context.Users.Any(e => e.Id == id);
+            return _context.Users.Any(e => e.UserID == id);
         }
 
         bool IsValidEmail(string email)
@@ -161,18 +172,40 @@ namespace MountainWalkerWebAPI.Controllers
             }
         }
 
-        private bool CheckData(User user)
+        private bool[] CheckData(User user)
         {
-            if ((user.Login.Length<3) || (user.Password.Length<6) || (user.Email.Length<6) || (user.Name.Length<3) || (user.Surname.Length<3))
+            bool[] result = new bool[6];
+            for (int i = 0; i < 6; i++)
             {
-                return false;
+                result[i] = true;
             }
 
+            if(user.Login.Length < 3)
+            {
+                result[0] = false;
+                result[3] = false;
+            }
+            if(user.Name.Length < 2)
+            {
+                result[0] = false;
+                result[1] = false;
+            }
+            if(user.Surname.Length < 2)
+            {
+                result[0] = false;
+                result[2] = false;
+            }
+            if(user.Password.Length < 6)
+            {
+                result[0] = false;
+                result[4] = false;
+            }
             if (!IsValidEmail(user.Email))
             {
-                return false;
+                result[0] = false;
+                result[5] = false;
             }
-            return true;
+            return result;
         }
 
         private string CalculateHash(string password)
