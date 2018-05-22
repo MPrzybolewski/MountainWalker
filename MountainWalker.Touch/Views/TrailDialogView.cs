@@ -36,8 +36,6 @@ namespace MountainWalker.Touch.Views
             {
                 ViewModel.Close();
             }
-                
-            
         }
 
               
@@ -54,6 +52,7 @@ namespace MountainWalker.Touch.Views
 			interact.Bind(DialogTitle).To(vm => vm.TrailName);
 			interact.Bind(DialogText).To(vm => vm.TrailDescription);
 			interact.Bind(ReadMoreButton).To(vm => vm.ReadMoreCommand);
+			interact.Bind(CancelButton).To(vm => vm.DismissDialogCommand);
             interact.Apply();
             
         }      

@@ -19,6 +19,7 @@ namespace MountainWalker.Core.ViewModels
         private IMvxMessenger _messenger;
 
         public IMvxCommand ReadMoreCommand { get; }
+		public IMvxCommand DismissDialogCommand { get; }
 
         private string _trailName = "";
         public string TrailName
@@ -46,6 +47,7 @@ namespace MountainWalker.Core.ViewModels
             TrailName = _trailService.Trails[_trailId].Name;
             TrailDescription = _trailService.Trails[_trailId].Description;
             ReadMoreCommand = new MvxCommand(ReadMore);
+			DismissDialogCommand = new MvxCommand(DismissDialog);
         }
 
         private void ReadMore()
@@ -54,6 +56,11 @@ namespace MountainWalker.Core.ViewModels
             _navigationService.Navigate<TrailDetailsViewModel>();
             _visible.Raise(false);
             _messenger.Publish(message);
+        }
+
+		private void DismissDialog()
+        {
+            _visible.Raise(false);
         }
 
 		public void Close()

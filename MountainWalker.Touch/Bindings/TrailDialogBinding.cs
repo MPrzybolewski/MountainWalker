@@ -1,5 +1,6 @@
 ﻿using System;
 using Google.Maps;
+using MountainWalker.Touch.Models;
 using MvvmCross.Binding;
 using MvvmCross.Binding.Bindings.Target;
 using MvvmCross.Core.ViewModels;
@@ -53,10 +54,8 @@ namespace MountainWalker.Touch.Bindings
 
         private async void HandlePolylineClick(object sender, GMSOverlayEventEventArgs poly)
         {
-
-            string test = poly.Overlay.Description;
-                int id = 1;
-            await _command.ExecuteAsync(id);
+			PolylineWithId clickedPolyline = poly.Overlay as PolylineWithId;
+			await _command.ExecuteAsync(clickedPolyline.Id);
         }
     }
 }

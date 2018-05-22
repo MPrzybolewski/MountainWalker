@@ -25,6 +25,7 @@ namespace MountainWalker.Touch.Views
 		MapView _mapView;
 		bool _isMapInitalized;
 		CGRect frameForMap;
+		bool _isMapCreated;
 
 		private IMvxInteraction<Point> _interaction;
         public IMvxInteraction<Point> Interaction
@@ -44,12 +45,13 @@ namespace MountainWalker.Touch.Views
         public override void ViewDidLoad()
         {
             base.ViewDidLoad();  
+
 			var set = this.CreateBindingSet<HomeView, HomeViewModel>();
             set.Bind(StartButton).To(vm => vm.OpenMainDialogCommand);
 			set.Bind(StartButton).For("Title").To(vm => vm.ButtonText).TwoWay();
 			set.Bind(PointsLabel).To(vm => vm.PointsInfoText);
 			set.Bind(TimeLabel).To(vm => vm.TimeInfoText).TwoWay();
-			set.Bind(this).For(v => v.Interaction).To(viewModel => viewModel.Interaction).TwoWay();
+			set.Bind(this).For(v => v.Interaction).To(vm => vm.Interaction).TwoWay();
 
 
 			set.Bind(_mapView).For(TrailDialogBinding.BindingName).To(vm => vm.OpenTrailDialogCommand);         
@@ -70,31 +72,38 @@ namespace MountainWalker.Touch.Views
 		public override void ViewDidLayoutSubviews()
 		{
 		    base.ViewDidLayoutSubviews();
-			var viewModel = this.ViewModel;
 
-			frameForMap = MyMap.Frame;
-            if(!_isMapInitalized)
+            if(_mapView == null)
 			{
-				_isMapInitalized = true;
-                _mapView = new MapView(new CGRect(0, 0, frameForMap.Width, frameForMap.Height));
-                _mapView.MyLocationEnabled = true;
-                _mapView.Settings.MyLocationButton = true;
-
-                this.MyMap.AddSubview(_mapView);
-
-
-                CreatePointsAndTrails(viewModel.Points, viewModel.Trails);
-                Task.Run(async () =>
+				var viewModel = this.ViewModel;
+				frameForMap = MyMap.Frame;
+                if (!_isMapInitalized)
                 {
-                    await GetCurrentLocation();
-                });	
-			}
-            if(_mapView != null)
-			{
-				_mapView.Frame = new CGRect(0, 0, frameForMap.Width, frameForMap.Height);
+                    _isMapInitalized = true;
+                    _mapView = new MapView(new CGRect(0, 0, frameForMap.Width, frameForMap.Height));
+                    _mapView.MyLocationEnabled = true;
+                    _mapView.Settings.MyLocationButton = true;
+
+                    this.MyMap.AddSubview(_mapView);
+
+
+                    CreatePointsAndTrails(viewModel.Points, viewModel.Trails);
+                    Task.Run(async () =>
+                    {
+                        await GetCurrentLocation();
+                    });
+                }
+                if (_mapView != null)
+                {
+                    _mapView.Frame = new CGRect(0, 0, frameForMap.Width, frameForMap.Height);
+                }
+
+                var set = this.CreateBindingSet<HomeView, HomeViewModel>();
+                set.Bind(_mapView).For(TrailDialogBinding.BindingName).To(vm => vm.OpenTrailDialogCommand);
+                set.Apply();
 			}
 
-				
+           
 		}
 
 
