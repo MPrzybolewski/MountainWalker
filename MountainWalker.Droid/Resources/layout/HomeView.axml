@@ -6,48 +6,84 @@
     android:orientation="vertical">
     <include
         layout="@layout/toolbar_actionbar" />
-    <RelativeLayout
-        android:layout_width="wrap_content"
+    <fragment
+        android:id="@+id/map"
+        android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:orientation="vertical"
-        android:background="#A0FFFFFF">
-        <fragment
-            android:id="@+id/map"
-            android:layout_width="match_parent"
+        class="com.google.android.gms.maps.MapFragment"
+        android:layout_weight="0.9" />
+    <LinearLayout
+        android:id="@+id/travelPanel"
+        android:layout_width="match_parent"
+        android:layout_height="80dp"
+        android:orientation="horizontal"
+        android:background="?attr/colorPrimary"
+        android:padding="10dp">
+        <LinearLayout
+            android:layout_width="wrap_content"
             android:layout_height="match_parent"
-            class="com.google.android.gms.maps.MapFragment"
-            android:layout_marginBottom="0.0dp">
-            <Button
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_gravity="center_horizontal"
-                android:background="@drawable/start_button_states"
-                android:layout_marginTop="10dp"
-                android:textSize="16dp"
-                android:textColor="@color/white"
-                local:MvxBind="Click OpenMainDialogCommand; Text ButtonText" />
-        </fragment>
-        <RelativeLayout
-            android:id="@+id/travelPanel"
-            android:layout_width="match_parent"
-            android:layout_height="50dp"
-            android:orientation="vertical"
-            android:background="#ff2196f3"
-            android:layout_alignParentBottom="true"
-            local:MvxBind="Visibility TravelPanelVisibility">
-            <TextView
-                android:id="@+id/timeInfo"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="czas"
-                local:MvxBind="Text TimeInfoText" />
-            <TextView
-                android:id="@+id/pointsInfo"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="punkty"
-                android:layout_below="@id/timeInfo"
-                local:MvxBind="Text PointsInfoText" />
-        </RelativeLayout>
-    </RelativeLayout>
+            android:orientation="horizontal"
+            android:layout_weight="0.6">
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:orientation="vertical"
+                android:layout_weight="0.5"
+                android:gravity="center_horizontal">
+                <TextView
+                    android:id="@+id/timeInfo"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textColor="@color/white"
+                    android:textStyle="bold"
+                    android:text="Czas" />
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="10dp"
+                    android:textColor="@color/white"
+                    android:text="czas"
+                    local:MvxBind="Text TimeInfoText" />
+            </LinearLayout>
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:orientation="vertical"
+                android:layout_weight="0.5"
+                android:gravity="center_horizontal">
+                <TextView
+                    android:id="@+id/timeInfo"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textColor="@color/white"
+                    android:textStyle="bold"
+                    android:text="Punkty" />
+                <TextView
+                    android:id="@+id/pointsInfo"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="10dp"
+                    android:text="punkty"
+                    android:textColor="@color/white"
+                    local:MvxBind="Text PointsInfoText" />
+            </LinearLayout>
+        </LinearLayout>
+        <View
+            android:layout_width="1dp"
+            android:layout_height="fill_parent"
+            android:layout_marginHorizontal="10dp"
+            android:background="#d1d1d1" />
+        <Button
+            android:layout_width="wrap_content"
+            android:layout_height="fill_parent"
+            android:background="@drawable/start_button_states"
+            android:layout_margin="10dp"
+            android:textSize="14dp"
+            android:textColor="@color/white"
+            android:layout_weight="0.1"
+            android:text="hehe"
+            local:MvxBind="Click OpenMainDialogCommand; Text ButtonText"
+            style="?android:attr/borderlessButtonStyle"
+            android:id="@+id/button1" />
+    </LinearLayout>
 </LinearLayout>

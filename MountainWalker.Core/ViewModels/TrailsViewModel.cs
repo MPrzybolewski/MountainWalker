@@ -33,7 +33,6 @@ namespace MountainWalker.Core.ViewModels
         }
 
         private List<Trail> _items;
-
         public List<Trail> Items
         {
             get { return _items; }
@@ -46,9 +45,7 @@ namespace MountainWalker.Core.ViewModels
             {
                 return new MvxCommand<Trail>(item =>
                 {
-                    var message = new TrailMessage(this, _trailService.Trails[item.Id]);
-                    //_locationService.TrailId = item.Id;
-                    Debug.WriteLine("TEST TEST {0}", item.Id);
+                    var message = new TrailMessage(this, _trailService.Trails[item.Id], true);
                     _navigationService.Navigate<TrailDetailsViewModel>();
                     _messenger.Publish(message);
                 });

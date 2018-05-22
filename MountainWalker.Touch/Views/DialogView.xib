@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="UTF-8"?>
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
 <document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="14109" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES">
     <device id="retina4_7" orientation="portrait">
         <adaptation id="fullscreen"/>
@@ -13,15 +13,17 @@
                 <outlet property="NearestPointButton" destination="bzu-NE-gij" id="name-outlet-bzu-NE-gij"/>
                 <outlet property="StartButton" destination="0vy-wC-sZy" id="name-outlet-0vy-wC-sZy"/>
                 <outlet property="view" destination="2" id="RRd-Eg-VrN"/>
+                <outlet property="DialogTitle" destination="KBA-4w-zhu" id="name-outlet-KBA-4w-zhu"/>
+                <outlet property="DialogText" destination="SdF-c4-bdo" id="name-outlet-SdF-c4-bdo"/>
             </connections>
         </placeholder>
         <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
         <view contentMode="scaleToFill" id="2">
-            <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+            <rect key="frame" x="0.0" y="0.0" width="540" height="620"/>
             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
             <subviews>
                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="KYO-fk-GeK">
-                    <rect key="frame" x="37.5" y="233.5" width="300" height="200"/>
+                    <rect key="frame" x="120" y="210" width="300" height="200"/>
                     <subviews>
                         <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="VmO-yh-NdQ">
                             <rect key="frame" x="0.0" y="150" width="300" height="50"/>
@@ -77,7 +79,7 @@
                     </constraints>
                 </view>
                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" usesAttributedText="YES" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="KBA-4w-zhu">
-                    <rect key="frame" x="37.5" y="233.5" width="300" height="50"/>
+                    <rect key="frame" x="120" y="210" width="300" height="50"/>
                     <color key="backgroundColor" red="0.0" green="0.47843137250000001" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                     <constraints>
                         <constraint firstAttribute="width" constant="300" id="S4i-L4-quS"/>

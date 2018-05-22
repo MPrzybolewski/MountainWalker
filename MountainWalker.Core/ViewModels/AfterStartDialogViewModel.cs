@@ -1,8 +1,6 @@
 ﻿using System;
 using System.Diagnostics;
 using MountainWalker.Core.Interfaces;
-using MountainWalker.Core.Models;
-using MvvmCross.Core.Navigation;
 using MvvmCross.Core.ViewModels;
 
 namespace MountainWalker.Core.ViewModels

@@ -56,6 +56,8 @@ namespace MountainWalker.Touch.Views
             interact.Bind(this).For(v => v.Interaction).To(vm => vm.Interaction);
 			interact.Bind(StartButton).To(vm => vm.TrailStartCommand);
 			interact.Bind(NearestPointButton).To(vm => vm.NearestPointCommand);
+			interact.Bind(DialogTitle).To(vm => vm.TrailTitle);
+			interact.Bind(DialogText).To(vm => vm.TrailInfo);         
             interact.Apply();
             
         }      

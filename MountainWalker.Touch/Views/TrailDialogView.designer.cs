@@ -11,9 +11,13 @@ using UIKit;
 
 namespace MountainWalker.Touch.Views
 {
-    [Register ("DialogView")]
-    partial class DialogView
+    [Register ("TrailDialogView")]
+    partial class TrailDialogView
     {
+        [Outlet]
+        [GeneratedCode ("iOS Designer", "1.0")]
+        UIKit.UIButton CancelButton { get; set; }
+
         [Outlet]
         [GeneratedCode ("iOS Designer", "1.0")]
         UIKit.UILabel DialogText { get; set; }
@@ -24,14 +28,15 @@ namespace MountainWalker.Touch.Views
 
         [Outlet]
         [GeneratedCode ("iOS Designer", "1.0")]
-        UIKit.UIButton NearestPointButton { get; set; }
-
-        [Outlet]
-        [GeneratedCode ("iOS Designer", "1.0")]
-        UIKit.UIButton StartButton { get; set; }
+        UIKit.UIButton ReadMoreButton { get; set; }
 
         void ReleaseDesignerOutlets ()
         {
+            if (CancelButton != null) {
+                CancelButton.Dispose ();
+                CancelButton = null;
+            }
+
             if (DialogText != null) {
                 DialogText.Dispose ();
                 DialogText = null;
@@ -42,14 +47,9 @@ namespace MountainWalker.Touch.Views
                 DialogTitle = null;
             }
 
-            if (NearestPointButton != null) {
-                NearestPointButton.Dispose ();
-                NearestPointButton = null;
-            }
-
-            if (StartButton != null) {
-                StartButton.Dispose ();
-                StartButton = null;
+            if (ReadMoreButton != null) {
+                ReadMoreButton.Dispose ();
+                ReadMoreButton = null;
             }
         }
     }

@@ -6,12 +6,14 @@ namespace MountainWalker.Core.Messages
 {
     public class TrailMessage : MvxMessage
     {
-        public TrailMessage(object sender, Trail trail)
+        public TrailMessage(object sender, Trail trail, bool fromMenu)
             : base(sender)
         {
             Trail = trail;
+            IsOpenedFromMenu = fromMenu;
         }
 
-        public Trail Trail { get; private set; }
+        public Trail Trail { get; }
+        public bool IsOpenedFromMenu { get; }
     }
 }

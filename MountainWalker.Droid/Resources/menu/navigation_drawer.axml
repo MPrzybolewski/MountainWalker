@@ -2,26 +2,29 @@
 <menu xmlns:android="http://schemas.android.com/apk/res/android"
 xmlns:local="http://schemas.android.com/apk/res-auto">
 
-    <group android:id="@+id/nav_items">
+    <!--<group android:id="@+id/nav_items">
         <item
             android:id="@+id/nav_home"
             android:title="Mapa" />        
-    </group>
+    </group>-->
 
     <item android:id="@+id/nav_menu">
         <menu>
+            <item
+                android:id="@+id/nav_home"
+                android:title="Mapa" />
             <item
                 android:id="@+id/nav_trails"
                 android:title="Szlaki"/>
             <item
                 android:id="@+id/nav_achievements"
-                android:title="Osiągnięcia"/>
+                android:title="Zdobyte szczyty"/>
+            <item
+                android:id="@+id/nav_history"
+                android:title="Przebyte wędrówki" />
             <item
                 android:id="@+id/nav_appDescription"
                 android:title="Jak to działa"/>
-            <item
-                android:id="@+id/nav_settings"
-                android:title="Język" />
           <item
                 android:id="@+id/nav_logout"
                 android:title="Wyloguj" />

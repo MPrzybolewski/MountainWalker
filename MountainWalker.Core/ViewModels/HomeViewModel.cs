@@ -131,7 +131,7 @@ namespace MountainWalker.Core.ViewModels
         {
             TravelPanelVisibility = message.TravelPanelVisibility;
             RunTravelPanelTimer();
-            PointsInfoText =  message.NumberOfReachedPoints.ToString();
+            PointsInfoText = "" + message.NumberOfReachedPoints;
         }
 
         private void OnStartButtonMessage(StartButtonMessage message)
@@ -145,7 +145,7 @@ namespace MountainWalker.Core.ViewModels
             {
                 await Task.Delay(1000);
                 _travelPanelService.SetTravelTime();
-                TimeInfoText =  _travelPanelService.TravelTime.ToString();
+                TimeInfoText = "" +  _travelPanelService.TravelTime;
             }
         }
 

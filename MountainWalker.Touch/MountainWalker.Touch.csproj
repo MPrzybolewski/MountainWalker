@@ -185,6 +185,7 @@
     <InterfaceDefinition Include="Views\HomeView.xib" />
     <InterfaceDefinition Include="Views\DialogView.xib" />
     <InterfaceDefinition Include="Views\AfterStartDialog.xib" />
+    <InterfaceDefinition Include="Views\TrailDialogView.xib" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Info.plist" />
@@ -206,10 +207,8 @@
     <Compile Include="Services\TouchDialogService.cs" />
     <Compile Include="Views\HomeViewCode.cs" />
     <Compile Include="Views\MenuView.cs" />
-    <Compile Include="Views\SettingsView.cs" />
     <Compile Include="Models\PolylineWithId.cs" />
     <Compile Include="Bindings\TrailDialogBinding.cs" />
-    <Compile Include="Views\TrialDialogView.cs" />
     <Compile Include="Views\HomeView.cs" />
     <Compile Include="Views\HomeView.designer.cs">
       <DependentUpon>HomeView.cs</DependentUpon>
@@ -221,6 +220,10 @@
     <Compile Include="Views\AfterStartDialog.cs" />
     <Compile Include="Views\AfterStartDialog.designer.cs">
       <DependentUpon>AfterStartDialog.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Views\TrailDialogView.cs" />
+    <Compile Include="Views\TrailDialogView.designer.cs">
+      <DependentUpon>TrailDialogView.cs</DependentUpon>
     </Compile>
   </ItemGroup>
   <ItemGroup>

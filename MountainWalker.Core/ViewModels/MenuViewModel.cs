@@ -8,6 +8,8 @@ namespace MountainWalker.Core.ViewModels
     {
         private readonly IMvxNavigationService _navigationService;
 
+        public string UserName { get; private set; } = "Mareczek Przybolewski";
+
         public MenuViewModel(IMvxNavigationService navigationService)
         {
             _navigationService = navigationService;
@@ -60,7 +62,7 @@ namespace MountainWalker.Core.ViewModels
 
         private void ShowSettingsExecuted()
         {
-            _navigationService.Navigate<SettingsViewModel>();
+            _navigationService.Navigate<ReachedTrailsViewModel>();
         }
 
         public IMvxCommand ShowSignInCommand

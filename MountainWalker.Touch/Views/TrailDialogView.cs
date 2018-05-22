@@ -6,7 +6,6 @@ using MvvmCross.iOS.Views.Presenters.Attributes;
 using MvvmCross.Platform.Core;
 using UIKit;
 
-
 namespace MountainWalker.Touch.Views
 {
 	[MvxModalPresentation(
@@ -14,8 +13,9 @@ namespace MountainWalker.Touch.Views
         ModalTransitionStyle = UIModalTransitionStyle.FlipHorizontal,
         WrapInNavigationController = false
     )]
-	public partial class AfterStartDialog : BaseViewController<AfterStartDialogViewModel>
+    public partial class TrailDialogView : BaseViewController<TrailDialogViewModel>
     {
+
 		private IMvxInteraction<bool> _visible;
         public IMvxInteraction<bool> Interaction
         {
@@ -36,24 +36,28 @@ namespace MountainWalker.Touch.Views
             {
                 ViewModel.Close();
             }
+                
+            
         }
 
               
         public override void ViewDidLoad()
         {
+            
             base.ViewDidLoad();
             View.BackgroundColor = UIColor.Black.ColorWithAlpha((nfloat)0.5);
             View.ExclusiveTouch = true;
             View.ReloadInputViews();
 
-			var interact = this.CreateBindingSet <AfterStartDialog, AfterStartDialogViewModel>();
+			var interact = this.CreateBindingSet<TrailDialogView, TrailDialogViewModel>();
             interact.Bind(this).For(v => v.Interaction).To(vm => vm.Interaction);
-            interact.Bind(TitleText).To(vm => vm.TrailTitle);
-            interact.Bind(DialogText).To(vm => vm.TimeInfo);
-			interact.Bind(StopButton).To(vm => vm.StopTravel);
-			interact.Bind(CancelButton).To(vm => vm.DontStopTravel);
+			interact.Bind(DialogTitle).To(vm => vm.TrailName);
+			interact.Bind(DialogText).To(vm => vm.TrailDescription);
+			interact.Bind(ReadMoreButton).To(vm => vm.ReadMoreCommand);
             interact.Apply();
+            
         }      
+    
     }
 }
 

@@ -39,6 +39,7 @@ namespace MountainWalker.Droid.Fragments
             _navigationView.SetNavigationItemSelectedListener(this);
             _navigationView.Menu.FindItem(Resource.Id.nav_home).SetChecked(true);
 
+
             return view;
         }
 
@@ -80,7 +81,7 @@ namespace MountainWalker.Droid.Fragments
                 case Resource.Id.nav_appDescription:
                     ViewModel.ShowAppDescriptionCommand.Execute();
                     break;
-                case Resource.Id.nav_settings:
+                case Resource.Id.nav_history:
                     ViewModel.ShowSettingCommand.Execute();
                     break;
                 case Resource.Id.nav_logout:

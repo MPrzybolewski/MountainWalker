@@ -50,7 +50,12 @@ namespace MountainWalker.Touch.Views
 			set.Bind(PointsLabel).To(vm => vm.PointsInfoText);
 			set.Bind(TimeLabel).To(vm => vm.TimeInfoText).TwoWay();
 			set.Bind(this).For(v => v.Interaction).To(viewModel => viewModel.Interaction).TwoWay();
+
+
+			set.Bind(_mapView).For(TrailDialogBinding.BindingName).To(vm => vm.OpenTrailDialogCommand);         
             set.Apply();
+
+
 
 
         }

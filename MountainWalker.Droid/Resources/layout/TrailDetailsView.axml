@@ -1,57 +1,64 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:local="http://schemas.android.com/apk/res-auto"
+    android:orientation="vertical"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@color/light_gray">
     <include
-        layout="@layout/toolbar_actionbar" />
-    <LinearLayout
-        android:orientation="vertical"
+        layout="@layout/toolbar_back" />
+    <TextView
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:background="@color/light_gray"
-        android:layout_margin="20dp">
-        <TextView
+        android:layout_height="wrap_content"
+        android:id="@+id/trailText"
+        android:text="Szlak nazwa"
+        style="@style/details_title_style"
+        local:MvxBind="Text TrailTitle" />
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:layout_marginLeft="10dp"
+        android:layout_marginRight="10dp"
+        android:background="#d1d1d1" />
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+        <LinearLayout
+            android:orientation="vertical"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:id="@+id/trailText"
-            android:text=""
-            android:layout_marginTop="30dp"
-            android:layout_marginBottom="20dp"
-            style="@style/details_title_style"
-            local:MvxBind="Text TrailTitle" />
-        <TextView
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:textStyle="bold"
-            android:textSize="18dp"
-            local:MvxBind="Text TimeUp"
-            android:text="xxx" />
-        <TextView
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:textStyle="bold"
-            android:textSize="18dp"
-            android:layout_marginBottom="20dp"
-            local:MvxBind="Text TimeDown"
-            android:text="xxx" />
-        <TextView
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginBottom="20dp"
-            local:MvxBind="Text TrailDescription"
-            android:text="jakis tam opis" />
-        <ImageView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginBottom="20dp"
-            android:id="@+id/imageView"
-            android:layout_gravity="center"
-            android:src="@drawable/alps" />
-        <TextView
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="jakis tam obrazek" />
-    </LinearLayout>
-</RelativeLayout>
+            android:layout_height="match_parent"
+            android:layout_margin="20dp">
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:textStyle="bold"
+                android:textSize="18dp"
+                local:MvxBind="Text TimeUp"
+                android:text="Czas w gore" />
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:textStyle="bold"
+                android:textSize="18dp"
+                android:layout_marginBottom="20dp"
+                local:MvxBind="Text TimeDown"
+                android:text="Czas w dol" />
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="20dp"
+                local:MvxBind="Text TrailDescription"
+                android:text="jakis tam opis" />
+            <ImageView
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_marginBottom="20dp"
+                android:id="@+id/imageView"
+                android:src="@drawable/alps" />
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="jakis tam obrazek" />
+        </LinearLayout>
+    </ScrollView>
+</LinearLayout>
