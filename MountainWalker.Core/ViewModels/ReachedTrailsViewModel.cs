@@ -8,6 +8,8 @@ using MountainWalker.Core.Models;
 using MvvmCross.Core.Navigation;
 using MvvmCross.Core.ViewModels;
 using MvvmCross.Plugins.Messenger;
+using Newtonsoft.Json;
+using Plugin.SecureStorage;
 
 namespace MountainWalker.Core.ViewModels
 {
@@ -27,10 +29,16 @@ namespace MountainWalker.Core.ViewModels
         public ReachedTrailsViewModel(IWebAPIService webAPIService, IMvxMessenger messenger,
                                       IMvxNavigationService navigationService )
         {
-            Items = webAPIService.GetReachedTrailsList("somelogin").Result;
-            //Task.Run(async () => Items = await webAPIService.GetReachedTrailsList("jakis login"));
+            SetItems();
             _messenger = messenger;
             _navigationService = navigationService;
+        }
+
+        private void SetItems()
+        {
+            var jsone = CrossSecureStorage.Current.GetValue(CrossSecureStorageKeys.ReachedTrails);
+            var items = JsonConvert.DeserializeObject<List<ReachedTrail>>(jsone);
+            Items = items;
         }
 
         public ICommand ShowReachedTrail
@@ -39,7 +47,7 @@ namespace MountainWalker.Core.ViewModels
             {
                 return new MvxCommand<ReachedTrail>(item =>
                 {
-                    var message = new ReachedTrailMessage(this, Items[item.Id]);
+                    var message = new ReachedTrailMessage(this, item);
                     _navigationService.Navigate<ReachedTrailMapViewModel>();
                     _messenger.Publish(message);
                 });

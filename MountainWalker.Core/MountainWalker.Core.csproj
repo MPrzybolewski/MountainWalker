@@ -68,6 +68,8 @@
     <Compile Include="Messages\ReachedTrailMessage.cs" />
     <Compile Include="Models\ReachedTrail.cs" />
     <Compile Include="ViewModels\ReachedTrailMapViewModel.cs" />
+    <Compile Include="Models\Achievement.cs" />
+    <Compile Include="Models\CrossSecureStorageKeys.cs" />
   </ItemGroup>
   <ItemGroup>
     <Reference Include="MvvmCross.Binding">

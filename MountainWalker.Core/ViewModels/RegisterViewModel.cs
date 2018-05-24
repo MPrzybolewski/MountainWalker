@@ -143,7 +143,7 @@ namespace MountainWalker.Core.ViewModels
                 bool result = await CheckIfRegistered(_name, _surname, _login, _password, _email);
                 if (result)
                 {
-                    _navigationService.Navigate<SignInViewModel>();
+                    await _navigationService.Navigate<SignInViewModel>();
                 }
                 else
                 {

@@ -6,6 +6,20 @@
     android:orientation="vertical">
     <include
         layout="@layout/toolbar_actionbar" />
+    <android.support.v7.widget.SwitchCompat
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:paddingLeft="20dp"
+        android:paddingRight="20dp"
+        android:paddingTop="10dp"
+        android:paddingBottom="10dp"
+        android:background="@color/colorPrimary"
+        android:textColor="@color/white"
+        android:textSize="14dp"
+        android:text="Śledzenie użytkownika"
+        android:visibility="visible"
+        local:MvxBind="Visibility TravelPanelVisibility; Checked FollowUser"
+        android:checked="true" />
     <fragment
         android:id="@+id/map"
         android:layout_width="match_parent"

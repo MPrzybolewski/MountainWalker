@@ -2,6 +2,7 @@
 using System.Diagnostics;
 using System.Threading.Tasks;
 using MountainWalker.Core.Interfaces;
+using MountainWalker.Core.Models;
 using MvvmCross.Core.Navigation;
 using MvvmCross.Core.ViewModels;
 using Plugin.SecureStorage;
@@ -27,7 +28,7 @@ namespace MountainWalker.Core.ViewModels
 
         private async void CheckPreferences()
         {
-            var exists = CrossSecureStorage.Current.HasKey("Session");
+            var exists = CrossSecureStorage.Current.HasKey(CrossSecureStorageKeys.Login);
             if (!exists)
             {
                 await _navigationService.Navigate<SignInViewModel>();

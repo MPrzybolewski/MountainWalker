@@ -56,9 +56,10 @@ namespace MountainWalker.Core.ViewModels
         private void ExecuteStopTravel()
         {
             Stopwatch timer = new Stopwatch();
+            _travelPanelService.StopTimer();
+            _travelPanelService.TravelTime.ResetTravelTime();
             _locationService.IsTrailStarted = false;
             _startButtonService.SetStartButtonText("Start");
-            _travelPanelService.StopTimer();
             _travelPanelService.TravelPanelVisibility = "gone";
             _travelPanelService.NumberOfReachedPoints = 0;
             _visible.Raise(false);
