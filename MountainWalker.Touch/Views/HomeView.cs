@@ -176,7 +176,7 @@ namespace MountainWalker.Touch.Views
                 };
             }
 
-            int i = 1;
+            int i = 0;
             foreach (var polyline in trails)
             {
                 var path = new MutablePath();

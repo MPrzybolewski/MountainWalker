@@ -1,11 +1,14 @@
 ﻿using System;
 
 using Foundation;
+using MountainWalker.Core.Models;
+using MvvmCross.Binding.BindingContext;
+using MvvmCross.Binding.iOS.Views;
 using UIKit;
 
 namespace MountainWalker.Touch.Views
 {
-    public partial class TrailsCell : UITableViewCell
+	public partial class TrailsCell : MvxTableViewCell
     {
         public static readonly NSString Key = new NSString("TrailsCell");
         public static readonly UINib Nib;
@@ -14,10 +17,17 @@ namespace MountainWalker.Touch.Views
         {
             Nib = UINib.FromName("TrailsCell", NSBundle.MainBundle);
         }
-
-        protected TrailsCell(IntPtr handle) : base(handle)
+            
+		protected TrailsCell(IntPtr handle) : base(handle)
         {
-            // Note: this .ctor should not contain any initialization logic.
+            this.DelayBind(() =>
+            {
+                var set = this.CreateBindingSet<TrailsCell, Trail>();
+				set.Bind(TitleCellText).To(vm => vm.Name);
+				set.Bind(DescriptionCellText).To(vm => vm.Description);
+                set.Apply();
+            });
         }
+
     }
 }

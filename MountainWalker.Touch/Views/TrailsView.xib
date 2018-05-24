@@ -12,7 +12,7 @@
             <connections>
                 <outlet property="view" destination="2" id="RRd-Eg-VrN"/>
                 <outlet property="TrailsList" destination="tkS-2x-Iqd" id="name-outlet-tkS-2x-Iqd"/>
-                <outlet property="mylabel" destination="SP1-G4-OXr" id="name-outlet-SP1-G4-OXr"/>
+                <outlet property="TitleLabel" destination="SP1-G4-OXr" id="name-outlet-SP1-G4-OXr"/>
             </connections>
         </placeholder>
         <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>

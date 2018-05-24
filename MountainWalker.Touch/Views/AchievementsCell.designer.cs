@@ -10,27 +10,36 @@ using System.CodeDom.Compiler;
 
 namespace MountainWalker.Touch.Views
 {
-    [Register ("TrailsCell")]
-    partial class TrailsCell
+    [Register ("AchievementsCell")]
+    partial class AchievementsCell
     {
         [Outlet]
         [GeneratedCode ("iOS Designer", "1.0")]
-        UIKit.UILabel DescriptionCellText { get; set; }
+        UIKit.UILabel DateCellText { get; set; }
 
         [Outlet]
         [GeneratedCode ("iOS Designer", "1.0")]
         UIKit.UILabel TitleCellText { get; set; }
 
+        [Outlet]
+        [GeneratedCode ("iOS Designer", "1.0")]
+        UIKit.UIImageView TrophyImage { get; set; }
+
         void ReleaseDesignerOutlets ()
         {
-            if (DescriptionCellText != null) {
-                DescriptionCellText.Dispose ();
-                DescriptionCellText = null;
+            if (DateCellText != null) {
+                DateCellText.Dispose ();
+                DateCellText = null;
             }
 
             if (TitleCellText != null) {
                 TitleCellText.Dispose ();
                 TitleCellText = null;
+            }
+
+            if (TrophyImage != null) {
+                TrophyImage.Dispose ();
+                TrophyImage = null;
             }
         }
     }

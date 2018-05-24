@@ -11,27 +11,18 @@ using UIKit;
 
 namespace MountainWalker.Touch.Views
 {
-    [Register ("TrailsView")]
-    partial class TrailsView
+    [Register ("AchievementsView")]
+    partial class AchievementsView
     {
         [Outlet]
         [GeneratedCode ("iOS Designer", "1.0")]
-        UIKit.UILabel TitleLabel { get; set; }
-
-        [Outlet]
-        [GeneratedCode ("iOS Designer", "1.0")]
-        UIKit.UITableView TrailsList { get; set; }
+        UIKit.UITableView AchievementsList { get; set; }
 
         void ReleaseDesignerOutlets ()
         {
-            if (TitleLabel != null) {
-                TitleLabel.Dispose ();
-                TitleLabel = null;
-            }
-
-            if (TrailsList != null) {
-                TrailsList.Dispose ();
-                TrailsList = null;
+            if (AchievementsList != null) {
+                AchievementsList.Dispose ();
+                AchievementsList = null;
             }
         }
     }

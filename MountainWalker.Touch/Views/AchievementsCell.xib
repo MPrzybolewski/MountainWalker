@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="14109" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES">
+    <device id="retina5_5" orientation="portrait">
+        <adaptation id="fullscreen"/>
+    </device>
+    <dependencies>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14088"/>
+        <capability name="Aspect ratio constraints" minToolsVersion="5.1"/>
+        <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <tableViewCell contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" rowHeight="80" id="cxk-wN-pdQ" customClass="AchievementsCell">
+            <rect key="frame" x="0.0" y="0.0" width="320" height="80"/>
+            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+            <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="cxk-wN-pdQ" id="YTl-1W-gDM">
+                <rect key="frame" x="0.0" y="0.0" width="320" height="79"/>
+                <autoresizingMask key="autoresizingMask"/>
+                <subviews>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="H52-Tw-mXW" misplaced="YES">
+                        <rect key="frame" x="26" y="11" width="44.5" height="20.5"/>
+                        <fontDescription key="fontDescription" type="boldSystem" pointSize="17"/>
+                        <nil key="textColor"/>
+                        <nil key="highlightedColor"/>
+                    </label>
+                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="trophy" translatesAutoresizingMaskIntoConstraints="NO" id="QVE-No-hFg">
+                        <rect key="frame" x="268" y="20" width="42" height="39.5"/>
+                        <constraints>
+                            <constraint firstAttribute="width" secondItem="QVE-No-hFg" secondAttribute="height" multiplier="61:57" id="paL-xg-Rvg"/>
+                        </constraints>
+                    </imageView>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Iot-G4-aSC" misplaced="YES">
+                        <rect key="frame" x="26" y="41.5" width="42" height="20.5"/>
+                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                        <nil key="textColor"/>
+                        <nil key="highlightedColor"/>
+                    </label>
+                </subviews>
+                <constraints>
+                    <constraint firstItem="QVE-No-hFg" firstAttribute="centerY" secondItem="YTl-1W-gDM" secondAttribute="centerY" id="26e-tZ-rU0"/>
+                    <constraint firstItem="H52-Tw-mXW" firstAttribute="leading" secondItem="YTl-1W-gDM" secondAttribute="leadingMargin" constant="10" id="7JE-0q-HEx"/>
+                    <constraint firstAttribute="bottom" secondItem="QVE-No-hFg" secondAttribute="bottom" constant="20" id="7zp-GK-C7m"/>
+                    <constraint firstAttribute="trailing" secondItem="QVE-No-hFg" secondAttribute="trailing" constant="10" id="8sX-vk-ziW"/>
+                    <constraint firstItem="Iot-G4-aSC" firstAttribute="leading" secondItem="YTl-1W-gDM" secondAttribute="leadingMargin" constant="10" id="EsI-40-upn"/>
+                    <constraint firstItem="H52-Tw-mXW" firstAttribute="top" secondItem="YTl-1W-gDM" secondAttribute="topMargin" id="GHl-Ce-mWz"/>
+                    <constraint firstItem="Iot-G4-aSC" firstAttribute="top" secondItem="H52-Tw-mXW" secondAttribute="bottom" constant="10" id="Gyz-It-0gS"/>
+                    <constraint firstItem="QVE-No-hFg" firstAttribute="top" secondItem="YTl-1W-gDM" secondAttribute="top" constant="20" id="lxT-Ow-288"/>
+                </constraints>
+            </tableViewCellContentView>
+            <connections>
+                <outlet property="DateCellText" destination="Iot-G4-aSC" id="name-outlet-Iot-G4-aSC"/>
+                <outlet property="TitleCellText" destination="H52-Tw-mXW" id="name-outlet-H52-Tw-mXW"/>
+                <outlet property="TrophyImage" destination="QVE-No-hFg" id="name-outlet-QVE-No-hFg"/>
+            </connections>
+            <point key="canvasLocation" x="25" y="70"/>
+        </tableViewCell>
+    </objects>
+    <resources>
+        <image name="trophy" width="32" height="32"/>
+    </resources>
+</document>

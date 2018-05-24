@@ -8,27 +8,23 @@ using UIKit;
 namespace MountainWalker.Touch.Views
 {
 	[MvxSidebarPresentation(MvxPanelEnum.Center, MvxPanelHintType.ResetRoot, true)]
-    public partial class TrailsView : BaseViewController<TrailsViewModel>
+	public partial class AchievementsView : BaseViewController<AchievementsViewModel>
     {      
         public override void ViewDidLoad()
         {
             base.ViewDidLoad();
+            // Perform any additional setup after loading the view, typically from a nib.
 
-			TitleLabel.Layer.BorderWidth = 2;
-			TitleLabel.Layer.BorderColor = UIColor.Black.CGColor;
+			var source = new MvxSimpleTableViewSource(AchievementsList, "AchievementsCell", AchievementsCell.Key);
+			AchievementsList.RowHeight = 80;
 
-			var source = new MvxSimpleTableViewSource(TrailsList, "TrailsCell", TrailsCell.Key);
-			TrailsList.RowHeight = 100;
+			var set = this.CreateBindingSet<AchievementsView, AchievementsViewModel>();         
 
-            var set = this.CreateBindingSet<TrailsView, TrailsViewModel>();
-            
-            
             set.Bind(source).To(vm => vm.Items);
-			set.Bind(source).For("ItemClick").To(vm => vm.ShowDetailTrail);
             set.Apply();
 
-			TrailsList.Source = source;
-			TrailsList.ReloadData();
+			AchievementsList.Source = source;
+			AchievementsList.ReloadData();
         }
 
         public override void DidReceiveMemoryWarning()

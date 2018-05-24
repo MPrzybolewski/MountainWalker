@@ -1,5 +1,4 @@
-﻿<?xml version="1.0" encoding="utf-8"?>
-<Project DefaultTargets="Build" ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+﻿<Project DefaultTargets="Build" ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <Import Project="..\packages\Xamarin.Build.Download.0.4.7\build\Xamarin.Build.Download.props" Condition="Exists('..\packages\Xamarin.Build.Download.0.4.7\build\Xamarin.Build.Download.props')" />
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
@@ -34,8 +33,7 @@
     <DebugType>pdbonly</DebugType>
     <Optimize>true</Optimize>
     <OutputPath>bin\iPhone\Release</OutputPath>
-    <DefineConstants>
-    </DefineConstants>
+    <DefineConstants></DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
     <CodesignKey>iPhone Developer: Marek Przybolewski (KVFF7TXQH7)</CodesignKey>
@@ -49,8 +47,7 @@
     <DebugType>pdbonly</DebugType>
     <Optimize>true</Optimize>
     <OutputPath>bin\iPhoneSimulator\Release</OutputPath>
-    <DefineConstants>
-    </DefineConstants>
+    <DefineConstants></DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
     <CodesignKey>iPhone Developer: Marek Przybolewski (KVFF7TXQH7)</CodesignKey>
@@ -176,6 +173,10 @@
     </ImageAsset>
     <ImageAsset Include="Resources\Assets.xcassets\ikona.imageset\Contents.json" />
     <ImageAsset Include="Resources\Assets.xcassets\ikona.imageset\ikona.png" />
+    <ImageAsset Include="Resources\Assets.xcassets\trophy.imageset\Contents.json" />
+    <ImageAsset Include="Resources\Assets.xcassets\trophy.imageset\trophy.png" />
+    <ImageAsset Include="Resources\Assets.xcassets\trophyx.imageset\Contents.json" />
+    <ImageAsset Include="Resources\Assets.xcassets\trophyx.imageset\trophyx.png" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Resources\" />
@@ -186,7 +187,6 @@
   <ItemGroup>
     <InterfaceDefinition Include="LaunchScreen.storyboard" />
     <InterfaceDefinition Include="Main.storyboard" />
-
     <InterfaceDefinition Include="Views\HomeView.xib" />
     <InterfaceDefinition Include="Views\DialogView.xib" />
     <InterfaceDefinition Include="Views\AfterStartDialog.xib" />
@@ -197,6 +197,8 @@
     <InterfaceDefinition Include="Views\MenuView.xib" />
     <InterfaceDefinition Include="Views\TrailsView.xib" />
     <InterfaceDefinition Include="Views\TrailsCell.xib" />
+    <InterfaceDefinition Include="Views\AchievementsView.xib" />
+    <InterfaceDefinition Include="Views\AchievementsCell.xib" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Info.plist" />
@@ -216,7 +218,6 @@
     <Compile Include="DebugTrace.cs" />
     <Compile Include="Views\BaseViewController.cs" />
     <Compile Include="Services\TouchDialogService.cs" />
-
     <Compile Include="Views\HomeViewCode.cs" />
     <Compile Include="Services\IOSDialogService.cs" />
     <Compile Include="Views\SignInViewController.cs" />
@@ -261,6 +262,14 @@
     <Compile Include="Views\TrailsCell.designer.cs">
       <DependentUpon>TrailsCell.cs</DependentUpon>
     </Compile>
+    <Compile Include="Views\AchievementsView.cs" />
+    <Compile Include="Views\AchievementsView.designer.cs">
+      <DependentUpon>AchievementsView.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Views\AchievementsCell.cs" />
+    <Compile Include="Views\AchievementsCell.designer.cs">
+      <DependentUpon>AchievementsCell.cs</DependentUpon>
+    </Compile>
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\MountainWalker.Core\MountainWalker.Core.csproj">
@@ -274,6 +283,10 @@
     <BundleResource Include="Resources\Images\rounded_button.xml" />
     <BundleResource Include="Resources\Images\gradientbg.png" />
     <BundleResource Include="Resources\Images\headerMenu.jpg" />
+  </ItemGroup>
+  <ItemGroup>
+    <AndroidResource Include="Resources\Images\trophy.png" />
+    <AndroidResource Include="Resources\Images\trophyx.png" />
   </ItemGroup>
   <Import Project="$(MSBuildExtensionsPath)\Xamarin\iOS\Xamarin.iOS.CSharp.targets" />
   <Import Project="..\packages\Xamarin.Build.Download.0.4.7\build\Xamarin.Build.Download.targets" Condition="Exists('..\packages\Xamarin.Build.Download.0.4.7\build\Xamarin.Build.Download.targets')" />
