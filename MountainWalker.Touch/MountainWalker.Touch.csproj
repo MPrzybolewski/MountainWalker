@@ -163,6 +163,9 @@
       <HintPath>..\packages\Xam.Plugin.Geolocator.4.2.0\lib\Xamarin.iOS10\Plugin.Geolocator.dll</HintPath>
     </Reference>
     <Reference Include="MonoTouch.Dialog-1" />
+    <Reference Include="Google.Maps">
+      <HintPath>..\packages\Xamarin.Google.iOS.Maps.2.5.0\lib\Xamarin.iOS10\Google.Maps.dll</HintPath>
+    </Reference>
   </ItemGroup>
   <ItemGroup>
     <ImageAsset Include="Assets.xcassets\AppIcon.appiconset\Contents.json">
@@ -192,6 +195,8 @@
     <InterfaceDefinition Include="Views\StartViewController.xib" />
     <InterfaceDefinition Include="Views\RegisterViewController.xib" />
     <InterfaceDefinition Include="Views\MenuView.xib" />
+    <InterfaceDefinition Include="Views\TrailsView.xib" />
+    <InterfaceDefinition Include="Views\TrailsCell.xib" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Info.plist" />
@@ -247,6 +252,14 @@
     <Compile Include="Views\MenuView.cs" />
     <Compile Include="Views\MenuView.designer.cs">
       <DependentUpon>MenuView.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Views\TrailsView.cs" />
+    <Compile Include="Views\TrailsView.designer.cs">
+      <DependentUpon>TrailsView.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Views\TrailsCell.cs" />
+    <Compile Include="Views\TrailsCell.designer.cs">
+      <DependentUpon>TrailsCell.cs</DependentUpon>
     </Compile>
   </ItemGroup>
   <ItemGroup>
