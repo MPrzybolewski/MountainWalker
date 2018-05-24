@@ -1,6 +1,8 @@
 ﻿using System;
+using MountainWalker.Core.Models;
 using MvvmCross.Core.Navigation;
 using MvvmCross.Core.ViewModels;
+using Plugin.SecureStorage;
 
 namespace MountainWalker.Core.ViewModels
 {
@@ -13,6 +15,7 @@ namespace MountainWalker.Core.ViewModels
         public MenuViewModel(IMvxNavigationService navigationService)
         {
             _navigationService = navigationService;
+            UserName = CrossSecureStorage.Current.GetValue(CrossSecureStorageKeys.Username);
         }
         public IMvxCommand ShowHomeCommand
         {
@@ -71,6 +74,7 @@ namespace MountainWalker.Core.ViewModels
 
         private void ShowSignInExecuted()
         {
+            CrossSecureStorage.Current.DeleteKey(CrossSecureStorageKeys.Login);
             _navigationService.Navigate<StartViewModel>();
         }
 

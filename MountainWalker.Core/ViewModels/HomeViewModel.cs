@@ -1,4 +1,4 @@
-﻿using System;
+﻿using System.Linq;
 using System.Collections.Generic;
 using System.Diagnostics;
 using System.Threading.Tasks;
@@ -10,6 +10,9 @@ using MvvmCross.Binding.BindingContext;
 using MvvmCross.Core.Navigation;
 using MvvmCross.Core.ViewModels;
 using MvvmCross.Plugins.Messenger;
+using System;
+using Plugin.SecureStorage;
+using Newtonsoft.Json;
 
 namespace MountainWalker.Core.ViewModels
 {
@@ -53,7 +56,7 @@ namespace MountainWalker.Core.ViewModels
             set => SetProperty(ref _travelPanelVisibility, value);
         }
 
-        private string _timeInfoText = "0";
+        private string _timeInfoText = "0h:0m:0s";
         public string TimeInfoText
         {
             get { return _timeInfoText; }
@@ -73,6 +76,13 @@ namespace MountainWalker.Core.ViewModels
                 _pointsInfoText = value;
                 RaisePropertyChanged();
             }
+        }
+
+        private bool _followUser = true;
+        public bool FollowUser
+        {
+            get => _followUser;
+            set { _followUser = value; RaisePropertyChanged(); } 
         }
 
         public HomeViewModel(ILocationService locationService, IMvxNavigationService navigationService, IMvxMessenger messenger, 
@@ -113,16 +123,50 @@ namespace MountainWalker.Core.ViewModels
             
             if (_locationService.IsTrailStarted)
             {
-                _locationService.OnCurrentLocationChanged(Location);
+                if(FollowUser)
+                    _locationService.OnCurrentLocationChanged(Location);
+                
                 foreach (var point in _trailService.Points)
                 {
-                    Debug.WriteLine("Distance - true?" + _locationService.GetDistanceBetweenTwoPointsOnMapInMeters(Location, point));
                     if (_locationService.GetDistanceBetweenTwoPointsOnMapInMeters(Location, point) < 50
                         &&  !_locationService.ReachedPoints.Contains(point)) 
                     {
                         _locationService.ReachedPoints.Add(point);
                         _travelPanelService.NumberOfReachedPoints = _locationService.ReachedPoints.Count;
                     }
+                }
+
+                if (_locationService.ReachedPoints.Count > 0
+                       && _locationService.ReachedTrails.Count < _locationService.ReachedPoints.Count)
+                {
+                    var currentPoint = _locationService.ReachedPoints.Last();
+                    var nearestTrails = new List<Trail>();
+                    foreach (var trail in _trailService.Trails)
+                    {
+
+                        if (_locationService.GetDistanceBetweenTwoPointsOnMapInMeters(trail.Path.First(), currentPoint) < 5
+                           || _locationService.GetDistanceBetweenTwoPointsOnMapInMeters(trail.Path.Last(), currentPoint) < 5)
+                        {
+                            nearestTrails.Add(trail);
+                        }
+                    }
+
+                    Trail nearestTrail = null;
+                    var currentDistance = 5d;
+                    foreach (var trail in nearestTrails)
+                    {
+                        foreach (var pt in trail.Path)
+                        {
+                            var x = _locationService.GetDistanceBetweenTwoPointsOnMapInMeters(pt, currentPoint);
+                            if (x < currentDistance)
+                            {
+                                x = currentDistance;
+                                nearestTrail = trail;
+                            }
+                        }
+                    }
+                    if (nearestTrail != null)
+                        _locationService.ReachedTrails.Add(nearestTrail);
                 }
             }
         }
@@ -147,6 +191,42 @@ namespace MountainWalker.Core.ViewModels
                 _travelPanelService.SetTravelTime();
                 TimeInfoText = "" +  _travelPanelService.TravelTime;
             }
+            //AddNewTrailToStorage(_travelPanelService.TravelTime);
+            TimeInfoText = "0:0:0";
+        }
+
+        private void AddNewTrailToStorage(TravelTime time)
+        {
+            var date = DateTime.Now.ToString("HH/MM/SS");
+            var reachedTrail = new ReachedTrail()
+            {
+                Date = DateTime.Now.ToString("dd:MM:yy"),
+                From = _locationService.ReachedPoints.First().Name,
+                To = _locationService.ReachedPoints.Last().Name,
+                StartTime = _travelPanelService.StartTime.ToString("HH:mm:ss"),
+                EndTime = DateTime.Now.ToString("HH:mm:ss"),
+                Time = time.ToString(""),
+                Distance = "5km"
+            };
+
+            var trails = new List<int>();
+            foreach(var trail in _locationService.ReachedTrails)
+            {
+                trails.Add(trail.Id);
+            }
+            reachedTrail.Trails = trails;
+
+            var jsone = CrossSecureStorage.Current.GetValue(CrossSecureStorageKeys.ReachedTrails);
+            var jsoneList = JsonConvert.DeserializeObject<List<ReachedTrail>>(jsone);
+
+            jsoneList.Add(reachedTrail);
+
+            jsone = JsonConvert.SerializeObject(jsoneList);
+
+            CrossSecureStorage.Current.SetValue(CrossSecureStorageKeys.ReachedTrails, jsone);
+
+            //deserialize, add and serialize
+            //add to securestorage
         }
 
         private async Task OpenDialog()

@@ -11,18 +11,10 @@ using Android.Gms.Maps.Model;
 using Android.App;
 using Android.Graphics;
 using MountainWalker.Droid.Bindings;
-using MountainWalker.Droid.Services;
-using MvvmCross.Binding.Droid.BindingContext;
-using MvvmCross.Droid.Views;
-using Debug = System.Diagnostics.Debug;
 using MountainWalker.Droid.NavigationDrawer;
 using MvvmCross.Binding.BindingContext;
 using MvvmCross.Core.ViewModels;
-using MvvmCross.Plugins.Messenger;
-using Android.Widget;
 using MountainWalker.Core.Models;
-using MountainWalker.Core.Services;
-using MountainWalker.Droid.Views;
 using MvvmCross.Platform.Core;
 using Point = MountainWalker.Core.Models.Point;
 
@@ -54,8 +46,8 @@ namespace MountainWalker.Droid.Fragments
             _map = map;
             _map.MyLocationEnabled = true;
             _map.UiSettings.MyLocationButtonEnabled = true;
-            _map.AddMarker(new MarkerOptions().SetPosition(new LatLng(54.394121, 18.569394))
-                .SetTitle("Best place to go!"));
+            //_map.AddMarker(new MarkerOptions().SetPosition(new LatLng(54.394121, 18.569394))
+            //    .SetTitle("Best place to go!"));
 
             var home = (HomeViewModel) ViewModel;
             
@@ -129,9 +121,10 @@ namespace MountainWalker.Droid.Fragments
         {
             foreach (var point in points)
             {
-                _map.AddMarker(new MarkerOptions()
-                    .SetPosition(new LatLng(point.Latitude, point.Longitude))
-                    .SetTitle(point.Name));
+                //_map.AddMarker(new MarkerOptions()
+                    //.SetPosition(new LatLng(point.Latitude, point.Longitude))
+                               //.SetTitle(point.Name));
+                    //.SetIcon(BitmapDescriptorFactory.FromResource(Resource.Drawable.point));
             }
 
             foreach (var polyline in trails)
@@ -141,7 +134,7 @@ namespace MountainWalker.Droid.Fragments
                 {
                     latlng.Add(new LatLng(point.Latitude, point.Longitude));
                 }
-
+                
                 var poly = _map.AddPolyline(new PolylineOptions().Clickable(true));
 
                 if (polyline.Color.Equals("blue"))
@@ -154,10 +147,16 @@ namespace MountainWalker.Droid.Fragments
                 }
                 else if (polyline.Color.Equals("green"))
                 {
-                    poly.Color = Color.Green;
+                    poly.Color = Color.Rgb(32, 178, 0);
+                }
+                else if (polyline.Color.Equals("yellow"))
+                {
+                    poly.Color = Color.Yellow;
                 }
                 poly.Width = 10;
+
                 poly.Points = latlng;
+                
             }
         }
     }

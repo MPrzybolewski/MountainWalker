@@ -1,74 +1,72 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Threading.Tasks;
+using MountainWalker.Core.Interfaces;
+using MountainWalker.Core.Models;
 using MvvmCross.Core.ViewModels;
+using Newtonsoft.Json;
+using Plugin.SecureStorage;
 
 namespace MountainWalker.Core.ViewModels
 {
     public class AchievementsViewModel : MvxViewModel
     {
-        private List<Achievement> _items;
+        private readonly IWebAPIService _webService;
 
-        public List<Achievement> Items
+        private MvxObservableCollection<Achievement> _items;
+        public MvxObservableCollection<Achievement> Items
         {
             get { return _items; }
             set { _items = value; RaisePropertyChanged(() => Items); }
         }
 
-        public AchievementsViewModel()
+        public AchievementsViewModel(IWebAPIService webService)
         {
-            Items = new List<Achievement>();
-            Items.Add(new Achievement("Dotrzyj do SKMki", "Dzisiaj heh", true));
-            Items.Add(new Achievement("Obejrzyj budowę Alchemii", "Wczoraj XD", true));
-            Items.Add(new Achievement("Dotrzyj na MFI", "Jeszcze nie", false));
-            Items.Add(new Achievement("Zdobądź Ygrek", "Z miesiac temu", true));
-            Items.Add(new Achievement("Zdobądź KFC", "Jeszcze nie", false));
-            Items.Add(new Achievement("Dotrzyj do SKMki", "Dzisiaj heh", true));
-            Items.Add(new Achievement("Obejrzyj budowę Alchemii", "Wczoraj XD", true));
-            Items.Add(new Achievement("Dotrzyj na MFI", "Jeszcze nie", false));
-            Items.Add(new Achievement("Zdobądź Ygrek", "Z miesiac temu", true));
-            Items.Add(new Achievement("Zdobądź KFC", "Jeszcze nie", false));
-            Items.Add(new Achievement("Dotrzyj do SKMki", "Dzisiaj heh", true));
-            Items.Add(new Achievement("Obejrzyj budowę Alchemii", "Wczoraj XD", true));
-            Items.Add(new Achievement("Dotrzyj na MFI", "Jeszcze nie", false));
-            Items.Add(new Achievement("Zdobądź Ygrek", "Z miesiac temu", true));
-            Items.Add(new Achievement("Zdobądź KFC", "Jeszcze nie", false));
-            Items.Add(new Achievement("Dotrzyj do SKMki", "Dzisiaj heh", true));
-            Items.Add(new Achievement("Obejrzyj budowę Alchemii", "Wczoraj XD", true));
-            Items.Add(new Achievement("Dotrzyj na MFI", "Jeszcze nie", false));
-            Items.Add(new Achievement("Zdobądź Ygrek", "Z miesiac temu", true));
-            Items.Add(new Achievement("Zdobądź KFC", "Jeszcze nie", false));
-        }
-    }
-
-    public class Achievement
-    {
-        public string Name { get; set; }
-        public string Date { get; set; }
-        public bool IsReached { get; set; }
-        public string Id { get; set; }
-        public string Trophy
-        {
-            get
+            _webService = webService;
+            var id = 1;
+            Items = new MvxObservableCollection<Achievement>
             {
-                if (IsReached)
-                    return "@drawable/trophy";
-                else
-                    return "@drawable/trophyx";
-            }
+                new Achievement(id++, "Giewont"),
+                new Achievement(id++, "Kasprowy wierch"),
+                new Achievement(id++, "Rysy"),
+                new Achievement(id++, "Mały Giewont"),
+                new Achievement(id++, "Kopa Kondracka"),
+                new Achievement(id++, "Świnica"),
+                new Achievement(id++, "Kościelec"),
+                new Achievement(id++, "Mnich"),
+                new Achievement(id++, "Kozi Wierch"),
+                new Achievement(id++, "Sarnia Skała"),
+                new Achievement(id++, "Gęsia Szyja")
+            };
+            SetAchievements();
+
+            Task.Run(async () =>
+            {
+                await Task.Delay(10000);
+                Items[9].IsReached = true;
+            });
         }
 
-        public Achievement(string name, string date)
+        private void SetAchievements()
         {
-            Name = name;
-            Date = date;
-            IsReached = false;
-        }
+            var tops = CrossSecureStorage.Current.GetValue(CrossSecureStorageKeys.Achievements);
+            var achievements = JsonConvert.DeserializeObject<List<Achievement>>(tops);
 
-        public Achievement(string name, string date, bool reached)
-        {
-            Name = name;
-            Date = date;
-            IsReached = reached;
+            if (achievements.Count == 0)
+                Items = new MvxObservableCollection<Achievement>();
+
+            else
+                foreach(var ach in achievements)
+                {
+                    foreach(var item in Items)
+                    {
+                        if (item.Id == ach.Id)
+                        {
+                            item.IsReached = true;
+                            item.Date = ach.Date;
+                        }
+                    }
+                }
         }
     }
 }

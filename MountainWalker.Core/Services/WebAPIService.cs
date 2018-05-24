@@ -1,5 +1,6 @@
 ﻿using MountainWalker.Core.Models;
 using Newtonsoft.Json;
+using Plugin.SecureStorage;
 using System;
 using System.Collections.Generic;
 using System.Diagnostics;
@@ -72,18 +73,85 @@ namespace MountainWalker.Core.Interfaces.Impl
             }
         }
 
-        public async Task<List<ReachedTrail>> GetReachedTrailsList(string login)
+        public async Task<string> GetName(string _login)
         {
-            //all magic with dbconn
-            int id = 0;
-            var items = new List<ReachedTrail>()
+            var clientt = new HttpClient();
+            clientt.BaseAddress = new Uri(_url);
+            object userInfos = new { UserID = "", name = "", surname = "", login = _login, password = "", email = "" };
+            var jsonObj = JsonConvert.SerializeObject(userInfos);
+            var content = new StringContent(jsonObj, Encoding.UTF8, "application/json");
+            var response = await clientt.PostAsync("/api/Users/GetName", content);
+            try
             {
-                new ReachedTrail(id++, "10.04.2010", "Ygrek", "Ug", ParePointsFromDb(id)),
-                new ReachedTrail(id++, "11.04.2010", "Skm", "Ug", ParePointsFromDb(id)),
-                new ReachedTrail(id++, "12.04.2010", "Ygrek", "KFC", ParePointsFromDb(id))
-            };
+                var result = await response.Content.ReadAsStringAsync();
+                if (result != null)
+                {
+                    return result.Trim('"');
+                }
 
-            return items;
+                return "err";
+            }
+            catch (Exception)
+            {
+                return "err";
+            }
+        }
+
+        public async Task GetReachedTrailsList(string _login)
+        {
+            var clientt = new HttpClient();
+            clientt.BaseAddress = new Uri(_url);
+            object userInfos = new { UserID = "", name = "", surname = "", login = _login, password = "", email = "" };
+            var jsonObj = JsonConvert.SerializeObject(userInfos);
+            var content = new StringContent(jsonObj, Encoding.UTF8, "application/json");
+            var response = await clientt.PostAsync("/api/Users/GetTrailsForUser", content);
+            try
+            {
+                var result = await response.Content.ReadAsStringAsync();
+                if (result.Length > 1)
+                {
+                    CrossSecureStorage.Current.SetValue(CrossSecureStorageKeys.ReachedTrails, result);
+                }
+                else
+                {
+                    var ach = new ReachedTrail();
+                    var jsone = JsonConvert.SerializeObject(ach);
+                    CrossSecureStorage.Current.SetValue(CrossSecureStorageKeys.ReachedTrails, jsone);
+                }
+            }
+            catch (Exception)
+            {
+                Debug.WriteLine("err");
+            }
+        }
+
+        public async Task GetReachedAchievements(string _login)
+        {
+            //magic
+            var clientt = new HttpClient();
+            clientt.BaseAddress = new Uri(_url);
+            object userInfos = new { UserID = "", name = "", surname = "", login = _login, password = "", email = "" };
+            var jsonObj = JsonConvert.SerializeObject(userInfos);
+            var content = new StringContent(jsonObj, Encoding.UTF8, "application/json");
+            var response = await clientt.PostAsync("/api/Users/GetAchievementsForGivenUser", content);
+            try
+            {
+                var result = await response.Content.ReadAsStringAsync();
+                if (result.Length > 1)
+                {
+                    CrossSecureStorage.Current.SetValue(CrossSecureStorageKeys.Achievements, result);
+                }
+                else
+                {
+                    var ach = new Achievement();
+                    var jsone = JsonConvert.SerializeObject(ach);
+                    CrossSecureStorage.Current.SetValue(CrossSecureStorageKeys.Achievements, jsone);
+                }
+            }
+            catch (Exception)
+            {
+                Debug.WriteLine("err");
+            }
         }
 
         private List<Point> ParePointsFromDb(int id)
@@ -110,6 +178,6 @@ namespace MountainWalker.Core.Interfaces.Impl
                 new Point(54.396157, 18.573419),
                 new Point(54.396110, 18.573478)
             };
-        }     
+        }
     }         
 }             

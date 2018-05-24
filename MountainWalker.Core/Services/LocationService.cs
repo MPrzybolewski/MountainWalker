@@ -21,6 +21,7 @@ namespace MountainWalker.Core.Services
         public Point CurrentLocation { get; set; }
         public bool IsTrailStarted { get; set; }
         public List<Point> ReachedPoints { get; set; }
+        public List<Trail> ReachedTrails { get; set; }
         public int TrailId { get; set; }
 
         public event EventHandler<LocationEventArgs> CurrentLocationChanged;
@@ -67,6 +68,7 @@ namespace MountainWalker.Core.Services
         public void SetNewList()
         {
             ReachedPoints = new List<Point>();
+            ReachedTrails = new List<Trail>();
         }
         
         public bool CheckPointIsNear(Point userLocation, Point pointLocation)

@@ -1,4 +1,4 @@
-﻿using System;
+﻿using System.Linq;
 using System.Collections.Generic;
 using System.Threading.Tasks;
 using MountainWalker.Core.Messages;
@@ -6,6 +6,7 @@ using MountainWalker.Core.Models;
 using MvvmCross.Core.Navigation;
 using MvvmCross.Core.ViewModels;
 using MvvmCross.Plugins.Messenger;
+using MountainWalker.Core.Interfaces;
 
 namespace MountainWalker.Core.ViewModels
 {
@@ -13,12 +14,13 @@ namespace MountainWalker.Core.ViewModels
     {
         private MvxInteraction<List<Point>> _interaction = new MvxInteraction<List<Point>>();
         public IMvxInteraction<List<Point>> Interaction => _interaction;
+        private readonly ITrailService _trailService;
 
         private ReachedTrail _reached;
-        public ReachedTrail ReachedTrail 
+        public ReachedTrail ReachedTrail
         {
             get => _reached;
-            set => SetProperty(ref _reached, value);    
+            set => SetProperty(ref _reached, value);
         }
 
         private MvxSubscriptionToken _token;
@@ -26,8 +28,9 @@ namespace MountainWalker.Core.ViewModels
         private IMvxNavigationService _navigationService;
         public IMvxCommand BackCommand { get; }
 
-        public ReachedTrailMapViewModel(IMvxMessenger messenger, IMvxNavigationService navigationService)
+        public ReachedTrailMapViewModel(IMvxMessenger messenger, IMvxNavigationService navigationService, ITrailService trailService)
         {
+            _trailService = trailService;
             _token = messenger.Subscribe<ReachedTrailMessage>(OnMessage);
             _navigationService = navigationService;
             BackCommand = new MvxCommand(Back);
@@ -42,7 +45,20 @@ namespace MountainWalker.Core.ViewModels
         {
             ReachedTrail = message.ReachedTrail;
             await Task.Delay(500);
-            _interaction.Raise(message.ReachedTrail.Trail);
+            var trail = TranslateTrailsFromIndexesToPoints(message.ReachedTrail);
+            _interaction.Raise(trail);
+        }
+
+        private List<Point> TranslateTrailsFromIndexesToPoints(ReachedTrail trail)
+        {
+            var resList = new List<Point>();
+            foreach (var id in trail.Trails)
+            {
+                var select = _trailService.Trails.FirstOrDefault(t => t.Id == id);
+                resList.AddRange(select.Path);
+            }
+
+            return resList;
         }
     }
 }

@@ -1,12 +1,26 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:local="http://schemas.android.com/apk/res-auto"
-    android:orientation="horizontal"
+    android:orientation="vertical"
     android:layout_width="fill_parent"
-    android:layout_height="fill_parent">
+    android:layout_height="fill_parent"
+    android:padding="10dp">
     <TextView
-        android:layout_width="fill_parent"
+        android:id="@+id/historyTitle"
+        android:paddingLeft="10dp"
+        android:textSize="20dp"
+        android:textStyle="bold"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        style="@style/list_item_style"
+        android:text="title"
         local:MvxBind="Text Name" />
+    <TextView
+        android:id="@+id/historyDetails"
+        android:paddingLeft="10dp"
+        android:textSize="16dp"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:maxLines="1"
+        android:text="desc"
+        local:MvxBind="Text Description" />
 </LinearLayout>
