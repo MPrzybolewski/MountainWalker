@@ -191,6 +191,7 @@
     <InterfaceDefinition Include="Views\SignInViewController.xib" />
     <InterfaceDefinition Include="Views\StartViewController.xib" />
     <InterfaceDefinition Include="Views\RegisterViewController.xib" />
+    <InterfaceDefinition Include="Views\MenuView.xib" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Info.plist" />
@@ -212,7 +213,6 @@
     <Compile Include="Services\TouchDialogService.cs" />
 
     <Compile Include="Views\HomeViewCode.cs" />
-    <Compile Include="Views\MenuView.cs" />
     <Compile Include="Services\IOSDialogService.cs" />
     <Compile Include="Views\SignInViewController.cs" />
     <Compile Include="Views\SignInViewController.designer.cs">
@@ -243,6 +243,10 @@
     <Compile Include="Views\TrailDialogView.cs" />
     <Compile Include="Views\TrailDialogView.designer.cs">
       <DependentUpon>TrailDialogView.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Views\MenuView.cs" />
+    <Compile Include="Views\MenuView.designer.cs">
+      <DependentUpon>MenuView.cs</DependentUpon>
     </Compile>
   </ItemGroup>
   <ItemGroup>
