@@ -56,8 +56,6 @@ namespace MountainWalker.Droid.Fragments
 
         public override View OnCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState)
         {
-            //ShowHamburgerMenu = true;
-
             FragmentManager fragmentManager = this.Activity.FragmentManager;
 
             MapFragment _mapFragment = fragmentManager.FindFragmentByTag("reached") as MapFragment;

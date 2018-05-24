@@ -64,6 +64,7 @@ namespace MountainWalker.Core.ViewModels
             _startButtonService.SetStartButtonText("Start");
             _travelPanelService.TravelPanelVisibility = "gone";
             _travelPanelService.NumberOfReachedPoints = 0;
+            _travelPanelService.AddNewTrailToStorage();
             _visible.Raise(false);
         }
 

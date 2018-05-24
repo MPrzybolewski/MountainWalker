@@ -15,5 +15,6 @@ namespace MountainWalker.Core.Interfaces
         DateTime StartTime { get; set; }
         TravelTime TravelTime { get; set; }
         void SetTravelTime();
+        void AddNewTrailToStorage();
     }
 }

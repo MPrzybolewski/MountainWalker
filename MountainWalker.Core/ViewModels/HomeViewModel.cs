@@ -174,7 +174,7 @@ namespace MountainWalker.Core.ViewModels
         private void OnTimerMessage(TravelPanelMessage message)
         {
             TravelPanelVisibility = message.TravelPanelVisibility;
-            RunTravelPanelTimer();
+            RunTravelPanelTimer(message.NumberOfReachedPoints);
             PointsInfoText = "" + message.NumberOfReachedPoints;
         }
 
@@ -183,7 +183,7 @@ namespace MountainWalker.Core.ViewModels
             ButtonText = message.StartButtonText;
         }
 
-        private async void RunTravelPanelTimer()
+        private async void RunTravelPanelTimer(int reachedPointsCount)
         {
             while(_locationService.IsTrailStarted)
             {
@@ -191,42 +191,7 @@ namespace MountainWalker.Core.ViewModels
                 _travelPanelService.SetTravelTime();
                 TimeInfoText = "" +  _travelPanelService.TravelTime;
             }
-            //AddNewTrailToStorage(_travelPanelService.TravelTime);
             TimeInfoText = "0:0:0";
-        }
-
-        private void AddNewTrailToStorage(TravelTime time)
-        {
-            var date = DateTime.Now.ToString("HH/MM/SS");
-            var reachedTrail = new ReachedTrail()
-            {
-                Date = DateTime.Now.ToString("dd:MM:yy"),
-                From = _locationService.ReachedPoints.First().Name,
-                To = _locationService.ReachedPoints.Last().Name,
-                StartTime = _travelPanelService.StartTime.ToString("HH:mm:ss"),
-                EndTime = DateTime.Now.ToString("HH:mm:ss"),
-                Time = time.ToString(""),
-                Distance = "5km"
-            };
-
-            var trails = new List<int>();
-            foreach(var trail in _locationService.ReachedTrails)
-            {
-                trails.Add(trail.Id);
-            }
-            reachedTrail.Trails = trails;
-
-            var jsone = CrossSecureStorage.Current.GetValue(CrossSecureStorageKeys.ReachedTrails);
-            var jsoneList = JsonConvert.DeserializeObject<List<ReachedTrail>>(jsone);
-
-            jsoneList.Add(reachedTrail);
-
-            jsone = JsonConvert.SerializeObject(jsoneList);
-
-            CrossSecureStorage.Current.SetValue(CrossSecureStorageKeys.ReachedTrails, jsone);
-
-            //deserialize, add and serialize
-            //add to securestorage
         }
 
         private async Task OpenDialog()
