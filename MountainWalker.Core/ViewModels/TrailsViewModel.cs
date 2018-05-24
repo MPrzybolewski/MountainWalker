@@ -1,12 +1,9 @@
-﻿using System;
+﻿using System.Linq;
 using System.Collections.Generic;
-using System.Collections.ObjectModel;
-using System.Diagnostics;
 using System.Windows.Input;
 using MountainWalker.Core.Interfaces;
 using MountainWalker.Core.Messages;
 using MountainWalker.Core.Models;
-using MountainWalker.Core.Services;
 using MvvmCross.Core.Navigation;
 using MvvmCross.Core.ViewModels;
 using MvvmCross.Plugins.Messenger;
@@ -45,7 +42,7 @@ namespace MountainWalker.Core.ViewModels
             {
                 return new MvxCommand<Trail>(item =>
                 {
-                    var message = new TrailMessage(this, _trailService.Trails[item.Id], true);
+                    var message = new TrailMessage(this, _trailService.Trails.Where(trail => trail.Id == item.Id).FirstOrDefault(), true);
                     _navigationService.Navigate<TrailDetailsViewModel>();
                     _messenger.Publish(message);
                 });

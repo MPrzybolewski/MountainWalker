@@ -11,6 +11,8 @@ using MvvmCross.Core.Navigation;
 using MvvmCross.Core.ViewModels;
 using MvvmCross.Plugins.Messenger;
 using System;
+using Plugin.SecureStorage;
+using Newtonsoft.Json;
 
 namespace MountainWalker.Core.ViewModels
 {
@@ -189,13 +191,13 @@ namespace MountainWalker.Core.ViewModels
                 _travelPanelService.SetTravelTime();
                 TimeInfoText = "" +  _travelPanelService.TravelTime;
             }
-            AddNewTrailToStorage(_travelPanelService.TravelTime);
+            //AddNewTrailToStorage(_travelPanelService.TravelTime);
             TimeInfoText = "0:0:0";
         }
 
         private void AddNewTrailToStorage(TravelTime time)
         {
-            var date = DateTime.Now.ToString("HH:MM:SS");
+            var date = DateTime.Now.ToString("HH/MM/SS");
             var reachedTrail = new ReachedTrail()
             {
                 Date = DateTime.Now.ToString("dd:MM:yy"),
@@ -213,6 +215,15 @@ namespace MountainWalker.Core.ViewModels
                 trails.Add(trail.Id);
             }
             reachedTrail.Trails = trails;
+
+            var jsone = CrossSecureStorage.Current.GetValue(CrossSecureStorageKeys.ReachedTrails);
+            var jsoneList = JsonConvert.DeserializeObject<List<ReachedTrail>>(jsone);
+
+            jsoneList.Add(reachedTrail);
+
+            jsone = JsonConvert.SerializeObject(jsoneList);
+
+            CrossSecureStorage.Current.SetValue(CrossSecureStorageKeys.ReachedTrails, jsone);
 
             //deserialize, add and serialize
             //add to securestorage
