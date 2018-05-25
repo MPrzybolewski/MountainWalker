@@ -4,6 +4,7 @@ using MvvmCross.Platform;
 using Foundation;
 using UIKit;
 using Google.Maps;
+using MountainWalker.Core.Models;
 
 namespace MountainWalker.Touch
 {
@@ -32,6 +33,7 @@ namespace MountainWalker.Touch
 
             Window.MakeKeyAndVisible();
 
+			Achievement.Os = "ios";
             return true;
         }
 

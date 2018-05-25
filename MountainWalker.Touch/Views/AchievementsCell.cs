@@ -2,6 +2,7 @@
 
 using Foundation;
 using MountainWalker.Core.Models;
+using MountainWalker.Touch.Models;
 using MvvmCross.Binding.BindingContext;
 using MvvmCross.Binding.iOS.Views;
 using UIKit;
@@ -21,14 +22,16 @@ namespace MountainWalker.Touch.Views
         protected AchievementsCell(IntPtr handle) : base(handle)
         {
 			var imageViewLoader = new MvxImageViewLoader(() => TrophyImage);
-            
+
 			this.DelayBind(() =>
             {
                 var set = this.CreateBindingSet<AchievementsCell, Achievement>();
-				set.Bind(imageViewLoader).To(vm => vm.Trophy);
+                
                 set.Bind(TitleCellText).To(vm => vm.Name);
                 set.Bind(DateCellText).To(vm => vm.Date);
-				//set.Bind(TrophyImage).For("image").To(vm => vm.Trophy);
+				//set.Bind(imageViewLoader).To(vm => vm.Trophy).WithConversion("TypeToImage");
+				//set.Bind(imageViewLoader).To(vm => vm.Trophy);            
+				set.Bind(TrophyImage).For(c => c.Image).To(vm => vm.Trophy).WithConversion(new TypeToImageValueConverter()).Apply();
                 set.Apply();
             });
         }

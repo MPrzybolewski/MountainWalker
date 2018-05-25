@@ -38,22 +38,17 @@ namespace MountainWalker.Core.ViewModels
                 new Achievement(id++, "Sarnia Skała"),
                 new Achievement(id++, "Gęsia Szyja")
             };
-            SetAchievements();
-
-            Task.Run(async () =>
-            {
-                await Task.Delay(10000);
-                Items[9].IsReached = true;
-            });
+			SetAchievements();
         }
 
         private void SetAchievements()
         {
             var tops = CrossSecureStorage.Current.GetValue(CrossSecureStorageKeys.Achievements);
-            var achievements = JsonConvert.DeserializeObject<List<Achievement>>(tops);
-
-            if (achievements.Count == 0)
-                Items = new MvxObservableCollection<Achievement>();
+			var achievements = new List<Achievement>();
+			if (tops != null)
+			{
+				achievements = JsonConvert.DeserializeObject<List<Achievement>>(tops);
+			}
 
             else
                 foreach(var ach in achievements)

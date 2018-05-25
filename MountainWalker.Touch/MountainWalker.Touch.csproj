@@ -173,10 +173,6 @@
     </ImageAsset>
     <ImageAsset Include="Resources\Assets.xcassets\ikona.imageset\Contents.json" />
     <ImageAsset Include="Resources\Assets.xcassets\ikona.imageset\ikona.png" />
-    <ImageAsset Include="Resources\Assets.xcassets\trophy.imageset\Contents.json" />
-    <ImageAsset Include="Resources\Assets.xcassets\trophy.imageset\trophy.png" />
-    <ImageAsset Include="Resources\Assets.xcassets\trophyx.imageset\Contents.json" />
-    <ImageAsset Include="Resources\Assets.xcassets\trophyx.imageset\trophyx.png" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Resources\" />
@@ -270,6 +266,7 @@
     <Compile Include="Views\AchievementsCell.designer.cs">
       <DependentUpon>AchievementsCell.cs</DependentUpon>
     </Compile>
+    <Compile Include="Models\TypeToImageValueConverter.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\MountainWalker.Core\MountainWalker.Core.csproj">
@@ -283,10 +280,10 @@
     <BundleResource Include="Resources\Images\rounded_button.xml" />
     <BundleResource Include="Resources\Images\gradientbg.png" />
     <BundleResource Include="Resources\Images\headerMenu.jpg" />
-  </ItemGroup>
-  <ItemGroup>
-    <AndroidResource Include="Resources\Images\trophy.png" />
-    <AndroidResource Include="Resources\Images\trophyx.png" />
+    <BundleResource Include="Resources\trophy.png" />
+    <BundleResource Include="Resources\trophyx.png" />
+    <BundleResource Include="Resources\Images\trophy.png" />
+    <BundleResource Include="Resources\Images\trophyx.png" />
   </ItemGroup>
   <Import Project="$(MSBuildExtensionsPath)\Xamarin\iOS\Xamarin.iOS.CSharp.targets" />
   <Import Project="..\packages\Xamarin.Build.Download.0.4.7\build\Xamarin.Build.Download.targets" Condition="Exists('..\packages\Xamarin.Build.Download.0.4.7\build\Xamarin.Build.Download.targets')" />
