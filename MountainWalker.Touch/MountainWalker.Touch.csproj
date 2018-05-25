@@ -195,6 +195,9 @@
     <InterfaceDefinition Include="Views\TrailsCell.xib" />
     <InterfaceDefinition Include="Views\AchievementsView.xib" />
     <InterfaceDefinition Include="Views\AchievementsCell.xib" />
+    <InterfaceDefinition Include="Views\ReachedTrailsView.xib" />
+    <InterfaceDefinition Include="Views\ReachedTrailCell.xib" />
+    <InterfaceDefinition Include="Views\ReachedTrailMapView.xib" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Info.plist" />
@@ -267,6 +270,18 @@
       <DependentUpon>AchievementsCell.cs</DependentUpon>
     </Compile>
     <Compile Include="Models\TypeToImageValueConverter.cs" />
+    <Compile Include="Views\ReachedTrailsView.cs" />
+    <Compile Include="Views\ReachedTrailsView.designer.cs">
+      <DependentUpon>ReachedTrailsView.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Views\ReachedTrailCell.cs" />
+    <Compile Include="Views\ReachedTrailCell.designer.cs">
+      <DependentUpon>ReachedTrailCell.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Views\ReachedTrailMapView.cs" />
+    <Compile Include="Views\ReachedTrailMapView.designer.cs">
+      <DependentUpon>ReachedTrailMapView.cs</DependentUpon>
+    </Compile>
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\MountainWalker.Core\MountainWalker.Core.csproj">
