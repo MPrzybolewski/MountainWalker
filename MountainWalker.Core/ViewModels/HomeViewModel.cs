@@ -192,7 +192,7 @@ namespace MountainWalker.Core.ViewModels
                 TimeInfoText = "" +  _travelPanelService.TravelTime;
             }
             //AddNewTrailToStorage(_travelPanelService.TravelTime);
-            TimeInfoText = "0:0:0";
+			TimeInfoText = "0h:0m:0s";
         }
 
         private void AddNewTrailToStorage(TravelTime time)

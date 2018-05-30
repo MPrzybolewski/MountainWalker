@@ -34,6 +34,13 @@ namespace MountainWalker.Touch
             Window.MakeKeyAndVisible();
 
 			Achievement.Os = "ios";
+
+			UINavigationBar.Appearance.BarTintColor = UIColor.FromRGB(46, 67, 255);
+            UINavigationBar.Appearance.TintColor = UIColor.White;
+            UINavigationBar.Appearance.TitleTextAttributes = new UIStringAttributes() { ForegroundColor = UIColor.White };
+            UINavigationBar.Appearance.Translucent = false;
+
+
             return true;
         }
 

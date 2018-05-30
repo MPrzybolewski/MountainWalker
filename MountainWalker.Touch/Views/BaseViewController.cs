@@ -22,13 +22,14 @@ namespace MountainWalker.Touch.Views
         }
 
         #endregion
-
+        
         #region Public Methods
-
+        
         public override void ViewDidLoad()
         {
             EdgesForExtendedLayout = UIRectEdge.None;
-            View.BackgroundColor = UIColor.White;
+            View.BackgroundColor = UIColor.White;         
+
 
             base.ViewDidLoad();
         }
