@@ -75,6 +75,7 @@ namespace MountainWalker.Touch.Views
 
             if(_mapView == null)
 			{
+				
 				var viewModel = this.ViewModel;
 				frameForMap = MyMap.Frame;
                 if (!_isMapInitalized)
@@ -83,7 +84,7 @@ namespace MountainWalker.Touch.Views
                     _mapView = new MapView(new CGRect(0, 0, frameForMap.Width, frameForMap.Height));
                     _mapView.MyLocationEnabled = true;
                     _mapView.Settings.MyLocationButton = true;
-
+					_mapView.MapType = MapViewType.Terrain;
                     this.MyMap.AddSubview(_mapView);
 
 
@@ -101,9 +102,7 @@ namespace MountainWalker.Touch.Views
                 var set = this.CreateBindingSet<HomeView, HomeViewModel>();
                 set.Bind(_mapView).For(TrailDialogBinding.BindingName).To(vm => vm.OpenTrailDialogCommand);
                 set.Apply();
-			}
-
-           
+			}        
 		}
 
 

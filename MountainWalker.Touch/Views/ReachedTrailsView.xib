@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="14109" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES">
+    <device id="retina4_7" orientation="portrait">
+        <adaptation id="fullscreen"/>
+    </device>
+    <dependencies>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14088"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="ReachedTrailsView">
+            <connections>
+                <outlet property="TrailsList" destination="TUa-B4-oGj" id="name-outlet-TUa-B4-oGj"/>
+                <outlet property="view" destination="2" id="RRd-Eg-VrN"/>
+            </connections>
+        </placeholder>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <view contentMode="scaleToFill" id="2">
+            <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+            <subviews>
+                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Przebyte wędrówki" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="0tS-Do-QuT">
+                    <rect key="frame" x="0.0" y="0.0" width="375" height="37"/>
+                    <fontDescription key="fontDescription" type="system" pointSize="31"/>
+                    <nil key="textColor"/>
+                    <nil key="highlightedColor"/>
+                </label>
+                <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="TUa-B4-oGj">
+                    <rect key="frame" x="0.0" y="37" width="375" height="630"/>
+                    <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                </tableView>
+            </subviews>
+            <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+            <constraints>
+                <constraint firstItem="TUa-B4-oGj" firstAttribute="top" secondItem="0tS-Do-QuT" secondAttribute="bottom" id="5Mc-HX-u1c"/>
+                <constraint firstItem="TUa-B4-oGj" firstAttribute="width" secondItem="2" secondAttribute="width" id="JfI-cF-0TY"/>
+                <constraint firstItem="0tS-Do-QuT" firstAttribute="leading" secondItem="2" secondAttribute="leading" id="Syr-aL-AIX"/>
+                <constraint firstItem="0tS-Do-QuT" firstAttribute="width" secondItem="2" secondAttribute="width" id="d3D-sR-3EY"/>
+                <constraint firstItem="TUa-B4-oGj" firstAttribute="leading" secondItem="2" secondAttribute="leading" id="dD0-4j-se6"/>
+                <constraint firstAttribute="bottom" secondItem="TUa-B4-oGj" secondAttribute="bottom" id="p08-Xm-ncH"/>
+                <constraint firstItem="0tS-Do-QuT" firstAttribute="top" secondItem="2" secondAttribute="top" id="zmt-la-t87"/>
+            </constraints>
+        </view>
+    </objects>
+</document>
