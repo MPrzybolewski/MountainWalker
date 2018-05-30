@@ -10,7 +10,6 @@
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="MenuView">
             <connections>
-                <outlet property="testView" destination="0Z8-8m-Xb5" id="name-outlet-0Z8-8m-Xb5"/>
                 <outlet property="view" destination="2" id="RRd-Eg-VrN"/>
             </connections>
         </placeholder>
@@ -18,33 +17,6 @@
         <view contentMode="scaleToFill" id="2">
             <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-            <subviews>
-                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="0Z8-8m-Xb5">
-                    <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
-                    <subviews>
-                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="bFq-AV-T06">
-                            <rect key="frame" x="164.5" y="318.5" width="46" height="30"/>
-                            <state key="normal" title="Button"/>
-                        </button>
-                        <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="HOe-q1-umE">
-                            <rect key="frame" x="67" y="424" width="240" height="128"/>
-                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                        </scrollView>
-                    </subviews>
-                    <color key="backgroundColor" red="1" green="0.97793315219999999" blue="0.070126126799999994" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                    <constraints>
-                        <constraint firstItem="bFq-AV-T06" firstAttribute="centerX" secondItem="0Z8-8m-Xb5" secondAttribute="centerX" id="OFe-Tj-jJP"/>
-                        <constraint firstItem="bFq-AV-T06" firstAttribute="centerY" secondItem="0Z8-8m-Xb5" secondAttribute="centerY" id="p5y-ed-FFL"/>
-                    </constraints>
-                </view>
-            </subviews>
-            <color key="backgroundColor" red="0.0" green="0.49803921569999998" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-            <constraints>
-                <constraint firstItem="0Z8-8m-Xb5" firstAttribute="centerX" secondItem="2" secondAttribute="centerX" id="5D7-md-fzx"/>
-                <constraint firstItem="0Z8-8m-Xb5" firstAttribute="width" secondItem="2" secondAttribute="width" id="Fw9-qx-o5y"/>
-                <constraint firstItem="0Z8-8m-Xb5" firstAttribute="centerY" secondItem="2" secondAttribute="centerY" id="lZl-ps-EuY"/>
-                <constraint firstItem="0Z8-8m-Xb5" firstAttribute="height" secondItem="2" secondAttribute="height" id="wmP-wN-uJr"/>
-            </constraints>
         </view>
     </objects>
 </document>
