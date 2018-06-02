@@ -136,6 +136,14 @@ namespace MountainWalker.Core.ViewModels
                     }
                 }
 
+                foreach (var point in _trailService.Tops)
+                {
+                    if (_locationService.GetDistanceBetweenTwoPointsOnMapInMeters(Location, point) < 50)
+                    {
+                        _locationService.AddTopsToStorage(point.Id);
+                    }
+                }
+
                 if (_locationService.ReachedPoints.Count > 0
                        && _locationService.ReachedTrails.Count < _locationService.ReachedPoints.Count)
                 {

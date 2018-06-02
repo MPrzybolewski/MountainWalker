@@ -16,9 +16,11 @@ namespace MountainWalker.Core.Models
         public string Color { get; set; }
         public string Name { get; set; }
         public string ShortDescription { get; set; }
-        public string Description { get; set; }
+        public string Description { get; set; } = "";
         public int TimeUp { get; set; }
         public int TimeDown { get; set; }
+        public double Distance { get; set; }
+        public string Image { get; set; }
 
         public Trail()
         {

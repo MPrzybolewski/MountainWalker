@@ -1,6 +1,8 @@
 ﻿using System.Collections.Generic;
 using MountainWalker.Core.Models;
 using MountainWalker.Core.Interfaces;
+using Newtonsoft.Json;
+using Plugin.SecureStorage;
 
 namespace MountainWalker.Core.Services
 {
@@ -8,6 +10,7 @@ namespace MountainWalker.Core.Services
     {
         public List<Point> Points { get; set; }
         public List<Trail> Trails { get; set; }
+        public List<Point> Tops { get; set; }
 
         public TrailService()
         {
@@ -16,6 +19,9 @@ namespace MountainWalker.Core.Services
 
             Trails = new List<Trail>();
             CreateConnections();
+
+            Tops = new List<Point>();
+            SetTops();
             
         }
 
@@ -40,7 +46,26 @@ namespace MountainWalker.Core.Services
             Points.Add(new Point(49.244899,20.006396, "Królowe Rówieńki")); //49,24491, 20,00639
             Points.Add(new Point(49.2440323, 20.0061047));
             Points.Add(new Point(49.2414482, 20.001753));
-            Points.Add(new Point(49.237148, 19.996585));
+            Points.Add(new Point(49.237148, 19.996585)); // zolty
+            Points.Add(new Point(49.234299, 19.993670));
+            Points.Add(new Point(49.231151, 19.982782)); //nadal zolty
+            Points.Add(new Point(49.234301, 19.993673));
+            Points.Add(new Point(49.232764, 19.982563)); //koniec na kasprowym
+        }
+
+        private void SetTops()
+        {
+            Tops.Add(new Point(0, 49.250996, 19.934021));
+            Tops.Add(new Point(1, 49.232294, 19.981717));
+            Tops.Add(new Point(2, 49.1798416, 20.0880484));
+            Tops.Add(new Point(3, 49.2505826, 19.9317057));
+            Tops.Add(new Point(4, 49.2365569, 19.9299811));
+            Tops.Add(new Point(5, 49.2194068, 20.0005269));
+            Tops.Add(new Point(6, 49.2253989, 20.0058191));
+            Tops.Add(new Point(7, 49.1924991, 20.0462452));
+            Tops.Add(new Point(8, 49.2184108, 20.0201461));
+            Tops.Add(new Point(9, 49.2647705, 19.9401976));
+            Tops.Add(new Point(10, 49.2597213, 20.069023));
         }
 
         private void CreateConnections()
@@ -50,7 +75,7 @@ namespace MountainWalker.Core.Services
             Trails.Add(new Trail());
             Trails[0].Color = "blue";
             Trails[0].Id = 190;
-            Trails[0].Description = "Legendarna droga z SKM na UG";
+            Trails[0].ShortDescription = "Legendarna droga z SKM na UG";
             Trails[0].Name = "Dolina Alchemii";
             Trails[0].TimeUp = 5;
             Trails[0].TimeDown = 5;
@@ -80,7 +105,7 @@ namespace MountainWalker.Core.Services
             Trails.Add(new Trail());
             Trails[1].Color = "red";
             Trails[1].Id = 191;
-            Trails[1].Description = "Co poniedziałek biedni studenci podróżują w to miejsce w poszukiwaniu jedzienia";
+            Trails[1].ShortDescription = "Co poniedziałek biedni studenci podróżują w to miejsce w poszukiwaniu jedzienia";
             Trails[1].Name = "Burgerogrzmoty KFC";
             Trails[1].TimeUp = 5;
             Trails[1].TimeDown = 5;
@@ -101,7 +126,7 @@ namespace MountainWalker.Core.Services
             Trails.Add(new Trail());
             Trails[2].Color = "green";
             Trails[2].Id = 192;
-            Trails[2].Description = "Po długiej i bolesnej pracy nad projektami, biedni studenci udają się tutaj na piwko";
+            Trails[2].ShortDescription = "Po długiej i bolesnej pracy nad projektami, biedni studenci udają się tutaj na piwko";
             Trails[2].Name = "Piwne Oko";
             Trails[2].TimeUp = 5;
             Trails[2].TimeDown = 10;
@@ -127,10 +152,16 @@ namespace MountainWalker.Core.Services
             {
                 Color = "green",
                 Id = id++,
-                Description = "Nudna droga na kasprowy.",
-                Name = "Szlak pieszy zielony",
-                TimeUp = 120,
-                TimeDown = 120,
+                ShortDescription = "Prosty szlak na Kasprowy Wierch",
+                Description = "Trasa na Kasprowy Wierch z Kuźnic należy do jednych z najłatwiejszych w polskich Tatrach. " +
+                    "Jest monotonna i chwilami wręcz nudna, wszelako polecam ją z uwagi na brak dużego zatłoczenia szczególnie w " +
+                    "okresie zimowym (duża część ludzi po prostu wjeżdża kolejką na szczyt). " +
+                    "Ponadto stanowi wspaniałe miejsce do treningu dla biegaczy.",
+                Name = "Kasprowy Wierch przez Myślenickie Turnie",
+                TimeUp = 150,
+                TimeDown = 130,
+                Distance = 7.5,
+                Image = "kasprowy",
                 PolylineCode = new List<string>()
                 {
                     "euukHgg}xBpBl@tAV`@XNTPb@Tl@d@^@@HJ^d@n@v@l@x@f@v@`@h@RNHLJFHBD@N?j@DH?HADCNMHIFCDAD?H?F@RBTFbAr@RRdAl@VLxAp@TP\\ZFLDL@PDRD\\?RDZP`@JXNXTb@n@dAXd@VNXFTD`@L\\BnAFv@F^D@?B@DAH?DADCFCBCFEDEHEFCHENGHEFEFERSHKHEDEHCHCHCNIHGLIFEFEDEBGDKBEFMDKJYFIFIDGJQHKFIFGFGFGFEHEFEHEJOLMLKl@q@VYd@i@d@s@HMHIJGFAH@NBN@b@DJBJDHDF@J?FAHAJEDCFADCDAFAFAH?L@H@J?F@H?J?FCJAHEFCJEJEJEDADADAF?BADADADAB?D?F?DB@@@@?@?B?D?FAH?JAN?L?H@B?B@D@@@@@BH@lBZFDJFFFFHJDH@F?HCJEHCPCPCj@ALAPEDEDGBGDKHOf@m@XYLYNWFODSDO@O@M?K?M?M@MDODWDK@KBOBMDMLe@FMDMDGHMFIDKN]Xw@Pg@Lc@Z}@FSPYLUPSLKJGJGZQROJEJELAF?F@D@HFB@DDFBDDDBDDFBFBFDFBF@DBDBDDDDDFFDDBFBFDDBFBDDDBDDBBBD@FBHBJDJBJDJBH@J?H@FAF?JCFCPCLAFAFADCFMTUTm@h@WPIHGDMLKHC?EBC@C?E@E?EAE?E@E?GBE?GBE@GBEBKHEBC@E@C@EBCDA@ADCL?H?J?N?J?P?NALALENALCNARARCNENERQ~@APCPEPEPGRK`@I\\Uj@Sf@ELEJGPGTABADABADAB?B?F@JDVBL@FBFB@@@B?B?DABA@ABE@CBEBC@EBEDG@EBADABABABCBCBADGBABC@CBC@CBABC@ABC@E@CDIBGBIBCBEBE@CBC@EBA@CDGDE@CBC@C@C@E@E@E@C@E@C@C@E?E@E@E?E?E@G@IBE@CBABC@ADCBCBCBEFGJKFCFGFGDEDEDIDEFEFCFAFANGPEJALAJ?H?N@n@@N?REXOLIJGLC`@KT?TDPHPHRDT?PCT?P?L?NDPFLFNFLBJFLDjAHX?NAR?B?BCFEDCFAF?D@FDNTJJDDNVVd@LLDH@@@@@?@??A@A?A?OAMBSDe@BO@E?A@A@A@?@?@@BDFLHJFHHNJHLLLDLBJAJEFCBC@?@A?A?A?A?A?AGICMAEAG?E?K?M?K?C?C@C@A@?@?@@@DDBDBFBL@H@J?H?HAH?JAJCHAJCHAHCFGBC?A?A?A?AAAECCCCCECCEEECEAA?C?CAA@C?C@CXGZONIJKJGHAb@ENELGNANBNFJJJNNVH\\HPHJPTRP^Pl@XPHNJDDNDl@DT?LCJCZOb@MHCFCHIHMR_@JQZWp@m@b@[FCBCBCBIBIDGDA@A?A@C?A?CAGCGAC?C?E?QBEBI@?FCB@HBFBB@B?HBD@D@D@@@B@@DFNDLDJFHPZLNTPDDFDBDBDBDJHJDHB@@B@@@@@@@B@@@@@B?@@@?@?B@@@@@@B@@@B@B@@@@BFBFHHBDB@@?B?@?BABABA@CBC?C@C?E?C?C?AAE?AA??AAACACACCACCC?CAG?EACAGAC?ACAAACAC?A?A?CAICGGIOIUOg@CQKi@AE?C?A@??A?A@?B?@?BBBBBFBH@H@D@D@BHJHFHFHFDBF@HBB?BABADAJGLEDAB?B?@@B?@@B@?B@@@B@@@@BDB@?@@?@?@?@ABA@A@AHIPWVc@HQDI@A@CBA@C@C@A?A@?@A@@@@@B@B@D@B@DBDDFDDLLVTNL@@@?@?@??A?A?A?AAA?AAAAECMQy@Oq@COAGACAE?E?G?G?E@C@ABCBABA@A@A?C@O?C@C@A@?@?@?@@@@?@BF?F@H@D?D@HBJ@D?B@@@DBLDHBBBBBBBBB@BB@@B@@BBF?@@@@@@@@?B?B?BAB?BABALCBADAFCJEFAFCB?BAD?B?B?B?D?B?B?D?B?JA@A@??A?A?A?AAAAAKAECICKGKGAAECACCAAAECAECCCGEQAE?GAGAC?CAECIEY?A?A?A?A@A@?@?BBDB@@@?@@B@@?@@?@@??@@D?D?D@??@@@@@@@BB@@@B@B@B@B@B?@@?@?@@B?F?j@BT?D?B?F@B?LBP@`@?R@F?@?@A@A?A?A?ACCIC]YKOKSUe@KUIKEKACAGAE?EAE?E?M?I?G@C?A@?@??@@@BD@@@?@@@?@?BCB?BA@?@@@??@?@@@@BBB@@BDB@@B@@B@DBD?B@D@B?B?B?B?BAD?HC`@KTGFCDC@A?A@A?A?A?AAA?AA?CCCAAAAC?CAA?E?C?C@C@E@C@CBA?A@?BAB?BAFABADCBAFABABAB?LCVEFEHEHEJGJGHGJEFEFCHCPE`@Gf@MPE\\IJGHCFCF?F?FAlAM",
@@ -142,7 +173,7 @@ namespace MountainWalker.Core.Services
             {
                 Color = "yellow",
                 Id = id++,
-                Description = "Jakis na Hale heh",
+                ShortDescription = "Jakis na Hale heh",
                 Name = "Szlak pieszy żółty",
                 TimeUp = 65,
                 TimeDown = 65,
@@ -156,7 +187,7 @@ namespace MountainWalker.Core.Services
             {
                 Color = "blue",
                 Id = id++,
-                Description = "Piękne widoczki na Hale",
+                ShortDescription = "Piękne widoczki na Hale",
                 Name = "Dolina Gąsienicowa",
                 TimeUp = 18,
                 TimeDown = 15,
@@ -170,7 +201,7 @@ namespace MountainWalker.Core.Services
             {
                 Color = "blue",
                 Id = id++,
-                Description = "Z Hali do Suchej",
+                ShortDescription = "Z Hali do Suchej",
                 Name = "Szlak pieszy niebieski",
                 TimeUp = 1,
                 TimeDown = 1,
@@ -184,7 +215,7 @@ namespace MountainWalker.Core.Services
             {
                 Color = "black",
                 Id = id++,
-                Description = "nie wiem co to heh",
+                ShortDescription = "nie wiem co to heh",
                 Name = "Szlak pieszy czarny",
                 TimeUp = 5,
                 TimeDown = 5,
@@ -198,13 +229,56 @@ namespace MountainWalker.Core.Services
             {
                 Color = "black",
                 Id = id++,
-                Description = "kolejny czarnuch",
+                ShortDescription = "kolejny czarnuch",
                 Name = "Szlak pieszy czarny",
                 TimeUp = 11,
                 TimeDown = 9,
                 PolylineCode = new List<string>()
                 {
                     "anpkH}qayBNVT\\JVLTJPV`@DJ@DDDFJHJJLDDPVHJBDHFDFHFBFBB@B@BB@@@B@@@@@@B@@@BB@@BB@@@B@@BBB@@@@DFLRHJNRHJVRJLHFFFHFDHLRJLNTX\\NXFHNTFJDHDJHRDNTZBFBD@HBHBJBL@DBDBFB@B@B@@@B@@BB@@@@@@B@B@@B@@@B@@@B@B@DDFHBFDFFFDDNLNHZVZZZXPPBD@@B@B@@@B?F?B?@?DABA"
+                }
+            });
+
+            Trails.Add(new Trail()
+            {
+                Color = "yellow",
+                Id = id++,
+                ShortDescription = "witam Cie",
+                Name = "Szlak pieszy żółty",
+                TimeUp = 0,
+                TimeDown = 0,
+                PolylineCode = new List<string>
+                {
+                    "asokHwq`yBLBNHPJTRHFTNJJLLBBBFHNBD@BFH@BDF@B@B@B@D?@@DFJ@@BB@DBBHFDD@BBB@@@B@B@@BFBFHHFJBFB@@B@B@D@B@B@B@B@B@B@B@B@D@B@B@DBD@@@BBBH@@?@?N?F?D@@@B@@@B@B@@?B?BAB?B?B@@@DBD@DFPLHFFFLPRXLTJLJNLNHH\\Z"
+                }
+            });
+
+            Trails.Add(new Trail()
+            {
+                Color = "yellow",
+                Id = id++,
+                ShortDescription = "Do zmany, wiesz",
+                Name = "Szlak pieszy żółty",
+                TimeUp = 0,
+                TimeDown = 0,
+                PolylineCode = new List<string>
+                {
+                    "smnkHk{}xBf@oA",
+                    "klnkH{}}xBPmALu@LeAFu@@M?M?IAu@G}@Ck@EWGe@ESESIUIUIUq@uAg@cASk@Yk@Ya@a@i@k@y@SWOKYKMGMIEEGKIQiAkCq@eB[w@_@eAQe@Om@GUCWMu@Mq@YmAO{@Ki@AKAGAGAEAEACAEACAECC?CACAEACAE?G@E@E?CBG@E@E@E@E@G?EBE@E@CBEHe@"
+                }
+            });
+
+            Trails.Add(new Trail()
+            {
+                Color = "green",
+                Id = id++,
+                ShortDescription = "No to juz kasprowy xd",
+                Name = "Kasprowy",
+                TimeUp = 0,
+                TimeDown = 0,
+                PolylineCode = new List<string>
+                {
+                    "wwnkH_z}xB?A?A@?@?RC@ABA@C@AB?B?D@x@Vj@FD@H?t@M^KHA\\QDCXK"
                 }
             });
         }

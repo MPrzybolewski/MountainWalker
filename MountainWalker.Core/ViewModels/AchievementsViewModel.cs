@@ -39,12 +39,6 @@ namespace MountainWalker.Core.ViewModels
                 new Achievement(id++, "Gęsia Szyja")
             };
             SetAchievements();
-
-            Task.Run(async () =>
-            {
-                await Task.Delay(10000);
-                Items[9].IsReached = true;
-            });
         }
 
         private void SetAchievements()

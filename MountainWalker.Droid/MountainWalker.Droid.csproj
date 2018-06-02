@@ -275,6 +275,7 @@
     <AndroidResource Include="Resources\drawable\splashscr.xml" />
     <AndroidResource Include="Resources\drawable-nodpi\point.png" />
     <AndroidResource Include="Resources\values\colors.xml" />
+    <AndroidResource Include="Resources\drawable-nodpi\kasprowy.jpg" />
   </ItemGroup>
   <ItemGroup>
     <AndroidResource Include="Resources\values\Strings.xml" />

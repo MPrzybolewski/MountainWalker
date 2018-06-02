@@ -7,5 +7,6 @@ namespace MountainWalker.Core.Interfaces
     {
         List<Trail> Trails { get; set; }
         List<Point> Points { get; set; }
+        List<Point> Tops { get; set; }
     }
 }

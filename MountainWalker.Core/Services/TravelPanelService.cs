@@ -99,6 +99,8 @@ namespace MountainWalker.Core.Services
             }
             reachedTrail.Trails = trails;
 
+            //tutaj wysylam do bazy
+
             var jsone = CrossSecureStorage.Current.GetValue(CrossSecureStorageKeys.ReachedTrails);
             var jsoneList = JsonConvert.DeserializeObject<List<ReachedTrail>>(jsone);
 

@@ -143,7 +143,21 @@ namespace MountainWalker.Core.Interfaces.Impl
                 }
                 else
                 {
-                    var ach = new Achievement();
+                    var id = 1;
+                    var ach = new List<Achievement>
+                    {
+                        new Achievement(id++, "Giewont"),
+                        new Achievement(id++, "Kasprowy wierch"),
+                        new Achievement(id++, "Rysy"),
+                        new Achievement(id++, "Mały Giewont"),
+                        new Achievement(id++, "Kopa Kondracka"),
+                        new Achievement(id++, "Świnica"),
+                        new Achievement(id++, "Kościelec"),
+                        new Achievement(id++, "Mnich"),
+                        new Achievement(id++, "Kozi Wierch"),
+                        new Achievement(id++, "Sarnia Skała"),
+                        new Achievement(id++, "Gęsia Szyja")
+                    };
                     var jsone = JsonConvert.SerializeObject(ach);
                     CrossSecureStorage.Current.SetValue(CrossSecureStorageKeys.Achievements, jsone);
                 }
