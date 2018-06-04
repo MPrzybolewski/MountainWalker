@@ -63,7 +63,7 @@
                 android:layout_marginBottom="20dp"
                 android:id="@+id/imageView"
                 local:MvxBind="DrawableName Image"
-                android:src="@drawable/alps" />
+                android:src="@drawable/hala" />
             <TextView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
