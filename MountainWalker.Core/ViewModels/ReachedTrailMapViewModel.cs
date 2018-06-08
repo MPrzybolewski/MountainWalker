@@ -7,6 +7,7 @@ using MvvmCross.Core.Navigation;
 using MvvmCross.Core.ViewModels;
 using MvvmCross.Plugins.Messenger;
 using MountainWalker.Core.Interfaces;
+using System;
 
 namespace MountainWalker.Core.ViewModels
 {
@@ -65,7 +66,6 @@ namespace MountainWalker.Core.ViewModels
                 
                 resList.AddRange(select.Path);
             }
-
             return resList;
         }
     }

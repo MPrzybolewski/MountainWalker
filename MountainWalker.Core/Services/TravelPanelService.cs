@@ -86,17 +86,20 @@ namespace MountainWalker.Core.Services
                 To = _locationService.ReachedPoints.LastOrDefault().Name,
                 StartTime = StartTime.ToString("HH:mm:ss"),
                 EndTime = DateTime.Now.ToString("HH:mm:ss"),
-                Distance = "5km"
             };
 
             var xx = DateTime.Now.Subtract(StartTime);
             var date = new DateTime(xx.Ticks).ToString("HH:mm:ss");
             reachedTrail.Time = date;
             var trails = new List<int>();
+
+            var distance = 0d;
             foreach (var trail in _locationService.ReachedTrails)
             {
                 trails.Add(trail.Id);
+                distance += trail.Distance;
             }
+            reachedTrail.Distance = distance.ToString();
             reachedTrail.Trails = trails;
 
             var dataToDb = JsonConvert.SerializeObject(reachedTrail);
