@@ -278,7 +278,6 @@
     <AndroidResource Include="Resources\drawable-nodpi\hala.jpg" />
     <AndroidResource Include="Resources\drawable-nodpi\kuznicekopy.jpg" />
     <AndroidResource Include="Resources\drawable-nodpi\sucha.jpg" />
-    <AndroidResource Include="Resources\mipmap-hdpi\.DS_Store" />
     <AndroidResource Include="Resources\mipmap-hdpi\icon.png" />
     <AndroidResource Include="Resources\mipmap-mdpi\icon.png" />
     <AndroidResource Include="Resources\mipmap-xhdpi\icon.png" />
