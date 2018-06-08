@@ -127,7 +127,7 @@ namespace MountainWalker.Core.Services
             {
                 Color = "green",
                 Id = id++,
-                Description = "Nudna droga na kasprowy.",
+				Description = "Droga na Kasprowy Wierch zielonym szlakiem.",
                 Name = "Szlak pieszy zielony",
                 TimeUp = 120,
                 TimeDown = 120,
@@ -142,7 +142,7 @@ namespace MountainWalker.Core.Services
             {
                 Color = "yellow",
                 Id = id++,
-                Description = "Jakis na Hale heh",
+				Description = "Żółty szlak z Kuźnic do Hali Gąsienicowe.",
                 Name = "Szlak pieszy żółty",
                 TimeUp = 65,
                 TimeDown = 65,
@@ -156,7 +156,7 @@ namespace MountainWalker.Core.Services
             {
                 Color = "blue",
                 Id = id++,
-                Description = "Piękne widoczki na Hale",
+				Description = "Szlak prowadzący na Dolinę Gąsienicową.",
                 Name = "Dolina Gąsienicowa",
                 TimeUp = 18,
                 TimeDown = 15,
@@ -170,7 +170,7 @@ namespace MountainWalker.Core.Services
             {
                 Color = "blue",
                 Id = id++,
-                Description = "Z Hali do Suchej",
+				Description = " Szlak prowadzacy z Hali do Suchej",
                 Name = "Szlak pieszy niebieski",
                 TimeUp = 1,
                 TimeDown = 1,
@@ -184,7 +184,7 @@ namespace MountainWalker.Core.Services
             {
                 Color = "black",
                 Id = id++,
-                Description = "nie wiem co to heh",
+				Description = "Czarny i trudny do pokonania szlak",
                 Name = "Szlak pieszy czarny",
                 TimeUp = 5,
                 TimeDown = 5,
@@ -198,7 +198,7 @@ namespace MountainWalker.Core.Services
             {
                 Color = "black",
                 Id = id++,
-                Description = "kolejny czarnuch",
+				Description = "Krótszy, trudniejszy szlak na doline piecu stawow",
                 Name = "Szlak pieszy czarny",
                 TimeUp = 11,
                 TimeDown = 9,

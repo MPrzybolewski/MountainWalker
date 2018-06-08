@@ -1,4 +1,5 @@
 ﻿using System;
+using Foundation;
 using MountainWalker.Core.ViewModels;
 using MvvmCross.Core.ViewModels;
 using MvvmCross.iOS.Views;
@@ -28,12 +29,24 @@ namespace MountainWalker.Touch.Views
         public override void ViewDidLoad()
         {
             EdgesForExtendedLayout = UIRectEdge.None;
-            View.BackgroundColor = UIColor.White;         
+            View.BackgroundColor = UIColor.White;
+            base.ViewDidLoad(); 
 
-
-            base.ViewDidLoad();
+			var phoneImage = UIImage.FromBundle("phone");
+			NavigationItem.RightBarButtonItem = new UIBarButtonItem(phoneImage, UIBarButtonItemStyle.Bordered, PhoneButtonClick);         
         }
 
-        #endregion
-    }
+		public override void ViewDidAppear(bool animated)
+		{
+			base.ViewDidAppear(animated);         
+		}
+
+		void PhoneButtonClick(object sender, EventArgs e)
+		{
+			var url = new NSUrl("tel:123346678");
+            UIApplication.SharedApplication.OpenUrl(url);
+		}
+
+		#endregion
+	}
 }

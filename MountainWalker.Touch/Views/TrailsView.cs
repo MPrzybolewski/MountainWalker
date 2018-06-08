@@ -12,10 +12,7 @@ namespace MountainWalker.Touch.Views
     {      
         public override void ViewDidLoad()
         {
-            base.ViewDidLoad();
-
-			TitleLabel.Layer.BorderWidth = 2;
-			TitleLabel.Layer.BorderColor = UIColor.Black.CGColor;
+            base.ViewDidLoad();         
 
 			var source = new MvxSimpleTableViewSource(TrailsList, "TrailsCell", TrailsCell.Key);
 			TrailsList.RowHeight = 100;

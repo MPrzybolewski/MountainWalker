@@ -1,10 +1,8 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Diagnostics;
 using System.Threading.Tasks;
 using CoreGraphics;
 using CoreLocation;
-using Foundation;
 using Google.Maps;
 using MountainWalker.Core.Models;
 using MountainWalker.Core.ViewModels;
@@ -44,6 +42,8 @@ namespace MountainWalker.Touch.Views
 
         public override void ViewDidLoad()
         {
+			var phoneImage = UIImage.FromBundle("phone");
+            NavigationItem.RightBarButtonItem = new UIBarButtonItem(phoneImage, UIBarButtonItemStyle.Bordered, null);
             base.ViewDidLoad();  
 
 			var set = this.CreateBindingSet<HomeView, HomeViewModel>();
@@ -51,22 +51,15 @@ namespace MountainWalker.Touch.Views
 			set.Bind(StartButton).For("Title").To(vm => vm.ButtonText).TwoWay();
 			set.Bind(PointsLabel).To(vm => vm.PointsInfoText);
 			set.Bind(TimeLabel).To(vm => vm.TimeInfoText).TwoWay();
-			set.Bind(this).For(v => v.Interaction).To(vm => vm.Interaction).TwoWay();
-
+			set.Bind(this).For(v => v.Interaction).To(vm => vm.Interaction).TwoWay();         
 
 			set.Bind(_mapView).For(TrailDialogBinding.BindingName).To(vm => vm.OpenTrailDialogCommand);         
-            set.Apply();
-
-
-
-
+            set.Apply();         
         }
 
 		public override void ViewWillTransitionToSize(CGSize toSize, IUIViewControllerTransitionCoordinator coordinator)
 		{
 			base.ViewWillTransitionToSize(toSize, coordinator);
-			//frameForMap = MyMap.Frame;
-			//_mapView.Frame = new CGRect(0, 0, frameForMap.Width, frameForMap.Height);
 		}
 
 		public override void ViewDidLayoutSubviews()
@@ -101,10 +94,10 @@ namespace MountainWalker.Touch.Views
 
                 var set = this.CreateBindingSet<HomeView, HomeViewModel>();
                 set.Bind(_mapView).For(TrailDialogBinding.BindingName).To(vm => vm.OpenTrailDialogCommand);
-                set.Apply();
-			}        
-		}
 
+				set.Apply();
+			}        
+		}      
 
 		private void ChangeLocationCameraHandler(object sender, MvxValueEventArgs<Point> loc)
         {

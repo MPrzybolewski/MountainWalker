@@ -173,12 +173,22 @@
     </ImageAsset>
     <ImageAsset Include="Resources\Assets.xcassets\ikona.imageset\Contents.json" />
     <ImageAsset Include="Resources\Assets.xcassets\ikona.imageset\ikona.png" />
+    <ImageAsset Include="Resources\Assets.xcassets\hamburger.imageset\Contents.json" />
+    <ImageAsset Include="Resources\Assets.xcassets\hamburger.imageset\Hamburger_icon%402.png" />
+    <ImageAsset Include="Resources\Assets.xcassets\hamburger.imageset\Hamburger_icon%403.png" />
+    <ImageAsset Include="Resources\Assets.xcassets\phone.imageset\Contents.json" />
+    <ImageAsset Include="Resources\Assets.xcassets\phone.imageset\baseline_phone_black_48pt_1x.png" />
+    <ImageAsset Include="Resources\Assets.xcassets\phone.imageset\baseline_phone_black_48pt_2x.png" />
+    <ImageAsset Include="Resources\Assets.xcassets\phone.imageset\baseline_phone_black_48pt_3x.png" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Resources\" />
     <Folder Include="Services\" />
     <Folder Include="Resources\Images\" />
     <Folder Include="Models\" />
+    <Folder Include="Resources\Assets.xcassets\Hamburger.imageset\" />
+    <Folder Include="Resources\Assets.xcassets\hamburger.imageset\" />
+    <Folder Include="Resources\Assets.xcassets\phone.imageset\" />
   </ItemGroup>
   <ItemGroup>
     <InterfaceDefinition Include="LaunchScreen.storyboard" />
@@ -305,6 +315,8 @@
     <BundleResource Include="Resources\Images\trophy.png" />
     <BundleResource Include="Resources\Images\trophyx.png" />
     <BundleResource Include="Resources\Images\mwcircle_small.png" />
+    <BundleResource Include="Resources\Hamburger_icon%402.png" />
+    <BundleResource Include="Resources\Hamburger_icon%403.png" />
   </ItemGroup>
   <Import Project="$(MSBuildExtensionsPath)\Xamarin\iOS\Xamarin.iOS.CSharp.targets" />
   <Import Project="..\packages\Xamarin.Build.Download.0.4.7\build\Xamarin.Build.Download.targets" Condition="Exists('..\packages\Xamarin.Build.Download.0.4.7\build\Xamarin.Build.Download.targets')" />
