@@ -27,16 +27,16 @@ namespace MountainWalker.Core.Services
 
         private void ReadAllPoints()
         {
-            Points.Add(new Point(54.400680, 18.576661, "skm")); //skm
-            Points.Add(new Point(54.400810, 18.574563, "grunwaldzka")); //grunwaldzka
-            Points.Add(new Point(54.397705, 18.577010, "przejscie")); //przejscie
-            Points.Add(new Point(54.396158, 18.573407, "Mfi")); //Mfi kckckc
+            Points.Add(new Point(54.400680, 18.576661, "SKM Przymorze")); //skm
+            Points.Add(new Point(54.400810, 18.574563, "Grunwaldzka")); //grunwaldzka
+            Points.Add(new Point(54.397705, 18.577010, "Przejście")); //przejscie
+            Points.Add(new Point(54.396158, 18.573407, "MFI")); //Mfi kckckc
             Points.Add(new Point(54.394345, 18.579970, "KFC")); //KFC
             Points.Add(new Point(54.394121, 18.569394, "Ygrek")); //Ygrek <3
             Points.Add(new Point(54.034417, 19.033257, "Malbork")); //Malbork
 
-            Points.Add(new Point(54.090550, 18.790999, "Misiu")); //xvoxin house
-            Points.Add(new Point(54.416570, 18.594687, "Lecha Kaczyńskiego xd"));
+            Points.Add(new Point(54.090550, 18.790999, "Dom Tczew")); //xvoxin house
+            Points.Add(new Point(54.416570, 18.594687, "Dąbrowszczaków"));
             Points.Add(new Point(54.493148, 18.539386, "Jit Solution"));
 
             Points.Add(new Point(49.2681913, 19.9795644, "Start na Kasprowy Wierch")); // 49.26819, 19.97956
