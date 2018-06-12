@@ -208,7 +208,8 @@
     <InterfaceDefinition Include="Views\ReachedTrailsView.xib" />
     <InterfaceDefinition Include="Views\ReachedTrailCell.xib" />
     <InterfaceDefinition Include="Views\ReachedTrailMapView.xib" />
-    <InterfaceDefinition Include="Views\TestView.xib" />
+    <InterfaceDefinition Include="Views\TrailDetailView.xib" />
+    <InterfaceDefinition Include="Views\TrailDetailsView.xib" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Info.plist" />
@@ -293,9 +294,9 @@
     <Compile Include="Views\ReachedTrailMapView.designer.cs">
       <DependentUpon>ReachedTrailMapView.cs</DependentUpon>
     </Compile>
-    <Compile Include="Views\TestView.cs" />
-    <Compile Include="Views\TestView.designer.cs">
-      <DependentUpon>TestView.cs</DependentUpon>
+    <Compile Include="Views\TrailDetailsView.cs" />
+    <Compile Include="Views\TrailDetailsView.designer.cs">
+      <DependentUpon>TrailDetailsView.cs</DependentUpon>
     </Compile>
   </ItemGroup>
   <ItemGroup>
@@ -317,6 +318,14 @@
     <BundleResource Include="Resources\Images\mwcircle_small.png" />
     <BundleResource Include="Resources\Hamburger_icon%402.png" />
     <BundleResource Include="Resources\Hamburger_icon%403.png" />
+    <BundleResource Include="Resources\Images\hala.jpg" />
+    <BundleResource Include="Resources\Images\jama.jpg" />
+    <BundleResource Include="Resources\Images\kasprowy.jpg" />
+    <BundleResource Include="Resources\Images\kasprowyszczyt.jpg" />
+    <BundleResource Include="Resources\Images\kuznicekopy.jpg" />
+    <BundleResource Include="Resources\Images\schroniskohala.jpg" />
+    <BundleResource Include="Resources\Images\sucha.jpg" />
+    <BundleResource Include="Resources\Images\zielonahala.jpg" />
   </ItemGroup>
   <Import Project="$(MSBuildExtensionsPath)\Xamarin\iOS\Xamarin.iOS.CSharp.targets" />
   <Import Project="..\packages\Xamarin.Build.Download.0.4.7\build\Xamarin.Build.Download.targets" Condition="Exists('..\packages\Xamarin.Build.Download.0.4.7\build\Xamarin.Build.Download.targets')" />

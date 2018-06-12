@@ -11,8 +11,8 @@ using UIKit;
 
 namespace MountainWalker.Touch.Views
 {
-    [Register("TestView")]
-    partial class TestView
+    [Register("TrailDetailsView")]
+    partial class TrailDetailsView
     {
         void ReleaseDesignerOutlets()
         {

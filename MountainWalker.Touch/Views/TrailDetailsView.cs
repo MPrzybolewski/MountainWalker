@@ -1,15 +1,17 @@
 ﻿using System;
-
+using MountainWalker.Core.ViewModels;
+using MvvmCross.iOS.Views.Presenters.Attributes;
 using UIKit;
 
 namespace MountainWalker.Touch.Views
 {
-    public partial class TestView : UIViewController
-    {
-        public TestView() : base("TestView", null)
-        {
-        }
-
+	[MvxModalPresentation(
+        ModalPresentationStyle = UIModalPresentationStyle.OverCurrentContext,
+        ModalTransitionStyle = UIModalTransitionStyle.FlipHorizontal,
+        WrapInNavigationController = false
+    )]
+	public partial class TrailDetailsView : BaseViewController<TrailDetailsViewModel>
+    {      
         public override void ViewDidLoad()
         {
             base.ViewDidLoad();
