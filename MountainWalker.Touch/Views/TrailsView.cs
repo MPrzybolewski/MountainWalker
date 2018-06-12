@@ -21,7 +21,7 @@ namespace MountainWalker.Touch.Views
             
             
             set.Bind(source).To(vm => vm.Items);
-			set.Bind(source).For("ItemClick").To(vm => vm.ShowDetailTrail);
+            set.Bind(source).For(s => s.SelectionChangedCommand).To(vm => vm.ShowDetailTrail);
             set.Apply();
 
 			TrailsList.Source = source;

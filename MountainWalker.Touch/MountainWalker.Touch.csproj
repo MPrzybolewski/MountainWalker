@@ -208,7 +208,6 @@
     <InterfaceDefinition Include="Views\ReachedTrailsView.xib" />
     <InterfaceDefinition Include="Views\ReachedTrailCell.xib" />
     <InterfaceDefinition Include="Views\ReachedTrailMapView.xib" />
-    <InterfaceDefinition Include="Views\TrailDetailView.xib" />
     <InterfaceDefinition Include="Views\TrailDetailsView.xib" />
   </ItemGroup>
   <ItemGroup>

@@ -53,6 +53,7 @@ namespace MountainWalker.Core.ViewModels
         private void ReadMore()
         {
             var message = new TrailMessage(this, _trailService.Trails[_trailId], false);
+            Close();
             _navigationService.Navigate<TrailDetailsViewModel>();
             _visible.Raise(false);
             _messenger.Publish(message);
