@@ -34,31 +34,44 @@
                 android:textStyle="bold"
                 android:textSize="18dp"
                 local:MvxBind="Text TimeUp"
-                android:text="Czas w gore" />
+                android:text="Wejście: " />
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:textStyle="bold"
+                android:textSize="18dp"
+                local:MvxBind="Text TimeDown"
+                android:text="Zejście: " />
             <TextView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:textStyle="bold"
                 android:textSize="18dp"
                 android:layout_marginBottom="20dp"
-                local:MvxBind="Text TimeDown"
-                android:text="Czas w dol" />
+                local:MvxBind="Text Distance"
+                android:text="Dystans: " />
             <TextView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginBottom="20dp"
-                local:MvxBind="Text TrailDescription"
+                local:MvxBind="Text TrailShortDescription"
+                android:textColor="@color/black"
                 android:text="jakis tam opis" />
             <ImageView
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:layout_marginBottom="20dp"
                 android:id="@+id/imageView"
-                android:src="@drawable/alps" />
+                local:MvxBind="DrawableName Image"
+                android:src="@drawable/hala" />
             <TextView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="jakis tam obrazek" />
+                local:MvxBind="Text TrailDescription"
+                android:textColor="@color/black"
+                android:layout_marginBottom="60dp"
+                android:paddingBottom="40dp"
+                android:text="Pełny opis" />
         </LinearLayout>
     </ScrollView>
 </LinearLayout>

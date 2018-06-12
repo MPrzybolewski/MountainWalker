@@ -81,7 +81,7 @@
     <item name="android:gravity">center</item>
     <item name="android:textColor">#fff</item>
     <item name="android:scaleType">fitCenter</item>
-    <item name="android:textSize">26dp</item>
+    <item name="android:textSize">22dp</item>
     <item name="android:textStyle">bold</item>
     <item name="android:paddingTop">20dp</item>
     <item name="android:paddingBottom">20dp</item>

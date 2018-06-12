@@ -44,7 +44,7 @@ namespace MountainWalker.Core.ViewModels
             _messenger = messenger;
 
             TrailName = _trailService.Trails[_trailId].Name;
-            TrailDescription = _trailService.Trails[_trailId].Description;
+            TrailDescription = _trailService.Trails[_trailId].ShortDescription;
             ReadMoreCommand = new MvxCommand(ReadMore);
         }
 

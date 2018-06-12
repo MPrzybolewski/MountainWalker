@@ -29,6 +29,13 @@ namespace MountainWalker.Core.ViewModels
             set { _trailDescription = value; RaisePropertyChanged(); }
         }
 
+        private string _trailShortDescription;
+        public string TrailShortDescription
+        {
+            get => _trailShortDescription;
+            set { _trailShortDescription = value; RaisePropertyChanged(); }
+        }
+
         private string _timeUp;
         public string TimeUp
         {
@@ -41,6 +48,20 @@ namespace MountainWalker.Core.ViewModels
         {
             get => _timeDown;
             set { _timeDown = value; RaisePropertyChanged(); }
+        }
+
+        private string _distance;
+        public string Distance
+        {
+            get => _distance;
+            set { _distance = value; RaisePropertyChanged(); }
+        }
+
+        private string _image;
+        public string Image
+        {
+            get => _image;
+            set { _image = value; RaisePropertyChanged(); }
         }
 
         private IMvxNavigationService _navigationService;
@@ -74,8 +95,11 @@ namespace MountainWalker.Core.ViewModels
             _trail = trail;
             TrailTitle = trail.Name;
             TrailDescription = trail.Description;
-            TimeUp = "Wejście - " + trail.TimeUp + " minut";
-            TimeDown = "Zejście - " + trail.TimeDown + " minut";
+            TrailShortDescription = trail.ShortDescription;
+            Distance = "Długość szlaku: " + trail.Distance.ToString() + "km";
+            Image = "@drawable/" + trail.Image;
+            TimeUp = "Wejście: " + trail.TimeUp + " minut";
+            TimeDown = "Zejście: " + trail.TimeDown + " minut";
         }
     }
 

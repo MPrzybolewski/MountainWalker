@@ -16,7 +16,7 @@ using MvvmCross.Platform.Droid.Platform;
 namespace MountainWalker.Droid.Views
 {
     [Activity(Label = "",
-              NoHistory = true,
+              NoHistory = false,
               Theme = "@style/MyTheme",
               LaunchMode = LaunchMode.SingleTop,
               ConfigurationChanges = ConfigChanges.Orientation,
@@ -72,7 +72,6 @@ namespace MountainWalker.Droid.Views
         public override void OnBackPressed()
         {
             FragmentManager fm = FragmentManager;
-            Debug.WriteLine("ILOSC FRAGMENTOW NA STOSIE, HALKO " + fm.BackStackEntryCount);
             if (DrawerLayout != null && DrawerLayout.IsDrawerOpen(GravityCompat.Start))
             {
                 DrawerLayout.CloseDrawers();
