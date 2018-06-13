@@ -132,6 +132,12 @@
     <Reference Include="MvvmCross.Localization">
       <HintPath>..\packages\MvvmCross.Binding.5.4.2\lib\Xamarin.iOS10\MvvmCross.Localization.dll</HintPath>
     </Reference>
+    <Reference Include="MvvmCross.Plugins.WebBrowser">
+      <HintPath>..\packages\MvvmCross.Plugin.WebBrowser.5.4.2\lib\Xamarin.iOS10\MvvmCross.Plugins.WebBrowser.dll</HintPath>
+    </Reference>
+    <Reference Include="MvvmCross.Plugins.WebBrowser.iOS">
+      <HintPath>..\packages\MvvmCross.Plugin.WebBrowser.5.4.2\lib\Xamarin.iOS10\MvvmCross.Plugins.WebBrowser.iOS.dll</HintPath>
+    </Reference>
     <Reference Include="MvvmCross.iOS.Support">
       <HintPath>..\packages\MvvmCross.iOS.Support.5.4.2\lib\Xamarin.iOS10\MvvmCross.iOS.Support.dll</HintPath>
     </Reference>
@@ -233,6 +239,7 @@
     <Compile Include="Setup.cs" />
     <Compile Include="LinkerPleaseInclude.cs" />
     <Compile Include="DebugTrace.cs" />
+    <Compile Include="Bootstrap\WebBrowserPluginBootstrap.cs" />
     <Compile Include="Views\BaseViewController.cs" />
     <Compile Include="Services\TouchDialogService.cs" />
     <Compile Include="Views\HomeViewCode.cs" />
