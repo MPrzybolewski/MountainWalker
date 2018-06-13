@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Linq;
 using System.Collections.Generic;
 using System.Diagnostics;
 using System.Runtime.InteropServices.WindowsRuntime;
@@ -11,6 +12,8 @@ using MvvmCross.Plugins.Messenger;
 using Plugin.Geolocator;
 using MountainWalker.Core.Interfaces;
 using Plugin.Geolocator.Abstractions;
+using Plugin.SecureStorage;
+using Newtonsoft.Json;
 
 namespace MountainWalker.Core.Services
 {
@@ -114,6 +117,17 @@ namespace MountainWalker.Core.Services
                 }
             }
             return nearestPoint;
+        }
+
+        public void AddTopsToStorage(int id)
+        {
+            var tops = CrossSecureStorage.Current.GetValue(CrossSecureStorageKeys.Achievements);
+            var achievements = JsonConvert.DeserializeObject<List<Achievement>>(tops);
+
+            achievements[id].IsReached = true;
+
+            var json = JsonConvert.SerializeObject(achievements);
+            CrossSecureStorage.Current.SetValue(json, CrossSecureStorageKeys.Achievements);
         }
 
         public string Distance(double dist)

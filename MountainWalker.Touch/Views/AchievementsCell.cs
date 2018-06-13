@@ -21,8 +21,6 @@ namespace MountainWalker.Touch.Views
 
         protected AchievementsCell(IntPtr handle) : base(handle)
         {
-			var imageViewLoader = new MvxImageViewLoader(() => TrophyImage);
-
 			this.DelayBind(() =>
             {
                 var set = this.CreateBindingSet<AchievementsCell, Achievement>();
@@ -31,7 +29,7 @@ namespace MountainWalker.Touch.Views
                 set.Bind(DateCellText).To(vm => vm.Date);
 				//set.Bind(imageViewLoader).To(vm => vm.Trophy).WithConversion("TypeToImage");
 				//set.Bind(imageViewLoader).To(vm => vm.Trophy);            
-				set.Bind(TrophyImage).For(c => c.Image).To(vm => vm.Trophy).WithConversion(new TypeToImageValueConverter()).Apply();
+				set.Bind(TrophyImage).For(c => c.Image).To(vm => vm.Trophy).WithConversion(new TypeToImageValueConverterPNG()).Apply();
                 set.Apply();
             });
         }

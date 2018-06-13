@@ -38,7 +38,7 @@ namespace MountainWalker.Core.ViewModels
         {
             var jsone = CrossSecureStorage.Current.GetValue(CrossSecureStorageKeys.ReachedTrails);
             var items = JsonConvert.DeserializeObject<List<ReachedTrail>>(jsone);
-            Items = items;
+            Items = TranslateAndCalculateTime(items);
         }
 
         public ICommand ShowReachedTrail
@@ -52,6 +52,25 @@ namespace MountainWalker.Core.ViewModels
                     _messenger.Publish(message);
                 });
             }
+        }
+
+        private List<ReachedTrail> TranslateAndCalculateTime(List<ReachedTrail> reachedTrails)
+        {
+            foreach (var reachedTrail in reachedTrails)
+            {
+                var startTime = DateTime.Parse(reachedTrail.StartTime);
+                var endTime = DateTime.Parse(reachedTrail.EndTime);
+
+                reachedTrail.Date = DateTime.Parse(reachedTrail.Date).ToString("dd-MM-yyyy");
+                reachedTrail.StartTime = "Start: " + startTime.ToString("HH:mm:ss");
+                reachedTrail.EndTime = "Stop: " + endTime.ToString("HH:mm:ss");
+                reachedTrail.Distance += "km";
+
+                var xx = endTime.Subtract(startTime);
+                reachedTrail.Time = new DateTime(xx.Ticks).ToString("HH:mm:ss");
+            }
+
+            return reachedTrails;
         }
     }
 }

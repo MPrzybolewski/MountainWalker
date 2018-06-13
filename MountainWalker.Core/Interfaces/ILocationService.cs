@@ -25,5 +25,6 @@ namespace MountainWalker.Core.Interfaces
         double ConvertDegreeToRadian(double angle);
         Point GetNearestPoint(Point userLocation, List<Point> points);
         string Distance(double dist);
+        void AddTopsToStorage(int id);
     }
 }

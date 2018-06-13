@@ -95,7 +95,7 @@ namespace MountainWalker.Touch.Views
                 var set = this.CreateBindingSet<HomeView, HomeViewModel>();
                 set.Bind(_mapView).For(TrailDialogBinding.BindingName).To(vm => vm.OpenTrailDialogCommand);
 
-				set.Apply();
+ 				set.Apply();
 			}        
 		}      
 

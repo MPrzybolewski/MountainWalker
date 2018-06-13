@@ -24,7 +24,7 @@ namespace MountainWalker.Touch.Views
             {
                 var set = this.CreateBindingSet<TrailsCell, Trail>();
 				set.Bind(TitleCellText).To(vm => vm.Name);
-				set.Bind(DescriptionCellText).To(vm => vm.Description);
+				set.Bind(DescriptionCellText).To(vm => vm.ShortDescription);
                 set.Apply();
             });
         }

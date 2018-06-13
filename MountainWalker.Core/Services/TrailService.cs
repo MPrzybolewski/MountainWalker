@@ -1,6 +1,8 @@
 ﻿using System.Collections.Generic;
 using MountainWalker.Core.Models;
 using MountainWalker.Core.Interfaces;
+using Newtonsoft.Json;
+using Plugin.SecureStorage;
 
 namespace MountainWalker.Core.Services
 {
@@ -8,6 +10,7 @@ namespace MountainWalker.Core.Services
     {
         public List<Point> Points { get; set; }
         public List<Trail> Trails { get; set; }
+        public List<Point> Tops { get; set; }
 
         public TrailService()
         {
@@ -16,21 +19,24 @@ namespace MountainWalker.Core.Services
 
             Trails = new List<Trail>();
             CreateConnections();
+
+            Tops = new List<Point>();
+            SetTops();
             
         }
 
         private void ReadAllPoints()
         {
-            Points.Add(new Point(54.400680, 18.576661, "skm")); //skm
-            Points.Add(new Point(54.400810, 18.574563, "grunwaldzka")); //grunwaldzka
-            Points.Add(new Point(54.397705, 18.577010, "przejscie")); //przejscie
-            Points.Add(new Point(54.396158, 18.573407, "Mfi")); //Mfi kckckc
+            Points.Add(new Point(54.400680, 18.576661, "SKM Przymorze")); //skm
+            Points.Add(new Point(54.400810, 18.574563, "Grunwaldzka")); //grunwaldzka
+            Points.Add(new Point(54.397705, 18.577010, "Przejście")); //przejscie
+            Points.Add(new Point(54.396158, 18.573407, "MFI")); //Mfi kckckc
             Points.Add(new Point(54.394345, 18.579970, "KFC")); //KFC
             Points.Add(new Point(54.394121, 18.569394, "Ygrek")); //Ygrek <3
             Points.Add(new Point(54.034417, 19.033257, "Malbork")); //Malbork
 
-            Points.Add(new Point(54.090550, 18.790999, "Misiu")); //xvoxin house
-            Points.Add(new Point(54.416570, 18.594687, "Lecha Kaczyńskiego xd"));
+            Points.Add(new Point(54.090550, 18.790999, "Dom Tczew")); //xvoxin house
+            Points.Add(new Point(54.416570, 18.594687, "Dąbrowszczaków"));
             Points.Add(new Point(54.493148, 18.539386, "Jit Solution"));
 
             Points.Add(new Point(49.2681913, 19.9795644, "Start na Kasprowy Wierch")); // 49.26819, 19.97956
@@ -40,7 +46,26 @@ namespace MountainWalker.Core.Services
             Points.Add(new Point(49.244899,20.006396, "Królowe Rówieńki")); //49,24491, 20,00639
             Points.Add(new Point(49.2440323, 20.0061047));
             Points.Add(new Point(49.2414482, 20.001753));
-            Points.Add(new Point(49.237148, 19.996585));
+            Points.Add(new Point(49.237148, 19.996585)); // zolty
+            Points.Add(new Point(49.234299, 19.993670));
+            Points.Add(new Point(49.231151, 19.982782)); //nadal zolty
+            Points.Add(new Point(49.234301, 19.993673));
+            Points.Add(new Point(49.232764, 19.982563)); //koniec na kasprowym
+        }
+
+        private void SetTops()
+        {
+            Tops.Add(new Point(0, 49.250996, 19.934021));
+            Tops.Add(new Point(1, 49.232294, 19.981717));
+            Tops.Add(new Point(2, 49.1798416, 20.0880484));
+            Tops.Add(new Point(3, 49.2505826, 19.9317057));
+            Tops.Add(new Point(4, 49.2365569, 19.9299811));
+            Tops.Add(new Point(5, 49.2194068, 20.0005269));
+            Tops.Add(new Point(6, 49.2253989, 20.0058191));
+            Tops.Add(new Point(7, 49.1924991, 20.0462452));
+            Tops.Add(new Point(8, 49.2184108, 20.0201461));
+            Tops.Add(new Point(9, 49.2647705, 19.9401976));
+            Tops.Add(new Point(10, 49.2597213, 20.069023));
         }
 
         private void CreateConnections()
@@ -50,7 +75,7 @@ namespace MountainWalker.Core.Services
             Trails.Add(new Trail());
             Trails[0].Color = "blue";
             Trails[0].Id = 190;
-            Trails[0].Description = "Legendarna droga z SKM na UG";
+            Trails[0].ShortDescription = "Legendarna droga z SKM na UG";
             Trails[0].Name = "Dolina Alchemii";
             Trails[0].TimeUp = 5;
             Trails[0].TimeDown = 5;
@@ -80,8 +105,8 @@ namespace MountainWalker.Core.Services
             Trails.Add(new Trail());
             Trails[1].Color = "red";
             Trails[1].Id = 191;
-            Trails[1].Description = "Co poniedziałek biedni studenci podróżują w to miejsce w poszukiwaniu jedzienia";
-            Trails[1].Name = "Burgerogrzmoty KFC";
+            Trails[1].ShortDescription = "Testowy szlak do KFC";
+            Trails[1].Name = "KFC";
             Trails[1].TimeUp = 5;
             Trails[1].TimeDown = 5;
             //Trails[1].PolylineCode = "";
@@ -101,8 +126,8 @@ namespace MountainWalker.Core.Services
             Trails.Add(new Trail());
             Trails[2].Color = "green";
             Trails[2].Id = 192;
-            Trails[2].Description = "Po długiej i bolesnej pracy nad projektami, biedni studenci udają się tutaj na piwko";
-            Trails[2].Name = "Piwne Oko";
+            Trails[2].ShortDescription = "Testowy szlak do pubu Ygrek";
+            Trails[2].Name = "Zielony szlak pieszy";
             Trails[2].TimeUp = 5;
             Trails[2].TimeDown = 10;
             //Trails[2].PolylineCode = "";
@@ -127,10 +152,17 @@ namespace MountainWalker.Core.Services
             {
                 Color = "green",
                 Id = id++,
-				Description = "Droga na Kasprowy Wierch zielonym szlakiem.",
-                Name = "Szlak pieszy zielony",
-                TimeUp = 120,
-                TimeDown = 120,
+                ShortDescription = "Prosty szlak na Kasprowy Wierch",
+                Description = "Trasa na Kasprowy Wierch z Kuźnic należy do jednych z najłatwiejszych w polskich Tatrach. " +
+                    "Jest monotonna i chwilami wręcz nudna, wszelako polecam ją z uwagi na brak dużego zatłoczenia szczególnie w " +
+                    "okresie zimowym (duża część ludzi po prostu wjeżdża kolejką na szczyt). " +
+                    "Ponadto stanowi wspaniałe miejsce do treningu dla biegaczy.",
+                Name = "Kasprowy Wierch przez Myślenickie Turnie",
+                TimeUp = 150,
+                TimeDown = 130,
+                Distance = 7.5,
+                Image = "kasprowy",
+
                 PolylineCode = new List<string>()
                 {
                     "euukHgg}xBpBl@tAV`@XNTPb@Tl@d@^@@HJ^d@n@v@l@x@f@v@`@h@RNHLJFHBD@N?j@DH?HADCNMHIFCDAD?H?F@RBTFbAr@RRdAl@VLxAp@TP\\ZFLDL@PDRD\\?RDZP`@JXNXTb@n@dAXd@VNXFTD`@L\\BnAFv@F^D@?B@DAH?DADCFCBCFEDEHEFCHENGHEFEFERSHKHEDEHCHCHCNIHGLIFEFEDEBGDKBEFMDKJYFIFIDGJQHKFIFGFGFGFEHEFEHEJOLMLKl@q@VYd@i@d@s@HMHIJGFAH@NBN@b@DJBJDHDF@J?FAHAJEDCFADCDAFAFAH?L@H@J?F@H?J?FCJAHEFCJEJEJEDADADAF?BADADADAB?D?F?DB@@@@?@?B?D?FAH?JAN?L?H@B?B@D@@@@@BH@lBZFDJFFFFHJDH@F?HCJEHCPCPCj@ALAPEDEDGBGDKHOf@m@XYLYNWFODSDO@O@M?K?M?M@MDODWDK@KBOBMDMLe@FMDMDGHMFIDKN]Xw@Pg@Lc@Z}@FSPYLUPSLKJGJGZQROJEJELAF?F@D@HFB@DDFBDDDBDDFBFBFDFBF@DBDBDDDDDFFDDBFBFDDBFBDDDBDDBBBD@FBHBJDJBJDJBH@J?H@FAF?JCFCPCLAFAFADCFMTUTm@h@WPIHGDMLKHC?EBC@C?E@E?EAE?E@E?GBE?GBE@GBEBKHEBC@E@C@EBCDA@ADCL?H?J?N?J?P?NALALENALCNARARCNENERQ~@APCPEPEPGRK`@I\\Uj@Sf@ELEJGPGTABADABADAB?B?F@JDVBL@FBFB@@@B?B?DABA@ABE@CBEBC@EBEDG@EBADABABABCBCBADGBABC@CBC@CBABC@ABC@E@CDIBGBIBCBEBE@CBC@EBA@CDGDE@CBC@C@C@E@E@E@C@E@C@C@E?E@E@E?E?E@G@IBE@CBABC@ADCBCBCBEFGJKFCFGFGDEDEDIDEFEFCFAFANGPEJALAJ?H?N@n@@N?REXOLIJGLC`@KT?TDPHPHRDT?PCT?P?L?NDPFLFNFLBJFLDjAHX?NAR?B?BCFEDCFAF?D@FDNTJJDDNVVd@LLDH@@@@@?@??A@A?A?OAMBSDe@BO@E?A@A@A@?@?@@BDFLHJFHHNJHLLLDLBJAJEFCBC@?@A?A?A?A?A?AGICMAEAG?E?K?M?K?C?C@C@A@?@?@@@DDBDBFBL@H@J?H?HAH?JAJCHAJCHAHCFGBC?A?A?A?AAAECCCCCECCEEECEAA?C?CAA@C?C@CXGZONIJKJGHAb@ENELGNANBNFJJJNNVH\\HPHJPTRP^Pl@XPHNJDDNDl@DT?LCJCZOb@MHCFCHIHMR_@JQZWp@m@b@[FCBCBCBIBIDGDA@A?A@C?A?CAGCGAC?C?E?QBEBI@?FCB@HBFBB@B?HBD@D@D@@@B@@DFNDLDJFHPZLNTPDDFDBDBDBDJHJDHB@@B@@@@@@@B@@@@@B?@@@?@?B@@@@@@B@@@B@B@@@@BFBFHHBDB@@?B?@?BABABA@CBC?C@C?E?C?C?AAE?AA??AAACACACCACCC?CAG?EACAGAC?ACAAACAC?A?A?CAICGGIOIUOg@CQKi@AE?C?A@??A?A@?B?@?BBBBBFBH@H@D@D@BHJHFHFHFDBF@HBB?BABADAJGLEDAB?B?@@B?@@B@?B@@@B@@@@BDB@?@@?@?@?@ABA@A@AHIPWVc@HQDI@A@CBA@C@C@A?A@?@A@@@@@B@B@D@B@DBDDFDDLLVTNL@@@?@?@??A?A?A?AAA?AAAAECMQy@Oq@COAGACAE?E?G?G?E@C@ABCBABA@A@A?C@O?C@C@A@?@?@?@@@@?@BF?F@H@D?D@HBJ@D?B@@@DBLDHBBBBBBBBB@BB@@B@@BBF?@@@@@@@@?B?B?BAB?BABALCBADAFCJEFAFCB?BAD?B?B?B?D?B?B?D?B?JA@A@??A?A?A?AAAAAKAECICKGKGAAECACCAAAECAECCCGEQAE?GAGAC?CAECIEY?A?A?A?A@A@?@?BBDB@@@?@@B@@?@@?@@??@@D?D?D@??@@@@@@@BB@@@B@B@B@B@B?@@?@?@@B?F?j@BT?D?B?F@B?LBP@`@?R@F?@?@A@A?A?A?ACCIC]YKOKSUe@KUIKEKACAGAE?EAE?E?M?I?G@C?A@?@??@@@BD@@@?@@@?@?BCB?BA@?@@@??@?@@@@BBB@@BDB@@B@@B@DBD?B@D@B?B?B?B?BAD?HC`@KTGFCDC@A?A@A?A?A?AAA?AA?CCCAAAAC?CAA?E?C?C@C@E@C@CBA?A@?BAB?BAFABADCBAFABABAB?LCVEFEHEHEJGJGHGJEFEFCHCPE`@Gf@MPE\\IJGHCFCF?F?FAlAM",
@@ -142,10 +174,22 @@ namespace MountainWalker.Core.Services
             {
                 Color = "yellow",
                 Id = id++,
-				Description = "Żółty szlak z Kuźnic do Hali Gąsienicowe.",
-                Name = "Szlak pieszy żółty",
-                TimeUp = 65,
-                TimeDown = 65,
+                ShortDescription = "Kuźnice - Przełęcz między Kopami",
+                Description = "Do Kuźnic najlepiej dojechać busem (bardzo częste kursy z centrum; cena to 3 zł za osobę), " +
+                    "gdyż parking jest wyłączony dla samochodów prywatnych (najbliższy dostępny przy rondzie niedaleko Muzeum TPN-u). " +
+                    "Przechodzimy przez drewnianą kładkę, po czym za budką TPN-u skręcamy w prawo. Żółty szlak prowadzi przez delikatny, " +
+                    "płaski zalesiony obszar. Idziemy drogą utwardzoną kamieniami. Całkiem szybko docieramy do Polany Jaworzynki, gdzie znajduje się kilka opuszczonych drewnianych chat." +
+                    "Przechodzimy przez kładkę, po czym za budką TPN - u skręcamy w prawo.Droga biegnie przez las.Polana Jaworzynka." +
+                    "Wędrujemy jeszcze przed dosyć spory kawałek po płaskim terenie.Przed nami widać od lewej: Wielka Kopa Królowa," +
+                    "Mała Kopa Królowa i Kopa Magury. Następnie szlak zakręca w prawo i zaczynamy strome i mozolne podejście przez las po" +
+                    " kamiennym chodniku.Wyżej wychodzimy na chwile z lasu by mocno nawrócić w lewo(doskonale widoczna Kopa Magury).Maszerujemy mocno pod górę," +
+                    "po jakimś czasie wychodzimy na kamieniste zbocze skąd dobrze widać dolną cześć doliny.Szlak dalej wiedzie nas stromo do góry.",
+                Name = "Dolina Jaworzynki",
+                TimeUp = 70,
+                TimeDown = 70,
+                Distance = 3.7,
+                Image = "kuznicekopy",
+
                 PolylineCode = new List<string>()
                 {
                     "ezukHes}xBPDHDTPPLJFRJD@BADABABEFINQFEFCDAF?L@`Ad@j@\\d@\\NBLBR@TAX?NBVDZTTLH@J@J@FAHAFC\\a@f@s@V[NQFGNKTM\\Ul@[ZQ^QXMVM\\WRSNGVIZM^OPKNMHGHMLYTm@L[P[Tc@Pa@FUHUFWBUBMBGBGDIJKNIFGDKFSDQ@Q?M@E?C?A@E@A@EBC@ADCPKNOPKJIJEREPIDCBABAFIPWPMFCBCBA@EDKJ]HQHUV_@V_@Ta@P_@L]P_@HWFWDOBMBE@EDGT]j@gAHQNa@Pi@f@gAP]HMHOHEDEDGJMFKJUp@y@NQZa@Tc@DOBIDGJMDSDG@E@EBUJs@De@@W?_@@O@O@QHi@Fm@DYD_@F]XwA`@aBH_@BQBODo@Hs@BS@G@A@A@A@?@?@??@@?@D@DBFDRBNFTBR@LBt@Bd@DZF^DL@BB?B@D?HCHANAZGXGPKJITQdAm@ZO\\MHCLCTCZIdAc@t@WZKLEJG^]FG@CBC@E?A?A?A?A?AA??AA?AAA?K?ICEA[Sm@m@[_@KSACKGGGCCAC?AAC?A?C@G@EDIDGPQJQPMNINKFIFML[DSFWDS?M?_CAiAEq@Ei@Ca@CYCWCSCOEGKKKKGKKQAICKCG?IAK?O@MJo@Ji@Fe@D[@I@g@@m@@IFa@@KFWJo@H[BS@I@I?C?C?A?AEKEGUo@O[GOQUMIOKMIGCAAACAC?C?WASAG?E@U"
@@ -156,10 +200,19 @@ namespace MountainWalker.Core.Services
             {
                 Color = "blue",
                 Id = id++,
-				Description = "Szlak prowadzący na Dolinę Gąsienicową.",
+                ShortDescription = "Przełęcz między Kopami - Schronisko na Hali Gąsienicowej",
+                Description = "Od Przełęczy między Kopami maszerujemy stopniowo, delikatnie w dół, co pozwala na regenerację sił. " +
+                    "Powoli wyłania się przed nami potężna grań Orlej Perci. Szlak znowu się unosi by po chwili ostatecznie sprowadzić nas na Halę Gąsienicową. " +
+                    "Mijamy Betlejemkę (po naszej prawej stronie) i dochodzimy do skrzyżowania szlaków. Idąc prosto w dół dojdziemy " +
+                    "bezpośrednio do schroniska Murowaniec. Kierując się w prawo możemy przyspieszyć drogę nad Czarny Staw Gąsienicowy lub Kasprowy Wierch." +
+                    "Hala Gąsienicowa jest gigantycznym węzłem szlaków turystycznych w Tatrach. Wychodzą tutaj trasy m.in. na Krzyżne, " +
+                    "Zawrat i Świnicę, Kasprowy Wierch, Granaty czy też Kościelec.",
+
                 Name = "Dolina Gąsienicowa",
-                TimeUp = 18,
-                TimeDown = 15,
+                TimeUp = 25,
+                TimeDown = 25,
+                Distance = 1.3,
+                Image = "hala",
                 PolylineCode = new List<string>()
                 {
                     "ucqkH}nbyBGFCDABC@A@C?E?E?o@KMAQG]WMGKEKAc@GYAGAGAKGYOSIg@UQKQS_@_@a@[i@[_@Yc@UOESAe@ASBQ@OBK@OAU?MBIFIHSVGPGHEBMDMDKHUDUFO@]?Q@WDYDa@@e@Di@Hm@@e@D_@H[JUJ[TQP[f@i@hAk@bAY\\m@p@OJUDWHk@P[NUJUHYHODOFQNQRMZIXO^_@r@i@p@UVc@b@SL"
@@ -170,10 +223,12 @@ namespace MountainWalker.Core.Services
             {
                 Color = "blue",
                 Id = id++,
-				Description = " Szlak prowadzacy z Hali do Suchej",
-                Name = "Szlak pieszy niebieski",
+                ShortDescription = "Hala Gąsienicowa - Sucha Jama",
+                Name = "Szlak pieszy niebieski - Sucha Jama",
                 TimeUp = 1,
                 TimeDown = 1,
+                Distance = 0.1,
+                Image = "jama",
                 PolylineCode = new List<string>()
                 {
                     "ucqkH}nbyBB?D@DAB?D?JBJFDBL@NCL@LBXNTJDDFB"
@@ -184,10 +239,13 @@ namespace MountainWalker.Core.Services
             {
                 Color = "black",
                 Id = id++,
-				Description = "Czarny i trudny do pokonania szlak",
-                Name = "Szlak pieszy czarny",
-                TimeUp = 5,
-                TimeDown = 5,
+                ShortDescription = "Szlak łączący Dolinę z Zieloną Doliną Gąsienicową",
+                Name = "Dolina Gąsienicowa - Zielona Dolina",
+                Description = "Jeden z dwóch szlaków łączący ze sobą doliny gąsienicowe.",
+                TimeUp = 8,
+                TimeDown = 8,
+                Distance = 0.45,
+                Image = "zielonahala",
                 PolylineCode = new List<string>()
                 {
                     "anpkH}qayBECCACCAACCAACCACAAAACACAGCCACAAACAAC?CAIACAEACAGAECCIOGKEICGGOIWGOIWCGEIKQGKEGEMM]IUKWOQOOEEQIKIEEEES]]g@[g@[c@OSEIGKEIGMGQGQCQEc@ASAYAO?GCGCGEIIMAAAAAC?CAE"
@@ -198,13 +256,77 @@ namespace MountainWalker.Core.Services
             {
                 Color = "black",
                 Id = id++,
-				Description = "Krótszy, trudniejszy szlak na doline piecu stawow",
-                Name = "Szlak pieszy czarny",
-                TimeUp = 11,
-                TimeDown = 9,
+                ShortDescription = "Szlak łączący Dolinę z Zieloną Doliną Gąsienicową",
+                Name = "Dolina Gąsienicowa - Zielona Dolina",
+                Description = "Jeden z dwóch szlaków łączący ze sobą doliny gąsienicowe.",
+                TimeUp = 12,
+                TimeDown = 12,
+                Distance = 0.7,
+                Image = "zielonahala",
                 PolylineCode = new List<string>()
                 {
                     "anpkH}qayBNVT\\JVLTJPV`@DJ@DDDFJHJJLDDPVHJBDHFDFHFBFBB@B@BB@@@B@@@@@@B@@@BB@@BB@@@B@@BBB@@@@DFLRHJNRHJVRJLHFFFHFDHLRJLNTX\\NXFHNTFJDHDJHRDNTZBFBD@HBHBJBL@DBDBFB@B@B@@@B@@BB@@@@@@B@B@@B@@@B@@@B@B@DDFHBFDFFFDDNLNHZVZZZXPPBD@@B@B@@@B?F?B?@?DABA"
+                }
+            });
+
+            Trails.Add(new Trail()
+            {
+                Color = "yellow",
+                Id = id++,
+                ShortDescription = "Krótkie przeście obok stawów i kolejki linowej",
+                Description = "Wędrujemy łagodną i miłą ścieżką pośród kosodrzewiny; mijamy kolejno stawy: Jedynak, Samotniak i Dwoiśniak " +
+                    "(wszystkie po naszej prawicy). Przy ostatnim z nich stoi drogowskaz: czarny szlak na Świnicę odbija w lewo. My oczywiście wybieramy drogę w stronę Kasprowego Wierchu." +
+                    "Początek drogi, ruszamy spod schroniska Murowaniec. Prowadzi nas wygodna ścieżka. Niebawem przechodzimy pod linami kolejki krzesełkowej.Faktycznie zaczynamy podejście," +
+                    "które jednak jest niezmiernie łagodne i lekkie. 5 minut później następne rozdroże. Tym razem w lewo odchodzi zielony szlak, który wiedzie na przełęcz Liliowe.",
+                Name = "Jedynak, Samotniak i Dwoiśniak",
+                TimeUp = 7,
+                TimeDown = 7,
+                Distance = 0.4,
+                Image = "schroniskohala",
+                PolylineCode = new List<string>
+                {
+                    "asokHwq`yBLBNHPJTRHFTNJJLLBBBFHNBD@BFH@BDF@B@B@B@D?@@DFJ@@BB@DBBHFDD@BBB@@@B@B@@BFBFHHFJBFB@@B@B@D@B@B@B@B@B@B@B@B@D@B@B@DBD@@@BBBH@@?@?N?F?D@@@B@@@B@B@@?B?BAB?B?B@@@DBD@DFPLHFFFLPRXLTJLJNLNHH\\Z"
+                }
+            });
+
+            Trails.Add(new Trail()
+            {
+                Color = "yellow",
+                Id = id++,
+                ShortDescription = "Sucha Przełęcz",
+                Description = "Za rozstajem dróg zwiększa się nieco kąt nachylenia, przez co jednakże w prawie żadnym stopniu nie wzrasta nasze zmęczenie. " +
+                    "Podchodzimy po solidnej, kamienistej ścieżce niemal równolegle do wyciągu krzesełkowego. Powoli zanika kosodrzewina. " +
+                    "Później nieznacznie oddalamy się od wyciągu - trasa obchodzi łukiem Kocioł Kasprowy (górne piętro Zielonej Doliny Gąsienicowej). " +
+                    "Ładnie teraz prezentuje się Świnica i Kościelec." + 
+                    "Grań osiągamy po wejściu na Suchą Przełęcz, skąd wspaniale widać Tatry słowackie (m.in. Krywań i Liptowskie Kopy). Żółty szlak następnie " +
+                    "zaprowadzi nas do stacji kolei linowej z Kuźnic. Najwyższy wierzchołek Kasprowego Wierchu znajduje się kilkanaście metrów wyżej. " +
+                    "Ze szczytu imponująca panorama prawie we wszystkie strony (na wschód Świnica i Kościelec, na południe wcześniej wspomniane Tatry słowackie, " +
+                    "na zachód Goryczkowa Czuba, Kopa Kondracka, Małołączniak i Giewont).",
+                Name = "Szlak pieszy żółty",
+                TimeUp = 40,
+                TimeDown = 35,
+                Distance = 1.2,
+                Image = "sucha",
+                PolylineCode = new List<string>
+                {
+                    "smnkHk{}xBf@oA",
+                    "klnkH{}}xBPmALu@LeAFu@@M?M?IAu@G}@Ck@EWGe@ESESIUIUIUq@uAg@cASk@Yk@Ya@a@i@k@y@SWOKYKMGMIEEGKIQiAkCq@eB[w@_@eAQe@Om@GUCWMu@Mq@YmAO{@Ki@AKAGAGAEAEACAEACAECC?CACAEACAE?G@E@E?CBG@E@E@E@E@G?EBE@E@CBEHe@"
+                }
+            });
+
+            Trails.Add(new Trail()
+            {
+                Color = "green",
+                Id = id++,
+                ShortDescription = "Szczyt Kasprowego wierchu, stacja kolei linowej",
+                Name = "Kolej Linowa",
+                TimeUp = 5,
+                TimeDown = 5,
+                Distance = 0.1,
+                Image = "kasprowyszczyt",
+                PolylineCode = new List<string>
+                {
+                    "wwnkH_z}xB?A?A@?@?RC@ABA@C@AB?B?D@x@Vj@FD@H?t@M^KHA\\QDCXK"
                 }
             });
         }

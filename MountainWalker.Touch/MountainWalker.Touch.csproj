@@ -280,7 +280,7 @@
     <Compile Include="Views\AchievementsCell.designer.cs">
       <DependentUpon>AchievementsCell.cs</DependentUpon>
     </Compile>
-    <Compile Include="Models\TypeToImageValueConverter.cs" />
+    <Compile Include="Models\TypeToImageValueConverterPNG.cs" />
     <Compile Include="Views\ReachedTrailsView.cs" />
     <Compile Include="Views\ReachedTrailsView.designer.cs">
       <DependentUpon>ReachedTrailsView.cs</DependentUpon>
@@ -297,6 +297,7 @@
     <Compile Include="Views\TrailDetailsView.designer.cs">
       <DependentUpon>TrailDetailsView.cs</DependentUpon>
     </Compile>
+    <Compile Include="Models\TypeToImageValueConverterJPG.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\MountainWalker.Core\MountainWalker.Core.csproj">
@@ -309,7 +310,6 @@
     <BundleResource Include="Resources\Images\loginbg.jpg" />
     <BundleResource Include="Resources\Images\rounded_button.xml" />
     <BundleResource Include="Resources\Images\gradientbg.png" />
-    <BundleResource Include="Resources\Images\headerMenu.jpg" />
     <BundleResource Include="Resources\trophy.png" />
     <BundleResource Include="Resources\trophyx.png" />
     <BundleResource Include="Resources\Images\trophy.png" />

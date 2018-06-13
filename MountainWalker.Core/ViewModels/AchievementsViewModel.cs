@@ -38,7 +38,7 @@ namespace MountainWalker.Core.ViewModels
                 new Achievement(id++, "Sarnia Skała"),
                 new Achievement(id++, "Gęsia Szyja")
             };
-			SetAchievements();
+            SetAchievements();
         }
 
         private void SetAchievements()

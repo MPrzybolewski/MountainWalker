@@ -36,7 +36,7 @@ namespace MountainWalker.Touch.Views
 
         [Outlet]
         [GeneratedCode ("iOS Designer", "1.0")]
-        UIKit.UIView TrailImage { get; set; }
+        UIKit.UIImageView TrailImage { get; set; }
 
         [Outlet]
         [GeneratedCode ("iOS Designer", "1.0")]

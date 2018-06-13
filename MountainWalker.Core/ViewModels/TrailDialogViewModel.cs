@@ -1,5 +1,6 @@
 ﻿using MountainWalker.Core.Interfaces;
 using MountainWalker.Core.Messages;
+using MountainWalker.Core.Models;
 using MvvmCross.Core.Navigation;
 using MvvmCross.Core.ViewModels;
 using MvvmCross.Plugins.Messenger;
@@ -45,7 +46,7 @@ namespace MountainWalker.Core.ViewModels
             _messenger = messenger;
 
             TrailName = _trailService.Trails[_trailId].Name;
-            TrailDescription = _trailService.Trails[_trailId].Description;
+            TrailDescription = _trailService.Trails[_trailId].ShortDescription;
             ReadMoreCommand = new MvxCommand(ReadMore);
 			DismissDialogCommand = new MvxCommand(DismissDialog);
         }
@@ -53,10 +54,20 @@ namespace MountainWalker.Core.ViewModels
         private void ReadMore()
         {
             var message = new TrailMessage(this, _trailService.Trails[_trailId], false);
-            Close();
-            _navigationService.Navigate<TrailDetailsViewModel>();
-            _visible.Raise(false);
-            _messenger.Publish(message);
+            if(Achievement.Os == "Android")
+            {
+                _navigationService.Navigate<TrailDetailsViewModel>();
+                _visible.Raise(false);
+                _messenger.Publish(message);
+            }
+            else
+            {
+                _navigationService.Navigate<TrailDetailsViewModel>();
+                Close();
+                _messenger.Publish(message);
+            }
+
+
         }
 
 		private void DismissDialog()
