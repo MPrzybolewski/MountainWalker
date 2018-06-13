@@ -14,5 +14,7 @@ namespace MountainWalker.Core.Interfaces
         Task GetReachedTrailsList(string login);
         Task GetReachedAchievements(string login);
         Task<string> GetName(string login);
+        Task SaveTrail(ReachedTrail trail, string login);
+        Task SaveAchievement(int id, string login, string date);
     }
 }

@@ -76,4 +76,18 @@ Global
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {46AD512F-6740-47AE-B5EF-6B2DECC7F3B1}
 	EndGlobalSection
+	GlobalSection(MonoDevelopProperties) = preSolution
+		Policies = $0
+		$0.TextStylePolicy = $1
+		$1.FileWidth = 80
+		$1.TabsToSpaces = True
+		$1.NoTabsAfterNonTabs = True
+		$1.scope = text/x-csharp
+		$1.RemoveTrailingWhitespace = False
+		$0.CSharpFormattingPolicy = $2
+		$2.scope = text/x-csharp
+		$0.DotNetNamingPolicy = $3
+		$3.DirectoryNamespaceAssociation = PrefixedHierarchical
+		$0.StandardHeader = $4
+	EndGlobalSection
 EndGlobal

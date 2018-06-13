@@ -36,7 +36,7 @@ namespace MountainWalker.Core.Services
             Points.Add(new Point(54.034417, 19.033257, "Malbork")); //Malbork
 
             Points.Add(new Point(54.090550, 18.790999, "Dom Tczew")); //xvoxin house
-            Points.Add(new Point(54.416570, 18.594687, "Dąbrowszczaków"));
+            Points.Add(new Point(54.422747, 18.578575, "Gospody"));
             Points.Add(new Point(54.493148, 18.539386, "Jit Solution"));
 
             Points.Add(new Point(49.2681913, 19.9795644, "Start na Kasprowy Wierch")); // 49.26819, 19.97956

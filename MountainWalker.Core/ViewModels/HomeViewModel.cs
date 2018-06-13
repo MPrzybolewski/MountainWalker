@@ -23,7 +23,8 @@ namespace MountainWalker.Core.ViewModels
         private readonly ITrailService _trailService;
         private readonly ITravelPanelService _travelPanelService;
         private readonly IStartButtonService _startButtonService;
-        
+        readonly IWebAPIService _webAPIService;
+
         private MvxInteraction<Point> _interaction = new MvxInteraction<Point>();
         public IMvxInteraction<Point> Interaction => _interaction;
 
@@ -86,10 +87,11 @@ namespace MountainWalker.Core.ViewModels
         }
 
         public HomeViewModel(ILocationService locationService, IMvxNavigationService navigationService, IMvxMessenger messenger, 
-            ITrailService trailService, ITravelPanelService travelPanelService, IStartButtonService startButtonService)
+            ITrailService trailService, ITravelPanelService travelPanelService, IStartButtonService startButtonService, IWebAPIService webAPIService)
         {
             _navigationService = navigationService;
             _trailService = trailService;
+            _webAPIService = webAPIService;
 
             OpenMainDialogCommand = new MvxAsyncCommand(OpenDialog);
             OpenTrailDialogCommand = new MvxAsyncCommand<int>(OpenTrailDialog);
@@ -140,7 +142,9 @@ namespace MountainWalker.Core.ViewModels
                 {
                     if (_locationService.GetDistanceBetweenTwoPointsOnMapInMeters(Location, point) < 50)
                     {
+                        string date = DateTime.Now.ToString();
                         _locationService.AddTopsToStorage(point.Id);
+                        _webAPIService.SaveAchievement(point.Id, CrossSecureStorage.Current.GetValue(CrossSecureStorageKeys.LoginID), date);
                     }
                 }
 

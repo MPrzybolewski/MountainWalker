@@ -62,6 +62,7 @@ namespace MountainWalker.Core.ViewModels
             bool result = await CheckIfLogged();
             if(result)
             {
+				CrossSecureStorage.Current.SetValue(CrossSecureStorageKeys.LoginID, Login);
                 CrossSecureStorage.Current.SetValue(CrossSecureStorageKeys.Username, await _webAPIService.GetName(Login));
                 await _navigationService.Navigate<MainViewModel>();
             }

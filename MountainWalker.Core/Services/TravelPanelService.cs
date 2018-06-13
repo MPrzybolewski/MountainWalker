@@ -15,6 +15,7 @@ namespace MountainWalker.Core.Services
     {
         private readonly IMvxMessenger _travelPanelMessenger;
         private readonly ILocationService _locationService;
+        private readonly IWebAPIService _webAPIService;
 
         public TravelTime TravelTime { get; set; }
         public DateTime StartTime { get; set; }
@@ -45,10 +46,11 @@ namespace MountainWalker.Core.Services
 
         private Stopwatch _timer;
 
-        public TravelPanelService(IMvxMessenger travelPanelMessenger, ILocationService locationService)
+        public TravelPanelService(IMvxMessenger travelPanelMessenger, ILocationService locationService, IWebAPIService webAPIService)
         {
             _travelPanelMessenger = travelPanelMessenger;
             _locationService = locationService;
+            _webAPIService = webAPIService;
             TravelTime = new TravelTime(1, 1, 1);
         }
 
@@ -103,8 +105,7 @@ namespace MountainWalker.Core.Services
             reachedTrail.Trails = trails;
 
             var dataToDb = JsonConvert.SerializeObject(reachedTrail);
-
-            //tutaj wysylam do bazy
+            _webAPIService.SaveTrail(reachedTrail, CrossSecureStorage.Current.GetValue(CrossSecureStorageKeys.LoginID));
 
             var jsone = CrossSecureStorage.Current.GetValue(CrossSecureStorageKeys.ReachedTrails);
             var jsoneList = JsonConvert.DeserializeObject<List<ReachedTrail>>(jsone);

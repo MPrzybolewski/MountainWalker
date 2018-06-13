@@ -194,5 +194,29 @@ namespace MountainWalker.Core.Interfaces.Impl
                 new Point(54.396110, 18.573478)
             };
         }
-    }         
-}             
+
+        public async Task SaveTrail(ReachedTrail trail, string login)
+        {
+            var clientt = new HttpClient();
+            clientt.BaseAddress = new Uri(_url);
+            var jsonObj = JsonConvert.SerializeObject(trail);
+            var content = new StringContent(jsonObj, Encoding.UTF8, "application/json");
+            var response = await clientt.PostAsync("/api/Users/PostTrail", content);
+        }
+
+        public async Task SaveAchievement(int id, string login, string date)
+        {
+            var clientt = new HttpClient();
+            clientt.BaseAddress = new Uri(_url);
+            var values = new Dictionary<string, string>
+            {
+               { "id", id.ToString() },
+               { "login", login },
+               { "date", date }
+            };
+            
+            var content = new FormUrlEncodedContent(values);
+            var response = await clientt.PostAsync("/api/Users/PostTrail", content);
+        }
+    }
+}

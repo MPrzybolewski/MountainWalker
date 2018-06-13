@@ -43,8 +43,8 @@ namespace MountainWalkerWebAPI.Controllers
             foreach (User user in _context.Users)
             {
                 if (user.Login.Equals(userCheck.Login))
-                {
-                    if (user.Password.Equals(userCheck.Password))
+                {                   
+                    if(user.Password.Equals(userCheck.Password))
                     {
                         return true;
                     }
@@ -53,12 +53,106 @@ namespace MountainWalkerWebAPI.Controllers
             return false;
         }
 
+        //This method returns name and surname for given login
+        // POST: api/Users/GetName
+        [HttpPost]
+        public string GetName([FromBody] User userr)
+        {
+            string result;
+            foreach (User user in _context.Users)
+            {
+                if (user.Login.Equals(userr.Login))
+                {
+                    result = user.Name + " " + user.Surname;
+                    return result;
+                }
+            }
+            return "false";
+        }
+        
+		//This method returns ids of achievements for given user
+		// POST: api/Users/GetAchievementsForGivenUser
+        [HttpPost]
+		public IEnumerable<AchivementsToReturn> GetAchievementsForGivenUser([FromBody] User userr)
+        {
+            int? id = null;
+            List<AchivementsToReturn> result = new List<AchivementsToReturn>();
+            
+            foreach (User user in _context.Users)
+            {
+                if (user.Login.Equals(userr.Login))
+                {
+                    id = user.UserID;
+                }
+            }
+            
+            foreach(UserAchievement achi in _context.UserAchievement)
+            {
+                AchivementsToReturn toReturn = new AchivementsToReturn();
+                if(achi.UserID == id)
+                {
+                    toReturn.ID = achi.AchievementID;
+                    var temp = _context.Achievement.Single(s => s.AchievementID == achi.AchievementID);
+                    toReturn.Name = temp.Name;
+                    toReturn.Date = achi.Date;
+                    result.Add(toReturn);
+                }
+            }
+            return result;
+        }
+
+        //This method returns trail for given user
+        // POST: api/Users/GetTrailsForUser
+        [HttpPost]
+        public IEnumerable<TrailToReturn> GetTrailsForUser([FromBody] User userr)
+        {
+            int? id = null;
+            List<TrailToReturn> result = new List<TrailToReturn>();
+            foreach (User user in _context.Users)
+            {
+                if (user.Login.Equals(userr.Login))
+                {
+                    id = user.UserID;
+                }
+            }
+
+            foreach(Trail trail in _context.Trail)
+            {
+                if(trail.UserID == id)
+                {
+                    TrailToReturn trailToReturn = new TrailToReturn();
+                    trailToReturn.TrailID = trail.TrailID;
+                    trailToReturn.Distance = trail.Distance;
+                    trailToReturn.StartPoint = trail.StartPoint;
+                    trailToReturn.EndPoint = trail.EndPoint;
+                    trailToReturn.StartTime = trail.StartTime;
+                    trailToReturn.EndTime = trail.EndTime;
+                    trailToReturn.Date = trail.Date;
+
+                    foreach(TrailHasTrailPart part in _context.TrailHasTrailPart)
+                    {
+                        if(part.TrailID == trail.TrailID)
+                        {
+                            trailToReturn.TrailParts.Add(part.TrailPartID);
+                        }
+                    }
+                    result.Add(trailToReturn);
+                }
+            }
+            return result;
+        }
+
         //Updates data
         // PUT: api/Users
         [HttpPut]
         public async Task<string> PutUser([FromBody] User user)
         {
             if (!ModelState.IsValid)
+            {
+                return "false";
+            }
+
+            if (user.UserID != user.UserID)
             {
                 return "false";
             }
@@ -82,7 +176,6 @@ namespace MountainWalkerWebAPI.Controllers
                     return "user exist";
                 }
             }
-
         }
 
         //Add new user
@@ -119,18 +212,53 @@ namespace MountainWalkerWebAPI.Controllers
 
         }
 
-        // POST api/Users/Username
+        //Add trail for given user
+		// POST: api/Users
         [HttpPost]
-        public async Task<IActionResult> Username([FromBody] string login)
+        public async Task<bool> PostTrail([FromBody] JsonTrail trail, string login)
         {
+            Trail trailToSave = new Trail();
+            trailToSave.TrailID = null;
+            trailToSave.StartTime = Convert.ToDateTime(trail.StartTime);
+            trailToSave.EndTime = Convert.ToDateTime(trail.EndTime);
+            trailToSave.StartPoint = trail.From;
+            trailToSave.Distance = Convert.ToDouble(trail.Distance);
+            trailToSave.EndPoint = trail.To;
+            trailToSave.Date = Convert.ToDateTime(trail.Date);
+            int? id = 9999999;
+            
             foreach (User user in _context.Users)
             {
                 if (user.Login.Equals(login))
                 {
-                    return new OkObjectResult(JsonConvert.SerializeObject(user));
+                    id = user.UserID;
                 }
             }
-            return new OkObjectResult(JsonConvert.SerializeObject("false"));
+            
+            trailToSave.UserID = id;
+            _context.Trail.Add(trailToSave);
+            
+            try
+            {
+                await _context.SaveChangesAsync();
+                
+                foreach(int _id in trail.Trails)
+                {
+                    _context.TrailParts.Add(new TrailPart(_id, "test"));
+                }
+
+                foreach(int _id in trail.Trails)
+                {
+                    _context.TrailHasTrailPart.Add(new TrailHasTrailPart(trailToSave.TrailID, _id));
+                }
+                
+                return true;
+            }
+            catch (Exception e)
+            {
+                return false;
+            }
+
         }
 
         // DELETE: api/Users/5
@@ -172,7 +300,7 @@ namespace MountainWalkerWebAPI.Controllers
             }
         }
 
-        private bool[] CheckData(User user)
+		private bool[] CheckData(User user)
         {
             bool[] result = new bool[6];
             for (int i = 0; i < 6; i++)
@@ -180,22 +308,22 @@ namespace MountainWalkerWebAPI.Controllers
                 result[i] = true;
             }
 
-            if(user.Login.Length < 3)
+            if (user.Login.Length < 3)
             {
                 result[0] = false;
                 result[3] = false;
             }
-            if(user.Name.Length < 2)
+            if (user.Name.Length < 2)
             {
                 result[0] = false;
                 result[1] = false;
             }
-            if(user.Surname.Length < 2)
+            if (user.Surname.Length < 2)
             {
                 result[0] = false;
                 result[2] = false;
             }
-            if(user.Password.Length < 6)
+            if (user.Password.Length < 6)
             {
                 result[0] = false;
                 result[4] = false;
