@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:local="http://schemas.android.com/apk/res-auto"
     android:orientation="vertical"
     android:layout_width="match_parent"
@@ -7,13 +7,34 @@
     android:background="@color/light_gray">
     <include
         layout="@layout/toolbar_actionbar" />
-    <TextView
-        android:layout_width="fill_parent"
-        android:layout_height="wrap_content"
-        android:gravity="center_horizontal"
-        android:textColor="@color/dark_gray"
-        android:textSize="20dp"
-        android:paddingTop="40dp"
-        android:paddingBottom="15dp"
-        android:text="W sumie to sam nie wiem jak to działa xd" />
-</LinearLayout>
+    <ImageView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_gravity="center"
+        android:alpha="0.4"
+        android:src="@drawable/icon" />
+    <LinearLayout
+        android:layout_height="match_parent"
+        android:layout_width="match_parent"
+        android:orientation="horizontal"
+        android:gravity="top"
+        android:paddingTop="70dp">
+        <ScrollView
+            android:layout_width="match_parent"
+            android:layout_height="300dp">
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:gravity="center_horizontal"
+                android:textColor="@color/dark_gray"
+                android:textSize="20dp"
+                android:padding="5dp"
+                android:textAlignment="center"
+                android:text="Lorem ipsum dolor sit amet, consectetur adipiscing elit. Mauris mi velit, posuere id tellus at, lobortis efficitur                  isus.Vivamus iaculis velit eu gravida tristique. Cras nec convallis odio, in congue eros. Donec vel turpis vel nisi pulvinar semper nec at neque.                  Etiam venenatis egestas hendrerit. Duis est elit, congue ut semper nec, euismod et nunc. Morbi volutpat finibus nulla ut ultricies. Quisque nec                  libero nec lectus bibendum consequat non sed mi. Aliquam pretium consectetur lobortis. Vivamus pellentesque                  commodo turpis eget aliquam. Fusce vestibulum lorem sed ligula viverra, vel eleifend risus dapibus. In gravida sem neque, quis                  ornare urna vehicula id. In consectetur mi elementum est dictum, in egestas dolor porta. Aenean maximus orci non lacus finibus,                  commodo tristique ex pellentesque. Nam vel risus mi. Mauris id purus pulvinar, scelerisque massa ac, tempus orci. Duis vel c                 ommodo tellus. Curabitur lobortis nec metus vitae pellentesque. Aenean quis euismod libero. Vestibulum vitae purus tincidunt,                  tempor neque ac, eleifend libero. Nullam a dolor ex. Donec molestie laoreet neque sed faucibus. Fusce ultricies ut diam sed                  fermentum. Pellentesque vel condimentum ex. Ut velit enim, bibendum a sagittis at, molestie at nulla. Proin efficitur auctor                  nisi, quis imperdiet risus euismod sit amet. Fusce vitae risus tincidunt, placerat neque quis, lobortis odio. In eleifend                  urna in diam vulputate tincidunt. Interdum et malesuada fames ac ante ipsum primis in faucibus. Curabitur at nisi sit amet                  lectus viverra maximus a quis ligula." />
+            <View
+                android:background="@color/error_color_material"
+                android:layout_width="match_parent"
+                android:layout_height="10dp" />
+        </ScrollView>
+    </LinearLayout>
+</FrameLayout>
