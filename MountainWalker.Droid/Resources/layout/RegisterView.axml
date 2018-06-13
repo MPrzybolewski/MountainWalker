@@ -58,7 +58,7 @@
                     style="@style/textboxes_style"
                     android:hint="Hasło"
                     android:inputType="textPassword"
-                    local:MvxBind="Text Password"
+                    local:MvxBind="Text Password;Hint PasswordPlaceholder"
                     android:textAlignment="center" />
                 <EditText
                     android:layout_width="match_parent"
@@ -80,8 +80,8 @@
                     style="@style/login_button_style"
                     android:text="Zarejestruj"
                     android:id="@+id/loginBtn"
-                    android:layout_gravity="center_horizontal" 
-                    local:MvxBind="Click RegisterButton"/>
+                    android:layout_gravity="center_horizontal"
+                    local:MvxBind="Click RegisterButton" />
             </LinearLayout>
         </RelativeLayout>
     </ScrollView>

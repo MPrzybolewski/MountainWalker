@@ -6,7 +6,7 @@ using Plugin.SecureStorage;
 
 namespace MountainWalker.Core.ViewModels
 {
-    public class MenuViewModel : MvxViewModel
+    public class MenuViewModel : BaseViewModel
     {
         private readonly IMvxNavigationService _navigationService;
 
@@ -17,6 +17,7 @@ namespace MountainWalker.Core.ViewModels
             _navigationService = navigationService;
             UserName = CrossSecureStorage.Current.GetValue(CrossSecureStorageKeys.Username);
         }
+
         public IMvxCommand ShowHomeCommand
         {
             get { return new MvxCommand(ShowHomeExecuted); }

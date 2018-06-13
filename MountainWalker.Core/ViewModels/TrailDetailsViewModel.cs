@@ -97,7 +97,15 @@ namespace MountainWalker.Core.ViewModels
             TrailDescription = trail.Description;
             TrailShortDescription = trail.ShortDescription;
             Distance = "Długość szlaku: " + trail.Distance.ToString() + "km";
-            Image = "@drawable/" + trail.Image;
+            if(Achievement.Os == "android")
+            {
+                Image = "@drawable/" + trail.Image;
+            }
+            else
+            {
+                Image = trail.Image;
+            }
+
             TimeUp = "Wejście: " + trail.TimeUp + " minut";
             TimeDown = "Zejście: " + trail.TimeDown + " minut";
         }

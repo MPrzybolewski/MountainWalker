@@ -1,14 +1,14 @@
 ﻿using System;
-
+using MountainWalker.Core.ViewModels;
+using MvvmCross.iOS.Views;
 using UIKit;
 
-namespace MountainWalker.Touch
+namespace MountainWalker.Touch.Views
 {
-    public partial class ViewController : UIViewController
+    public partial class StartViewController : MvxViewController<StartViewModel>
     {
-        protected ViewController(IntPtr handle) : base(handle)
+        public StartViewController() : base("StartViewController", null)
         {
-            // Note: this .ctor should not contain any initialization logic.
         }
 
         public override void ViewDidLoad()
@@ -24,3 +24,4 @@ namespace MountainWalker.Touch
         }
     }
 }
+

@@ -74,9 +74,9 @@ namespace MountainWalker.Core.ViewModels
 
         public IMvxCommand RegisterButton => new MvxCommand(JumpRegister);
 
-        private void JumpRegister()
+        private async void JumpRegister()
         {
-            _navigationService.Navigate<RegisterViewModel>();
+            await _navigationService.Navigate<RegisterViewModel>();
         }
 
         public async Task<bool> CheckIfLogged()
