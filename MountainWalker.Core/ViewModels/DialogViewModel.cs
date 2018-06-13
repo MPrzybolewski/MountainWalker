@@ -108,5 +108,11 @@ namespace MountainWalker.Core.ViewModels
             _locationService.CurrentLocation, _trailService.Points));
             _visible.Raise(false);
         }
+
+        public void Close()
+		{
+			Close(this);
+		}
+
     }
 }

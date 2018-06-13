@@ -3,6 +3,7 @@ using System;
 using Android.App;
 using Android.OS;
 using Android.Runtime;
+using MountainWalker.Core.Models;
 using Plugin.CurrentActivity;
 
 namespace MountainWalker.Droid
@@ -21,6 +22,7 @@ namespace MountainWalker.Droid
             base.OnCreate();
             RegisterActivityLifecycleCallbacks(this);
             //A great place to initialize Xamarin.Insights and Dependency Services!
+			Achievement.Os = "android";
         }
 
         public override void OnTerminate()

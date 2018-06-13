@@ -16,12 +16,26 @@ namespace MountainWalker.Core.Models
         {
             get
             {
-                if (IsReached)
-                    return "@drawable/trophy";
-                else
-                    return "@drawable/trophyx";
+				if(Os == "android")
+				{
+					if (IsReached)
+                        return "@drawable/trophy";
+                    else
+                        return "@drawable/trophyx";	
+				}
+				else
+				{
+					if (IsReached)
+						return "trophy";
+					else
+						return "trophyx";
+				}
+     
+                
             }
         }
+
+		public static string Os { get; set; }
 
         public Achievement () { }
 

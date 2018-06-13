@@ -1,6 +1,6 @@
 // WARNING
 //
-// This file has been generated automatically by Xamarin Studio from the outlets and
+// This file has been generated automatically by Visual Studio from the outlets and
 // actions declared in your storyboard file.
 // Manual changes to this file will not be maintained.
 //
@@ -11,27 +11,27 @@ using UIKit;
 
 namespace MountainWalker.Touch.Views
 {
-    [Register ("MainView")]
-    partial class MainView
+    [Register ("TrailsView")]
+    partial class TrailsView
     {
         [Outlet]
         [GeneratedCode ("iOS Designer", "1.0")]
-        UIKit.UIButton Button { get; set; }
+        UIKit.UILabel TitleLabel { get; set; }
 
         [Outlet]
         [GeneratedCode ("iOS Designer", "1.0")]
-        UIKit.UITextField TextField { get; set; }
+        UIKit.UITableView TrailsList { get; set; }
 
         void ReleaseDesignerOutlets ()
         {
-            if (Button != null) {
-                Button.Dispose ();
-                Button = null;
+            if (TitleLabel != null) {
+                TitleLabel.Dispose ();
+                TitleLabel = null;
             }
 
-            if (TextField != null) {
-                TextField.Dispose ();
-                TextField = null;
+            if (TrailsList != null) {
+                TrailsList.Dispose ();
+                TrailsList = null;
             }
         }
     }

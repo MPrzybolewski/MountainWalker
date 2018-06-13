@@ -16,7 +16,7 @@ using Newtonsoft.Json;
 
 namespace MountainWalker.Core.ViewModels
 {
-    public class HomeViewModel : MvxViewModel
+    public class HomeViewModel : BaseViewModel
     {
         private readonly ILocationService _locationService;
         private readonly IMvxNavigationService _navigationService;
@@ -199,7 +199,8 @@ namespace MountainWalker.Core.ViewModels
                 _travelPanelService.SetTravelTime();
                 TimeInfoText = "" +  _travelPanelService.TravelTime;
             }
-            TimeInfoText = "0:0:0";
+            //AddNewTrailToStorage(_travelPanelService.TravelTime);
+			TimeInfoText = "0h:0m:0s";
         }
 
         private async Task OpenDialog()
