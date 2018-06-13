@@ -6,7 +6,8 @@ using MountainWalker.Droid.NavigationDrawer;
 
 namespace MountainWalker.Droid.Fragments
 {
-    [DrawerLayoutPresentation(typeof(ReachedTrailsFragment), typeof(MainViewModel), Resource.Id.content_frame, addToBackStack: false)]
+    [DrawerLayoutPresentation(typeof(ReachedTrailsFragment), typeof(MainViewModel), Resource.Id.content_frame,
+                              addToBackStack: true, IsCacheableFragment = false, AddToBackStack = true)]
     [Register("MountainWalker.android.SettingsFragment")]
     public class ReachedTrailsFragment : BaseFragment<ReachedTrailsViewModel>
     {

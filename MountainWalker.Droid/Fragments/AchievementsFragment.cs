@@ -6,7 +6,8 @@ using MountainWalker.Droid.NavigationDrawer;
 
 namespace MountainWalker.Droid.Fragments
 {
-    [DrawerLayoutPresentation(typeof(AchievementsFragment), typeof(MainViewModel), Resource.Id.content_frame, addToBackStack: false)]
+    [DrawerLayoutPresentation(typeof(AchievementsFragment), typeof(MainViewModel), Resource.Id.content_frame,
+                              addToBackStack: true, IsCacheableFragment = false, AddToBackStack = true)]
     [Register("MountainWalker.android.AchievementsFragment")]
     public class AchievementsFragment : BaseFragment<AchievementsViewModel>
     {
