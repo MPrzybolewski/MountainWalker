@@ -23,7 +23,7 @@ using MvvmCross.Platform.Core;
 namespace MountainWalker.Droid.Fragments
 {
     [DrawerLayoutPresentation(typeof(ReachedTrailMapFragment), typeof(MainViewModel), Resource.Id.content_frame, addToBackStack: true,
-        IsCacheableFragment = true, AddToBackStack = true)]
+        IsCacheableFragment = false, AddToBackStack = true)]
     [Register("MountainWalker.android.ReachedTraiMapFragment")]
     public class ReachedTrailMapFragment : BaseFragment<ReachedTrailMapViewModel>, IOnMapReadyCallback
     {

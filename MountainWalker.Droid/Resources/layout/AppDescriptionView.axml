@@ -1,19 +1,144 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:local="http://schemas.android.com/apk/res-auto"
     android:orientation="vertical"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@color/light_gray">
-    <include
-        layout="@layout/toolbar_actionbar" />
-    <TextView
-        android:layout_width="fill_parent"
-        android:layout_height="wrap_content"
-        android:gravity="center_horizontal"
-        android:textColor="@color/dark_gray"
-        android:textSize="20dp"
-        android:paddingTop="40dp"
-        android:paddingBottom="15dp"
-        android:text="W sumie to sam nie wiem jak to działa xd" />
-</LinearLayout>
+    <ImageView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_gravity="center"
+        android:alpha="0.4"
+        android:scaleX="0.6"
+        android:scaleY="0.6"
+        android:src="@drawable/icon" />
+    <LinearLayout
+        android:layout_height="match_parent"
+        android:layout_width="match_parent"
+        android:orientation="vertical">
+        <include
+            layout="@layout/toolbar_actionbar" />
+        <LinearLayout
+            android:layout_height="match_parent"
+            android:layout_width="match_parent"
+            android:layout_weight="0.4">
+            <ScrollView
+                android:layout_width="match_parent"
+                android:layout_height="match_parent">
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:gravity="center_horizontal"
+                    android:textColor="@color/dark_gray"
+                    android:textSize="18dp"
+                    android:padding="10dp"
+                    android:textAlignment="center"
+                    android:text="desc"
+                    local:MvxBind="Text Description" />
+            </ScrollView>
+        </LinearLayout>
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical"
+            android:layout_weight="0.6">
+            <View
+                android:background="@drawable/dotted"
+                android:layout_width="match_parent"
+                android:layout_height="10dp"
+                android:layout_margin="10dp" />
+            <TextView
+                android:layout_height="wrap_content"
+                android:layout_width="match_parent"
+                android:text="Autorzy:"
+                android:textSize="20dp"
+                android:paddingLeft="10dp"
+                android:paddingBottom="10dp" />
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:paddingLeft="30dp"
+                android:paddingRight="30dp"
+                android:paddingBottom="5dp">
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:text="Patryk Matuszak"
+                    android:textSize="18dp"
+                    android:textColor="@color/black"
+                    android:gravity="center_vertical"
+                    android:layout_weight="0.4" />
+                <ImageView
+                    android:layout_width="wrap_content"
+                    android:layout_height="35dp"
+                    android:layout_weight="0.8"
+                    android:src="@drawable/linkedin"
+                    local:MvxBind="Click PatrykLinkedInCommand" />
+                <ImageView
+                    android:layout_width="wrap_content"
+                    android:layout_height="30dp"
+                    android:layout_weight="0.8"
+                    android:src="@drawable/github"
+                    local:MvxBind="Click PatrykGithubCommand" />
+            </LinearLayout>
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:paddingLeft="30dp"
+                android:paddingRight="30dp"
+                android:paddingBottom="5dp">
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:text="Michał Niskowski"
+                    android:textSize="18dp"
+                    android:textColor="@color/black"
+                    android:gravity="center_vertical"
+                    android:layout_weight="0.4" />
+                <ImageView
+                    android:layout_width="wrap_content"
+                    android:layout_height="35dp"
+                    android:layout_weight="0.8"
+                    android:src="@drawable/linkedin"
+                    local:MvxBind="Click MichalLinkedInCommand" />
+                <ImageView
+                    android:layout_width="wrap_content"
+                    android:layout_height="30dp"
+                    android:layout_weight="0.8"
+                    android:src="@drawable/github"
+                    local:MvxBind="Click MichalGithubCommand" />
+            </LinearLayout>
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:paddingLeft="30dp"
+                android:paddingRight="30dp"
+                android:paddingBottom="5dp">
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:text="Marek Przybolewski"
+                    android:textSize="18dp"
+                    android:textColor="@color/black"
+                    android:gravity="center_vertical"
+                    android:layout_weight="0.4" />
+                <ImageView
+                    android:layout_width="wrap_content"
+                    android:layout_height="35dp"
+                    android:layout_weight="0.8"
+                    android:src="@drawable/linkedin"
+                    local:MvxBind="Click MarekLinkedInCommand" />
+                <ImageView
+                    android:layout_width="wrap_content"
+                    android:layout_height="30dp"
+                    android:layout_weight="0.8"
+                    android:src="@drawable/github"
+                    local:MvxBind="Click MarekGithubCommand" />
+            </LinearLayout>
+        </LinearLayout>
+    </LinearLayout>
+</FrameLayout>

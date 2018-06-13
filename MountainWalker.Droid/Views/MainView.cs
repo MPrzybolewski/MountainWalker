@@ -16,7 +16,7 @@ using MvvmCross.Platform.Droid.Platform;
 namespace MountainWalker.Droid.Views
 {
     [Activity(Label = "",
-              NoHistory = false,
+              NoHistory = true,
               Theme = "@style/MyTheme",
               LaunchMode = LaunchMode.SingleTop,
               ConfigurationChanges = ConfigChanges.Orientation,
