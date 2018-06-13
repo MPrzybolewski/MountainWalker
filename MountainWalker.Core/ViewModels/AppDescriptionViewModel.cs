@@ -7,7 +7,18 @@ namespace MountainWalker.Core.ViewModels
 {
     public class AppDescriptionViewModel : MvxViewModel
     {
-        public string Description { get; set; } = "Tutaj fajny opisik";
+        public string Description { get; set; } = "Aplikacja została stworzona z myślą o ludziach, którzy uwielbiają " +
+            "wędrówki po polskich Tatrach. Dzięki niej użytkownicy mogą mieć wszystko w jednym " +
+            "miejscu: mapę ze szlakami, informacje o szlakach oraz historię swoich wypraw. " +
+            "Mountain Walker jest ekwiwalentem Endomondo dla ludzi, którzy aktywnie zwiedzają Tatry. " +
+            "\n\n" +
+            "Aplikacja umożliwia przeglądanie mapy wraz z naniesionymi szlakami oraz czytanie ich opisu. " +
+            "Jej główną przewagą nad innymi aplikacjami tego typu jest fakt, że umożliwia śledzenie wędrówki" +
+            "dzięki obsłudze Google Maps, zapisywanie przebytych wędrówek oraz zdobywanie osiągnięc, czyli szczytów górskich. " +
+            "Aplikacja może rozpocząć wędrówkę tylko wtedy, gdy jesteśmy przy punkcie na szlaku (przecięciu się szlaków lub przy ich początkach). " +
+            "Wszystko dzieje się w tle, więc użytkownik nie musi się martwić o to, co robi aplikacja. " +
+            "Po zakończeniu podróży aplikacja zapisze nasze dokonania i od razu będziemy mieli do nich dostęp." +
+            "\nMountain Walker powstał jako projekt licencjacki niżej wymienionych studentów z pomocą firmy Jit Solutions.";
 
         public IMvxCommand PatrykLinkedInCommand { get; }
         public IMvxCommand PatrykGithubCommand { get; }
