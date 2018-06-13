@@ -7,7 +7,7 @@ using MountainWalker.Droid.NavigationDrawer;
 
 namespace MountainWalker.Droid.Fragments
 {
-    [DrawerLayoutPresentation(typeof(DescriptionFragment), typeof(MainViewModel), Resource.Id.content_frame, addToBackStack: false)]
+    [DrawerLayoutPresentation(typeof(DescriptionFragment), typeof(MainViewModel), Resource.Id.content_frame, addToBackStack: true)]
     [Register("MountainWalker.android.DescriptionFragment")]
     public class DescriptionFragment : BaseFragment<AppDescriptionViewModel>
     {

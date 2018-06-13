@@ -46,6 +46,7 @@ namespace MountainWalker.Core.ViewModels
             _dialogService = dialogService;
             _webAPIService = webAPIService;
             _navigationService = navigationService;
+            CheckUser();
         }
 
         public override Task Initialize()
@@ -100,6 +101,12 @@ namespace MountainWalker.Core.ViewModels
                 UserDialogs.Instance.HideLoading();
                 return false;
             }
+        }
+
+        private async void CheckUser()
+        {
+            if(CrossSecureStorage.Current.HasKey(CrossSecureStorageKeys.Login))
+                await _navigationService.Navigate<MainViewModel>();
         }
     }
 }
