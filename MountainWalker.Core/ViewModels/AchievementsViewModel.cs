@@ -44,12 +44,11 @@ namespace MountainWalker.Core.ViewModels
         private void SetAchievements()
         {
             var tops = CrossSecureStorage.Current.GetValue(CrossSecureStorageKeys.Achievements);
-            var achievements = JsonConvert.DeserializeObject<List<Achievement>>(tops);
+			var achievements = JsonConvert.DeserializeObject<List<Achievement>>(tops);
 
-            if (achievements.Count == 0)
+			if (achievements.Count == 0)
                 Items = new MvxObservableCollection<Achievement>();
-
-            else
+			else
                 foreach(var ach in achievements)
                 {
                     foreach(var item in Items)

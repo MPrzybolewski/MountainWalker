@@ -1,0 +1,115 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="14109" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES">
+    <device id="retina4_7" orientation="portrait">
+        <adaptation id="fullscreen"/>
+    </device>
+    <dependencies>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14088"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="DialogView">
+            <connections>
+                <outlet property="NearestPointButton" destination="bzu-NE-gij" id="name-outlet-bzu-NE-gij"/>
+                <outlet property="StartButton" destination="0vy-wC-sZy" id="name-outlet-0vy-wC-sZy"/>
+                <outlet property="view" destination="2" id="RRd-Eg-VrN"/>
+                <outlet property="DialogTitle" destination="KBA-4w-zhu" id="name-outlet-KBA-4w-zhu"/>
+                <outlet property="DialogText" destination="SdF-c4-bdo" id="name-outlet-SdF-c4-bdo"/>
+            </connections>
+        </placeholder>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <view contentMode="scaleToFill" id="2">
+            <rect key="frame" x="0.0" y="0.0" width="540" height="620"/>
+            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+            <subviews>
+                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="KYO-fk-GeK">
+                    <rect key="frame" x="120" y="210" width="300" height="200"/>
+                    <subviews>
+                        <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="VmO-yh-NdQ">
+                            <rect key="frame" x="0.0" y="150" width="300" height="50"/>
+                            <subviews>
+                                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="0vy-wC-sZy">
+                                    <rect key="frame" x="0.0" y="0.0" width="150" height="50"/>
+                                    <constraints>
+                                        <constraint firstAttribute="width" constant="150" id="9Kx-Pc-67o"/>
+                                    </constraints>
+                                    <state key="normal" title="Start"/>
+                                </button>
+                                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="bzu-NE-gij">
+                                    <rect key="frame" x="150" y="0.0" width="150" height="50"/>
+                                    <constraints>
+                                        <constraint firstAttribute="width" constant="150" id="QGm-tx-5vD"/>
+                                    </constraints>
+                                    <state key="normal" title="Najbliższy punkt"/>
+                                </button>
+                            </subviews>
+                            <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                            <constraints>
+                                <constraint firstItem="0vy-wC-sZy" firstAttribute="centerY" secondItem="VmO-yh-NdQ" secondAttribute="centerY" id="22r-1o-iPq"/>
+                                <constraint firstItem="0vy-wC-sZy" firstAttribute="top" secondItem="VmO-yh-NdQ" secondAttribute="top" id="L3t-MH-XBC"/>
+                                <constraint firstItem="bzu-NE-gij" firstAttribute="top" secondItem="VmO-yh-NdQ" secondAttribute="top" id="L6l-jU-x61"/>
+                                <constraint firstItem="0vy-wC-sZy" firstAttribute="leading" secondItem="VmO-yh-NdQ" secondAttribute="leading" id="PP7-Xk-QQ0"/>
+                                <constraint firstAttribute="trailing" secondItem="bzu-NE-gij" secondAttribute="trailing" id="U1t-62-lYS"/>
+                                <constraint firstAttribute="height" constant="50" id="g6A-Hc-nLb"/>
+                                <constraint firstItem="bzu-NE-gij" firstAttribute="centerY" secondItem="VmO-yh-NdQ" secondAttribute="centerY" id="gSG-C7-sKu"/>
+                            </constraints>
+                        </view>
+                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Jesteś wystarczająco blisko punktu, aby rozpocząć wędrówkę" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="SdF-c4-bdo">
+                            <rect key="frame" x="0.0" y="50" width="300" height="100"/>
+                            <color key="backgroundColor" red="0.93725490196078431" green="0.93725490196078431" blue="0.95686274509803926" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                            <constraints>
+                                <constraint firstAttribute="width" constant="300" id="OLJ-sC-Z16"/>
+                            </constraints>
+                            <fontDescription key="fontDescription" name=".AppleSystemUIFont" family=".AppleSystemUIFont" pointSize="17"/>
+                            <nil key="textColor"/>
+                            <nil key="highlightedColor"/>
+                        </label>
+                    </subviews>
+                    <color key="backgroundColor" cocoaTouchSystemColor="groupTableViewBackgroundColor"/>
+                    <constraints>
+                        <constraint firstAttribute="height" constant="200" id="Btc-FB-8Cx"/>
+                        <constraint firstItem="VmO-yh-NdQ" firstAttribute="top" secondItem="SdF-c4-bdo" secondAttribute="bottom" id="DLZ-oQ-UOK"/>
+                        <constraint firstAttribute="bottom" secondItem="VmO-yh-NdQ" secondAttribute="bottom" id="EiM-bX-gXR"/>
+                        <constraint firstAttribute="width" constant="300" id="O4C-A0-x3f"/>
+                        <constraint firstItem="VmO-yh-NdQ" firstAttribute="leading" secondItem="KYO-fk-GeK" secondAttribute="leading" id="OEh-sn-qDR"/>
+                        <constraint firstAttribute="trailing" secondItem="VmO-yh-NdQ" secondAttribute="trailing" id="QKQ-Xy-251"/>
+                        <constraint firstItem="SdF-c4-bdo" firstAttribute="centerX" secondItem="KYO-fk-GeK" secondAttribute="centerX" id="a1W-j2-Sxm"/>
+                        <constraint firstAttribute="trailing" relation="lessThanOrEqual" secondItem="SdF-c4-bdo" secondAttribute="trailing" constant="38" id="nTJ-WQ-9Gh"/>
+                        <constraint firstItem="SdF-c4-bdo" firstAttribute="leading" relation="lessThanOrEqual" secondItem="KYO-fk-GeK" secondAttribute="leading" constant="37" id="wdl-Xh-mxx"/>
+                    </constraints>
+                </view>
+                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" usesAttributedText="YES" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="KBA-4w-zhu">
+                    <rect key="frame" x="120" y="210" width="300" height="50"/>
+                    <color key="backgroundColor" red="0.0" green="0.47843137250000001" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                    <constraints>
+                        <constraint firstAttribute="width" constant="300" id="S4i-L4-quS"/>
+                        <constraint firstAttribute="height" constant="50" id="q0k-d3-hOp"/>
+                    </constraints>
+                    <attributedString key="attributedText">
+                        <fragment content="Można rozpocząć wędrówkę ">
+                            <attributes>
+                                <font key="NSFont" metaFont="system" size="17"/>
+                                <paragraphStyle key="NSParagraphStyle" alignment="center" lineBreakMode="wordWrapping" baseWritingDirection="natural" tighteningFactorForTruncation="0.0"/>
+                            </attributes>
+                        </fragment>
+                    </attributedString>
+                    <nil key="highlightedColor"/>
+                </label>
+            </subviews>
+            <color key="backgroundColor" red="0.5725490196078431" green="0.5725490196078431" blue="0.5725490196078431" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+            <constraints>
+                <constraint firstItem="SdF-c4-bdo" firstAttribute="top" secondItem="KBA-4w-zhu" secondAttribute="bottom" id="0KB-9i-obw"/>
+                <constraint firstItem="KYO-fk-GeK" firstAttribute="centerX" secondItem="2" secondAttribute="centerX" id="2ne-GK-a1h"/>
+                <constraint firstItem="KYO-fk-GeK" firstAttribute="centerY" secondItem="2" secondAttribute="centerY" id="IsN-VE-E8F"/>
+                <constraint firstItem="KBA-4w-zhu" firstAttribute="top" secondItem="KYO-fk-GeK" secondAttribute="top" id="jcA-fc-P9a"/>
+                <constraint firstItem="KBA-4w-zhu" firstAttribute="centerX" secondItem="2" secondAttribute="centerX" id="l8l-OW-a9q"/>
+            </constraints>
+            <modalFormSheetSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
+            <connections>
+                <outletCollection property="gestureRecognizers" destination="156" appends="YES" id="157"/>
+            </connections>
+            <point key="canvasLocation" x="24.5" y="51.5"/>
+        </view>
+        <tapGestureRecognizer id="156"/>
+    </objects>
+</document>

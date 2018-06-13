@@ -7,7 +7,7 @@ namespace MountainWalkerWebAPI.Models
 {
     public class User
     {
-        public int? Id { get; set; }
+        public int? UserID { get; set; }
         public string Name { get; set; }
         public string Surname { get; set; }
         public string Login { get; set; }
