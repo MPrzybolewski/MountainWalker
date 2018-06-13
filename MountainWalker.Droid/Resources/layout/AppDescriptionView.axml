@@ -9,7 +9,7 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:layout_gravity="center"
-        android:alpha="0.4"
+        android:alpha="0.3"
         android:scaleX="0.6"
         android:scaleY="0.6"
         android:src="@drawable/icon" />
@@ -72,7 +72,7 @@
                     android:layout_weight="0.4" />
                 <ImageView
                     android:layout_width="wrap_content"
-                    android:layout_height="35dp"
+                    android:layout_height="match_parent"
                     android:layout_weight="0.8"
                     android:src="@drawable/linkedin"
                     local:MvxBind="Click PatrykLinkedInCommand" />
@@ -100,7 +100,7 @@
                     android:layout_weight="0.4" />
                 <ImageView
                     android:layout_width="wrap_content"
-                    android:layout_height="35dp"
+                    android:layout_height="match_parent"
                     android:layout_weight="0.8"
                     android:src="@drawable/linkedin"
                     local:MvxBind="Click MichalLinkedInCommand" />
@@ -128,7 +128,7 @@
                     android:layout_weight="0.4" />
                 <ImageView
                     android:layout_width="wrap_content"
-                    android:layout_height="35dp"
+                    android:layout_height="match_parent"
                     android:layout_weight="0.8"
                     android:src="@drawable/linkedin"
                     local:MvxBind="Click MarekLinkedInCommand" />
