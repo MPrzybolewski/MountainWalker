@@ -9,11 +9,13 @@ using MountainWalkerWebAPI.Models;
 using System.Collections;
 using System.Security.Cryptography;
 using System.Text;
+using Newtonsoft.Json;
+using System.Diagnostics;
 
 namespace MountainWalkerWebAPI.Controllers
 {
     [Produces("application/json")]
-    [Route("api/[controller]")]
+    [Route("api/[controller]/[action]")]
     public class UsersController : Controller
     {
         private readonly UserContext _context;
@@ -24,7 +26,7 @@ namespace MountainWalkerWebAPI.Controllers
         }
 
         //Return all users
-        // GET: api/Users
+        // GET: api/Users/GetUsers
         [HttpGet]
         public IEnumerable<User> GetUsers()
         {
@@ -32,26 +34,115 @@ namespace MountainWalkerWebAPI.Controllers
         }
 
         //This method returns true when login and password match
-        // GET: api/Users/login?password=password
-        [HttpGet("{login}")]
-        public string CheckLogin(string login, string password)
+        // POST: api/Users/CheckLogin
+        [HttpPost]
+        public bool CheckLogin([FromBody] User userCheck)
         {
             var users = _context.Users;
-            password = CalculateHash(password);
-            foreach (var item in users)
+            userCheck.Password = CalculateHash(userCheck.Password);
+            foreach (User user in _context.Users)
             {
-                if (item.Login.Equals(login))
+                if (user.Login.Equals(userCheck.Login))
                 {                   
-                    if(CalculateHash(item.Password).Equals(CalculateHash(password)))
+                    if(user.Password.Equals(userCheck.Password))
                     {
-                        return "true";
+                        return true;
                     }
+                }
+            }
+            return false;
+        }
+
+        //This method returns name and surname for given login
+        // POST: api/Users/GetName
+        [HttpPost]
+        public string GetName([FromBody] User userr)
+        {
+            string result;
+            foreach (User user in _context.Users)
+            {
+                if (user.Login.Equals(userr.Login))
+                {
+                    result = user.Name + " " + user.Surname;
+                    return result;
                 }
             }
             return "false";
         }
+        
+		//This method returns ids of achievements for given user
+		// POST: api/Users/GetAchievementsForGivenUser
+        [HttpPost]
+		public IEnumerable<AchivementsToReturn> GetAchievementsForGivenUser([FromBody] User userr)
+        {
+            int? id = null;
+            List<AchivementsToReturn> result = new List<AchivementsToReturn>();
+            
+            foreach (User user in _context.Users)
+            {
+                if (user.Login.Equals(userr.Login))
+                {
+                    id = user.UserID;
+                }
+            }
+            
+            foreach(UserAchievement achi in _context.UserAchievement)
+            {
+                AchivementsToReturn toReturn = new AchivementsToReturn();
+                if(achi.UserID == id)
+                {
+                    toReturn.ID = achi.AchievementID;
+                    var temp = _context.Achievement.Single(s => s.AchievementID == achi.AchievementID);
+                    toReturn.Name = temp.Name;
+                    toReturn.Date = achi.Date;
+                    result.Add(toReturn);
+                }
+            }
+            return result;
+        }
 
-        //Updates user
+        //This method returns trail for given user
+        // POST: api/Users/GetTrailsForUser
+        [HttpPost]
+        public IEnumerable<TrailToReturn> GetTrailsForUser([FromBody] User userr)
+        {
+            int? id = null;
+            List<TrailToReturn> result = new List<TrailToReturn>();
+            foreach (User user in _context.Users)
+            {
+                if (user.Login.Equals(userr.Login))
+                {
+                    id = user.UserID;
+                }
+            }
+
+            foreach(Trail trail in _context.Trail)
+            {
+                if(trail.UserID == id)
+                {
+                    TrailToReturn trailToReturn = new TrailToReturn();
+                    trailToReturn.TrailID = trail.TrailID;
+                    trailToReturn.Distance = trail.Distance;
+                    trailToReturn.StartPoint = trail.StartPoint;
+                    trailToReturn.EndPoint = trail.EndPoint;
+                    trailToReturn.StartTime = trail.StartTime;
+                    trailToReturn.EndTime = trail.EndTime;
+                    trailToReturn.Date = trail.Date;
+
+                    foreach(TrailHasTrailPart part in _context.TrailHasTrailPart)
+                    {
+                        if(part.TrailID == trail.TrailID)
+                        {
+                            trailToReturn.TrailParts.Add(part.TrailPartID);
+                        }
+                    }
+                    result.Add(trailToReturn);
+                }
+            }
+            return result;
+        }
+
+        //Updates data
         // PUT: api/Users
         [HttpPut]
         public async Task<string> PutUser([FromBody] User user)
@@ -61,12 +152,10 @@ namespace MountainWalkerWebAPI.Controllers
                 return "false";
             }
 
-            if (user.Id != user.Id)
+            if (user.UserID != user.UserID)
             {
                 return "false";
             }
-
-            user.Password = CalculateHash(user.Password);
 
             _context.Entry(user).State = EntityState.Modified;
 
@@ -77,7 +166,7 @@ namespace MountainWalkerWebAPI.Controllers
             }
             catch (DbUpdateConcurrencyException)
             {
-                int temp = user.Id ?? default(int);
+                int temp = user.UserID ?? default(int);
                 if (!UserExists(temp))
                 {
                     return "user not exist";
@@ -87,39 +176,89 @@ namespace MountainWalkerWebAPI.Controllers
                     return "user exist";
                 }
             }
-
         }
 
         //Add new user
         // POST: api/Users
         [HttpPost]
-        public async Task<string> PostUser([FromBody] User user)
+        public async Task<bool[]> PostUser([FromBody] User user)
         {
-            if (!ModelState.IsValid)
-            {
-                return "false";
-            }
+            bool[] result = new bool[6];
 
-            user.Id = null;
+            //if (!ModelState.IsValid)
+            //{
+            //    return false;
+            //}
 
-            if(!CheckData(user))
+            user.UserID = null;
+            result = CheckData(user);
+            if (!result[0])
             {
-                return "false";
+                return result;
             }
 
             user.Password = CalculateHash(user.Password);
             _context.Users.Add(user);
 
-
             try
             {
                 await _context.SaveChangesAsync();
-                return "true";
-            } catch (Exception e)
+                return result;
+            }
+            catch (Exception e)
             {
-                return e.Message.ToString();
+                return result;
+            }
+
+        }
+
+        //Add trail for given user
+		// POST: api/Users
+        [HttpPost]
+        public async Task<bool> PostTrail([FromBody] JsonTrail trail, string login)
+        {
+            Trail trailToSave = new Trail();
+            trailToSave.TrailID = null;
+            trailToSave.StartTime = Convert.ToDateTime(trail.StartTime);
+            trailToSave.EndTime = Convert.ToDateTime(trail.EndTime);
+            trailToSave.StartPoint = trail.From;
+            trailToSave.Distance = Convert.ToDouble(trail.Distance);
+            trailToSave.EndPoint = trail.To;
+            trailToSave.Date = Convert.ToDateTime(trail.Date);
+            int? id = 9999999;
+            
+            foreach (User user in _context.Users)
+            {
+                if (user.Login.Equals(login))
+                {
+                    id = user.UserID;
+                }
             }
             
+            trailToSave.UserID = id;
+            _context.Trail.Add(trailToSave);
+            
+            try
+            {
+                await _context.SaveChangesAsync();
+                
+                foreach(int _id in trail.Trails)
+                {
+                    _context.TrailParts.Add(new TrailPart(_id, "test"));
+                }
+
+                foreach(int _id in trail.Trails)
+                {
+                    _context.TrailHasTrailPart.Add(new TrailHasTrailPart(trailToSave.TrailID, _id));
+                }
+                
+                return true;
+            }
+            catch (Exception e)
+            {
+                return false;
+            }
+
         }
 
         // DELETE: api/Users/5
@@ -131,7 +270,7 @@ namespace MountainWalkerWebAPI.Controllers
                 return BadRequest(ModelState);
             }
 
-            var user = await _context.Users.SingleOrDefaultAsync(m => m.Id == id);
+            var user = await _context.Users.SingleOrDefaultAsync(m => m.UserID == id);
             if (user == null)
             {
                 return NotFound();
@@ -145,7 +284,7 @@ namespace MountainWalkerWebAPI.Controllers
 
         private bool UserExists(int id)
         {
-            return _context.Users.Any(e => e.Id == id);
+            return _context.Users.Any(e => e.UserID == id);
         }
 
         bool IsValidEmail(string email)
@@ -161,18 +300,40 @@ namespace MountainWalkerWebAPI.Controllers
             }
         }
 
-        private bool CheckData(User user)
+		private bool[] CheckData(User user)
         {
-            if ((user.Login.Length<3) || (user.Password.Length<6) || (user.Email.Length<6) || (user.Name.Length<3) || (user.Surname.Length<3))
+            bool[] result = new bool[6];
+            for (int i = 0; i < 6; i++)
             {
-                return false;
+                result[i] = true;
             }
 
+            if (user.Login.Length < 3)
+            {
+                result[0] = false;
+                result[3] = false;
+            }
+            if (user.Name.Length < 2)
+            {
+                result[0] = false;
+                result[1] = false;
+            }
+            if (user.Surname.Length < 2)
+            {
+                result[0] = false;
+                result[2] = false;
+            }
+            if (user.Password.Length < 6)
+            {
+                result[0] = false;
+                result[4] = false;
+            }
             if (!IsValidEmail(user.Email))
             {
-                return false;
+                result[0] = false;
+                result[5] = false;
             }
-            return true;
+            return result;
         }
 
         private string CalculateHash(string password)

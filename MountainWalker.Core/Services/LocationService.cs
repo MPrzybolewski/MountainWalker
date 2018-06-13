@@ -40,7 +40,7 @@ namespace MountainWalker.Core.Services
         {
             if (CrossGeolocator.Current.IsListening)
                 return;
-	
+
             await CrossGeolocator.Current.StartListeningAsync(TimeSpan.FromSeconds(3), 5, true);
 
             CrossGeolocator.Current.PositionChanged += OnLocation;
