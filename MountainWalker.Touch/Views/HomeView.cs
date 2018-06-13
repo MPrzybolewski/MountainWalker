@@ -158,16 +158,6 @@ namespace MountainWalker.Touch.Views
 
         private void CreatePointsAndTrails(List<Point> points, List<Trail> trails)
         {
-            foreach (var point in points)
-            {
-                var marker = new Marker()
-                {
-                    Title = point.Name,
-                    Position = new CLLocationCoordinate2D(point.Latitude, point.Longitude),
-                    Map = _mapView
-                };
-            }
-
             int i = 0;
             foreach (var polyline in trails)
             {

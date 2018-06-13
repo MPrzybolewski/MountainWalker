@@ -180,6 +180,13 @@
     <ImageAsset Include="Resources\Assets.xcassets\phone.imageset\baseline_phone_black_48pt_1x.png" />
     <ImageAsset Include="Resources\Assets.xcassets\phone.imageset\baseline_phone_black_48pt_2x.png" />
     <ImageAsset Include="Resources\Assets.xcassets\phone.imageset\baseline_phone_black_48pt_3x.png" />
+    <ImageAsset Include="Assets.xcassets\AppIcon.appiconset\icon180.png" />
+    <ImageAsset Include="Assets.xcassets\AppIcon.appiconset\icon120.png" />
+    <ImageAsset Include="Assets.xcassets\AppIcon.appiconset\icon87.png" />
+    <ImageAsset Include="Assets.xcassets\AppIcon.appiconset\icon80.png" />
+    <ImageAsset Include="Assets.xcassets\AppIcon.appiconset\icon60.png" />
+    <ImageAsset Include="Assets.xcassets\AppIcon.appiconset\icon58.png" />
+    <ImageAsset Include="Assets.xcassets\AppIcon.appiconset\icon40.png" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Resources\" />

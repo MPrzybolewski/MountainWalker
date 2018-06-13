@@ -53,8 +53,9 @@ namespace MountainWalker.Core.ViewModels
 
         private void ReadMore()
         {
+
             var message = new TrailMessage(this, _trailService.Trails[_trailId], false);
-            if(Achievement.Os == "Android")
+            if(Achievement.Os == "android")
             {
                 _navigationService.Navigate<TrailDetailsViewModel>();
                 _visible.Raise(false);
